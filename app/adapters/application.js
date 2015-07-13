@@ -1,8 +1,7 @@
-import DS from 'ember-data';
-// import Ember from 'ember';
 import config from '../config/environment';
+import ActiveModelAdapter from 'active-model-adapter';
 
-export default DS.ActiveModelAdapter.extend({
+export default ActiveModelAdapter.extend({
   namespace: config.APP.NAMESPACE,
   host:      config.APP.API_HOST_URL,
   headers: function() {
