@@ -1,9 +1,19 @@
 /* global require, module */
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+var webRelease = ['production', 'staging'].indexOf(process.env.EMBER_ENV) !== -1;
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
-    // Add options here
+    sourcemaps: ['js', 'css'],
+    fingerprint: {
+      extensions: ['js', 'css', 'png', 'jpg', 'gif', 'map'],
+      enabled: webRelease
+    },
+    gzip: {
+      keepUncompressed: true,
+      extensions: ['js', 'css', 'map', 'ttf', 'ott', 'eot', 'svg'],
+      enabled: webRelease
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated
