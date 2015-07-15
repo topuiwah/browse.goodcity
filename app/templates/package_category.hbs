@@ -1,0 +1,10 @@
+<h2>{{model.name}}</h2>
+
+<ul>
+  {{#each model.items as |item|}}
+    <img src="{{item.displayImageUrl}}" />
+    <li>{{item.donorDescription}}</li>
+    <br>
+  {{/each}}
+</ul>
+

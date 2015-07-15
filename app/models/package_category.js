@@ -17,10 +17,14 @@ export default DS.Model.extend({
 
   items: function(){
     var items = [];
-    if(this.get('packageTypeCodes.length') > 0) {
-      this.get('packageTypes').forEach(function(pkg){
-        items = items.concat(pkg.get('items').toArray());
-      });
+    if(this.get('isParent')) {
+      return this.get('allItems');
+    } else {
+      if(this.get('packageTypeCodes.length') > 0) {
+        this.get('packageTypes').forEach(function(pkg){
+          items = items.concat(pkg.get('items').toArray());
+        });
+      }
     }
     return items;
   }.property('packageTypeCodes'),
