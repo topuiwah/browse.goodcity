@@ -11,7 +11,7 @@ export default Ember.Mixin.create({
     promises = retrieve(config.APP.PRELOAD_TYPES);
 
     promises.push(
-      new AjaxPromise("/items/browse", "GET")
+      new AjaxPromise("/browse/fetch_items", "GET")
         .then(data => { this.store.pushPayload(data); })
         .catch(error => alert(error))
     );
