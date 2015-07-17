@@ -4,7 +4,10 @@ import preloadDataMixin from '../mixins/preload_data';
 export default Ember.Route.extend(preloadDataMixin, {
 
   beforeModel: function() {
-    return this.preloadData();
+    var _this = this;
+    return this.preloadData().then(function(){
+      _this.transitionTo('browse');
+    });
   },
 
   renderTemplate: function() {

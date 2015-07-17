@@ -1,7 +1,13 @@
 <h2>{{model.name}}</h2>
 
+  {{#if model.isParent}}
+    {{select-list content=model.childCategories action=(action (mut selectedCategory)) targetActionName="filterItems" prompt="All"}}
+  {{/if}}
+
+  {{select-list content=sortOptions action=(action (mut selectedSort)) }}
+
 <ul>
-  {{#each model.items as |item|}}
+  {{#each sortedItems as |item|}}
     <img src="{{item.displayImageUrl}}" />
     <li>{{item.donorDescription}}</li>
     <br>

@@ -74,6 +74,24 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
 
+    ENV.APP.API_HOST_URL = 'https://api.goodcity.hk';
+
+    ENV.contentSecurityPolicy["connect-src"] = [
+      'https://app.goodcity.hk',
+      'https://api.goodcity.hk',
+      'https://api.cloudinary.com'
+    ].join(' ');
+
+    if (process.env.staging === 'true') {
+      ENV.staging = true;
+      ENV.APP.API_HOST_URL = 'https://api-staging.goodcity.hk';
+
+      ENV.contentSecurityPolicy["connect-src"] = [
+        'https://app-staging.goodcity.hk',
+        'https://api-staging.goodcity.hk',
+        'https://api.cloudinary.com'
+      ].join(' ');
+    }
   }
 
   ENV.APP.SERVER_PATH  = ENV.APP.API_HOST_URL + '/' + ENV.APP.NAMESPACE;
