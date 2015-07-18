@@ -10,7 +10,9 @@
   "scripts": {
     "start": "ember server --port 4202 --liveReloadPort=35731",
     "build": "ember build",
-    "test": "ember test"
+    "test": "ember test",
+    "deploy-staging": "site=browse-staging.goodcity.hk ports=22 environment=production staging=true ./deploy",
+    "deploy-live": "site=browse.goodcity.hk ports=22,62423 environment=production ./deploy"
   },
   "repository": "",
   "engines": {

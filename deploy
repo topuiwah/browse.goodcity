@@ -1,0 +1,24 @@
+#!/bin/bash
+
+site_folder=/var/www/html/browse.goodcity.hk
+
+echo "Building $site [$environment]"
+ember build --environment=$environment
+if [ $? -ne 0 ]; then
+  exit 1
+fi
+
+echo "Uploading new files to $site"
+release_folder=$site_folder/releases/$(date +%s)
+
+for port in ${ports//,/ }
+do
+  ssh -p $port deployer@$site "mkdir -p $site_folder/releases"
+
+  rsync -e "ssh -p $port" -rz dist/* deployer@$site:$release_folder
+
+  ssh -p $port deployer@$site "ln -nfs $release_folder $site_folder/current"
+
+  # keep most recent 3 release directories
+  ssh -p $port deployer@$site "cd $site_folder/releases && ls -dvr */ | tail -n +4 | xargs rm -rf"
+done
