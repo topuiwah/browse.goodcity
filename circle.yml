@@ -5,8 +5,12 @@ machine:
     version: 0.12
 
 dependencies:
-  post:
-    - ./node_modules/ember-cli/node_modules/bower/bin/bower install
+  pre:
+    - npm install -g bower
+  override:
+    - CI= npm install
+    - bower install
+    #- ./node_modules/ember-cli/node_modules/bower/bin/bower install
   #cache_directories:
   #  - bower_components    # relative to the build directory
 
