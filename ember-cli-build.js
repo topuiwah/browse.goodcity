@@ -34,5 +34,7 @@ module.exports = function(defaults) {
   app.import("bower_components/fontawesome/fonts/fontawesome-webfont.woff2", { destDir: "fonts" });
   app.import("bower_components/fontawesome/fonts/FontAwesome.otf", { destDir: "fonts" });
 
+  app.import('bower_components/cloudinary/js/jquery.cloudinary.js');
+
   return app.toTree();
 };
