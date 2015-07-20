@@ -9,7 +9,14 @@ export default DS.Model.extend({
   packageTypeCodes: attr('string'),
 
   isParent: Ember.computed.equal("parentId", null),
-  isChild: Ember.computed.notEmpty("parentId"),
+  isChild:  Ember.computed.notEmpty("parentId"),
+
+  selectValue: Ember.computed.alias('id'),
+  selectName:  Ember.computed.alias('nameItemsCount'),
+
+  nameItemsCount: function(){
+    return this.get("name") + " (" + this.get("items.length") + ")";
+  }.property('name', 'items.[]'),
 
   childCategories: function() {
     return this.store.peekAll('package_category').filterBy('parentId', parseInt(this.get("id")));
@@ -17,10 +24,14 @@ export default DS.Model.extend({
 
   items: function(){
     var items = [];
-    if(this.get('packageTypeCodes.length') > 0) {
-      this.get('packageTypes').forEach(function(pkg){
-        items = items.concat(pkg.get('items').toArray());
-      });
+    if(this.get('isParent')) {
+      return this.get('allItems');
+    } else {
+      if(this.get('packageTypeCodes.length') > 0) {
+        this.get('packageTypes').forEach(function(pkg){
+          items = items.concat(pkg.get('items').toArray());
+        });
+      }
     }
     return items;
   }.property('packageTypeCodes'),

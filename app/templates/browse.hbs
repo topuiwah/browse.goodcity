@@ -1,12 +1,18 @@
-Categories
+<h2>BROWSE</h2>
 
 <ul>
   {{#each parentCategories as |category|}}
     <img src="{{category.imageUrl}}" />
-    <li>{{category.name}} ({{category.allItems.length}})</li>
+    <li>
+      {{#link-to 'package_category' category}}
+        {{category.name}} ({{category.items.length}})
+      {{/link-to}}
+    </li>
     <ul>
       {{#each category.childCategories as |childCategory|}}
-        <li>{{childCategory.name}} ({{childCategory.items.length}})</li>
+        {{#link-to 'package_category' childCategory}}
+          <li>{{childCategory.name}} ({{childCategory.items.length}})</li>
+        {{/link-to}}
       {{/each}}
     </ul>
     <br>
