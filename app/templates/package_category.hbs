@@ -7,7 +7,7 @@
   {{select-list content=sortOptions action=(action (mut selectedSort)) }}
 
 <ul>
-  {{#each sortedItems as |item|}}
+  {{#each sortedItems key="@index" as |item|}}
     <img src="{{item.displayImageUrl}}" />
     <li>{{item.donorDescription}}</li>
     <br>
