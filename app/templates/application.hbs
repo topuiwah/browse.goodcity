@@ -1,5 +1,28 @@
-<div class="row full-width collapse">
-  {{liquid-outlet "sidebar"}}
+{{#app-canvas}}
+  <div class="row full-width collapse">
+    <div class="large-2 medium-3 columns show-for-medium-up menu" id="menu-large">
+      {{liquid-outlet "sidebar"}}
+    </div>
 
-  {{outlet}}
-</div>
+    <div class="large-14 medium-13 columns collapse" id="content">
+
+      <div class="off-canvas-wrap" data-offcanvas>
+        <div class="inner-wrap">
+
+          <nav class="tab-bar show-for-small menu-toggle">
+            <section class="left-small">
+              <a class="left-off-canvas-toggle menu-icon" href="#"><span></span> <h4 class="title">Menu</h4></a>
+            </section>
+          </nav>
+
+          <aside class="left-off-canvas-menu show-for-small menu">
+            {{liquid-outlet "sidebar"}}
+          </aside>
+
+          {{outlet}}
+
+        </div>
+      </div>
+    </div>
+  </div>
+{{/app-canvas}}
