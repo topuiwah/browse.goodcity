@@ -1,6 +1,9 @@
 import Ember from 'ember';
-
 export default Ember.Controller.extend({
+
+  queryParams: ["page"],
+  page:        1,
+  perPage:     10,
 
   selectedCategory: null,
   selectedSort:     null,
@@ -26,13 +29,19 @@ export default Ember.Controller.extend({
     var property     = sortProperty[0];
     var order        = sortProperty[1];
 
-    return this.get("categoryItems").sort(function(a,b){
-      if(order){
-        return b.get(property) - a.get(property);
-      } else {
-        return a.get(property) - b.get(property);
-      }
+    return Ember.ArrayProxy.extend(Ember.SortableMixin).create({
+      sortProperties: [property],
+      sortAscending: true,
+      sortFunction: function(a,b) {
+        if(order){
+          return parseInt(b) - parseInt(a);
+        } else {
+          return parseInt(a) - parseInt(b);
+        }
+      },
+      content: this.get("categoryItems")
     });
+
   }.property('selectedSort', 'categoryItems', 'category'),
 
   actions: {

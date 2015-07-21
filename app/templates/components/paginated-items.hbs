@@ -1,0 +1,10 @@
+{{#each pagedContent key="@index" as |item|}}
+  <div class="large-3 medium-3 small-16 columns">
+    <img src="{{item.displayImageUrl}}" />
+    <li>{{item.donorDescription}}</li>
+  </div>
+{{/each}}
+
+{{#if showPaginationBar}}
+  {{page-numbers content=pagedContent}}
+{{/if}}
