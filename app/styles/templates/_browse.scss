@@ -34,3 +34,17 @@
 .main-section {
   padding: 0 4rem;
 }
+
+
+// CATEGORY PAGE
+
+.tab-bar.category_page {
+  height: 10rem;
+}
+
+.items_list {
+  div:last-child {
+    float: left !important;
+  }
+}
+

@@ -1,16 +1,24 @@
-<h2>{{model.name}}</h2>
+<nav class="tab-bar category_page">
+  <section class='main-section'>
+    <h1 class="title">{{model.name}}</h1>
 
-  {{#if model.isParent}}
-    {{select-list content=model.childCategories action=(action (mut selectedCategory)) targetActionName="filterItems" prompt="All"}}
-  {{/if}}
+    {{#if model.isParent}}
+      {{select-list content=model.childCategories action=(action (mut selectedCategory)) targetActionName="filterItems" prompt="All"}}
+    {{/if}}
 
-  {{select-list content=sortOptions action=(action (mut selectedSort)) }}
+    {{select-list content=sortOptions action=(action (mut selectedSort)) }}
 
-<ul>
-  {{#each sortedItems key="@index" as |item|}}
-    <img src="{{item.displayImageUrl}}" />
-    <li>{{item.donorDescription}}</li>
-    <br>
-  {{/each}}
-</ul>
+  </section>
+</nav>
+
+<section class="main-section">
+  <div class="row list items_list">
+    {{#each sortedItems key="@index" as |item|}}
+      <div class="large-3 medium-3 small-16 columns">
+        <img src="{{item.displayImageUrl}}" />
+        <li>{{item.donorDescription}}</li>
+      </div>
+    {{/each}}
+  </div>
+</section>
 
