@@ -4336,54 +4336,55 @@ label.error {
   }
 }
 
-ul.pagination {
-  display: block;
-  min-height: 1.5rem;
-  margin-left: -0.3125rem;
-  li {
-    height: 1.5rem;
-    color: #222;
-    font-size: 0.875rem;
-    margin-left: 0.3125rem;
-    a {
-      display: block;
-      padding: 0.0625rem 0.625rem 0.0625rem;
-      color: #999;
-      border-radius: 3px;
-    }
-    &:hover a, a:focus {
-      background: #e6e6e6;
-    }
-    &.unavailable {
-      a {
-        cursor: default;
-        color: #999;
-      }
-      &:hover a, a:focus {
-        background: transparent;
-      }
-    }
-    &.current a {
-      background: #ff4353;
-      color: #fff;
-      font-weight: bold;
-      cursor: default;
-      &:hover, &:focus {
-        background: #ff4353;
-      }
-    }
-    float: left;
-    display: block;
-  }
-}
+// ul.pagination {
+//   display: block;
+//   min-height: 1.5rem;
+//   margin-left: -0.3125rem;
+//   li {
+//     height: 1.5rem;
+//     color: #222;
+//     font-size: 0.875rem;
+//     margin-left: 0.3125rem;
+//     a {
+//       display: block;
+//       padding: 0.0625rem 0.625rem 0.0625rem;
+//       color: #999;
+//       border-radius: 3px;
+//       text-decoration: none;
+//     }
+//     &:hover a, a:focus {
+//       background: #e6e6e6;
+//     }
+//     &.unavailable {
+//       a {
+//         cursor: default;
+//         color: #999;
+//       }
+//       &:hover a, a:focus {
+//         background: transparent;
+//       }
+//     }
+//     &.active a {
+//       background: #ff4353;
+//       color: #fff;
+//       font-weight: bold;
+//       cursor: default;
+//       &:hover, &:focus {
+//         background: #ff4353;
+//       }
+//     }
+//     float: left;
+//     display: block;
+//   }
+// }
 
-.pagination-centered {
-  text-align: center;
-  ul.pagination li {
-    float: none;
-    display: inline-block;
-  }
-}
+// .pagination-centered {
+//   text-align: center;
+//   ul.pagination li {
+//     float: none;
+//     display: inline-block;
+//   }
+// }
 
 .panel {
   border-style: solid;
