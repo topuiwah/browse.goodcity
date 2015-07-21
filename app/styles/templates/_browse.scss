@@ -1,0 +1,36 @@
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  .main_category {
+    font-weight: bold;
+    a {
+      text-decoration: none;
+      &:hover {
+        color: $medium-blue !important;
+      }
+    }
+  }
+
+  &.subcategories {
+    font-size: 0.9rem;
+
+    a {
+      color: $medium-blue !important;
+      &:hover {
+        li {
+          color: $white;
+        }
+      }
+    }
+  }
+
+  img {
+    padding: 1rem 0;
+  }
+}
+
+.main-section {
+  padding: 0 4rem;
+}

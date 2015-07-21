@@ -1,20 +1,28 @@
-<h2>BROWSE</h2>
+<nav class="tab-bar">
+  <section class='main-section'>
+    <h1 class="title">Browse Goods</h1>
+  </section>
+</nav>
 
-<ul>
-  {{#each parentCategories as |category|}}
-    <img src="{{category.imageUrl}}" />
-    <li>
-      {{#link-to 'package_category' category}}
-        {{category.name}} ({{category.items.length}})
-      {{/link-to}}
-    </li>
-    <ul>
-      {{#each category.childCategories as |childCategory|}}
-        {{#link-to 'package_category' childCategory}}
-          <li>{{childCategory.name}} ({{childCategory.items.length}})</li>
-        {{/link-to}}
-      {{/each}}
-    </ul>
-    <br>
-  {{/each}}
-</ul>
+<section class="main-section">
+  <div class="row list">
+    {{#each parentCategories as |category|}}
+      <div class="large-2 medium-3 small-16 columns">
+        <img src="{{category.imageUrl}}" />
+        <div class='main_category'>
+          {{#link-to 'package_category' category}}
+            {{category.name}} ({{category.items.length}})
+          {{/link-to}}
+        </div>
+        <ul class="list subcategories hide-for-small">
+          {{#each category.childCategories as |childCategory|}}
+            {{#link-to 'package_category' childCategory}}
+              <li>{{childCategory.name}} ({{childCategory.items.length}})</li>
+            {{/link-to}}
+          {{/each}}
+        </ul>
+      </div>
+    {{/each}}
+    <div class="large-1 medium-1 columns"></div>
+  </div>
+</section>

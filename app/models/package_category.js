@@ -61,11 +61,11 @@ export default DS.Model.extend({
   imageUrl: function(){
     if(this.get('isParent')) {
       var images = {
-        "Furniture": "1436965082/browse/browse_image_2.jpg",
-        "Electrical": "1436965083/browse/browse_image_3.jpg",
-        "Household": "1436965082/browse/browse_image_4.jpg",
-        "Small goods & bulk items": "1436965083/browse/browse_image_5.jpg",
-        "Recreation": "1436965083/browse/browse_image_6.jpg"
+        "Furniture": "1436965082/browse/browse_image_2.png",
+        "Electrical": "1436965083/browse/browse_image_3.png",
+        "Household": "1436965082/browse/browse_image_4.png",
+        "Small goods & bulk items": "1436965083/browse/browse_image_5.png",
+        "Recreation": "1436965083/browse/browse_image_6.png"
       };
       var id = images[this.get("name")];
       var version = id.split("/")[0];
