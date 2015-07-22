@@ -14,7 +14,7 @@ export default DS.Model.extend({
   }.property('cloudinaryId'),
 
   thumbImageUrl: function() {
-    return this.generateUrl(120, 120, true);
+    return this.generateUrl(50, 50, true);
   }.property('cloudinaryId'),
 
   generateUrl: function(width, height, crop) {
@@ -27,8 +27,8 @@ export default DS.Model.extend({
     var filename = id.substring(id.indexOf("/") + 1);
     return Ember.$.cloudinary.url(filename, {
       version: version,
-      height: height,
-      width: width,
+      height: (height || 120),
+      width: (width || 120),
       crop: crop === true ? 'fill' : 'fit',
       flags: "progressive",
       id: id,

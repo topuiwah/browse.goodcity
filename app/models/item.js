@@ -1,4 +1,4 @@
-// import Ember from 'ember';
+import Ember from 'ember';
 import DS from 'ember-data';
 
 var attr = DS.attr,
@@ -10,8 +10,12 @@ export default DS.Model.extend({
   createdAt:        attr('date'),
   updatedAt:        attr('date'),
   images:           hasMany('image'),
+  packages:         hasMany('package'),
   packageType:      belongsTo('package_type'),
+  donorCondition:   belongsTo('donor_condition'),
   saleable:         attr('boolean'),
+
+  mainPackage:      Ember.computed.alias('packages.firstObject'),
 
   displayImage: function() {
     return this.get("images").filterBy("favourite").get("firstObject") ||
@@ -21,4 +25,13 @@ export default DS.Model.extend({
   displayImageUrl: function() {
     return this.get('displayImage.thumbImageUrl') || "assets/images/default_item.jpg";
   }.property('displayImage'),
+
+  allPackageCategories: function(){
+    return this.get('packageType.allPackageCategories');
+  }.property('packageType', 'packageType.allPackageCategories.[]'),
+
+  otherPackages: function(){
+    return this.get('packages').toArray().removeObject(this.get('mainPackage'));
+  }.property('packages.[]'),
+
 });

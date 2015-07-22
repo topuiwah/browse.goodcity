@@ -1,0 +1,41 @@
+<nav class="tab-bar category_page">
+  <section class='main-section'>
+    <h1 class="title">View Item</h1>
+
+  </section>
+</nav>
+
+<section class="main-section">
+
+  {{!-- IMAGES SECTION --}}
+  <div class="row">
+    <p><img src="{{model.displayImageUrl}}" /></p>
+
+    {{#each model.images key="@index" as |image|}}
+      <img src="{{image.thumbImageUrl}}" />
+    {{/each}}
+  </div>
+  {{!--  --}}
+
+  {{!-- DETAILS SECTION --}}
+  <h3>{{model.mainPackage.notes}}</h3>
+  <p><b>Condition: </b> {{model.donorCondition.name}}</p>
+  <p><b>Quantity: </b> {{model.mainPackage.quantity}}</p>
+  <p><b>Size: </b> {{model.mainPackage.dimensions}}</p>
+  <p><b>Categories: </b>
+    {{#each model.allPackageCategories key="@index" as |category|}}
+      {{category.name}},
+    {{/each}}
+  </p>
+  {{!--  --}}
+
+  {{!-- OTHER PACKAGES DETAILS --}}
+  <h3>Other Packages</h3>
+  {{#each model.otherPackages key="@index" as |package|}}
+    <h4>{{package.notes}}</h4>
+    <p><b>Quantity: </b> {{package.quantity}}</p>
+    <p><b>Size: </b> {{package.dimensions}}</p>
+  {{/each}}
+  {{!--  --}}
+
+</section>
