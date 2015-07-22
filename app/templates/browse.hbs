@@ -5,9 +5,10 @@
 </nav>
 
 <section class="main-section">
-  <div class="row list">
+  <ul class="large-block-grid-5 list">
+
     {{#each parentCategories as |category|}}
-      <div class="large-2 medium-3 small-16 columns">
+      <li>
         <img src="{{category.imageUrl}}" />
         <div class='main_category'>
           {{#link-to 'package_category' category}}
@@ -21,8 +22,7 @@
             {{/link-to}}
           {{/each}}
         </ul>
-      </div>
+      </li>
     {{/each}}
-    <div class="large-1 medium-1 columns"></div>
-  </div>
+  </ul>
 </section>

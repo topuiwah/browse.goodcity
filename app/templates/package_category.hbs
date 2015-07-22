@@ -12,10 +12,8 @@
 </nav>
 
 <section class="main-section">
-  <div class="row list items_list">
-    {{#paginated-items content=sortedItems page=page perPage=perPage query=query}}
-      {{outlet}}
-    {{/paginated-items}}
-  </div>
+  {{#paginated-items content=sortedItems page=page perPage=perPage query=query}}
+    {{outlet}}
+  {{/paginated-items}}
 </section>
 
