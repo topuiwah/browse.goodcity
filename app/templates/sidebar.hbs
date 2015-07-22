@@ -1,27 +1,35 @@
-<div class="icon-bar vertical four-up">
-  {{#link-to 'browse' class="menu-1"}}
-    <i class="fa fa-folder-open"></i>
-    <label>Browse</label>
-  {{/link-to}}
-  {{#link-to 'browse' class="menu-2"}}
-    <i class="fa fa-shopping-cart"></i>
-    <label>My Orders</label>
-  {{/link-to}}
-  {{#link-to 'browse' class="menu-3"}}
-    <i class="fa fa-question"></i>
-    <label>Faq</label>
-  {{/link-to}}
-</div>
+<ul class="off-canvas-list menu">
 
-<p class="language">
-  <a href="" lang="zh-hant" hreflang="zh-hant">中文</a>
-  <a href="">English</a>
-</p>
+  <li>
+    {{#link-to 'browse' class="menu-1"}}
+      <i class="fa fa-folder-open"></i>
+      <label>Browse</label>
+    {{/link-to}}
+  </li>
 
-<div class="icon-bar vertical one-up cr-logo">
-  <a href="http://www.crossroads.org.hk">
-    <img src="/assets/images/Global-Distribution_logo.gif" class="show-for-portrait">
-    <label>By Crossroads Foundation</label>
-  </a>
-</div>
+  <li>
+    {{#link-to 'browse' class="menu-2"}}
+      <i class="fa fa-shopping-cart"></i>
+      <label>My Orders</label>
+    {{/link-to}}
+  </li>
 
+  <li>
+    {{#link-to 'browse' class="menu-3"}}
+      <i class="fa fa-question"></i>
+      <label>FAQ</label>
+    {{/link-to}}
+  </li>
+
+  <li class='language'>
+    <a href="" lang="zh-hant" hreflang="zh-hant" class="menu-4">中文</a>
+    <a href="" class="menu-4">English</a>
+  </li>
+
+  <li class='cr-logo'>
+    <a href="http://www.crossroads.org.hk" class="menu-4">
+      <img src="/assets/images/Global-Distribution_logo.gif" >
+      <label>By Crossroads Foundation</label>
+    </a>
+  </li>
+</ul>

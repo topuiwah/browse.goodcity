@@ -1,10 +1,10 @@
 {{#app-canvas}}
-  <div class="row full-width collapse">
-    <div class="large-2 medium-3 columns show-for-medium-up menu" id="menu-large">
-      {{liquid-outlet "sidebar"}}
+  <div class="row application-layout">
+    <div class="large-1 medium-3 columns show-for-medium-up menu-list" id="menu-large">
+      {{partial "sidebar"}}
     </div>
 
-    <div class="large-14 medium-13 columns collapse" id="content">
+    <div class="large-11 medium-9 columns collapse no-padding" id="content">
 
       <div class="off-canvas-wrap" data-offcanvas>
         <div class="inner-wrap">
@@ -15,8 +15,8 @@
             </section>
           </nav>
 
-          <aside class="left-off-canvas-menu show-for-small menu">
-            {{liquid-outlet "sidebar"}}
+          <aside class="left-off-canvas-menu show-for-small menu-list">
+            {{partial "sidebar"}}
           </aside>
 
           {{outlet}}
