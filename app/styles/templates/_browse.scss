@@ -34,11 +34,15 @@
 // CATEGORY PAGE
 
 .tab-bar.category_page {
-  height: 10rem;
+  height: 8rem;
 }
 
 .items_list {
   div:last-child {
     float: left !important;
   }
+}
+
+select {
+  width: 10rem;
 }

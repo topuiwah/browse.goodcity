@@ -1,12 +1,20 @@
 <nav class="tab-bar category_page">
-  <section class='main-section'>
+  <section class='main-section ui'>
     <h1 class="title">{{model.name}}</h1>
 
-    {{#if model.isParent}}
-      {{select-list content=model.childCategories action=(action (mut selectedCategory)) targetActionName="filterItems" prompt="All"}}
-    {{/if}}
+    <ul class="large-block-grid-4 small-block-grid-2 list">
 
-    {{select-list content=sortOptions action=(action (mut selectedSort)) }}
+      {{#if model.isParent}}
+        <li>
+          Filter Items: {{select-list content=model.childCategories action=(action (mut selectedCategory)) targetActionName="filterItems" prompt="All"}}
+        </li>
+      {{/if}}
+
+      <li>
+        Sort by: {{select-list content=sortOptions action=(action (mut selectedSort)) }}
+      </li>
+
+    </ul>
 
   </section>
 </nav>

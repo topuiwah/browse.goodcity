@@ -1,8 +1,10 @@
 @import "settings";
 @import "bower_components/foundation/scss/foundation"; //load all components
 @import "fonts";
-@import 'bower_components/fontawesome/css/font-awesome';
+@import "bower_components/fontawesome/css/font-awesome";
 @import "custom";
+@import "input";
 @import "pagination";
 
+@import "templates/application";
 @import "templates/browse";

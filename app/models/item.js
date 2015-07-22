@@ -19,6 +19,6 @@ export default DS.Model.extend({
   }.property('images.@each.favourite'),
 
   displayImageUrl: function() {
-    return this.get('displayImage.thumbImageUrl');
+    return this.get('displayImage.thumbImageUrl') || "assets/images/default_item.jpg";
   }.property('displayImage'),
 });
