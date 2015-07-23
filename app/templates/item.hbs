@@ -1,41 +1,77 @@
-<nav class="tab-bar category_page">
+<nav class="tab-bar">
   <section class='main-section'>
     <h1 class="title">View Item</h1>
-
   </section>
 </nav>
 
-<section class="main-section">
-
-  {{!-- IMAGES SECTION --}}
+<section class="main-section view-item">
   <div class="row">
-    <p><img src="{{model.displayImageUrl}}" /></p>
+    <div class="large-8 medium-8 small-12 columns">
 
-    {{#each model.images key="@index" as |image|}}
-      <img src="{{image.thumbImageUrl}}" />
-    {{/each}}
+      {{!-- DETAILS SECTION --}}
+      <div class="item_name">{{model.mainPackage.notes}}</div>
+      <p>
+        <div class="item_details">
+          Condition: {{model.donorCondition.name}}
+        </div>
+        <div class="item_details">
+          Quantity:  {{model.mainPackage.quantity}}
+        </div>
+        <div class="item_details">
+          Size:      {{model.mainPackage.dimensions}}
+        </div>
+        <div class="item_details">
+          Categories:
+          {{#each model.allPackageCategories key="@index" as |category|}}
+            {{#link-to 'package_category' category}}{{category.name}}{{/link-to}},
+          {{/each}}
+        </div>
+      </p>
+      {{!--  --}}
+
+      {{!-- OTHER PACKAGES DETAILS --}}
+      {{#each model.otherPackages key="@index" as |package|}}
+        <div class="item_name">{{package.notes}}</div>
+        <p>
+          <div class="item_details">
+            Quantity: {{package.quantity}}
+          </div>
+          <div class="item_details">
+            Size: {{package.dimensions}}
+          </div>
+        </p>
+      {{/each}}
+      {{!--  --}}
+
+    </div>
+
+    <div class="large-4 medium-4 small-12 columns images-section">
+      {{!-- IMAGES SECTION --}}
+      <div class="row" >
+        <img class="view-image" src="{{previewUrl}}" />
+
+        {{#each model.images key="@index" as |image|}}
+          <img class="thumb-image" src="{{image.thumbImageUrl}}" {{action "showPreview" image on="click"}} />
+        {{/each}}
+      </div>
+
+
+      {{#image-preview}}
+        <div class="row" id="lightGallery">
+          <div data-src={{model.favouriteImage.imageUrl}} >
+            View Large Images ({{model.images.length}})
+            <img class="view-image hidden" src="{{model.displayImageUrl}}" />
+          </div>
+
+          {{#each model.otherImages key="@index" as |image|}}
+            <div data-src={{image.imageUrl}} class="image-src hidden">
+              <img class="thumb-image" src="{{image.thumbImageUrl}}" />
+            </div>
+          {{/each}}
+        </div>
+      {{/image-preview}}
+      {{!--  --}}
+    </div>
+
   </div>
-  {{!--  --}}
-
-  {{!-- DETAILS SECTION --}}
-  <h3>{{model.mainPackage.notes}}</h3>
-  <p><b>Condition: </b> {{model.donorCondition.name}}</p>
-  <p><b>Quantity: </b> {{model.mainPackage.quantity}}</p>
-  <p><b>Size: </b> {{model.mainPackage.dimensions}}</p>
-  <p><b>Categories: </b>
-    {{#each model.allPackageCategories key="@index" as |category|}}
-      {{category.name}},
-    {{/each}}
-  </p>
-  {{!--  --}}
-
-  {{!-- OTHER PACKAGES DETAILS --}}
-  <h3>Other Packages</h3>
-  {{#each model.otherPackages key="@index" as |package|}}
-    <h4>{{package.notes}}</h4>
-    <p><b>Quantity: </b> {{package.quantity}}</p>
-    <p><b>Size: </b> {{package.dimensions}}</p>
-  {{/each}}
-  {{!--  --}}
-
 </section>

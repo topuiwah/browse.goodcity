@@ -22,7 +22,11 @@ export default DS.Model.extend({
       var parentCategory = pkg.get('parentCategory');
       if(parentCategory) { categories = categories.concat(parentCategory); }
     });
-    return categories;
+
+    // to remove dupliacte occurences
+    return categories.filter(function(item, pos) {
+      return categories.indexOf(item) === pos;
+    });
   }.property('code', "_packageCategories.[]"),
 
 });

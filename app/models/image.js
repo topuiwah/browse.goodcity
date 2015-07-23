@@ -13,8 +13,16 @@ export default DS.Model.extend({
     return this.generateUrl();
   }.property('cloudinaryId'),
 
+  defaultImageUrl: function() {
+    return this.generateUrl(120, 120, true);
+  }.property('cloudinaryId'),
+
   thumbImageUrl: function() {
     return this.generateUrl(50, 50, true);
+  }.property('cloudinaryId'),
+
+  previewImageUrl: function() {
+    return this.generateUrl(265, 265, true);
   }.property('cloudinaryId'),
 
   generateUrl: function(width, height, crop) {
@@ -27,8 +35,8 @@ export default DS.Model.extend({
     var filename = id.substring(id.indexOf("/") + 1);
     return Ember.$.cloudinary.url(filename, {
       version: version,
-      height: (height || 120),
-      width: (width || 120),
+      height: height,
+      width: width,
       crop: crop === true ? 'fill' : 'fit',
       flags: "progressive",
       id: id,
