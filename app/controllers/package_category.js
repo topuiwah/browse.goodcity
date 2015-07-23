@@ -21,6 +21,7 @@ export default Ember.Controller.extend({
   }.property(),
 
   sortedItems: function(){
+    this.set('page', 1);
     var selected = this.get("selectedSort");
     var options  = this.get("sortOptions");
     var option   = selected ? options.findBy('id', selected) : options.get('firstObject');
