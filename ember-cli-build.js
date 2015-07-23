@@ -37,5 +37,11 @@ module.exports = function(defaults) {
 
   app.import('bower_components/cloudinary/js/jquery.cloudinary.js');
 
+  app.import('bower_components/lightgallery/light-gallery/css/lightGallery.css');
+  app.import('bower_components/lightgallery/light-gallery/js/lightGallery.js');
+  app.import('bower_components/lightgallery/light-gallery/img/loading.gif', {
+    destDir: '/img'
+  });
+
   return app.toTree();
 };

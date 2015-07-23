@@ -1,8 +1,10 @@
 <ul class="large-block-grid-6 small-block-grid-2 list">
   {{#each pagedContent key="@index" as |item|}}
     <li>
-      <img src="{{item.displayImageUrl}}" />
-      <li>{{item.donorDescription}}</li>
+      {{#link-to 'item' item}}
+        <img src="{{item.displayImageUrl}}" />
+        <li>{{item.donorDescription}}</li>
+      {{/link-to}}
     </li>
   {{/each}}
 </ul>

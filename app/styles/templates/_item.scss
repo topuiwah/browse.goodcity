@@ -1,0 +1,42 @@
+.hidden {
+  display: none !important;
+}
+
+.view-item {
+  &.main-section {
+    padding-top: 1rem;
+  }
+
+  .item_name {
+    color: $white;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+
+  .item_details {
+    font-size: 0.8rem;
+  }
+
+  .view-image {
+    display: block;
+    padding-bottom: 1rem;
+  }
+
+  .thumb-image {
+    padding-bottom: 0.5rem;
+    cursor: pointer;
+  }
+
+  .images-section {
+    padding-right: 4rem;
+  }
+
+  .image-src {
+    display: inline-block;
+  }
+
+  #lightGallery {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
