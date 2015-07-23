@@ -1,14 +1,28 @@
-Categories
+<nav class="tab-bar">
+  <section class='main-section'>
+    <h1 class="title">Browse Goods</h1>
+  </section>
+</nav>
 
-<ul>
-  {{#each parentCategories as |category|}}
-    <img src="{{category.imageUrl}}" />
-    <li>{{category.name}} ({{category.allItems.length}})</li>
-    <ul>
-      {{#each category.childCategories as |childCategory|}}
-        <li>{{childCategory.name}} ({{childCategory.items.length}})</li>
-      {{/each}}
-    </ul>
-    <br>
-  {{/each}}
-</ul>
+<section class="main-section">
+  <ul class="large-block-grid-5 list">
+
+    {{#each parentCategories as |category|}}
+      <li>
+        <img src="{{category.imageUrl}}" />
+        <div class='main_category'>
+          {{#link-to 'package_category' category}}
+            {{category.name}} ({{category.items.length}})
+          {{/link-to}}
+        </div>
+        <ul class="list subcategories hide-for-small">
+          {{#each category.childCategories as |childCategory|}}
+            {{#link-to 'package_category' childCategory}}
+              <li>{{childCategory.name}} ({{childCategory.items.length}})</li>
+            {{/link-to}}
+          {{/each}}
+        </ul>
+      </li>
+    {{/each}}
+  </ul>
+</section>

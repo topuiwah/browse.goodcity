@@ -11,5 +11,14 @@ export default DS.Model.extend({
   updatedAt:        attr('date'),
   images:           hasMany('image'),
   packageType:      belongsTo('package_type'),
-  saleable:         attr('boolean')
+  saleable:         attr('boolean'),
+
+  displayImage: function() {
+    return this.get("images").filterBy("favourite").get("firstObject") ||
+      this.get("images").sortBy("id").get("firstObject") || null;
+  }.property('images.@each.favourite'),
+
+  displayImageUrl: function() {
+    return this.get('displayImage.thumbImageUrl') || "assets/images/default_item.jpg";
+  }.property('displayImage'),
 });

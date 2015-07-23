@@ -1,0 +1,27 @@
+<nav class="tab-bar category_page">
+  <section class='main-section ui'>
+    <h1 class="title">{{model.name}}</h1>
+
+    <ul class="large-block-grid-4 small-block-grid-2 list">
+
+      {{#if model.isParent}}
+        <li>
+          Filter Items: {{select-list content=model.childCategories action=(action (mut selectedCategory)) targetActionName="filterItems" prompt="All"}}
+        </li>
+      {{/if}}
+
+      <li>
+        Sort by: {{select-list content=sortOptions action=(action (mut selectedSort)) }}
+      </li>
+
+    </ul>
+
+  </section>
+</nav>
+
+<section class="main-section">
+  {{#paginated-items content=sortedItems page=page perPage=perPage query=query}}
+    {{outlet}}
+  {{/paginated-items}}
+</section>
+

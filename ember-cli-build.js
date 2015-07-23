@@ -23,6 +23,7 @@ module.exports = function(defaults) {
   });
 
   app.import('bower_components/foundation/js/foundation/foundation.js');
+  app.import('bower_components/foundation/js/foundation/foundation.offcanvas.js');
   app.import('bower_components/jquery-placeholder/jquery.placeholder.js');
   app.import('bower_components/jquery.cookie/jquery.cookie.js');
   app.import('bower_components/modernizr/modernizr.js');
