@@ -3,7 +3,7 @@ export default Ember.Controller.extend({
 
   queryParams: ["page"],
   page:        1,
-  perPage:     10,
+  perPage:     12,
 
   selectedCategory: null,
   selectedSort:     null,
