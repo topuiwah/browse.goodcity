@@ -14,6 +14,10 @@ export default DS.Model.extend({
   selectValue: Ember.computed.alias('id'),
   selectName:  Ember.computed.alias('nameItemsCount'),
 
+  parentCategory: function(){
+    return this.get('parentId') ? this.store.peekRecord('package_category', this.get('parentId')) : null;
+  }.property('parentId'),
+
   nameItemsCount: function(){
     return this.get("name") + " (" + this.get("items.length") + ")";
   }.property('name', 'items.[]'),

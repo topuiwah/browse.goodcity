@@ -13,8 +13,16 @@ export default DS.Model.extend({
     return this.generateUrl();
   }.property('cloudinaryId'),
 
-  thumbImageUrl: function() {
+  defaultImageUrl: function() {
     return this.generateUrl(120, 120, true);
+  }.property('cloudinaryId'),
+
+  thumbImageUrl: function() {
+    return this.generateUrl(50, 50, true);
+  }.property('cloudinaryId'),
+
+  previewImageUrl: function() {
+    return this.generateUrl(265, 265, true);
   }.property('cloudinaryId'),
 
   generateUrl: function(width, height, crop) {
