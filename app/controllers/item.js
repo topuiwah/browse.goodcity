@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
     } else {
       return this.get("model.previewImageUrl");
     }
-  }.property("model.previewImageUrl"),
+  }.property("model.previewImageUrl", "model"),
 
   actions: {
     showPreview: function(image){
