@@ -6,7 +6,7 @@ export default ActiveModelAdapter.extend({
   host:      config.APP.API_HOST_URL,
   headers: function() {
     return {
-      "Accept-Language":        "en",
+      "Accept-Language":        this.get('session.language'),
       "X-GOODCITY-APP-NAME":    config.APP.NAME,
       "X-GOODCITY-APP-VERSION": config.APP.VERSION,
       "X-GOODCITY-APP-SHA":     config.APP.SHA
