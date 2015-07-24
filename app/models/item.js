@@ -21,6 +21,16 @@ export default DS.Model.extend({
     return this.get("images").filterBy("favourite").get("firstObject");
   }.property('images.@each.favourite'),
 
+  otherImages: function(){
+    return this.get("images").toArray().removeObject(this.get("favouriteImage"));
+  }.property('images.[]'),
+
+  sortedImages: function(){
+    var images = this.get('otherImages').toArray();
+    images.unshift(this.get("favouriteImage"));
+    return images;
+  }.property('otherImages.[]', 'favouriteImage'),
+
   displayImage: function() {
     return this.get("favouriteImage") ||
       this.get("images").sortBy("id").get("firstObject") || null;
@@ -41,9 +51,5 @@ export default DS.Model.extend({
   otherPackages: function(){
     return this.get('packages').toArray().removeObject(this.get('mainPackage'));
   }.property('packages.[]'),
-
-  otherImages: function(){
-    return this.get("images").toArray().removeObject(this.get("favouriteImage"));
-  }.property('images.[]'),
 
 });

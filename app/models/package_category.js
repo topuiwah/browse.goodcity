@@ -23,7 +23,15 @@ export default DS.Model.extend({
   }.property('name', 'items.[]'),
 
   childCategories: function() {
-    return this.store.peekAll('package_category').filterBy('parentId', parseInt(this.get("id")));
+    return this.get('allChildCategories').rejectBy('items.length', 0);
+  }.property('allChildCategories'),
+
+  allChildCategories: function() {
+    return this.get('_packageCategories').filterBy('parentId', parseInt(this.get("id")));
+  }.property('_packageCategories.[]'),
+
+  _packageCategories: function() {
+    return this.store.peekAll("package_category");
   }.property(),
 
   items: function(){

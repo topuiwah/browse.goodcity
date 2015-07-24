@@ -50,8 +50,8 @@
       <div class="row" >
         <img class="view-image" src="{{previewUrl}}" />
 
-        {{#each model.images key="@index" as |image|}}
-          <img class="thumb-image" src="{{image.thumbImageUrl}}" {{action "showPreview" image on="click"}} />
+        {{#each model.sortedImages key="@index" as |image|}}
+          <img class="thumb-image {{if (is-equal previewUrl image.previewImageUrl) 'thumb'}}" src="{{image.thumbImageUrl}}" {{action "showPreview" image on="click"}} />
         {{/each}}
       </div>
 
