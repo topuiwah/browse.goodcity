@@ -37,6 +37,10 @@ module.exports = function(environment) {
 
       SHA: process.env.APP_SHA || "00000000",
       VERSION: "1.0.0"
+    },
+
+    i18n: {
+      defaultLocale: 'en'
     }
   };
 
