@@ -28,7 +28,13 @@
   }
 
   .images-section {
-    padding-right: 4rem;
+    @media #{$small-only} {
+      margin-bottom: 1rem;
+    }
+
+    @media #{$large-only} {
+      padding-right: 4rem;
+    }
   }
 
   .image-src {

@@ -1,4 +1,4 @@
-<nav class="tab-bar">
+<nav class="tab-bar hide-for-small">
   <section class='main-section'>
     <h1 class="title">View Item</h1>
   </section>
@@ -6,6 +6,21 @@
 
 <section class="main-section view-item">
   <div class="row">
+
+    <div class="large-4 medium-4 small-12 columns images-section right">
+      {{!-- IMAGES SECTION --}}
+      <div class="row hide-for-small" >
+        <img class="view-image" src="{{previewUrl}}" />
+
+        {{#each model.sortedImages key="@index" as |image|}}
+          <img class="thumb-image {{if (is-equal previewUrl image.previewImageUrl) 'thumb'}}" src="{{image.thumbImageUrl}}" {{action "showPreview" image on="click"}} />
+        {{/each}}
+      </div>
+
+      {{image-preview item=model previewUrl=previewUrl}}
+      {{!--  --}}
+    </div>
+
     <div class="large-8 medium-8 small-12 columns">
 
       {{!-- DETAILS SECTION --}}
@@ -43,34 +58,6 @@
       {{/each}}
       {{!--  --}}
 
-    </div>
-
-    <div class="large-4 medium-4 small-12 columns images-section">
-      {{!-- IMAGES SECTION --}}
-      <div class="row" >
-        <img class="view-image" src="{{previewUrl}}" />
-
-        {{#each model.sortedImages key="@index" as |image|}}
-          <img class="thumb-image {{if (is-equal previewUrl image.previewImageUrl) 'thumb'}}" src="{{image.thumbImageUrl}}" {{action "showPreview" image on="click"}} />
-        {{/each}}
-      </div>
-
-
-      {{#image-preview}}
-        <div class="row" id="lightGallery">
-          <div data-src={{model.favouriteImage.imageUrl}} >
-            View Large Images ({{model.images.length}})
-            <img class="view-image hidden" src="{{model.displayImageUrl}}" />
-          </div>
-
-          {{#each model.otherImages key="@index" as |image|}}
-            <div data-src={{image.imageUrl}} class="image-src hidden">
-              <img class="thumb-image" src="{{image.thumbImageUrl}}" />
-            </div>
-          {{/each}}
-        </div>
-      {{/image-preview}}
-      {{!--  --}}
     </div>
 
   </div>
