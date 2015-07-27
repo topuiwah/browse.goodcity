@@ -12,8 +12,11 @@
 
 .application-layout {
   margin: 0;
-  max-width: 73rem;
-
+  max-width: 72rem;
+  .off-canvas-list {
+    li a{
+        padding: 1.1rem;}
+  }
   .menu {
     background-color: #FFF;
 
@@ -34,31 +37,33 @@
       }
       label {
         padding: 0;
-        color: #FFF !important;
-        font-size: 0.8rem !important;
+        color: $white;
+        font-size: 0.6rem;
+        text-transform: uppercase;
         @media #{$small-only} {
-          font-size: 1rem !important;
+          font-size: 1rem;
           padding-left: 0.5rem;
         }
       }
       &.menu-1 {
         display: block;
-        background-color: #FB4951 !important;
+        background-color: $coral-red;
       }
       &.menu-2 {
-        background-color: #0a3a61 !important;
+        background-color: $mid-blue;
       }
       &.menu-3 {
-        background-color: #466684 !important;
+        background-color: $smokey-blue;
       }
       &.menu-4 {
-        background-color: white !important;
+        background-color: $white;
+        padding: 0 0.3rem !important;
       }
     }
 
     li.language {
       padding-top: 1rem;
-
+      font-size: 0.7rem;
       @media #{$small-only} {
         padding-left: 1.3rem;
       }
@@ -66,7 +71,7 @@
         text-decoration: underline;
         color: #a3aab6;
         display: inline;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         padding: 0;
         padding-left: 0.2rem;
 
@@ -77,10 +82,15 @@
     }
 
     li.cr-logo {
+      height: 100%;
       a {
         label {
-          text-decoration: underline;
-          color: #a3aab6 !important;
+          color: $light-gray-2;
+          text-transform: none;
+          font-size: 0.7rem;
+          span{
+            text-decoration: underline;
+          }
         }
       }
     }
@@ -115,3 +125,30 @@
     padding: 0.5rem 1.5rem;
   }
 }
+
+.main-section{
+  padding-left: 5rem;
+}
+
+@media only screen and (max-width: 40em) {
+  .application-layout {
+    .menu {
+      a label{
+        font-size: 0.7rem;
+        padding-left: 0.5rem;
+      }
+      a i{
+        font-size: 1.2rem;
+      }
+      li.language a{
+        font-size: 0.7rem !important;
+        padding-right: .8rem !important;
+      }
+    }
+  }
+  .main-section{
+    padding-left: 1rem;
+  }
+}
+
+

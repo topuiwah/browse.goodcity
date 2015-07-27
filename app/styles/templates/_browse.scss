@@ -8,7 +8,7 @@
     a {
       text-decoration: none;
       &:hover {
-        color: $medium-blue !important;
+        color: $medium-blue;
       }
     }
   }
@@ -17,7 +17,7 @@
     font-size: 0.9rem;
 
     a {
-      color: $medium-blue !important;
+      color: $medium-blue;
       &:hover {
         li {
           color: $white;

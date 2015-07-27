@@ -3,26 +3,28 @@
     <h1 class="title">Browse Goods</h1>
   </section>
 </nav>
-
 <section class="main-section">
-  <ul class="large-block-grid-5 list">
-
-    {{#each parentCategories as |category|}}
-      <li>
-        <img src="{{category.imageUrl}}" />
-        <div class='main_category'>
-          {{#link-to 'package_category' category}}
-            {{category.name}} ({{category.items.length}})
-          {{/link-to}}
-        </div>
-        <ul class="list subcategories hide-for-small">
-          {{#each category.childCategories as |childCategory|}}
-            {{#link-to 'package_category' childCategory}}
-              <li>{{childCategory.name}} ({{childCategory.items.length}})</li>
-            {{/link-to}}
-          {{/each}}
-        </ul>
-      </li>
-    {{/each}}
-  </ul>
+  <div class="row">
+    <div class="small-12 columns">
+      <ul class="small-block-grid-3 large-block-grid-5 list">
+        {{#each parentCategories as |category|}}
+          <li>
+            <img src="{{category.imageUrl}}" />
+            <div class='main_category'>
+              {{#link-to 'package_category' category}}
+                {{category.name}} ({{category.items.length}})
+              {{/link-to}}
+            </div>
+            <ul class="list subcategories hide-for-small">
+              {{#each category.childCategories as |childCategory|}}
+                {{#link-to 'package_category' childCategory}}
+                  <li>{{childCategory.name}} ({{childCategory.items.length}})</li>
+                {{/link-to}}
+              {{/each}}
+            </ul>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
 </section>
