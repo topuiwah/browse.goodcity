@@ -17,4 +17,12 @@ export default Ember.Route.extend(preloadDataMixin, {
       outlet: 'sidebar'
     });
   },
+
+  actions: {
+    loading: function() {
+      Ember.$(".loading-indicator").remove();
+      var component = this.container.lookup('component:loading').append();
+      this.router.one('didTransition', component, 'destroy');
+    },
+  }
 });
