@@ -1,6 +1,7 @@
 import Ember from "ember";
+import ObserveScreenResize from "./observe-screen-resize";
 
-export default Ember.Component.extend({
+export default ObserveScreenResize.extend({
 
   lightGalleryObj: null,
 
@@ -8,20 +9,10 @@ export default Ember.Component.extend({
     return (arguments.length > 1) ? value : this.screenResized();
   }.property(),
 
-  screenResized: function() {
-    return matchMedia(Foundation.media_queries.small).matches &&
-      !matchMedia(Foundation.media_queries.medium).matches;
-  },
-
   observeScreen: function() {
     this.set("isSmallScreen", this.screenResized());
     this.initializeLightgallery();
   },
-
-  initComonent: function() {
-    var updateScreen = Ember.run.bind(this, this.observeScreen);
-    window.addEventListener("resize", updateScreen);
-  }.on("init"),
 
   initializeLightgallery: function(){
     var gallery = this.get("lightGalleryObj");
