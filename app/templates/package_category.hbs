@@ -6,7 +6,7 @@
 
       {{#if model.isParent}}
         <li>
-          Filter Items: {{select-list content=model.childCategories action=(action (mut selectedCategory)) targetActionName="filterItems" prompt="All"}}
+          Filter Items: {{select-list content=model.childCategories action=(action (mut selectedCategoryId)) targetActionName="filterItems" prompt="All"}}
         </li>
       {{/if}}
 
@@ -20,7 +20,7 @@
 </nav>
 
 <section class="main-section">
-  {{#paginated-items content=sortedItems page=page perPage=perPage query=query}}
+  {{#paginated-items content=sortedItems page=page perPage=perPage query=query sortBy=currentSort category=currentCategoryId}}
     {{outlet}}
   {{/paginated-items}}
 </section>

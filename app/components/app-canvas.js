@@ -1,21 +1,12 @@
 import Ember from "ember";
+import ObserveScreenResize from "./observe-screen-resize";
 
-export default Ember.Component.extend({
-  screenResized: function() {
-    return matchMedia(Foundation.media_queries.small).matches &&
-      !matchMedia(Foundation.media_queries.medium).matches;
-  },
-
+export default ObserveScreenResize.extend({
   observeScreen: function() {
     if (!this.screenResized()){
-      $('.off-canvas-wrap').removeClass('move-right');
+      Ember.$('.off-canvas-wrap').removeClass('move-right');
     }
   },
-
-  initComonent: function() {
-    var updateScreen = Ember.run.bind(this, this.observeScreen);
-    window.addEventListener("resize", updateScreen);
-  }.on("init"),
 
   didInsertElement() {
     Ember.$(document).foundation({
