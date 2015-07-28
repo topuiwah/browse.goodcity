@@ -6,8 +6,8 @@
 }
 
 .items_list {
-  div:last-child {
-    float: left !important;
+  li {
+    padding: 0 0.5rem;
   }
 }
 

@@ -1,9 +1,9 @@
-<ul class="large-block-grid-6 small-block-grid-2 list">
+<ul class="large-block-grid-6 small-block-grid-1 medium-block-grid-3 list items_list">
   {{#each pagedContent key="@index" as |item|}}
     <li>
       {{#link-to 'item' item (query-params sortBy=sortBy categoryId=category) }}
         <img src="{{item.displayImageUrl}}" />
-        <li>{{item.donorDescription}}</li>
+        <li class="ellipsis two-line-ellipsis">{{item.donorDescription}}</li>
       {{/link-to}}
     </li>
   {{/each}}

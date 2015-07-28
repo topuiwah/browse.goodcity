@@ -14,7 +14,7 @@ export default DS.Model.extend({
   }.property('cloudinaryId'),
 
   defaultImageUrl: function() {
-    return this.generateUrl(120, 120, true);
+    return this.generateUrl(500, 500, true);
   }.property('cloudinaryId'),
 
   thumbImageUrl: function() {
