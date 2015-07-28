@@ -1,5 +1,8 @@
 .tab-bar.category_page {
-  height: 8rem;
+  height: 6rem;
+  @media #{$small-only} {
+    height: 9rem;
+  }
 }
 
 .items_list {
@@ -10,4 +13,7 @@
 
 select {
   width: 10rem;
+  @media #{$small-only} {
+    max-width: 7rem;
+  }
 }

@@ -11,11 +11,17 @@
     transition: none;
     margin: 0rem;
     height: 100%;
-    padding: 0.4rem 0.2rem;
+    padding: 0.2rem;
+
+    @media #{$large-only} {
+      padding: .25rem;
+      margin-left: 0.3rem;
+    }
   }
   input, textarea, select, label {
+    font-size: 1rem;
     @media #{$small-only} {
-    font-size: 0.8rem;
+      font-size: 0.8rem;
     }
   }
   input[type="radio"] {
