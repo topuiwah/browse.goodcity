@@ -46,3 +46,37 @@
     text-decoration: underline;
   }
 }
+
+.item_arrows{
+  .fa {
+    font-weight: bolder;
+  }
+
+  .fa.remove-icon {
+    font-weight: 100;
+    font-size: 2rem;
+  }
+
+  a {
+    @media #{$small-only} {
+      background-color: inherit;
+      border-color: transparent;
+
+      &.disabled, &:hover, &:focus, &:active, &:visited {
+        background-color: inherit;
+        border-color: transparent;
+
+        &:hover, &:focus, &:active, &:visited {
+          background-color: inherit;
+          border-color: transparent;
+        }
+      }
+    }
+  }
+}
+
+.item-controls{
+  @media #{$small-only} {
+    border-bottom: none;
+  }
+}

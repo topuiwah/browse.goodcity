@@ -3,6 +3,9 @@ import pagedArray from 'ember-cli-pagination/computed/paged-array';
 
 export default Ember.Component.extend({
 
+  categoryId: null,
+  sortBy: null,
+
   pagedContent:      pagedArray('content', {perPageBinding: "perPage"}),
   pageBinding:       "pagedContent.page",
   totalPagesBinding: "pagedContent.totalPages",
