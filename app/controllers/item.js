@@ -9,6 +9,7 @@ export default SortItems.extend({
   selectedSort:   Ember.computed.alias('sortBy'),
   noNextItem:     Ember.computed.empty('nextItem'),
   noPreviousItem: Ember.computed.empty('previousItem'),
+  hideThumbnails: Ember.computed.gt('model.sortedImages.length', 1),
 
   category: function(){
     return this.store.peekRecord('package_category', this.get("categoryId"));

@@ -36,15 +36,16 @@
 
     <div class="large-4 medium-4 small-12 columns images-section right">
       {{!-- IMAGES SECTION --}}
-      <div class="row hide-for-small" >
-        <img class="view-image" src="{{previewUrl}}" />
+      {{image-preview item=model previewUrl=previewUrl}}
 
-        {{#each model.sortedImages key="@index" as |image|}}
-          <img class="thumb-image {{if (is-equal previewUrl image.previewImageUrl) 'thumb'}}" src="{{image.thumbImageUrl}}" {{action "showPreview" image on="click"}} />
-        {{/each}}
+      <div class="row hide-for-small" >
+        {{#if hideThumbnails}}
+          {{#each model.sortedImages key="@index" as |image|}}
+            <img class="thumb-image {{if (is-equal previewUrl image.previewImageUrl) 'thumb'}}" src="{{image.thumbImageUrl}}" {{action "showPreview" image on="click"}} />
+          {{/each}}
+        {{/if}}
       </div>
 
-      {{image-preview item=model previewUrl=previewUrl}}
       {{!--  --}}
     </div>
 

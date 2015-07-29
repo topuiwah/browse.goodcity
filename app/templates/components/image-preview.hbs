@@ -1,12 +1,12 @@
 <div class="row" id="lightGallery">
+
   {{#if isSmallScreen}}
     <div data-src={{item.favouriteImage.imageUrl}} class="show-for-small">
       <img class="view-image" src="{{previewUrl}}" />
     </div>
   {{else}}
-    <div data-src={{item.favouriteImage.imageUrl}} class="hide-for-small">
-      View Large Images ({{item.images.length}})
-      <img class="view-image hidden" src="{{item.displayImageUrl}}" />
+    <div class="row hide-for-small" data-src="{{item.favouriteImage.imageUrl}}">
+      <img class="view-image" src="{{previewUrl}}" />
     </div>
   {{/if}}
 
