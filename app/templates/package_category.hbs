@@ -3,16 +3,18 @@
     <h1 class="title">{{model.name}}</h1>
 
     <div class="row">
-      <div class="large-5 medium-8 small-12 columns">
-        <div class="row">
-          <div class="small-4 medium-5 large-4 columns">
-            Filter Items:
-          </div>
-          <div class="small-8 medium-7 large-8 columns">
-            {{select-list content=model.childCategories action=(action (mut selectedCategoryId)) targetActionName="filterItems" prompt="All"}}
+      {{#if model.isParent}}
+        <div class="large-5 medium-8 small-12 columns">
+          <div class="row">
+            <div class="small-4 medium-5 large-4 columns">
+              Filter Items:
+            </div>
+            <div class="small-8 medium-7 large-8 columns">
+              {{select-list content=model.childCategories action=(action (mut selectedCategoryId)) targetActionName="filterItems" prompt="All"}}
+            </div>
           </div>
         </div>
-      </div>
+      {{/if}}
 
       <div class="large-7 medium-4 small-12 columns end">
         <div class="row">
