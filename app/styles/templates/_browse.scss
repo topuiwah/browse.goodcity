@@ -4,7 +4,6 @@
   list-style: none;
 
   .main_category {
-    font-weight: bold;
     a {
       text-decoration: none;
       &:hover {
@@ -12,20 +11,6 @@
       }
     }
   }
-
-  &.subcategories {
-    font-size: 0.9rem;
-
-    a {
-      color: $medium-blue;
-      &:hover {
-        li {
-          color: $white;
-        }
-      }
-    }
-  }
-
   img {
     padding: 1rem 0;
   }

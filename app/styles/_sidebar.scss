@@ -1,0 +1,161 @@
+.application-layout {
+  margin: 0;
+  .off-canvas-list {
+    li a{
+      padding: 1rem;
+      text-align: center;
+    }
+  }
+  .menu {
+    height: inherit;
+    background-color: $white;
+    a {
+      display: block;
+      text-transform: uppercase;
+      color: $white;
+      text-decoration: none;
+      border-bottom: none !important;
+
+      i {
+        color: $white;
+        font-size: 1.5rem;
+        @media #{$small-only} {
+          font-size: 1.8rem;
+        }
+      }
+      label, div {
+        padding: 0;
+        color: $white;
+        font-size: 0.6rem;
+        text-transform: uppercase;
+        @media #{$small-only} {
+          font-size: 1rem;
+          padding-left: 0.5rem;
+        }
+      }
+      &.menu-1 {
+        display: block;
+        background-color: $coral-red;
+        font-size: 1.5rem;
+      }
+      &.menu-2 {
+        background-color: $mid-blue;
+        font-size: 1.7rem;
+      }
+      &.menu-3 {
+        background-color: $smokey-blue;
+        font-size: 2rem;
+      }
+      &.menu-4 {
+        background-color: $white;
+        padding: 0 0.3rem !important;
+      }
+    }
+
+    li.language {
+      padding-top: 1rem;
+      font-size: 0.6rem;
+      @media #{$small-only} {
+
+      }
+      a {
+        text-decoration: underline;
+        color: #a3aab6;
+        display: inline;
+        font-size: 0.6rem;
+        padding: 0;
+        padding-left: 0.2rem;
+        padding-right: 0.6rem !important;
+        @media #{$small-only} {
+          font-size: 0.6rem !important;
+        }
+      }
+    }
+
+    li.cr-logo {
+      width: 5.7rem;
+      height: 49%;
+      a {
+        position: absolute;
+        bottom: 0px;
+        padding: 0px;
+        label {
+          color: $light-gray-2;
+          text-transform: none;
+          font-size: 0.6rem;
+          span{
+            text-decoration: underline;
+          }
+        }
+        img{
+          width: 4.7rem;
+        }
+      }
+    }
+  }
+  .menu-list {
+    background-color: white;
+    padding: 0;
+  }
+}
+
+.inner-wrap {
+  width: auto;
+}
+.left-off-canvas-menu {
+  -ms-transform: none;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  -o-transform: none;
+  transform: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: auto;
+  right: auto;
+  width: 0;
+  height: 100%;
+}
+.move-right {
+  .left-off-canvas-menu {
+    width: 5.8rem;
+    box-shadow: -4px 0 4px rgba(0, 0, 0, 0.5), 4px 0 4px rgba(0, 0, 0, 0.5);
+  }
+  > .inner-wrap {
+    -ms-transform: none;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transform: none;
+    margin-left: 5.8rem;
+  }
+  .exit-off-canvas {
+    background: rgba(0, 35, 89, 0.2);
+    box-shadow: 0px 0px 0px #000;
+    height: inherit;
+  }
+}
+.exit-off-canvas {
+  display: none;
+}
+.off-canvas-wrap {
+  @media #{$medium-up}{
+    margin-left: 4rem;
+  }
+}
+
+@media only screen and (max-width: 40em) {
+  .application-layout{
+    .menu{
+      a{ text-align: center;
+        div{ font-size: 0.58rem; }
+        i{ font-size: 1.2rem; }
+      }
+    }
+  }
+  .main-section{
+    padding-left: 1rem;
+  }
+}

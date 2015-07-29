@@ -1,0 +1,34 @@
+body{
+  font-size: 0.9rem;
+  @media #{$small-only} {
+    font-size: 0.8rem;
+  }
+}
+a{
+  color: $white;
+}
+dl, ol, ul{
+  font-size: 84%;
+}
+.big_txt{
+  font-weight: bold;
+  color: $white;
+}
+ul{
+  a.custom_a {
+    color: $medium-blue;
+    text-decoration: underline;
+    li{
+      color: $medium-blue;
+      padding: 0.3rem 0;
+    }
+    &:hover {
+      li {
+        color: $white;
+      }
+    }
+  }
+}
+.ui input, .ui label, .ui select, .ui textarea, select{
+  font-size: 0.8rem !important;
+}
