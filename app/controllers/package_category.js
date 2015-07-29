@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import SortItems from './sort_items';
 
 export default SortItems.extend({
@@ -9,7 +8,6 @@ export default SortItems.extend({
 
   selectedCategoryId: null,
   selectedSort:       null,
-  categoryItems:      Ember.computed.alias("category.items"),
 
   currentCategoryId: function(){
     return this.get('selectedCategoryId') || this.get('model.id');

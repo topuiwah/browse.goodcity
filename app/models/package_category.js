@@ -45,6 +45,7 @@ export default DS.Model.extend({
         });
       }
     }
+
     return items;
   }.property('packageTypeCodes'),
 
@@ -67,7 +68,11 @@ export default DS.Model.extend({
         items = items.concat((category.get('items') || []).toArray());
       });
     }
-    return items;
+
+    // to remove dupliacte occurences
+    return items.filter(function(item, pos) {
+      return items.indexOf(item) === pos;
+    });
   }.property('childCategories', 'items'),
 
   imageUrl: function(){
