@@ -14,7 +14,11 @@
   }
 
   .item_details {
-    font-size: 0.8rem;
+    @extend .with_more_spacing;
+    font-size: 0.9rem;
+    @media #{$small-only} {
+      font-size: 0.8rem;
+    }
   }
 
   .view-image img {
@@ -55,23 +59,6 @@
   .fa.remove-icon {
     font-weight: 100;
     font-size: 2rem;
-  }
-
-  a {
-    @media #{$small-only} {
-      background-color: inherit;
-      border-color: transparent;
-
-      &.disabled, &:hover, &:focus, &:active, &:visited {
-        background-color: inherit;
-        border-color: transparent;
-
-        &:hover, &:focus, &:active, &:visited {
-          background-color: inherit;
-          border-color: transparent;
-        }
-      }
-    }
   }
 }
 

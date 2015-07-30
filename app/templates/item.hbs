@@ -8,22 +8,24 @@
 
       <div class="large-8 medium-8 small-12 columns text-right item_arrows">
 
-        {{#link-to 'package_category' category class="button radius left show-for-small"}}
+        {{#link-to 'package_category' category class="button tiny info radius left show-for-small"}}
           <i class="fa fa-3x fa-times remove-icon"></i>
         {{/link-to}}
 
 
-        {{#link-to 'item' previousItem (query-params sortBy=sortBy categoryId=categoryId) disabled=noPreviousItem class="button radius"}}
+        {{#link-to 'item' previousItem (query-params sortBy=sortBy categoryId=categoryId) disabled=noPreviousItem class="button tiny info radius"}}
+          <i class="fa fa-arrow-left hide-for-small"></i>
           <span class="hide-for-small">
             Previous Item
           </span>
           <i class="fa fa-3x fa-angle-left show-for-small"></i>
         {{/link-to}}
 
-        {{#link-to 'item' nextItem (query-params sortBy=sortBy categoryId=categoryId) disabled=noNextItem class="button radius"}}
+        {{#link-to 'item' nextItem (query-params sortBy=sortBy categoryId=categoryId) disabled=noNextItem class="button tiny info  radius"}}
           <span class="hide-for-small">
             Next Item
           </span>
+          <i class="fa fa-arrow-right hide-for-small"></i>
           <i class="fa fa-3x fa-angle-right show-for-small"></i>
         {{/link-to}}
       </div>

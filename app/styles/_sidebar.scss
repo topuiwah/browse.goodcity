@@ -110,9 +110,26 @@
     padding: 0;
   }
 }
-
 .inner-wrap {
   width: auto;
+}
+.off-canvas-wrap {
+  @media only screen and (min-width: 71.063em) and (max-width: 120em){
+    margin-left: 4rem;
+    width: 96%;
+  }
+  @media only screen and (max-width: 71em) and (min-width: 64.0625em){
+    margin-left: 2.5rem;
+    width: 92%;
+  }
+  @media #{$medium-only}{
+    margin-left: 3rem;
+    width: 85%;
+  }
+  @media #{$small-only}{
+    margin-left: .1rem;
+    width: 96%;
+  }
 }
 .left-off-canvas-menu {
   -ms-transform: none;
@@ -152,24 +169,7 @@
 .exit-off-canvas {
   display: none;
 }
-.off-canvas-wrap {
-  @media only screen and (min-width: 71.063em) and (max-width: 120em){
-    margin-left: 4rem;
-    width: 96%;
-  }
-  @media only screen and (max-width: 71em) and (min-width: 64.0625em){
-    margin-left: 2.5rem;
-    width: 92%;
-  }
-  @media #{$medium-only}{
-    margin-left: 3rem;
-    width: 85%;
-  }
-  @media #{$small-only}{
-    margin-left: .1rem;
-    width: 96%;
-  }
-}
+
 
 @media only screen and (max-width: 40em) {
   .application-layout{
@@ -184,7 +184,7 @@
     padding-left: 1rem;
   }
 }
-@media screen and ( max-height: 26em ){
+@media screen and (max-height: 25em){
   li.cr-logo {
     a img{
       display: none;
