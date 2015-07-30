@@ -1,0 +1,14 @@
+.button, button{
+  &.info{
+    font-size: 0.75rem;
+    font-weight: 100;
+    @media #{$small-only}{
+      background: transparent;
+      border-color: transparent;
+      &.disabled, &:hover, &:focus, &:active, &:visited {
+        background: transparent;
+        border-color: transparent;
+      }
+    }
+  }
+}
