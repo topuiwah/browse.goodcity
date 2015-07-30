@@ -5,8 +5,14 @@
       padding: 1rem;
       text-align: center;
     }
+    @media #{$small-only} {
+      li a{
+        padding: .1rem .2rem .7rem 0rem;
+      }
+    }
   }
   .menu {
+    overflow: hidden;
     height: inherit;
     background-color: $white;
     a {
@@ -74,10 +80,10 @@
 
     li.cr-logo {
       width: 5.7rem;
-      height: 49%;
+      height: 34%;
       a {
         position: absolute;
-        bottom: 0px;
+        bottom: 1.8rem;
         padding: 0px;
         label {
           color: $light-gray-2;
@@ -88,7 +94,13 @@
           }
         }
         img{
-          width: 4.7rem;
+          width: 4.3rem;
+        }
+        @media #{$small-only} {
+          width: 4.8rem;
+          img{
+            width: 2.8rem;
+          }
         }
       }
     }
@@ -141,8 +153,21 @@
   display: none;
 }
 .off-canvas-wrap {
-  @media #{$medium-up}{
+  @media only screen and (min-width: 71.063em) and (max-width: 120em){
     margin-left: 4rem;
+    width: 96%;
+  }
+  @media only screen and (max-width: 71em) and (min-width: 64.0625em){
+    margin-left: 2.5rem;
+    width: 92%;
+  }
+  @media #{$medium-only}{
+    margin-left: 3rem;
+    width: 85%;
+  }
+  @media #{$small-only}{
+    margin-left: .1rem;
+    width: 96%;
   }
 }
 
@@ -157,5 +182,12 @@
   }
   .main-section{
     padding-left: 1rem;
+  }
+}
+@media screen and ( max-height: 26em ){
+  li.cr-logo {
+    a img{
+      display: none;
+    }
   }
 }
