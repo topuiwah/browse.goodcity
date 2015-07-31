@@ -3,7 +3,9 @@
     <li>
       {{#link-to 'item' item (query-params sortBy=sortBy categoryId=category) }}
         {{cloudinary-image-tag src=item.displayImageUrl}}
-        <li class="ellipsis two-line-ellipsis">{{item.donorDescription}}</li>
+        <div class="item_desc">
+          <li class="ellipsis two-line-ellipsis">{{item.donorDescription}}</li>
+        </div>
       {{/link-to}}
     </li>
   {{/each}}

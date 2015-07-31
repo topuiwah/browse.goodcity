@@ -33,8 +33,5 @@
 </nav>
 
 <section class="main-section">
-  {{#paginated-items content=sortedItems page=page perPage=perPage query=query sortBy=currentSort category=currentCategoryId}}
-    {{outlet}}
-  {{/paginated-items}}
+  {{paginated-items content=sortedItems page=page perPage=perPage query=query sortBy=currentSort category=currentCategoryId}}
 </section>
-

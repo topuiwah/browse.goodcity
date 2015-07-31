@@ -22,3 +22,9 @@ select {
   max-width: 265px;
   max-height: 283px;
 }
+.item_desc{
+  @media #{$medium-up} {
+    min-height: 2.9rem;
+  }
+}
+
