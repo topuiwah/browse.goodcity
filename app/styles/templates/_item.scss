@@ -21,9 +21,14 @@
     }
   }
 
-  .view-image img {
-    display: block;
-    padding-bottom: 1rem;
+  .view-image{
+    @media #{$small-only} {
+      margin-left: -1rem;
+    }
+    img {
+      display: block;
+      padding-bottom: 1rem;
+    }
   }
 
   .thumb-image {
@@ -65,5 +70,6 @@
 .item-controls{
   @media #{$small-only} {
     border-bottom: none;
+    top: -2.6rem;
   }
 }

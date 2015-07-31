@@ -1,6 +1,5 @@
 <nav class="tab-bar item-controls">
   <section class='main-section'>
-
     <div class="row">
       <div class="large-4 medium-4 small-12 columns hide-for-small">
         <h1 class="title">View Item</h1>
@@ -38,7 +37,7 @@
 
     <div class="large-4 medium-4 small-12 columns images-section right">
       {{!-- IMAGES SECTION --}}
-      {{image-preview item=model previewUrl=previewUrl}}
+      {{image-preview item=model previewUrl=previewUrl smallScreenPreviewImageUrl=model.displayImage.smallScreenPreviewImageUrl}}
 
       <div class="row hide-for-small" >
         {{#if hideThumbnails}}

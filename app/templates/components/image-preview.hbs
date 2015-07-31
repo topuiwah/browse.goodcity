@@ -2,7 +2,7 @@
 
   {{#if isSmallScreen}}
     <div data-src={{item.favouriteImage.imageUrl}} class="view-image show-for-small">
-      {{cloudinary-image-tag src=previewUrl}}
+      {{cloudinary-image-tag src=smallScreenPreviewImageUrl}}
     </div>
   {{else}}
     <div class="view-image row hide-for-small" data-src="{{item.favouriteImage.imageUrl}}">
