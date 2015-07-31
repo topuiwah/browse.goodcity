@@ -1,11 +1,12 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import cloudinaryImage from '../mixins/cloudinary_image';
 
 var attr = DS.attr,
     belongsTo = DS.belongsTo,
     hasMany   = DS.hasMany;
 
-export default DS.Model.extend({
+export default DS.Model.extend(cloudinaryImage, {
   donorDescription: attr('string'),
   createdAt:        attr('date'),
   updatedAt:        attr('date'),
@@ -37,11 +38,11 @@ export default DS.Model.extend({
   }.property('images.@each.favourite'),
 
   displayImageUrl: function() {
-    return this.get('displayImage.defaultImageUrl') || "assets/images/default_item.jpg";
+    return this.get('displayImage.defaultImageUrl') || this.generateUrl(500, 500, true);
   }.property('displayImage'),
 
   previewImageUrl: function() {
-    return this.get('displayImage.previewImageUrl') || "assets/images/default_item.jpg";
+    return this.get('displayImage.previewImageUrl') || this.generateUrl(265, 265, true);
   }.property('displayImage'),
 
   allPackageCategories: function(){
@@ -51,5 +52,4 @@ export default DS.Model.extend({
   otherPackages: function(){
     return this.get('packages').toArray().removeObject(this.get('mainPackage'));
   }.property('packages.[]'),
-
 });
