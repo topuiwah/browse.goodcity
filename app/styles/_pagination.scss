@@ -1,6 +1,16 @@
 ul.pagination {
   margin-top: 2.6rem;
-
+  .arrow a{
+    i{
+        font-size: 70%;
+    }
+    span{
+      @media #{$medium-up} {
+        display: inline-block !important;
+      }
+      font-size: 70%;
+    }
+  }
   .highlight_btn{
     background: $coral-red;
     color: $white;
@@ -13,9 +23,10 @@ ul.pagination {
 
   li{
       background: $light-blue;
-      margin: 0 -0.06rem;
+      margin: 0 0 0 0.06rem;
       height: 1.4rem;
       a{
+        border-radius: 0px;
         &:hover, &:active{
           transition: background-color 300ms ease-out;
           @extend .highlight_btn;
