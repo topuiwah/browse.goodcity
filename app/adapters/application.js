@@ -1,9 +1,11 @@
+import Ember from 'ember';
 import config from '../config/environment';
 import ActiveModelAdapter from 'active-model-adapter';
 
 export default ActiveModelAdapter.extend({
   namespace: config.APP.NAMESPACE,
   host:      config.APP.API_HOST_URL,
+  session:   Ember.inject.service(),
   headers: function() {
     return {
       "Accept-Language":        this.get('session.language'),
