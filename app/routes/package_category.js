@@ -8,5 +8,6 @@ export default Ember.Route.extend({
   setupController: function(controller, model){
     controller.set('model', model);
     controller.set("category", model);
+    this.controllerFor('application').set('pageTitle', model.get("name"));
   }
 });

@@ -1,6 +1,6 @@
 <nav class="tab-bar category_page">
   <section class='main-section ui'>
-    <h1 class="title">{{model.name}}</h1>
+    <h1 class="title hide-for-small">{{model.name}}</h1>
 
     <div class="row">
       {{#if model.isParent}}
@@ -32,6 +32,6 @@
   </section>
 </nav>
 
-<section class="main-section">
+<section class="main-section category-items-list">
   {{paginated-items content=sortedItems page=page perPage=perPage query=query sortBy=currentSort category=currentCategoryId}}
 </section>

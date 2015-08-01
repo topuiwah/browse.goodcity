@@ -71,5 +71,10 @@
   @media #{$small-only} {
     border-bottom: none;
     top: -2.6rem;
+    margin-bottom: -3rem;
   }
+}
+
+.item-remove-icon {
+  margin-left: -1.3rem;
 }

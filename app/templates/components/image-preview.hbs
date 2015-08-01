@@ -1,8 +1,8 @@
 <div class="row" id="lightGallery">
 
   {{#if isSmallScreen}}
-    <div data-src={{item.favouriteImage.imageUrl}} class="view-image show-for-small">
-      {{cloudinary-image-tag src=smallScreenPreviewImageUrl}}
+    <div data-src={{item.favouriteImage.imageUrl}} class="small-screen-preview view-image show-for-small">
+      {{cloudinary-image-tag src=smallScreenPreviewUrl}}
     </div>
   {{else}}
     <div class="view-image row hide-for-small" data-src="{{item.favouriteImage.imageUrl}}">
