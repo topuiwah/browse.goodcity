@@ -8,5 +8,6 @@ export default Ember.Route.extend({
   setupController: function(controller, model){
     controller.set('model', model);
     controller.set("previewUrl", model.get("previewImageUrl"));
+    this.controllerFor('application').set('pageTitle', "View Item");
   }
 });

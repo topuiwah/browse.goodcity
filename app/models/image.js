@@ -24,4 +24,8 @@ export default DS.Model.extend(cloudinaryImage, {
   previewImageUrl: function() {
     return this.generateUrl(265, 265, true);
   }.property('cloudinaryId'),
+
+  smallScreenPreviewImageUrl: function() {
+    return this.generateUrl(640, 365, true);
+  }.property('cloudinaryId'),
 });

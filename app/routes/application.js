@@ -24,5 +24,10 @@ export default Ember.Route.extend(preloadDataMixin, {
       var component = this.container.lookup('component:loading').append();
       this.router.one('didTransition', component, 'destroy');
     },
+  },
+
+  setupController: function(controller, model){
+    controller.set('model', model);
+    controller.set("pageTitle", "Browse");
   }
 });
