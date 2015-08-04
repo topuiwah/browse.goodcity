@@ -11,9 +11,6 @@ export default DS.Model.extend({
   isParent: Ember.computed.equal("parentId", null),
   isChild:  Ember.computed.notEmpty("parentId"),
 
-  selectValue: Ember.computed.alias('id'),
-  selectName:  Ember.computed.alias('nameItemsCount'),
-
   parentCategory: function(){
     return this.get('parentId') ? this.store.peekRecord('package_category', this.get('parentId')) : null;
   }.property('parentId'),

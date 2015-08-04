@@ -10,7 +10,7 @@
               Filter Items:
             </div>
             <div class="small-8 medium-7 large-8 columns">
-              {{select-list content=model.childCategories action=(action (mut selectedCategoryId)) targetActionName="filterItems" prompt="All"}}
+              {{select-list content=selectCategories on-change=(action (mut selectedCategoryId)) prompt="All"}}
             </div>
           </div>
         </div>
@@ -22,16 +22,15 @@
             Sort by:
           </div>
           <div class="small-8 medium-6 large-10 columns">
-            {{select-list content=sortOptions action=(action (mut selectedSort)) }}
+            {{select-list content=sortOptions on-change=(action (mut selectedSort)) }}
           </div>
         </div>
       </div>
     </div>
 
-
   </section>
 </nav>
 
 <section class="main-section category-items-list">
-  {{paginated-items content=sortedItems page=page perPage=perPage query=query sortBy=currentSort category=currentCategoryId}}
+  {{paginated-items content=sortedItems page=page perPage=perPage query=query sortBy=selectedSort category=currentCategoryId}}
 </section>

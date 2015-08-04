@@ -1,45 +1,49 @@
 import Ember from 'ember';
-import SortItems from './sort_items';
 
-export default SortItems.extend({
+export default Ember.Controller.extend({
 
   queryParams:    ['categoryId', 'sortBy'],
   categoryId:     null,
   sortBy:         null,
-  selectedSort:   Ember.computed.alias('sortBy'),
   noNextItem:     Ember.computed.empty('nextItem'),
   noPreviousItem: Ember.computed.empty('previousItem'),
   hideThumbnails: Ember.computed.gt('model.sortedImages.length', 1),
   smallScreenPreviewUrl: Ember.computed.alias('model.displayImage.smallScreenPreviewImageUrl'),
 
-  category: function(){
+  categoryObj: function(){
     return this.store.peekRecord('package_category', this.get("categoryId"));
   }.property('categoryId'),
+
+  selectedSort: function() {
+    return [this.get("sortBy")];
+  }.property("sortBy"),
+
+  sortedItems: Ember.computed.sort("categoryObj.items", "selectedSort"),
 
   nextItem: function(){
     var currentItem = this.get('model');
     var items = this.get("sortedItems").toArray();
     return items[items.indexOf(currentItem) + 1];
-  }.property('model', 'categoryId', 'sortBy'),
+  }.property('model', 'sortedItems'),
 
   previousItem: function(){
     var currentItem = this.get('model');
     var items = this.get("sortedItems").toArray();
     return items[items.indexOf(currentItem) - 1];
-  }.property('model', 'categoryId', 'sortBy'),
+  }.property('model', 'sortedItems'),
 
-  previewUrl: function(key, value) {
-    if(arguments.length > 1) {
-      return value;
-    } else {
+  previewUrl: Ember.computed("model.previewImageUrl", "model", {
+    get(key) {
       return this.get("model.previewImageUrl");
+    },
+    set(key, value) {
+      return value;
     }
-  }.property("model.previewImageUrl", "model"),
+  }),
 
   actions: {
     showPreview: function(image){
       this.set('previewUrl', image.get("previewImageUrl"));
     }
   }
-
 });

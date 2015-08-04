@@ -6,26 +6,14 @@ export default Ember.Component.extend({
 
   actions: {
     change() {
-      const changeAction  = this.get('action');
-      const selectedEl    = this.$('select')[0];
-      const selectedIndex = selectedEl.selectedIndex;
-      const content       = this.get('content');
-      const hasPrompt     = this.get("prompt");
-      var selectedValue;
-
-      if(selectedIndex > 0) {
-        var index     = hasPrompt ? (selectedIndex - 1) : selectedIndex;
-        selectedValue = content[index].id;
-      } else {
-        selectedValue = null;
-      }
+      const changeAction  = this.get('on-change');
+      const selectedIndex = this.$('select').prop('selectedIndex');
+      var content         = this.get('content');
+      if (this.get("prompt")) { content = [{value:null}].concat(content); }
+      const selectedValue = content[selectedIndex].value;
 
       this.set('selectedValue', selectedValue);
       changeAction(selectedValue);
-
-      if(this.get('targetActionName')) {
-        this._controller.send(this.get('targetActionName'));
-      }
     }
   }
 });
