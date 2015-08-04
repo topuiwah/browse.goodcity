@@ -16,7 +16,8 @@
       </li>
     {{/if}}
 
-    {{#each item in pageItems}}
+
+    {{#each pageItems key="@index" as |item|}}
       {{#if item.dots}}
         <li class="dots disabled">
           <span>...</span>
@@ -47,7 +48,6 @@
           <span class="hide-for-small">Next</span>
           <i class="fa fa-arrow-right"></i>
         </a>
-
       </li>
     {{/if}}
   </ul>
