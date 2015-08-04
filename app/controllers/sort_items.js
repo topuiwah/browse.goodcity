@@ -17,22 +17,15 @@ export default Ember.Controller.extend({
     var option   = selected ? options.findBy('id', parseInt(selected)) : options.get('firstObject');
 
     var sortProperty = option.selectValue.split(":");
-    var property     = sortProperty[0];
     var order        = sortProperty[1];
 
-    return Ember.ArrayProxy.extend(Ember.SortableMixin).create({
-      sortProperties: [property],
-      sortAscending: true,
-      sortFunction: function(a,b) {
-        if(order){
-          return parseInt(b) - parseInt(a);
-        } else {
-          return parseInt(a) - parseInt(b);
-        }
-      },
-      content: this.get("categoryItems")
+    return this.get("categoryItems").sort(function(a,b) {
+      if(order){
+        return parseInt(b.get('id')) - parseInt(a.get('id'));
+      } else {
+        return parseInt(a.get('id')) - parseInt(b.get('id'));
+      }
     });
-
   }.property('selectedSort', 'categoryItems', 'category'),
 
 });
