@@ -33,7 +33,7 @@ export default Ember.Controller.extend({
   }.property('model', 'sortedItems'),
 
   previewUrl: Ember.computed("model.previewImageUrl", "model", {
-    get(key) {
+    get() {
       return this.get("model.previewImageUrl");
     },
     set(key, value) {

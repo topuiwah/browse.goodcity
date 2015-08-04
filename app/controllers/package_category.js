@@ -24,6 +24,7 @@ export default Ember.Controller.extend({
   currentCategoryId: Ember.computed.alias('categoryObj.id'),
 
   categoryObj: function() {
+    this.set("page", 1);
     var selectedCategoryId = this.get('selectedCategoryId');
     return selectedCategoryId ?
       this.store.peekRecord('package_category', selectedCategoryId) :
