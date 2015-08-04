@@ -5,11 +5,7 @@ export default Ember.Controller.extend({
   queryParams: ["page"],
   page:        1,
   perPage:     12,
-  selectedSort: ["createdAt:desc"],
-
-  onModelChange: function() {
-    this.set("selectedCategoryId", null);
-  }.observes("model"),
+  selectedSort: null,
 
   sortOptions: function() {
     return [

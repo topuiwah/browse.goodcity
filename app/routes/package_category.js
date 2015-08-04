@@ -8,6 +8,8 @@ export default Ember.Route.extend({
   setupController: function(controller, model){
     controller.set('model', model);
     controller.set("category", model);
+    controller.set("selectedCategoryId", null);
+    controller.set("selectedSort", ["createdAt:desc"]);
     this.controllerFor('application').set('pageTitle', model.get("name"));
   }
 });
