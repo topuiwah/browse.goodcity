@@ -31,6 +31,9 @@ ul.pagination {
           transition: background-color 300ms ease-out;
           @extend .highlight_btn;
         }
+        &:focus{
+          background:inherit;
+        }
       }
     }
   }
