@@ -56,17 +56,6 @@
   }
 }
 
-.item_arrows{
-  .fa {
-    font-weight: bolder;
-  }
-
-  .fa.remove-icon {
-    font-weight: 100;
-    font-size: 2rem;
-  }
-}
-
 .item-controls{
   @media #{$small-only} {
     border-bottom: none;
@@ -77,4 +66,22 @@
 
 .item-remove-icon {
   margin-left: -1.3rem;
+}
+
+.item-page{
+  .pagination{
+    margin-top: 0.5rem;
+    li{
+      a{
+        border-radius: 0px;
+        &:hover, &:active{
+          transition: background-color 300ms ease-out;
+          @extend .highlight_btn;
+        }
+        &:focus{
+          background: initial;
+        }
+      }
+    }
+  }
 }

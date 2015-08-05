@@ -4,28 +4,24 @@
       <div class="large-4 medium-4 small-12 columns hide-for-small">
         <h1 class="title">View Item</h1>
       </div>
-
-      <div class="large-8 medium-8 small-12 columns text-right item_arrows">
-
-        {{#link-to 'package_category' category class="button tiny info radius left show-for-small item-remove-icon"}}
-          <i class="fa fa-3x fa-times remove-icon"></i>
+      <div class="large-8 medium-8 small-12 columns item-page">
+        {{#link-to 'package_category' categoryObj class="button tiny info radius left show-for-small item-remove-icon"}}
+            <i class="fa fa-2x fa-times remove-icon"></i>
         {{/link-to}}
-
-        {{#link-to 'item' previousItem (query-params sortBy=sortBy categoryId=categoryId) disabled=noPreviousItem class="button tiny info radius"}}
-          <i class="fa fa-arrow-left hide-for-small"></i>
-          <span class="hide-for-small">
-            Previous Item
-          </span>
-          <i class="fa fa-3x fa-angle-left show-for-small"></i>
-        {{/link-to}}
-
-        {{#link-to 'item' nextItem (query-params sortBy=sortBy categoryId=categoryId) disabled=noNextItem class="button tiny info  radius"}}
-          <span class="hide-for-small">
-            Next Item
-          </span>
-          <i class="fa fa-arrow-right hide-for-small"></i>
-          <i class="fa fa-3x fa-angle-right show-for-small"></i>
-        {{/link-to}}
+        <ul class=" text-right pagination right">
+          <li class="arrow prev enabled-arrow">
+            {{#link-to 'item' previousItem (query-params sortBy=sortBy categoryId=categoryId) disabled=noPreviousItem}}
+              <i class="fa fa-arrow-left"></i>
+              <span class="hide-for-small">Previous Item</span>
+            {{/link-to}}
+          </li>
+          <li class="arrow next enabled-arrow">
+            {{#link-to 'item' nextItem (query-params sortBy=sortBy categoryId=categoryId) disabled=noNextItem}}
+              <span class="hide-for-small">Next Item</span>
+              <i class="fa fa-arrow-right"></i>
+            {{/link-to}}
+          </li>
+        </ul>
       </div>
     </div>
   </section>
@@ -33,7 +29,6 @@
 
 <section class="main-section view-item">
   <div class="row">
-
     <div class="large-4 medium-4 small-12 columns images-section right">
       {{!-- IMAGES SECTION --}}
       {{image-preview item=model previewUrl=previewUrl smallScreenPreviewUrl=smallScreenPreviewUrl}}
