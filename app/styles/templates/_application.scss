@@ -11,5 +11,10 @@
   border-bottom: 1px solid $light-blue;
 }
 
-
+.liquid-container {
+  overflow: visible;
+  .liquid-child {
+    overflow: visible;
+  }
+}
 
