@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import config from '../config/environment';
 import preloadDataMixin from '../mixins/preload_data';
 
 export default Ember.Route.extend(preloadDataMixin, {
@@ -6,7 +7,7 @@ export default Ember.Route.extend(preloadDataMixin, {
   i18n: Ember.inject.service(),
 
   beforeModel: function() {
-    this.set("i18n.locale", this.get("session.language"));
+    this.set("i18n.locale", this.get("session.language") || config.i18n.defaultLocale);
     return this.preloadData();
   },
 
@@ -28,6 +29,6 @@ export default Ember.Route.extend(preloadDataMixin, {
 
   setupController: function(controller, model){
     controller.set('model', model);
-    controller.set("pageTitle", "Browse");
+    controller.set("pageTitle", this.get('i18n').t("browse.title"));
   }
 });

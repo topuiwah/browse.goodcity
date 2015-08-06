@@ -7,6 +7,6 @@ export default Ember.Route.extend({
 
   setupController: function(controller, model){
     controller.set('model', model);
-    this.controllerFor('application').set('pageTitle', "Browse");
+    this.controllerFor('application').set('pageTitle', this.get('i18n').t("browse.title"));
   }
 });

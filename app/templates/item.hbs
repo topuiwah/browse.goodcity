@@ -2,7 +2,7 @@
   <section class='main-section'>
     <div class="row">
       <div class="large-4 medium-4 small-12 columns hide-for-small">
-        <h1 class="title">View Item</h1>
+        <h1 class="title">{{t "itemdetail.view"}}</h1>
       </div>
       <div class="large-8 medium-8 small-12 columns item-page">
         {{#link-to 'package_category' categoryObj class="button tiny info radius left show-for-small item-remove-icon"}}
@@ -12,12 +12,12 @@
           <li class="arrow prev enabled-arrow">
             {{#link-to 'item' previousItem (query-params sortBy=sortBy categoryId=categoryId) disabled=noPreviousItem}}
               <i class="fa fa-arrow-left"></i>
-              <span class="hide-for-small">Previous Item</span>
+              <span class="hide-for-small">{{t "itemdetail.previous"}}</span>
             {{/link-to}}
           </li>
           <li class="arrow next enabled-arrow">
             {{#link-to 'item' nextItem (query-params sortBy=sortBy categoryId=categoryId) disabled=noNextItem}}
-              <span class="hide-for-small">Next Item</span>
+              <span class="hide-for-small">{{t "itemdetail.next"}}</span>
               <i class="fa fa-arrow-right"></i>
             {{/link-to}}
           </li>
@@ -50,16 +50,16 @@
       <div class="item_name">{{model.mainPackage.notes}}</div>
       <p>
         <div class="item_details">
-          Condition: {{model.donorCondition.name}}
+          {{t "itemdetail.condition"}}: {{model.donorCondition.name}}
         </div>
         <div class="item_details">
-          Quantity:  {{model.mainPackage.quantity}}
+          {{t "itemdetail.quantity"}}:  {{model.mainPackage.quantity}}
         </div>
         <div class="item_details">
-          Size:      {{model.mainPackage.dimensions}}
+          {{t "itemdetail.size"}}:      {{model.mainPackage.dimensions}}
         </div>
         <div class="item_details">
-          Categories:
+          {{t "itemdetail.categories"}}:
           {{#each model.allPackageCategories key="@index" as |category|}}
             {{#link-to 'package_category' category}}{{category.name}}{{/link-to}},
           {{/each}}
@@ -72,16 +72,14 @@
         <div class="item_name">{{package.notes}}</div>
         <p>
           <div class="item_details">
-            Quantity: {{package.quantity}}
+            {{t "itemdetail.quantity"}}: {{package.quantity}}
           </div>
           <div class="item_details">
-            Size: {{package.dimensions}}
+            {{t "itemdetail.size"}}: {{package.dimensions}}
           </div>
         </p>
       {{/each}}
       {{!--  --}}
-
     </div>
-
   </div>
 </section>

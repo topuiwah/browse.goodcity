@@ -4,14 +4,14 @@
       <li class="arrow prev enabled-arrow">
         <a href="#" {{action "incrementPage" -1}}>
           <i class="fa fa-arrow-left"></i>
-          <span class="hide-for-small">Previous</span>
+          <span class="hide-for-small">{{t "page.previous"}}</span>
         </a>
       </li>
     {{else}}
       <li class="arrow prev disabled">
         <a href="#" {{action "incrementPage" -1}} >
           <i class="fa fa-arrow-left"></i>
-          <span class="hide-for-small">Previous</span>
+          <span class="hide-for-small">{{t "page.previous"}}</span>
         </a>
       </li>
     {{/if}}
@@ -37,14 +37,14 @@
     {{#if canStepForward}}
       <li class="arrow next enabled-arrow">
         <a href="#" {{action "incrementPage" 1}}>
-          <span class="hide-for-small">Next</span>
+          <span class="hide-for-small">{{t "page.next"}}</span>
           <i class="fa fa-arrow-right"></i>
         </a>
       </li>
     {{else}}
       <li class="arrow next disabled">
         <a href="#" {{action "incrementPage" 1}}>
-          <span class="hide-for-small">Next</span>
+          <span class="hide-for-small">{{t "page.next"}}</span>
           <i class="fa fa-arrow-right"></i>
         </a>
       </li>

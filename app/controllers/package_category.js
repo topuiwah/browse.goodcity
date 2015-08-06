@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-
   queryParams: ["page"],
   page:        1,
   perPage:     12,
@@ -9,8 +8,8 @@ export default Ember.Controller.extend({
 
   sortOptions: function() {
     return [
-      { name: "Newest first", value: ["createdAt:desc"] },
-      { name: "Oldest first", value: ["createdAt"] }
+      { name: this.get('i18n').t('category.sort.newfirst'), value: ["createdAt:desc"] },
+      { name: this.get('i18n').t('category.sort.oldfirst'), value: ["createdAt"] }
     ];
   }.property(),
 
