@@ -1,18 +1,29 @@
 import Ember from 'ember';
 import Application from '../../app';
+import Router from '../../router';
 import config from '../../config/environment';
+import './custom-helpers';
 
 export default function startApp(attrs) {
-  var application;
+  var App;
 
   var attributes = Ember.merge({}, config.APP);
   attributes = Ember.merge(attributes, attrs); // use defaults, but you can override;
 
-  Ember.run(function() {
-    application = Application.create(attributes);
-    application.setupForTesting();
-    application.injectTestHelpers();
+  Router.reopen({
+    location: 'none'
   });
 
-  return application;
+  Ember.run(function() {
+    App = Application.create(attributes);
+    App.__container__.lookup('service:i18n').set("locale", "en");
+    App.setupForTesting();
+    App.injectTestHelpers();
+  });
+
+  Ember.$("head").append("<style>.loading-indicator {display:none !important;}</style>");
+  window.alert = function(message) { console.log("Alert: " + message); };
+  window.confirm = function(message) { console.log("Confirm: " + message); return true; };
+
+  return App;
 }

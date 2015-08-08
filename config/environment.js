@@ -33,7 +33,7 @@ module.exports = function(environment) {
       // RESTAdapter Settings
       NAMESPACE: 'api/v1',
 
-      PRELOAD_TYPES: ["package_type", "package_category", "donor_condition"],
+      PRELOAD_TYPES: ["package_type", "package_category", "donor_condition", "item"],
 
       SHA: process.env.APP_SHA || "00000000",
       VERSION: "1.0.0"
@@ -74,6 +74,8 @@ module.exports = function(environment) {
 
     // RESTAdapter Settings
     ENV.APP.API_HOST_URL = 'http://localhost:4202';
+
+    ENV.APP.PRELOAD_TYPES = [];
   }
 
   if (environment === 'production') {
