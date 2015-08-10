@@ -19,4 +19,26 @@ export default function(){
     this.use('toUp', {duration: 800}),
     this.reverse('toDown', {duration: 800})
   );
+
+  this.transition(
+    this.childOf('.view-item.moveLeft'),
+    this.use('explode', {
+      pickOld: '.complete_item_view',
+      use: ['toLeft', {duration: 200}]
+    }, {
+      use: ['fade', { duration: 200 }]
+    }),
+    this.includingInitialRender()
+  );
+
+  this.transition(
+    this.childOf('.view-item.moveRight'),
+    this.use('explode', {
+      pickOld: '.complete_item_view',
+      use: ['toRight', {duration: 200}]
+    }, {
+      use: ['fade', { duration: 200 }]
+    }),
+    this.includingInitialRender()
+  );
 }

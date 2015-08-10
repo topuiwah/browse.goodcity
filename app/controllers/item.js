@@ -10,6 +10,8 @@ export default Ember.Controller.extend({
   hideThumbnails: Ember.computed.gt('model.sortedImages.length', 1),
   smallScreenPreviewUrl: Ember.computed.alias('model.displayImage.smallScreenPreviewImageUrl'),
 
+  direction: null,
+
   categoryObj: function(){
     return this.store.peekRecord('package_category', this.get("categoryId"));
   }.property('categoryId'),
@@ -44,6 +46,22 @@ export default Ember.Controller.extend({
   actions: {
     showPreview: function(image){
       this.set('previewUrl', image.get("previewImageUrl"));
+    },
+
+    setDirectionAndRender: function(direction){
+      this.set('direction', direction);
+      var targetItem = direction === "moveRight" ? this.get("previousItem") : this.get("nextItem");
+
+      if(targetItem) {
+        this.transitionToRoute('item', targetItem,
+          { queryParams: {
+            sortBy: this.get("sortBy"),
+            categoryId: this.get("categoryId") }
+          }
+        );
+      }
+
+
     }
   }
 });
