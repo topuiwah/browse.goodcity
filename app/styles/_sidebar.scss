@@ -1,3 +1,6 @@
+.left-small{
+  border-right:none;
+}
 .application-layout {
   margin: 0;
   .off-canvas-list {
@@ -189,5 +192,10 @@
     a img{
       display: none;
     }
+  }
+}
+.tab-bar h1{
+  @media #{$small-only} {
+    font-size: 0.85rem;
   }
 }
