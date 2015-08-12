@@ -9,24 +9,25 @@ FactoryGuy.define('item', {
     },
     description: function(num) {
       return 'Donor Description' + num;
+    },
+    date: function(num) {
+      var date = new Date();
+      date.setSeconds(num);
+      return date;
     }
   },
   default: {
     id:               FactoryGuy.generate('id'),
-    state:            'submitted',
-    createdAt:        '12/01/2014',
-    updatedAt:        '12/01/2014',
+    state:            'accepted',
+    createdAt:        FactoryGuy.generate('date'),
+    updatedAt:        (new Date()),
     donorDescription: FactoryGuy.generate("description"),
     donorCondition:   FactoryGuy.belongsTo('donor_condition'),
-  },
-  item_with_offer: {
-    offer: FactoryGuy.belongsTo('offer')
   },
   item_with_type: {
     packageType: FactoryGuy.belongsTo('package_type')
   },
   received_item: {
-    offer: FactoryGuy.belongsTo('offer'),
     packageType: FactoryGuy.belongsTo('package_type'),
     packages: function(){ return FactoryGuy.buildList('package', 2, { state: "received" }); }
   }
