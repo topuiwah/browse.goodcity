@@ -18,20 +18,16 @@ FactoryGuy.define('item', {
   },
   default: {
     id:               FactoryGuy.generate('id'),
-    state:            'submitted',
+    state:            'accepted',
     createdAt:        FactoryGuy.generate('date'),
     updatedAt:        (new Date()),
     donorDescription: FactoryGuy.generate("description"),
     donorCondition:   FactoryGuy.belongsTo('donor_condition'),
   },
-  item_with_offer: {
-    offer: FactoryGuy.belongsTo('offer')
-  },
   item_with_type: {
     packageType: FactoryGuy.belongsTo('package_type')
   },
   received_item: {
-    offer: FactoryGuy.belongsTo('offer'),
     packageType: FactoryGuy.belongsTo('package_type'),
     packages: function(){ return FactoryGuy.buildList('package', 2, { state: "received" }); }
   }
