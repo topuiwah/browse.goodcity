@@ -9,13 +9,18 @@ FactoryGuy.define('item', {
     },
     description: function(num) {
       return 'Donor Description' + num;
+    },
+    date: function(num) {
+      var date = new Date();
+      date.setSeconds(num);
+      return date;
     }
   },
   default: {
     id:               FactoryGuy.generate('id'),
     state:            'submitted',
-    createdAt:        '12/01/2014',
-    updatedAt:        '12/01/2014',
+    createdAt:        FactoryGuy.generate('date'),
+    updatedAt:        (new Date()),
     donorDescription: FactoryGuy.generate("description"),
     donorCondition:   FactoryGuy.belongsTo('donor_condition'),
   },
