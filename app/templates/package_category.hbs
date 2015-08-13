@@ -10,7 +10,7 @@
               {{t "category.filter"}}:
             </div>
             <div class="small-8 medium-7 large-8 columns">
-              {{select-list content=selectCategories on-change=(action (mut selectedCategoryId)) prompt="All"}}
+              {{select-list content=selectCategories on-change=(action (mut selectedCategoryId)) prompt=(t "category.all")}}
             </div>
           </div>
         </div>
