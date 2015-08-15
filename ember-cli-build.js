@@ -28,13 +28,6 @@ module.exports = function(defaults) {
   app.import('bower_components/jquery.cookie/jquery.cookie.js');
   app.import('bower_components/modernizr/modernizr.js');
 
-  app.import("bower_components/fontawesome/fonts/fontawesome-webfont.eot", { destDir: "fonts" });
-  app.import("bower_components/fontawesome/fonts/fontawesome-webfont.svg", { destDir: "fonts" });
-  app.import("bower_components/fontawesome/fonts/fontawesome-webfont.ttf", { destDir: "fonts" });
-  app.import("bower_components/fontawesome/fonts/fontawesome-webfont.woff", { destDir: "fonts" });
-  app.import("bower_components/fontawesome/fonts/fontawesome-webfont.woff2", { destDir: "fonts" });
-  app.import("bower_components/fontawesome/fonts/FontAwesome.otf", { destDir: "fonts" });
-
   app.import('bower_components/cloudinary/js/jquery.cloudinary.js');
 
   app.import('bower_components/lightgallery/light-gallery/css/lightGallery.css');
