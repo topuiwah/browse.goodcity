@@ -1,5 +1,5 @@
 # browse.goodcity
-GoodCity Web Interface 
+GoodCity Web Interface
 
 This README outlines the details of collaborating on this Ember application.
 A short introduction of this app could easily go here.
@@ -42,7 +42,8 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-Specify what it takes to deploy your app.
+* cap staging deploy
+* cap production deploy
 
 ## Further Reading / Useful Links
 
