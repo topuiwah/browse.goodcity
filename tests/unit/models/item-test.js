@@ -2,8 +2,8 @@ import Ember from 'ember';
 import { test, moduleForModel } from 'ember-qunit';
 
 moduleForModel('item', {
-  needs: ['model:package', 'model:image', 'model:donor_condition',
-    'model:package_type', 'model:package_category']
+  needs: ['model:package', 'model:image', 'model:donor-condition',
+    'model:package-type', 'model:package-category']
 });
 
 test('images relationship', function(assert) {

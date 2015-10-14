@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import { test, moduleForModel } from 'ember-qunit';
 
-moduleForModel('donorCondition', {
+moduleForModel('donor-condition', {
   needs: ['model:item']
 });
 
