@@ -4,9 +4,7 @@ import './package_type';
 
 FactoryGuy.define('package', {
   sequences: {
-    id: function(num) {
-      return num + 100;
-    }
+    id: (num)=> num + 100
   },
   default: {
     id:       FactoryGuy.generate('id'),
