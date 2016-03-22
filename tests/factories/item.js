@@ -4,12 +4,8 @@ import './package';
 
 FactoryGuy.define('item', {
   sequences: {
-    id: function(num) {
-      return num + 100;
-    },
-    description: function(num) {
-      return 'Donor Description' + num;
-    },
+    id: (num)=> num + 100,
+    description: (num)=> `Donor Description${num}`,
     date: function(num) {
       var date = new Date();
       date.setSeconds(num);
@@ -29,7 +25,7 @@ FactoryGuy.define('item', {
   },
   received_item: {
     packageType: FactoryGuy.belongsTo('package_type'),
-    packages: function(){ return FactoryGuy.buildList('package', 2, { state: "received" }); }
+    packages: FactoryGuy.hasMany('package', 2, { state: "received" })
   }
 });
 

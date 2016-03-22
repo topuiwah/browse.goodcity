@@ -2,12 +2,8 @@ import FactoryGuy from 'ember-data-factory-guy';
 
 FactoryGuy.define('package_category', {
   sequences: {
-    id: function(num) {
-      return num + 100;
-    },
-    name: function(num) {
-      return 'Category' + num;
-    }
+    id: (num)=> num + 100,
+    name: (num)=> `Category${num}`
   },
   default: {
     id:   FactoryGuy.generate('id'),

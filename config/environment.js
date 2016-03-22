@@ -15,6 +15,7 @@ module.exports = function(environment) {
 
     contentSecurityPolicy: {
       "img-src": "'self' data: https://res.cloudinary.com",
+      "script-src": "'self' 'unsafe-inline' 'unsafe-eval'",
       "style-src": "'self' 'unsafe-inline' https://maxcdn.bootstrapcdn.com",
       "font-src": "'self' data: https://maxcdn.bootstrapcdn.com",
       "object-src": "'self'"

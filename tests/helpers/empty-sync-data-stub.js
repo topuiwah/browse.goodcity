@@ -5,7 +5,7 @@ import '../factories/donor_condition';
 
 export default function(testHelper) {
   config.APP.PRELOAD_TYPES.concat(config.APP.PRELOAD_TYPES).forEach(function(type) {
-    testHelper.handleFindAll(type, 0);
+    testHelper.mockFindAll(type, 0);
   });
 
   //hide sync-data related mocks from console, but show test related mocks

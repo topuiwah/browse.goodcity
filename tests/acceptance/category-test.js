@@ -1,26 +1,26 @@
 import Ember from 'ember';
 import { module, test } from 'qunit';
 import startApp from 'browse/tests/helpers/start-app';
-import FactoryGuy from 'ember-data-factory-guy';
+import {make} from 'ember-data-factory-guy';
 
-var pkgCategory, subcategory1, pkgType1, pkgType2, subcategory2, latestItem, oldItem;
+var App, pkgCategory, subcategory1, pkgType1, pkgType2, subcategory2, latestItem, oldItem;
 
 module('Acceptance | Category Page', {
   beforeEach: function() {
-    this.application = startApp();
+    App = startApp();
 
-    pkgType1     = FactoryGuy.make("package_type_with_items");
-    pkgType2     = FactoryGuy.make("package_type_with_items");
-    pkgCategory  = FactoryGuy.make("parent_package_category");
-    subcategory1 = FactoryGuy.make("package_category", {parentId: parseInt(pkgCategory.id), packageTypeCodes: pkgType1.get("code") });
-    subcategory2 = FactoryGuy.make("package_category", {parentId: parseInt(pkgCategory.id), packageTypeCodes: pkgType2.get("code") });
+    pkgType1     = make("package_type_with_items");
+    pkgType2     = make("package_type_with_items");
+    pkgCategory  = make("parent_package_category");
+    subcategory1 = make("package_category", {parentId: parseInt(pkgCategory.id), packageTypeCodes: pkgType1.get("code") });
+    subcategory2 = make("package_category", {parentId: parseInt(pkgCategory.id), packageTypeCodes: pkgType2.get("code") });
 
     latestItem = pkgType2.get("items.lastObject");
     oldItem = pkgType1.get("items.firstObject");
   },
 
   afterEach: function() {
-    Ember.run(this.application, 'destroy');
+    Ember.run(App, App.destroy);
   }
 });
 
@@ -41,7 +41,7 @@ test("should redirect Category page and Display details", function(assert) {
 });
 
 test("should filter items based on subcategory", function(assert) {
-  var subcategory_title = subcategory1.get('name') + " ("+ subcategory1.get("items.length") +")";
+  let subcategory_title = subcategory1.get('name') + " ("+ subcategory1.get("items.length") +")";
 
   visit("/category/" + pkgCategory.id);
 
@@ -51,7 +51,7 @@ test("should filter items based on subcategory", function(assert) {
     assert.equal(Ember.$('.main-section ul.items_list li a').length, 4);
 
     Ember.run(function() {
-      var categoryId = find('.main-section select:first option:contains('+ subcategory_title +')').val();
+      let categoryId = find('.main-section select:first option:contains('+ subcategory_title +')').val();
       Ember.$('.main-section select:first').val(categoryId).change();
     });
 

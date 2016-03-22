@@ -3,15 +3,9 @@ import './item';
 
 FactoryGuy.define('package_type', {
   sequences: {
-    id: function(num) {
-      return num + 100;
-    },
-    name: function(num) {
-      return 'Category' + num;
-    },
-    code: function(num) {
-      return "code" + num;
-    }
+    id: (num)=> num + 100,
+    name: (num)=> `Category${num}`,
+    code: (num)=> `code${num}`
   },
   default: {
     id:   FactoryGuy.generate('id'),
@@ -20,7 +14,7 @@ FactoryGuy.define('package_type', {
   },
 
   package_type_with_items: {
-    items: function(){ return FactoryGuy.buildList('item', 2, { state: "accepted" }); }
+    items: FactoryGuy.hasMany('item', 2, { state: "accepted" })
   }
 });
 

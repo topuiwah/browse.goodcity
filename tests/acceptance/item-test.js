@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import { module, test } from 'qunit';
 import startApp from 'browse/tests/helpers/start-app';
-import FactoryGuy from 'ember-data-factory-guy';
+import {make} from 'ember-data-factory-guy';
 
 var pkgCategory, subcategory1, pkgType1, subcategory2, item_with_packages, prev_item, item, next_item, item_path;
 
@@ -9,17 +9,15 @@ module('Acceptance | Category Page', {
   beforeEach: function() {
     this.application = startApp();
 
-    pkgType1     = FactoryGuy.make("package_type");
+    pkgType1 = make("package_type");
+    item_with_packages = make("received_item", { packageType: pkgType1 });
+    next_item = make("item", { packageType: pkgType1 });
+    item = make("item", { packageType: pkgType1 });
+    prev_item = make("item", { packageType: pkgType1 });
 
-    item_with_packages = FactoryGuy.make("received_item", { packageType: pkgType1 });
-
-    next_item = FactoryGuy.make("item", { packageType: pkgType1 });
-    item = FactoryGuy.make("item", { packageType: pkgType1 });
-    prev_item = FactoryGuy.make("item", { packageType: pkgType1 });
-
-    pkgCategory  = FactoryGuy.make("parent_package_category");
-    subcategory1 = FactoryGuy.make("package_category", {parentId: parseInt(pkgCategory.id), packageTypeCodes: pkgType1.get("code") });
-    subcategory2 = FactoryGuy.make("package_category", {parentId: parseInt(pkgCategory.id), packageTypeCodes: pkgType1.get("code") });
+    pkgCategory  = make("parent_package_category");
+    subcategory1 = make("package_category", {parentId: parseInt(pkgCategory.id), packageTypeCodes: pkgType1.get("code") });
+    subcategory2 = make("package_category", {parentId: parseInt(pkgCategory.id), packageTypeCodes: pkgType1.get("code") });
 
     item_path = "/item/" + item.id +"?categoryId="+ pkgCategory.id +"&sortBy=createdAt%3Adesc";
   },

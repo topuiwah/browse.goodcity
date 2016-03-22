@@ -2,6 +2,8 @@ import Ember from 'ember';
 import config from '../config/environment';
 import preloadDataMixin from '../mixins/preload_data';
 
+const { getOwner } = Ember;
+
 export default Ember.Route.extend(preloadDataMixin, {
 
   i18n: Ember.inject.service(),
@@ -22,7 +24,7 @@ export default Ember.Route.extend(preloadDataMixin, {
   actions: {
     loading: function() {
       Ember.$(".loading-indicator").remove();
-      var component = this.container.lookup('component:loading').append();
+      var component = getOwner(this).lookup('component:loading').append();
       this.router.one('didTransition', component, 'destroy');
     },
   },
