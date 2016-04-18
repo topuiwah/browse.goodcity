@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 import cloudinaryImage from '../mixins/cloudinary_image';
 
@@ -9,23 +10,23 @@ export default DS.Model.extend(cloudinaryImage, {
   cloudinaryId:  attr('string'),
   item:          belongsTo('item'),
 
-  imageUrl: function() {
+  imageUrl: Ember.computed('cloudinaryId', function() {
     return this.generateUrl();
-  }.property('cloudinaryId'),
+  }),
 
-  defaultImageUrl: function() {
+  defaultImageUrl: Ember.computed('cloudinaryId', function() {
     return this.generateUrl(500, 500, true);
-  }.property('cloudinaryId'),
+  }),
 
-  thumbImageUrl: function() {
+  thumbImageUrl: Ember.computed('cloudinaryId', function() {
     return this.generateUrl(50, 50, true);
-  }.property('cloudinaryId'),
+  }),
 
-  previewImageUrl: function() {
+  previewImageUrl: Ember.computed('cloudinaryId', function() {
     return this.generateUrl(265, 265, true);
-  }.property('cloudinaryId'),
+  }),
 
-  smallScreenPreviewImageUrl: function() {
+  smallScreenPreviewImageUrl: Ember.computed('cloudinaryId', function() {
     return this.generateUrl(640, 365, true);
-  }.property('cloudinaryId'),
+  }),
 });

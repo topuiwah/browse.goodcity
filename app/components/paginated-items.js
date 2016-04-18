@@ -10,8 +10,8 @@ export default Ember.Component.extend({
   pageBinding:       "pagedContent.page",
   totalPagesBinding: "pagedContent.totalPages",
 
-  showPaginationBar: function() {
+  showPaginationBar: Ember.computed('pagedContent.totalPages', function() {
     return this.get('pagedContent.totalPages') > 1;
-  }.property('pagedContent.totalPages'),
+  }),
 
 });

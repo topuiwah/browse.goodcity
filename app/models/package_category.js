@@ -11,27 +11,27 @@ export default DS.Model.extend({
   isParent: Ember.computed.equal("parentId", null),
   isChild:  Ember.computed.notEmpty("parentId"),
 
-  parentCategory: function(){
+  parentCategory: Ember.computed('parentId', function(){
     return this.get('parentId') ? this.store.peekRecord('package_category', this.get('parentId')) : null;
-  }.property('parentId'),
+  }),
 
-  nameItemsCount: function(){
+  nameItemsCount: Ember.computed('name', 'items.[]', function(){
     return this.get("name") + " (" + this.get("items.length") + ")";
-  }.property('name', 'items.[]'),
+  }),
 
-  childCategories: function() {
+  childCategories: Ember.computed('allChildCategories', function() {
     return this.get('allChildCategories').rejectBy('items.length', 0);
-  }.property('allChildCategories'),
+  }),
 
-  allChildCategories: function() {
+  allChildCategories: Ember.computed('_packageCategories.[]', function() {
     return this.get('_packageCategories').filterBy('parentId', parseInt(this.get("id")));
-  }.property('_packageCategories.[]'),
+  }),
 
-  _packageCategories: function() {
+  _packageCategories: Ember.computed(function() {
     return this.store.peekAll("package_category");
-  }.property(),
+  }),
 
-  items: function(){
+  items: Ember.computed('packageTypeCodes', function(){
     var items = [];
     if(this.get('isParent')) {
       return this.get('allItems');
@@ -44,21 +44,21 @@ export default DS.Model.extend({
     }
 
     return items;
-  }.property('packageTypeCodes'),
+  }),
 
-  _packageTypes: function() {
+  _packageTypes: Ember.computed(function() {
     return this.store.peekAll("package_type");
-  }.property(),
+  }),
 
-  packageTypes: function(){
+  packageTypes: Ember.computed('packageTypeCodes', "_packageTypes.[]", function(){
     if (this.get('packageTypeCodes.length') > 0) {
       var list = this.get('packageTypeCodes').split(',');
       return this.get("_packageTypes").filter(p => list.indexOf(p.get("code")) > -1);
     }
     return [];
-  }.property('packageTypeCodes', "_packageTypes.[]"),
+  }),
 
-  allItems: function(){
+  allItems: Ember.computed('childCategories', 'items', function(){
     var items = [];
     if(this.get('isParent')) {
       this.get('childCategories').forEach(function(category){
@@ -70,9 +70,9 @@ export default DS.Model.extend({
     return items.filter(function(item, pos) {
       return items.indexOf(item) === pos;
     });
-  }.property('childCategories', 'items'),
+  }),
 
-  imageUrl: function(){
+  imageUrl: Ember.computed(function(){
     if(this.get('isParent')) {
       var images = {
         "8": "1436965082/browse/browse_image_2.png",
@@ -98,5 +98,5 @@ export default DS.Model.extend({
         });
       }
     }
-  }.property()
+  })
 });

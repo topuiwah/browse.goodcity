@@ -5,9 +5,14 @@ export default ObserveScreenResize.extend({
 
   lightGalleryObj: null,
 
-  isSmallScreen: function(key, value){
-    return (arguments.length > 1) ? value : this.screenResized();
-  }.property(),
+  isSmallScreen: Ember.computed({
+    get() {
+      return this.screenResized();
+    },
+    set(key, value) {
+      return value;
+    }
+  }),
 
   observeScreen: function() {
     this.set("isSmallScreen", this.screenResized());

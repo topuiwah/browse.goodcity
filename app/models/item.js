@@ -18,38 +18,38 @@ export default DS.Model.extend(cloudinaryImage, {
 
   mainPackage:      Ember.computed.alias('packages.firstObject'),
 
-  favouriteImage: function(){
+  favouriteImage: Ember.computed('images.@each.favourite', function(){
     return this.get("images").filterBy("favourite").get("firstObject");
-  }.property('images.@each.favourite'),
+  }),
 
-  otherImages: function(){
+  otherImages: Ember.computed('images.[]', function(){
     return this.get("images").toArray().removeObject(this.get("favouriteImage"));
-  }.property('images.[]'),
+  }),
 
-  sortedImages: function(){
+  sortedImages: Ember.computed('otherImages.[]', 'favouriteImage', function(){
     var images = this.get('otherImages').toArray();
     images.unshift(this.get("favouriteImage"));
     return images;
-  }.property('otherImages.[]', 'favouriteImage'),
+  }),
 
-  displayImage: function() {
+  displayImage: Ember.computed('images.@each.favourite', function() {
     return this.get("favouriteImage") ||
       this.get("images").sortBy("id").get("firstObject") || null;
-  }.property('images.@each.favourite'),
+  }),
 
-  displayImageUrl: function() {
+  displayImageUrl: Ember.computed('displayImage', function() {
     return this.get('displayImage.defaultImageUrl') || this.generateUrl(500, 500, true);
-  }.property('displayImage'),
+  }),
 
-  previewImageUrl: function() {
+  previewImageUrl: Ember.computed('displayImage', function() {
     return this.get('displayImage.previewImageUrl') || this.generateUrl(265, 265, true);
-  }.property('displayImage'),
+  }),
 
-  allPackageCategories: function(){
+  allPackageCategories: Ember.computed('packageType', 'packageType.allPackageCategories.[]', function(){
     return this.get('packageType.allPackageCategories');
-  }.property('packageType', 'packageType.allPackageCategories.[]'),
+  }),
 
-  otherPackages: function(){
+  otherPackages: Ember.computed('packages.[]', function(){
     return this.get('packages').toArray().removeObject(this.get('mainPackage'));
-  }.property('packages.[]'),
+  }),
 });

@@ -5,31 +5,30 @@ export default Ember.Controller.extend({
   page:        1,
   perPage:     12,
   selectedSort: null,
+  selectedCategoryId: null,
 
-  sortOptions: function() {
+  sortedItems: Ember.computed.sort("categoryObj.items", "selectedSort"),
+  currentCategoryId: Ember.computed.alias('categoryObj.id'),
+
+  sortOptions: Ember.computed(function(){
     return [
       { name: this.get('i18n').t('category.sort.newfirst'), value: ["createdAt:desc"] },
       { name: this.get('i18n').t('category.sort.oldfirst'), value: ["createdAt"] }
     ];
-  }.property(),
+  }),
 
-  sortedItems: Ember.computed.sort("categoryObj.items", "selectedSort"),
-
-  selectedCategoryId: null,
-  currentCategoryId: Ember.computed.alias('categoryObj.id'),
-
-  categoryObj: function() {
+  categoryObj: Ember.computed('selectedCategoryId', 'model', function() {
     this.set("page", 1);
     var selectedCategoryId = this.get('selectedCategoryId');
     return selectedCategoryId ?
       this.store.peekRecord('package_category', selectedCategoryId) :
       this.get('model');
-  }.property('selectedCategoryId', 'model'),
+  }),
 
-  selectCategories: function() {
+  selectCategories: Ember.computed("model", function() {
     return this.get("model.childCategories").map(c => ({
       name: c.get("nameItemsCount"),
       value: c.get("id")
     }));
-  }.property("model")
+  }),
 });

@@ -12,27 +12,27 @@ export default Ember.Controller.extend({
 
   direction: null,
 
-  categoryObj: function(){
+  categoryObj: Ember.computed('categoryId' ,function(){
     return this.store.peekRecord('package_category', this.get("categoryId"));
-  }.property('categoryId'),
+  }),
 
-  selectedSort: function() {
+  selectedSort: Ember.computed('sortBy' ,function() {
     return [this.get("sortBy")];
-  }.property("sortBy"),
+  }),
 
   sortedItems: Ember.computed.sort("categoryObj.items", "selectedSort"),
 
-  nextItem: function(){
+  nextItem: Ember.computed('model', 'sortedItems' ,function(){
     var currentItem = this.get('model');
     var items = this.get("sortedItems").toArray();
     return items[items.indexOf(currentItem) + 1];
-  }.property('model', 'sortedItems'),
+  }),
 
-  previousItem: function(){
+  previousItem: Ember.computed('model', 'sortedItems' ,function(){
     var currentItem = this.get('model');
     var items = this.get("sortedItems").toArray();
     return items[items.indexOf(currentItem) - 1];
-  }.property('model', 'sortedItems'),
+  }),
 
   previewUrl: Ember.computed("model.previewImageUrl", "model", {
     get() {
@@ -44,11 +44,11 @@ export default Ember.Controller.extend({
   }),
 
   actions: {
-    showPreview: function(image){
+    showPreview(image) {
       this.set('previewUrl', image.get("previewImageUrl"));
     },
 
-    setDirectionAndRender: function(direction){
+    setDirectionAndRender(direction) {
       this.set('direction', direction);
       var targetItem = direction === "moveRight" ? this.get("previousItem") : this.get("nextItem");
 
@@ -60,8 +60,7 @@ export default Ember.Controller.extend({
           }
         );
       }
+    },
 
-
-    }
   }
 });
