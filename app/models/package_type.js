@@ -7,7 +7,22 @@ var attr = DS.attr,
 export default DS.Model.extend({
   name:  attr('string'),
   code:  attr('string'),
-  items: hasMany('item'),
+  items: hasMany('item', { async: false }),
+  packages: hasMany('package', { async: false }),
+
+  getItemPackageList: Ember.computed('packages.@each.hasSiblingPackages', function(){
+    var packages = this.get('packages');
+    var items = [];
+
+    if(packages) {
+      var singlePackages = packages.rejectBy("hasSiblingPackages") || [];
+      items = items.concat(singlePackages.toArray());
+
+      var multiPackages = packages.filterBy("hasSiblingPackages") || [];
+      items = items.concat(multiPackages.map(pkg => pkg.get("item")).uniq());
+    }
+    return items.uniq();
+  }),
 
   _packageCategories: Ember.computed(function() {
     return this.store.peekAll("package_category");
@@ -23,11 +38,7 @@ export default DS.Model.extend({
       var parentCategory = pkg.get('parentCategory');
       if(parentCategory) { categories = categories.concat(parentCategory); }
     });
-
-    // to remove dupliacte occurences
-    return categories.filter(function(item, pos) {
-      return categories.indexOf(item) === pos;
-    });
+    return categories.uniq();
   }),
 
 });

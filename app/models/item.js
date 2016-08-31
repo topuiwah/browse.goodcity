@@ -10,13 +10,17 @@ export default DS.Model.extend(cloudinaryImage, {
   donorDescription: attr('string'),
   createdAt:        attr('date'),
   updatedAt:        attr('date'),
-  images:           hasMany('image'),
-  packages:         hasMany('package'),
-  packageType:      belongsTo('package_type'),
-  donorCondition:   belongsTo('donor_condition'),
+  images:           hasMany('image', { async: false }),
+  packages:         hasMany('package', { async: false }),
+  packageType:      belongsTo('package_type', { async: false }),
+  donorCondition:   belongsTo('donor_condition', { async: false }),
   saleable:         attr('boolean'),
 
   mainPackage:      Ember.computed.alias('packages.firstObject'),
+
+  isItem: Ember.computed('this', function(){
+    return this.get('constructor.modelName') === 'item';
+  }),
 
   favouriteImage: Ember.computed('images.@each.favourite', function(){
     return this.get("images").filterBy("favourite").get("firstObject");
@@ -45,9 +49,7 @@ export default DS.Model.extend(cloudinaryImage, {
     return this.get('displayImage.previewImageUrl') || this.generateUrl(265, 265, true);
   }),
 
-  allPackageCategories: Ember.computed('packageType', 'packageType.allPackageCategories.[]', function(){
-    return this.get('packageType.allPackageCategories');
-  }),
+  allPackageCategories: Ember.computed.alias('packageType.allPackageCategories'),
 
   otherPackages: Ember.computed('packages.[]', function(){
     return this.get('packages').toArray().removeObject(this.get('mainPackage'));

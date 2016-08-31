@@ -9,6 +9,7 @@ Router.map(function() {
   this.route("browse");
   this.route('package_category', { path: '/category/:id' });
   this.route('item', { path: '/item/:id' });
+  this.route('package', { path: '/package/:id' });
 });
 
 export default Router;
