@@ -1,10 +1,11 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import cloudinaryImage from '../mixins/cloudinary_image';
 
 var attr = DS.attr,
     belongsTo = DS.belongsTo;
 
-export default DS.Model.extend({
+export default DS.Model.extend(cloudinaryImage, {
   quantity:        attr('number'),
   length:          attr('number'),
   width:           attr('number'),
@@ -13,9 +14,21 @@ export default DS.Model.extend({
 
   createdAt:       attr('date'),
   updatedAt:       attr('date'),
-  item:            belongsTo('item'),
-  packageType:     belongsTo('package_type'),
-  imageId:         attr('number'),
+  item:            belongsTo('item', { async: false }),
+  packageType:     belongsTo('package_type', { async: false }),
+  image:           belongsTo('image', { async: false }),
+  donorCondition:  belongsTo('donor_condition', { async: false }),
+  itemId:          attr('number'),
+
+  allPackageCategories: Ember.computed.alias('packageType.allPackageCategories'),
+
+  _packages: Ember.computed(function() {
+    return this.store.peekAll("package");
+  }),
+
+  hasSiblingPackages: Ember.computed('_packages.@each.itemId', function() {
+    return this.get("itemId") && (this.get("_packages").filterBy("itemId", this.get("itemId")).length > 1);
+  }),
 
   packageName: Ember.computed('packageType', function() {
     return this.get('packageType.name');
@@ -38,11 +51,11 @@ export default DS.Model.extend({
     return !res ? '' : res + 'cm';
   }),
 
-  image: Ember.computed("imageId", function() {
-    return this.store.getById("image", this.get("imageId"));
+  displayImageUrl: Ember.computed("image", "item.displayImageUrl", function() {
+    return this.get('image.defaultImageUrl') || this.generateUrl(500, 500, true);
   }),
 
-  displayImageUrl: Ember.computed("image", "item.displayImageUrl", function() {
-    return this.get("image") ? this.get("image.thumbImageUrl") : this.get("item.displayImageUrl");
-  })
+  previewImageUrl: Ember.computed('image', function() {
+    return this.get('image.previewImageUrl') || this.generateUrl(265, 265, true);
+  }),
 });

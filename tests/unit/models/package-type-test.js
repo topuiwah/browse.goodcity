@@ -2,7 +2,7 @@ import Ember from 'ember';
 import { test, moduleForModel } from 'ember-qunit';
 
 moduleForModel('package-type', {
-  needs: ['model:item']
+  needs: ['model:item', 'model:package']
 });
 
 test('item relationship', function(assert) {

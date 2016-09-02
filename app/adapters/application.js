@@ -17,8 +17,8 @@ export default ActiveModelAdapter.extend({
   }),
 
   buildURL: function(modelName, id, snapshot, requestType) {
-    if (modelName === "item" && requestType === "findAll") {
-      return config.APP.API_HOST_URL + "/" + config.APP.NAMESPACE + "/browse/fetch_items";
+    if (modelName === "package" && requestType === "findAll") {
+      return config.APP.API_HOST_URL + "/" + config.APP.NAMESPACE + "/browse/fetch_packages";
     }
     return this._super.apply(this, arguments);
   }

@@ -31,19 +31,28 @@ export default DS.Model.extend({
     return this.store.peekAll("package_category");
   }),
 
+  allItems: Ember.computed('childCategories', 'items', function(){
+    var items = [];
+    if(this.get('isParent')) {
+      this.get('childCategories').forEach(function(category){
+        items = items.concat((category.get('items') || []).toArray());
+      });
+    }
+    return items.uniq();
+  }),
+
   items: Ember.computed('packageTypeCodes', function(){
     var items = [];
     if(this.get('isParent')) {
       return this.get('allItems');
     } else {
       if(this.get('packageTypeCodes.length') > 0) {
-        this.get('packageTypes').forEach(function(pkg){
-          items = items.concat(pkg.get('items').toArray());
+        this.get('packageTypes').forEach(function(type){
+          items = items.concat(type.get("getItemPackageList"));
         });
       }
     }
-
-    return items;
+    return items.uniq();
   }),
 
   _packageTypes: Ember.computed(function() {
@@ -56,20 +65,6 @@ export default DS.Model.extend({
       return this.get("_packageTypes").filter(p => list.indexOf(p.get("code")) > -1);
     }
     return [];
-  }),
-
-  allItems: Ember.computed('childCategories', 'items', function(){
-    var items = [];
-    if(this.get('isParent')) {
-      this.get('childCategories').forEach(function(category){
-        items = items.concat((category.get('items') || []).toArray());
-      });
-    }
-
-    // to remove dupliacte occurences
-    return items.filter(function(item, pos) {
-      return items.indexOf(item) === pos;
-    });
   }),
 
   imageUrl: Ember.computed(function(){

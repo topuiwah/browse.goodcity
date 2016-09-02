@@ -8,7 +8,7 @@ var App, pkgCategory1, pkgCategory2, subcategory1, pkgType, category_title, subc
 module('Acceptance | Browse Page', {
   beforeEach: function() {
     App = startApp();
-    pkgType      = make("package_type_with_items");
+    pkgType      = make("package_type_with_packages");
     pkgCategory1 = make("parent_package_category");
     subcategory1 = make("package_category", {parentId: parseInt(pkgCategory1.id), packageTypeCodes: pkgType.get("code") });
     pkgCategory2 = make("parent_package_category");
@@ -27,7 +27,7 @@ test("should redirect browse page", function(assert) {
   visit("/").then(function() {
     assert.equal(currentURL(), '/browse');
     assert.equal(Ember.$('h1.title').text(), "Browse Goods");
-    assert.equal(Ember.$('.main-section li').length, 3);
+    assert.equal(Ember.$('.main-section li').length, 2);
   });
 });
 
@@ -35,7 +35,7 @@ test("should list main-category with subcategories if has items", function(asser
   visit("/").then(function() {
     // check first group of main-category
     assert.equal(Ember.$('.main-section li:first .main_category').text().indexOf(category_title) >= 0, true);
-    assert.equal(Ember.$('.main-section li:first .subcategories').text().indexOf(subcategory_title) >= 0, true);
+    assert.equal(Ember.$('.main-section li:first .subcategories').text().indexOf(subcategory_title) >= 0, false);
   });
 });
 

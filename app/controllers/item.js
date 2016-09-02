@@ -5,12 +5,17 @@ export default Ember.Controller.extend({
   queryParams:    ['categoryId', 'sortBy'],
   categoryId:     null,
   sortBy:         null,
+  item:           Ember.computed.alias('model'),
   noNextItem:     Ember.computed.empty('nextItem'),
   noPreviousItem: Ember.computed.empty('previousItem'),
-  hideThumbnails: Ember.computed.gt('model.sortedImages.length', 1),
-  smallScreenPreviewUrl: Ember.computed.alias('model.displayImage.smallScreenPreviewImageUrl'),
+  hideThumbnails: Ember.computed.gt('item.sortedImages.length', 1),
+  smallScreenPreviewUrl: Ember.computed.alias('item.displayImage.smallScreenPreviewImageUrl'),
 
   direction: null,
+
+  mainPackage: Ember.computed('item.mainPackage' ,function(){
+    return this.get("item.isItem") ? this.get("item.mainPackage") : this.get("item");
+  }),
 
   categoryObj: Ember.computed('categoryId' ,function(){
     return this.store.peekRecord('package_category', this.get("categoryId"));
@@ -22,21 +27,21 @@ export default Ember.Controller.extend({
 
   sortedItems: Ember.computed.sort("categoryObj.items", "selectedSort"),
 
-  nextItem: Ember.computed('model', 'sortedItems' ,function(){
-    var currentItem = this.get('model');
+  nextItem: Ember.computed('model', 'sortedItems.[]' ,function(){
+    var currentItem = this.get('item');
     var items = this.get("sortedItems").toArray();
     return items[items.indexOf(currentItem) + 1];
   }),
 
-  previousItem: Ember.computed('model', 'sortedItems' ,function(){
-    var currentItem = this.get('model');
+  previousItem: Ember.computed('model', 'sortedItems.[]' ,function(){
+    var currentItem = this.get('item');
     var items = this.get("sortedItems").toArray();
     return items[items.indexOf(currentItem) - 1];
   }),
 
-  previewUrl: Ember.computed("model.previewImageUrl", "model", {
+  previewUrl: Ember.computed("item.previewImageUrl", "item", {
     get() {
-      return this.get("model.previewImageUrl");
+      return this.get("item.previewImageUrl");
     },
     set(key, value) {
       return value;
@@ -53,12 +58,23 @@ export default Ember.Controller.extend({
       var targetItem = direction === "moveRight" ? this.get("previousItem") : this.get("nextItem");
 
       if(targetItem) {
-        this.transitionToRoute('item', targetItem,
-          { queryParams: {
-            sortBy: this.get("sortBy"),
-            categoryId: this.get("categoryId") }
-          }
-        );
+
+        if(targetItem.get("isItem")) {
+          this.transitionToRoute('item', targetItem,
+            { queryParams: {
+              sortBy: this.get("sortBy"),
+              categoryId: this.get("categoryId") }
+            }
+          );
+        } else {
+          this.transitionToRoute('package', targetItem,
+            { queryParams: {
+              sortBy: this.get("sortBy"),
+              categoryId: this.get("categoryId") }
+            }
+          );
+        }
+
       }
     },
 
