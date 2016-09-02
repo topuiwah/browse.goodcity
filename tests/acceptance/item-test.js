@@ -1,11 +1,12 @@
 import Ember from 'ember';
-import { module, test } from 'qunit';
+import { module } from 'qunit';
 import startApp from 'browse/tests/helpers/start-app';
 import {make} from 'ember-data-factory-guy';
+import testSkip from 'browse/tests/helpers/test-skip';
 
 var pkgCategory, subcategory1, pkgType1, subcategory2, item_with_packages, prev_item, item, next_item, item_path;
 
-module('Acceptance | Category Page', {
+module('Acceptance | Item Page', {
   beforeEach: function() {
     this.application = startApp();
 
@@ -27,7 +28,7 @@ module('Acceptance | Category Page', {
   }
 });
 
-test("should redirect item page and Display details", function(assert) {
+testSkip("should redirect item page and Display details", function(assert) {
   var item_path = "/item/" + item_with_packages.id +"?categoryId="+ pkgCategory.id +"&sortBy=createdAt%3Adesc";
   visit(item_path);
 
@@ -58,7 +59,7 @@ test("should redirect item page and Display details", function(assert) {
   });
 });
 
-test("should redirect previous item", function(assert) {
+testSkip("should redirect previous item", function(assert) {
   var prev_item_path = "/item/" + prev_item.id +"?categoryId="+ pkgCategory.id +"&sortBy=createdAt%3Adesc";
 
   visit(item_path);
@@ -74,7 +75,7 @@ test("should redirect previous item", function(assert) {
 });
 
 
-test("should redirect next item", function(assert) {
+testSkip("should redirect next item", function(assert) {
   var next_item_path = "/item/" + next_item.id +"?categoryId="+ pkgCategory.id +"&sortBy=createdAt%3Adesc";
 
   visit(item_path);

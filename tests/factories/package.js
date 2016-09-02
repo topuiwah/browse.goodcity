@@ -12,7 +12,7 @@ FactoryGuy.define('package', {
     length:   10,
     width:    10,
     height:   10,
-    item:     FactoryGuy.belongsTo('item'),
+    item:     null,
     packageType:  FactoryGuy.belongsTo('package_type'),
     notes:    "example",
     state:    "expected"

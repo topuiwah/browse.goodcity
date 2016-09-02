@@ -13,8 +13,8 @@ FactoryGuy.define('package_type', {
     code: FactoryGuy.generate("code")
   },
 
-  package_type_with_items: {
-    items: FactoryGuy.hasMany('item', 2, { state: "accepted" })
+  package_type_with_packages: {
+    items: FactoryGuy.hasMany('package', 2)
   }
 });
 

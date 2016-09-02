@@ -33,7 +33,6 @@ export default DS.Model.extend({
 
   allItems: Ember.computed('childCategories', 'items', function(){
     var items = [];
-    var _this = this;
     if(this.get('isParent')) {
       this.get('childCategories').forEach(function(category){
         items = items.concat((category.get('items') || []).toArray());
@@ -44,7 +43,6 @@ export default DS.Model.extend({
 
   items: Ember.computed('packageTypeCodes', function(){
     var items = [];
-    var _this = this;
     if(this.get('isParent')) {
       return this.get('allItems');
     } else {
