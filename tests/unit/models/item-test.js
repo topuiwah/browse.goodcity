@@ -6,14 +6,6 @@ moduleForModel('item', {
     'model:package-type', 'model:package-category']
 });
 
-test('images relationship', function(assert) {
-  var Item = this.subject().store.modelFor('item');
-  var relationship = Ember.get(Item, 'relationshipsByName').get('images');
-
-  assert.equal(relationship.key, 'images');
-  assert.equal(relationship.kind, 'hasMany');
-});
-
 test('packages relationship', function(assert) {
   var Item = this.subject().store.modelFor('item');
   var relationship = Ember.get(Item, 'relationshipsByName').get('packages');
@@ -100,23 +92,4 @@ test('allPackageCategories', function(assert) {
   });
 
   assert.equal(record.get('allPackageCategories.firstObject.id'), [pkgCategory.id]);
-});
-
-test('favouriteImage and otherImages', function(assert) {
-  var record, img, favImg;
-  var subject = this.subject();
-
-  Ember.run(function() {
-    subject.store.createRecord('item', {id: 7});
-    record = subject.store.peekRecord('item', 7);
-
-    subject.store.createRecord('image', {id: 7, favourite: true, item: record});
-    favImg = subject.store.peekRecord('image', 7);
-
-    subject.store.createRecord('image', {id: 8, item: record});
-    img = subject.store.peekRecord('image', 8);
-  });
-
-  assert.equal(record.get('favouriteImage.id'), [favImg.id]);
-  assert.equal(record.get('otherImages.firstObject.id'), [img.id]);
 });

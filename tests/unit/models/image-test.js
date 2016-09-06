@@ -2,14 +2,14 @@ import Ember from 'ember';
 import { test, moduleForModel } from 'ember-qunit';
 
 moduleForModel('image', {
-  needs: ['model:item']
+  needs: ['model:package']
 });
 
-test('item relationship', function(assert) {
+test('package relationship', function(assert) {
   var image = this.subject().store.modelFor('image');
-  var relationship = Ember.get(image, 'relationshipsByName').get('item');
+  var relationship = Ember.get(image, 'relationshipsByName').get('package');
 
-  assert.equal(relationship.key, 'item');
+  assert.equal(relationship.key, 'package');
   assert.equal(relationship.kind, 'belongsTo');
 });
 

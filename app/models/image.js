@@ -8,7 +8,7 @@ var attr = DS.attr,
 export default DS.Model.extend(cloudinaryImage, {
   favourite:     attr('boolean'),
   cloudinaryId:  attr('string'),
-  item:          belongsTo('item', { async: false }),
+  package:       belongsTo('package', { async: false }),
 
   imageUrl: Ember.computed('cloudinaryId', function() {
     return this.generateUrl();

@@ -3,7 +3,8 @@ import DS from 'ember-data';
 import cloudinaryImage from '../mixins/cloudinary_image';
 
 var attr = DS.attr,
-    belongsTo = DS.belongsTo;
+    belongsTo = DS.belongsTo,
+    hasMany = DS.hasMany;
 
 export default DS.Model.extend(cloudinaryImage, {
   quantity:        attr('number'),
@@ -16,7 +17,7 @@ export default DS.Model.extend(cloudinaryImage, {
   updatedAt:       attr('date'),
   item:            belongsTo('item', { async: false }),
   packageType:     belongsTo('package_type', { async: false }),
-  image:           belongsTo('image', { async: false }),
+  images:          hasMany('image', { async: false }),
   donorCondition:  belongsTo('donor_condition', { async: false }),
   itemId:          attr('number'),
 
@@ -49,6 +50,20 @@ export default DS.Model.extend(cloudinaryImage, {
     append(this.get('height'));
     append(this.get('length'));
     return !res ? '' : res + 'cm';
+  }),
+
+  image: Ember.computed("images.@each.favourite", function() {
+    return this.get('images').filterBy("favourite").get("firstObject");
+  }),
+
+  otherImages: Ember.computed('images.[]', function(){
+    return this.get("images").toArray().removeObject(this.get("image"));
+  }),
+
+  sortedImages: Ember.computed('otherImages.[]', 'image', function(){
+    var images = this.get('otherImages').toArray();
+    images.unshift(this.get("image"));
+    return images;
   }),
 
   displayImageUrl: Ember.computed("image", "item.displayImageUrl", function() {

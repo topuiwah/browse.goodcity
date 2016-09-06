@@ -10,13 +10,22 @@ export default DS.Model.extend(cloudinaryImage, {
   donorDescription: attr('string'),
   createdAt:        attr('date'),
   updatedAt:        attr('date'),
-  images:           hasMany('image', { async: false }),
+
   packages:         hasMany('package', { async: false }),
   packageType:      belongsTo('package_type', { async: false }),
   donorCondition:   belongsTo('donor_condition', { async: false }),
   saleable:         attr('boolean'),
 
   mainPackage:      Ember.computed.alias('packages.firstObject'),
+
+  images: Ember.computed('packages.@each.images.[]', function(){
+    var images = [];
+    this.get("packages").forEach(function(pkg){
+      var pkgImages = pkg.get("images") ? pkg.get("images").toArray() : [];
+      images = images.concat(pkgImages);
+    });
+    return images;
+  }),
 
   isItem: Ember.computed('this', function(){
     return this.get('constructor.modelName') === 'item';
