@@ -39,7 +39,7 @@ export default Ember.Controller.extend({
     return items[items.indexOf(currentItem) - 1];
   }),
 
-  previewUrl: Ember.computed("item.previewImageUrl", "item", {
+  previewUrl: Ember.computed("item.previewImageUrl", {
     get() {
       return this.get("item.previewImageUrl");
     },

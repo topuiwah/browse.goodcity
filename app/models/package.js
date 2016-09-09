@@ -56,6 +56,8 @@ export default DS.Model.extend(cloudinaryImage, {
     return this.get('images').filterBy("favourite").get("firstObject");
   }),
 
+  favouriteImage: Ember.computed.alias('image'),
+
   otherImages: Ember.computed('images.[]', function(){
     return this.get("images").toArray().removeObject(this.get("image"));
   }),

@@ -36,14 +36,11 @@ export default DS.Model.extend(cloudinaryImage, {
   }),
 
   otherImages: Ember.computed('images.[]', function(){
-    return this.get("images").toArray().removeObject(this.get("favouriteImage"));
+    var images =  this.get("images").toArray();
+    return images.filter((image, index, self) => self.findIndex((t) => t.get('cloudinaryId') === image.get('cloudinaryId')) === index);
   }),
 
-  sortedImages: Ember.computed('otherImages.[]', 'favouriteImage', function(){
-    var images = this.get('otherImages').toArray();
-    images.unshift(this.get("favouriteImage"));
-    return images;
-  }),
+  sortedImages: Ember.computed.alias('otherImages'),
 
   displayImage: Ember.computed('images.@each.favourite', function() {
     return this.get("favouriteImage") ||

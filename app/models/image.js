@@ -9,6 +9,7 @@ export default DS.Model.extend(cloudinaryImage, {
   favourite:     attr('boolean'),
   cloudinaryId:  attr('string'),
   package:       belongsTo('package', { async: false }),
+  angle:         attr('string'),
 
   imageUrl: Ember.computed('cloudinaryId', function() {
     return this.generateUrl();
