@@ -6,7 +6,7 @@
           {{cloudinary-image-tag src=item.displayImageUrl}}
           <div class="item_desc">
             <li class="ellipsis two-line-ellipsis">
-              {{item.donorDescription}}
+              {{item.packageType.name}}
             </li>
           </div>
         {{/link-to}}
@@ -16,7 +16,7 @@
           {{cloudinary-image-tag src=item.displayImageUrl}}
           <div class="item_desc">
             <li class="ellipsis two-line-ellipsis">
-              {{item.notes}}
+              {{item.packageType.name}}
             </li>
           </div>
         {{/link-to}}
