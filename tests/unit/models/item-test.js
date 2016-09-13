@@ -42,40 +42,6 @@ test('Valid ember-data Model', function(assert) {
   assert.equal(record.get('donorDescription'), 'Test');
 });
 
-test('mainPackage', function(assert) {
-  var record, pkg;
-  var subject = this.subject();
-
-  Ember.run(function() {
-    subject.store.createRecord('item', {id: 2});
-    record = subject.store.peekRecord('item', 2);
-
-    subject.store.createRecord('package', {id: 2, item: record});
-    pkg = subject.store.peekRecord('package', 2);
-  });
-
-  assert.equal(record.get('mainPackage'), pkg);
-});
-
-test('otherPackages', function(assert) {
-  var record, pkg1, pkg2;
-  var subject = this.subject();
-
-  Ember.run(function() {
-    subject.store.createRecord('item', {id: 3});
-    record = subject.store.peekRecord('item', 3);
-
-    subject.store.createRecord('package', {id: 3, item: record});
-    pkg1 = subject.store.peekRecord('package', 3);
-
-    subject.store.createRecord('package', {id: 4, item: record});
-    pkg2 = subject.store.peekRecord('package', 4);
-  });
-
-  assert.equal(record.get('mainPackage'), pkg1);
-  assert.equal(record.get('otherPackages.firstObject.id'), [pkg2.id]);
-});
-
 test('allPackageCategories', function(assert) {
   var record, pkgType, pkgCategory;
   var subject = this.subject();

@@ -11,13 +11,17 @@
     color: $white;
     font-weight: bold;
     font-size: 1rem;
+    @media #{$small-only} {
+      font-size: 0.9rem;
+      color: #e6e6e6;
+    }
   }
 
   .item_details {
     @extend .with_more_spacing;
     font-size: 0.9rem;
     @media #{$small-only} {
-      font-size: 0.8rem;
+      font-size: 0.73rem;
     }
   }
 
@@ -58,6 +62,22 @@
     cursor: pointer;
     text-decoration: underline;
   }
+
+  .item_type{
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+  .item_category{
+    margin-bottom: 1.1rem;
+  }
+  .item_categories{
+    margin-bottom: 1rem;
+    a{
+      @media #{$small-only} {
+        color: #e6e6e6;
+      }
+    }
+  }
 }
 
 .item-controls{
@@ -88,4 +108,14 @@
       }
     }
   }
+}
+
+.category_link{
+  text-decoration: underline;
+}
+
+.package_catogory_header{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }

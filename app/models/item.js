@@ -16,8 +16,6 @@ export default DS.Model.extend(cloudinaryImage, {
   donorCondition:   belongsTo('donor_condition', { async: false }),
   saleable:         attr('boolean'),
 
-  mainPackage:      Ember.computed.alias('packages.firstObject'),
-
   images: Ember.computed('packages.@each.images.[]', function(){
     var images = [];
     this.get("packages").forEach(function(pkg){
@@ -57,7 +55,4 @@ export default DS.Model.extend(cloudinaryImage, {
 
   allPackageCategories: Ember.computed.alias('packageType.allPackageCategories'),
 
-  otherPackages: Ember.computed('packages.[]', function(){
-    return this.get('packages').toArray().removeObject(this.get('mainPackage'));
-  }),
 });
