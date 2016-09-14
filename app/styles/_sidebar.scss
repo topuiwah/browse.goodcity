@@ -2,6 +2,7 @@
   border-right:none;
 }
 .application-layout {
+  max-width: 100%;
   margin: 0;
   .off-canvas-list {
     li a{
@@ -119,19 +120,19 @@
 .off-canvas-wrap {
   @media only screen and (min-width: 71.063em) and (max-width: 120em){
     margin-left: 4rem;
-    width: 96%;
+    width: 94.5%;
   }
   @media only screen and (max-width: 71em) and (min-width: 64.0625em){
     margin-left: 2.5rem;
-    width: 92%;
+    width: 96%;
   }
   @media #{$medium-only}{
     margin-left: 3rem;
-    width: 85%;
+    width: 94.8%;
   }
   @media #{$small-only}{
     margin-left: .1rem;
-    width: 99%;
+    width: 100%;
   }
 }
 .left-off-canvas-menu {
@@ -146,6 +147,20 @@
   top: 0;
   bottom: auto;
   right: auto;
+  width: 0;
+  height: 100%;
+}
+.right-off-canvas-menu {
+  -ms-transform: none;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  -o-transform: none;
+  transform: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: auto;
   width: 0;
   height: 100%;
 }
@@ -169,6 +184,28 @@
     height: inherit;
   }
 }
+
+.move-left {
+  .right-off-canvas-menu {
+    width: 5.8rem;
+    box-shadow: -4px 0 4px rgba(0, 0, 0, 0.5), 4px 0 4px rgba(0, 0, 0, 0.5);
+  }
+  > .inner-wrap {
+    -ms-transform: none;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transform: none;
+    margin-right: 10rem;
+  }
+  .exit-off-canvas {
+    background: rgba(0, 35, 89, 0.2);
+    box-shadow: 0px 0px 0px #000;
+    height: inherit;
+  }
+}
+
 .exit-off-canvas {
   display: none;
 }
@@ -198,4 +235,63 @@
   @media #{$small-only} {
     font-size: 0.85rem;
   }
+}
+
+.right-off-canvas-menu.menu-list {
+  background-color: black;
+
+  i {
+    font-size: 1.5rem;
+  }
+
+  .menu {
+    background-color: inherit;
+  }
+
+  li {
+    padding: 1rem;
+    text-align: center;
+  }
+}
+
+.right-small {
+  border-left: none;
+}
+
+.cart-details-sidebar {
+  top: 0 !important;
+  height: 100% !important;
+  left: inherit !important;
+  width: 30rem !important;
+
+  background-color: black !important;
+  border: none;
+  color: white !important;
+
+  @media #{$small-only} {
+    width: 100% !important;
+    margin-top: -1rem;
+  }
+
+  i {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+    vertical-align: bottom;
+  }
+
+  a {
+    color: #fff;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem !important;
+  }
+
+  .button.secondary, button.secondary {
+    border-color: #fff;
+    background-color: transparent;
+  }
+}
+
+.cart-icon {
+  font-size: 1.3rem;
+  vertical-align: text-top;
 }

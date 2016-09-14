@@ -4,10 +4,18 @@
         <span></span>
       </a>
     </section>
+
     <section class="middle tab-bar-section show-for-small">
       <h1>{{pageTitle}}</h1>
     </section>
+
+    <section class="right-small" {{action 'displayCart'}}>
+      <a>
+        <i class="fa fa-truck cart-icon" aria-hidden="true"></i>
+      </a>
+    </section>
 </nav>
+
 <aside class="left-off-canvas-menu menu-list">
   <ul class="off-canvas-list menu">
     <li>
@@ -40,6 +48,15 @@
         <img src="/assets/images/Global-Distribution_logo.gif" >
         <label>{{t "by"}} <span>{{t "company.name"}}</span></label>
       </a>
+    </li>
+  </ul>
+</aside>
+
+<aside class="right-off-canvas-menu menu-list">
+  <ul class="off-canvas-list menu">
+    <li>
+      <i class="fa fa-truck" aria-hidden="true"></i>
+      <div {{action 'displayCart'}}>Show</div>
     </li>
   </ul>
 </aside>
