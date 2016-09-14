@@ -35,6 +35,7 @@ module.exports = function(defaults) {
   app.import('bower_components/lightgallery/light-gallery/img/loading.gif', {
     destDir: '/img'
   });
+  app.import('bower_components/socket.io-client/socket.io.js');
 
   return app.toTree();
 };

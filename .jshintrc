@@ -3,7 +3,8 @@
     "document",
     "window",
     "-Promise",
-    "Foundation"
+    "Foundation",
+    "io"
   ],
   "browser": true,
   "boss": true,

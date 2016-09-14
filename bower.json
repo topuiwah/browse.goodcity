@@ -11,7 +11,8 @@
     "jquery.cookie": "^1.4.1",
     "modernizr": "^2.8.3",
     "font-awesome": "~4.5.0",
-    "lightgallery": "~1.1.5"
+    "lightgallery": "~1.1.5",
+    "socket.io-client": "~1.4.5"
   },
   "devDependencies": {
     "ember-qunit-notifications": "0.1.0",
