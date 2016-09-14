@@ -1,11 +1,15 @@
 <nav class="tab-bar item-controls">
   <section class='main-section'>
     <div class="row">
-      <div class="large-4 medium-4 small-12 columns hide-for-small">
-        <h1 class="title">{{t "itemdetail.view"}}</h1>
+      <div class="large-8 medium-6 small-12 columns hide-for-small">
+        <h1 class="package_catogory_header">
+          {{#link-to 'package_category' categoryObj.id class="category_link"}}
+            {{categoryObj.name}} 
+          {{/link-to}} \ {{item.packageType.name}}
+        </h1>
       </div>
 
-      <div class="large-8 medium-8 small-12 columns item-page">
+      <div class="large-4 medium-6 small-12 columns item-page">
         {{#link-to 'package_category' categoryObj class="button tiny info radius left show-for-small item-remove-icon"}}
           <i class="fa fa-2x fa-times remove-icon"></i>
         {{/link-to}}
@@ -51,42 +55,42 @@
       </div>
 
       <div class="large-8 medium-8 small-12 columns">
+        <nav class='tab-bar show-for-small item_category'>
+          <h1>
+            <section class="item_type">
+              {{item.packageType.name}}
+            </section>
+          </h1>
+        </nav>
 
-        {{!-- DETAILS SECTION --}}
-        <div class="item_name">{{mainPackage.notes}}</div>
-        <p>
-          <div class="item_details">
-            {{t "itemdetail.condition"}}: {{mainPackage.donorCondition.name}}
-          </div>
-          <div class="item_details">
-            {{t "itemdetail.quantity"}}:  {{mainPackage.quantity}}
-          </div>
-          <div class="item_details">
-            {{t "itemdetail.size"}}:      {{mainPackage.dimensions}}
-          </div>
-          <div class="item_details">
-            {{t "itemdetail.categories"}}:
-            {{#each item.allPackageCategories key="@index" as |category|}}
-              {{#link-to 'package_category' category}}
-                {{category.name}}
-              {{/link-to}},
-            {{/each}}
-          </div>
-        </p>
         {{!--  --}}
+        <div class="item_details">
+          {{t "itemdetail.condition"}}: {{item.donorCondition.name}}
+        </div>
 
-        {{!-- OTHER PACKAGES DETAILS --}}
-        {{#each item.otherPackages key="@index" as |package|}}
+        {{#each allPackages key="@index" as |package|}}
           <div class="item_name">{{package.notes}}</div>
           <p>
             <div class="item_details">
               {{t "itemdetail.quantity"}}: {{package.quantity}}
             </div>
             <div class="item_details">
-              {{t "itemdetail.size"}}: {{package.dimensions}}
+              {{#if package.dimensions}}
+                {{t "itemdetail.size"}}: {{package.dimensions}}
+              {{/if}}
             </div>
           </p>
         {{/each}}
+
+        <button class="request-item"> Request Item </button>
+
+        <div class="item_details item_categories">
+          {{#each item.allPackageCategories key="@index" as |category|}}
+            {{#link-to 'package_category' category class="category_link"}}
+              {{category.name}}
+            {{/link-to}},
+          {{/each}}
+        </div>
         {{!--  --}}
       </div>
     </div>

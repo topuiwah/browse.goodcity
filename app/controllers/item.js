@@ -13,8 +13,9 @@ export default Ember.Controller.extend({
 
   direction: null,
 
-  mainPackage: Ember.computed('item.mainPackage' ,function(){
-    return this.get("item.isItem") ? this.get("item.mainPackage") : this.get("item");
+  allPackages: Ember.computed('item.packages', function(){
+    var item = this.get("item");
+    return item.get("isItem") ? item.get('packages') : [item];
   }),
 
   categoryObj: Ember.computed('categoryId' ,function(){
