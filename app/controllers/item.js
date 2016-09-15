@@ -12,6 +12,11 @@ export default Ember.Controller.extend({
   smallScreenPreviewUrl: Ember.computed.alias('item.displayImage.smallScreenPreviewImageUrl'),
 
   direction: null,
+  cart: Ember.inject.service(),
+
+  presentInCart: Ember.computed('item', 'cart.counter', function(){
+    return this.get('cart').hasCartItem(this.get('item'));
+  }),
 
   allPackages: Ember.computed('item.packages', function(){
     var item = this.get("item");
@@ -78,6 +83,14 @@ export default Ember.Controller.extend({
 
       }
     },
+
+    requestItem(item) {
+      this.get('cart').pushItem(item);
+    },
+
+    removeItem(item) {
+      this.get('cart').removeItem(item);
+    }
 
   }
 });

@@ -1,6 +1,9 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 import cloudinaryImage from '../mixins/cloudinary_image';
+const {
+  getOwner
+} = Ember;
 
 var attr = DS.attr,
     belongsTo = DS.belongsTo,
@@ -54,5 +57,14 @@ export default DS.Model.extend(cloudinaryImage, {
   }),
 
   allPackageCategories: Ember.computed.alias('packageType.allPackageCategories'),
+
+  toCartItem() {
+    let CartItem = getOwner(this)._lookupFactory('model:cart-item');
+
+    return CartItem.create({
+      id: Ember.get(this, 'id'),
+      modelType: "item",
+    });
+  }
 
 });

@@ -4,7 +4,7 @@
       <div class="large-8 medium-6 small-12 columns hide-for-small">
         <h1 class="package_catogory_header">
           {{#link-to 'package_category' categoryObj.id class="category_link"}}
-            {{categoryObj.name}} 
+            {{categoryObj.name}}
           {{/link-to}} \ {{item.packageType.name}}
         </h1>
       </div>
@@ -82,7 +82,12 @@
           </p>
         {{/each}}
 
-        <button class="request-item"> Request Item </button>
+        {{#if presentInCart}}
+          <button class="request-item" {{action 'removeItem' item}}> Remove Item </button>
+        {{else}}
+          <button class="request-item" {{action 'requestItem' item}}> Request Item </button>
+        {{/if}}
+
 
         <div class="item_details item_categories">
           {{#each item.allPackageCategories key="@index" as |category|}}
