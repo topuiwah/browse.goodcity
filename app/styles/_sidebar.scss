@@ -259,6 +259,7 @@
   height: 100% !important;
   left: inherit !important;
   width: 30rem !important;
+  padding: .5rem !important;
 
   background-color: black !important;
   border: none;
@@ -310,6 +311,9 @@
 
   .button {
     margin-left: 0 !important;
+    @media #{$small-only} {
+      font-size: 0.7rem !important;
+    }
   }
 
   .button.secondary, button.secondary {
