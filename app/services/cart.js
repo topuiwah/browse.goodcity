@@ -44,14 +44,7 @@ const Service = ArrayProxy.extend({
 
   payload() {
     return this.map((item) => {
-      return item.getProperties(this.cartItemProperties);
-    });
-  },
-
-  pushPayload(payload) {
-    payload.forEach((item) => {
-      let cartItem = getOwner(this)._lookupFactory('model:cart-item').create(item);
-      this.pushObject(cartItem);
+      return (item.getProperties && item.getProperties(this.cartItemProperties)) || item;
     });
   },
 
@@ -78,7 +71,7 @@ const Service = ArrayProxy.extend({
 
   counter: computed.alias('length'),
 
-  _dumpToLocalStorage: observer('[]', '@each.quantity', function() {
+  _dumpToLocalStorage: observer('[]', function() {
     if (this.localStorage) {
       window.localStorage.setItem('cart', JSON.stringify(this.payload()));
     }
