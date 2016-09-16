@@ -23,6 +23,10 @@ export default DS.Model.extend(cloudinaryImage, {
     return this.generateUrl(50, 50, true);
   }),
 
+  cartImageUrl: Ember.computed('cloudinaryId', function() {
+    return this.generateUrl(80, 80, true);
+  }),
+
   previewImageUrl: Ember.computed('cloudinaryId', function() {
     return this.generateUrl(265, 265, true);
   }),

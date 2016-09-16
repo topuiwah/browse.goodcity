@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
 
   queryParams:    ['categoryId', 'sortBy'],
   categoryId:     null,
-  sortBy:         null,
+  sortBy:         "createdAt",
   item:           Ember.computed.alias('model'),
   noNextItem:     Ember.computed.empty('nextItem'),
   noPreviousItem: Ember.computed.empty('previousItem'),

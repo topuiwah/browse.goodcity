@@ -3,6 +3,7 @@
   </div>
 
   <div id="messageBox" class="small reveal-modal cart-details-sidebar">
+    <div>
     <p id="messageBoxText">
       <i class="fa fa-truck" aria-hidden="true"></i> Your Request
     </p>
@@ -19,6 +20,33 @@
         </a>
       </div>
     </div>
+
+    <div class="row">
+      <div class="small-12 columns">
+
+        {{#each cartItems as |record|}}
+          <li>
+            <div class="row">
+              <div class="small-3 columns">
+                <img class="thumb-image" src="{{record.favouriteImage.cartImageUrl}}" />
+              </div>
+
+              <div class="small-6 columns">
+                {{record.packageType.name}}
+              </div>
+
+              <div class="small-3 columns remove_link" {{action 'removeItem' record}}>
+                <i class="fa fa-times" aria-hidden="true"></i>
+                <span>Remove</span>
+              </div>
+            </div>
+          </li>
+        {{/each}}
+
+      </div>
+    </div>
+    </div>
+
   </div>
 
 {{/if}}

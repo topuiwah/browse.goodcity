@@ -9,11 +9,11 @@
       <h1>{{pageTitle}}</h1>
     </section>
 
-    <section class="right-small" {{action 'displayCart'}}>
-      <a>
-        <i class="fa fa-truck cart-icon" aria-hidden="true"></i>
-      </a>
-    </section>
+    {{#if hasCartItems}}
+      <section class="right-small" {{action 'displayCart'}}>
+        {{partial 'cart_truck_icon'}}
+      </section>
+    {{/if}}
 </nav>
 
 <aside class="left-off-canvas-menu menu-list">
@@ -52,11 +52,6 @@
   </ul>
 </aside>
 
-<aside class="right-off-canvas-menu menu-list">
-  <ul class="off-canvas-list menu">
-    <li>
-      <i class="fa fa-truck" aria-hidden="true"></i>
-      <div {{action 'displayCart'}}>Show</div>
-    </li>
-  </ul>
-</aside>
+{{#if hasCartItems}}
+  {{partial "desktop_cart_sidebar"}}
+{{/if}}
