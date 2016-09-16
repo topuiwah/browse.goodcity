@@ -1,16 +1,18 @@
 {{#app-canvas}}
   <div class="row application-layout">
     <div class="large-12 medium-12 columns collapse no-padding" id="content">
-      <div class="off-canvas-wrap move-right" data-offcanvas>
+      <div class="off-canvas-wrap move-right move-left" data-offcanvas>
         <div class="inner-wrap">
           {{partial "sidebar"}}
           <div class="show-for-small">
             <a class="exit-off-canvas"></a>
           </div>
-
           {{liquid-outlet}}
         </div>
       </div>
     </div>
   </div>
 {{/app-canvas}}
+
+{{partial 'cart_details_sidebar'}}
+

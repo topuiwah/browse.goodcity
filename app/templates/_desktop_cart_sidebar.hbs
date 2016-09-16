@@ -1,0 +1,15 @@
+<aside class="right-off-canvas-menu menu-list">
+  <ul class="off-canvas-list menu cart-content-images">
+    <li>
+      {{partial 'cart_truck_icon'}}
+
+      <div {{action 'displayCart'}} class="show_cart_link">Show</div>
+    </li>
+
+    {{#each cartItems as |record|}}
+      <li {{action "showCartItem" record}}>
+        <img class="thumb-image" src="{{record.favouriteImage.thumbImageUrl}}" />
+      </li>
+    {{/each}}
+  </ul>
+</aside>

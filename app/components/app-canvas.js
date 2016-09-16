@@ -5,13 +5,13 @@ export default ObserveScreenResize.extend({
 
   observeScreen: function() {
     if (!this.screenResized()){
-      Ember.$('.off-canvas-wrap').addClass('move-right');
+      Ember.$('.off-canvas-wrap').addClass('move-right').addClass('move-left');
       Ember.$('.left-off-canvas-toggle').hide();
       this.OtherScreenOffCanvas();
     }
     else
     {
-      Ember.$('.off-canvas-wrap').removeClass('move-right');
+      Ember.$('.off-canvas-wrap').removeClass('move-right').removeClass('move-left');
       Ember.$('.left-off-canvas-toggle').show();
       this.smallScreenOffCanvas();
     }
@@ -29,7 +29,7 @@ export default ObserveScreenResize.extend({
     }
     else{
       this.smallScreenOffCanvas();
-      Ember.$('.off-canvas-wrap').removeClass('move-right');
+      Ember.$('.off-canvas-wrap').removeClass('move-right').removeClass('move-left');
     }
   },
 
