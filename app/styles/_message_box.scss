@@ -38,6 +38,13 @@
     text-decoration: none;
   }
 
+  .item-collection {
+    overflow: auto;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
   .closeLink {
     color: black !important;
     background-color: inherit !important;

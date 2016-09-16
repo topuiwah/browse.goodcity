@@ -15,8 +15,10 @@ export default ObserveScreenResize.extend({
   }),
 
   observeScreen: function() {
-    this.set("isSmallScreen", this.screenResized());
-    this.initializeLightgallery();
+    if(this.isDestroyed || this.isDestroying) {
+      this.set("isSmallScreen", this.screenResized());
+      this.initializeLightgallery();
+    }
   },
 
   initializeLightgallery: function(){

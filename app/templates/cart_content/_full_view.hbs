@@ -1,21 +1,23 @@
-<p id="messageBoxText">
-  <i class="fa fa-truck" aria-hidden="true"></i> Your Request
-</p>
+<div class="cart-controls">
+  <p id="messageBoxText">
+    <i class="fa fa-truck" aria-hidden="true"></i> Your Request
+  </p>
 
-<div class="row">
-  <div class="small-6 columns">
-    <a {{action 'displayCart'}} class="button expand secondary">
-      Continue Browsing
-    </a>
-  </div>
-  <div class="small-6 columns">
-    <a {{action 'checkout'}} class="button expand">
-      Submit Request
-    </a>
+  <div class="row">
+    <div class="small-6 columns">
+      <a {{action 'displayCart'}} class="button expand secondary">
+        Continue Browsing
+      </a>
+    </div>
+    <div class="small-6 columns">
+      <a {{action 'checkout'}} class="button expand">
+        Submit Request
+      </a>
+    </div>
   </div>
 </div>
 
-<div class="row">
+<div class="row item-collection">
   <div class="small-12 columns">
 
     {{#each cart.cartItems as |record|}}

@@ -9,6 +9,12 @@
       padding: 1rem;
       text-align: center;
     }
+    .item-collection {
+      overflow: auto;
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
     @media #{$small-only} {
       li a{
         padding: .1rem .2rem .7rem 0rem;
