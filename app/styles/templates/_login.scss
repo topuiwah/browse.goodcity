@@ -1,0 +1,61 @@
+.checkout_pages {
+  &.row {
+    margin-right: 0;
+  }
+}
+
+.login-page {
+  .tab-bar-section {
+    padding: 0;
+  }
+
+  .tab-bar {
+    margin-top: 3rem;
+  }
+
+  .mobile {
+    margin-top: 4rem;
+
+    span {
+      position: absolute;
+      color: #000;
+      width: 4rem;
+    }
+
+    input {
+      &#mobile {
+        padding-left: 4rem;
+      }
+
+      font-size: 1rem;
+      color: black;
+    }
+
+    label.form-label {
+      font-size: 0.8rem;
+      padding-bottom: 0.5rem;
+    }
+
+    a {
+      text-decoration: underline;
+      color: inherit;
+      font-size: initial;
+    }
+  }
+}
+
+.cart-section {
+  background-color: #1A3964;
+  padding: 2rem;
+
+  li {
+    display: block;
+    padding: 1rem 0;
+    border-bottom: 1px solid;
+  }
+
+  li:last-child {
+    border-bottom: none;
+  }
+
+}

@@ -3,7 +3,6 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
   displayCart: false,
-  cart: Ember.inject.service(),
 
   hasCartItems: Ember.computed.alias('cart.isNotEmpty'),
   cartLength: Ember.computed.alias('cart.counter'),
@@ -32,6 +31,11 @@ export default Ember.Controller.extend({
 
     removeItem(item) {
       this.get('cart').removeItem(item);
+    },
+
+    checkout() {
+      this.get('cart').set('checkout', true);
+      this.transitionToRoute('login');
     }
   }
 });

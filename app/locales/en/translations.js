@@ -4,6 +4,7 @@ export default {
   "language.zh": "中文",
   "company.name": "Crossroads Foundation",
   "by": "By",
+  "ok": "Ok",
   "application": {
     "loading": "Loading",
     "sidebar": {
@@ -38,5 +39,22 @@ export default {
   "page": {
     "previous": "Previous",
     "next": "Next"
-  }
+  },
+  "login": {
+    "hk_only" : "Mobile phone (Hong Kong only)",
+    "login" : "Login",
+    "smscode": "Get 4-digit SMS code"
+  },
+
+  "_resend": {
+    "no_sms" : "Haven't received SMS code?",
+    "please_wait" : "Please wait a few minutes",
+    "resend" : "Resend Code"
+  },
+
+  "_verification_pin": {
+    "input_code" : "Input 4-digit SMS code",
+    "auth_error" : "Sorry! Please enter the correct pin."
+  },
+
 };
