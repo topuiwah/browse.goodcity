@@ -12,6 +12,7 @@ Router.map(function() {
   this.route('package', { path: '/package/:id' });
   this.route('login');
   this.route('authenticate');
+  this.route('order_details');
 });
 
 export default Router;

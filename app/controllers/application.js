@@ -35,7 +35,7 @@ export default Ember.Controller.extend({
 
     checkout() {
       this.get('cart').set('checkout', true);
-      this.transitionToRoute('login');
+      this.transitionToRoute('order_details');
     }
   }
 });

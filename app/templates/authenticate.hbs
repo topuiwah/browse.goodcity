@@ -5,7 +5,7 @@
       {{partial "navigation_list"}}
 
         <div class="small-12 columns mobile">
-          {{!-- {{#validatable-form class="form-horizontal" action="authenticateUser" on="submit"}} --}}
+          {{#validatable-form onSubmit=(action 'authenticateUser') as |form|}}
 
             <div class="row">
               <div class="small-12 columns">
@@ -15,15 +15,17 @@
 
             <div class="row">
               <div class="small-4 columns">
-                {{numeric-input value=pin name="pin" id="pin" maxlength="4" placeholder="XXXX" required='true' pattern=".{4,}" autoFocus=true}}
+                {{#form-control}}
+                  {{numeric-input value=pin name="pin" id="pin" maxlength="4" placeholder="XXXX" required='true' pattern=".{4,}" autoFocus=true}}
+                {{/form-control}}
               </div>
               <div class="small-4 columns">
-                <button id="submit_pin" type="submit" class="button expand">{{t "ok"}}</button>
+                <button id="submit_pin" {{action 'submit' target=form}} class="button expand">{{t "ok"}}</button>
               </div>
               <div class="small-4 columns"></div>
             </div>
 
-          {{!-- {{/validatable-form}} --}}
+          {{/validatable-form}}
 
           <div class="row">
             <div class="small-12 columns">
@@ -31,7 +33,6 @@
               <label class="form-label">{{t "_resend.please_wait"}}</label>
 
               <a href="#" {{action "resendPin" }} id="resend-pin">{{t "_resend.resend"}}</a>
-
               <div>{{#link-to 'login'}}Back to phone number input{{/link-to}}</div>
             </div>
           </div>

@@ -5,6 +5,9 @@ export default {
   "company.name": "Crossroads Foundation",
   "by": "By",
   "ok": "Ok",
+  "must_login": "You must login!",
+  "okay": "Okay",
+
   "application": {
     "loading": "Loading",
     "sidebar": {

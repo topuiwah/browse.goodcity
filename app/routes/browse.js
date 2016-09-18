@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import PublicRoute from './browse_pages';
 
-export default Ember.Route.extend({
+export default PublicRoute.extend({
   model() {
     return this.store.peekAll('package_category');
   },

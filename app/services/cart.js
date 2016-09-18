@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import '../computed/local-storage';
 
 const {
   get,
@@ -11,7 +12,7 @@ const {
 const Service = ArrayProxy.extend({
 
   localStorage: true,
-  checkout: false,
+  checkout: Ember.computed.localStorage(),
   store: Ember.inject.service(),
 
   content: computed(function(){

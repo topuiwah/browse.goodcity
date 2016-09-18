@@ -1,7 +1,6 @@
-import Ember from 'ember';
+import PublicRoute from './browse_pages';
 
-export default Ember.Route.extend({
-  model(params) {
+export default PublicRoute.extend({  model(params) {
     return this.store.peekRecord('item', params["id"]);
   },
 
