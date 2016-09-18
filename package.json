@@ -55,5 +55,8 @@
     "glob": "^5.0.14",
     "liquid-fire": "0.23.0",
     "loader.js": "^4.0.0"
+  },
+  "dependencies": {
+    "cordova-lib": "https://github.com/crossroads/goodcity-lib.git"
   }
 }
