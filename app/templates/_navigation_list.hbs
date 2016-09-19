@@ -4,6 +4,18 @@
   </section>
 </nav>
 
-Cart > Log in > Order details > Transport details > Confirm
+<div class="navigation_list">
+  {{#link-to "cart" classNames="cart_link"}}Cart{{/link-to}} >
+
+  {{#unless session.isLoggedIn}}
+    <a class="active">Log in</a> >
+    Order details >
+  {{else}}
+    {{#link-to "order_details"}}Order details{{/link-to}} >
+  {{/unless}}
+
+  Transport details >
+  Confirm
+</div>
 
 {{small-cart-toggle-view}}

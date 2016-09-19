@@ -119,8 +119,11 @@
   width: 100%!important;
   background-color: inherit !important;
   padding: 2rem 4rem !important;
-}
 
+  @media #{$small-only} {
+    padding: 2rem 0.5rem!important;
+  }
+}
 
 .cart-section {
   background-color: #1A3964;
@@ -148,8 +151,29 @@
 }
 
 .show_cart_summary {
-  padding: 1rem;
+  padding: 0.4rem;
   border: 1px solid;
   margin: 1rem 1.5rem 1rem 0;
+  cursor: pointer;
+  font-size: 0.8rem;
+  text-align: center;
+
+  i {
+    color: inherit;
+    vertical-align: middle;
+    padding: 0 0.4rem;
+  }
+}
+
+.navigation_list {
+  margin-top: 0.5rem;
+
+  @media #{$small-only} {
+    font-size: 0.7rem;
+  }
+
+  .cart_link {
+    text-decoration: underline;
+  }
 }
 
