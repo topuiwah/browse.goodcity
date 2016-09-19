@@ -2,8 +2,11 @@ import Ember from "ember";
 import ObserveScreenResize from "./observe-screen-resize";
 
 export default ObserveScreenResize.extend({
+  cartscroll: Ember.inject.service(),
 
   observeScreen: function() {
+    this.get('cartscroll').resize();
+
     if (!this.screenResized()){
       Ember.$('.off-canvas-wrap').addClass('move-right').addClass('move-left');
       Ember.$('.left-off-canvas-toggle').hide();
@@ -24,6 +27,7 @@ export default ObserveScreenResize.extend({
   },
 
   didInsertElement() {
+    this.get('cartscroll').resize();
     if (!this.screenResized()){
       this.OtherScreenOffCanvas();
     }

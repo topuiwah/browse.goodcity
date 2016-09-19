@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
   displayCart: false,
+  cartscroll: Ember.inject.service(),
 
   hasCartItems: Ember.computed.alias('cart.isNotEmpty'),
   cartLength: Ember.computed.alias('cart.counter'),
@@ -10,6 +11,9 @@ export default Ember.Controller.extend({
   actions: {
     displayCart() {
       this.toggleProperty('displayCart');
+      Ember.run.later(this, function() {
+        this.get('cartscroll').resize();
+      }, 0);
     },
 
     showCartItem(item) {

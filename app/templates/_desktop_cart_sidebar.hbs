@@ -1,15 +1,16 @@
-<aside class="right-off-canvas-menu menu-list">
+<aside class="right-off-canvas-menu menu-list cart-items">
   <ul class="off-canvas-list menu cart-content-images">
-    <li>
+    <li class="cart-controls">
       {{partial 'cart_truck_icon'}}
-
       <div {{action 'displayCart'}} class="show_cart_link">Show</div>
     </li>
 
-    {{#each cart.cartItems as |record|}}
-      <li {{action "showCartItem" record}}>
-        <img class="thumb-image" src="{{record.favouriteImage.thumbImageUrl}}" />
-      </li>
-    {{/each}}
+    <div class="item-collection">
+      {{#each cart.cartItems as |record|}}
+        <li {{action "showCartItem" record}}>
+          <img class="thumb-image" src="{{record.favouriteImage.thumbImageUrl}}" />
+        </li>
+      {{/each}}
+    </div>
   </ul>
 </aside>
