@@ -7,13 +7,6 @@ export default Ember.Controller.extend({
   hasCartItems: Ember.computed.alias('cart.isNotEmpty'),
   cartLength: Ember.computed.alias('cart.counter'),
 
-  cartItems: Ember.computed('cart.[]', function() {
-    var content = this.get("cart.content");
-    var allItems = [];
-    content.forEach(record => allItems.push(this.get("store").peekRecord(record.modelType, record.id)));
-    return allItems;
-  }),
-
   actions: {
     displayCart() {
       this.toggleProperty('displayCart');
