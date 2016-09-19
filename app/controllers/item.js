@@ -12,7 +12,6 @@ export default Ember.Controller.extend({
   smallScreenPreviewUrl: Ember.computed.alias('item.displayImage.smallScreenPreviewImageUrl'),
 
   direction: null,
-  cart: Ember.inject.service(),
 
   presentInCart: Ember.computed('item', 'cart.counter', function(){
     return this.get('cart').hasCartItem(this.get('item'));

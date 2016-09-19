@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import '../computed/local-storage';
 
 const {
   get,
@@ -9,9 +10,20 @@ const {
 } = Ember;
 
 const Service = ArrayProxy.extend({
+
   localStorage: true,
+  checkout: Ember.computed.localStorage(),
+  store: Ember.inject.service(),
+
   content: computed(function(){
     return JSON.parse(window.localStorage.getItem('cart') || "[]");
+  }),
+
+  cartItems: Ember.computed('[]', function() {
+    var content = this.get("content");
+    var allItems = [];
+    content.forEach(record => allItems.push(this.get("store").peekRecord(record.modelType, record.id)));
+    return allItems;
   }),
 
   currentCartItem(item) {

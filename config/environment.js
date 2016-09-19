@@ -33,6 +33,7 @@ module.exports = function(environment) {
       IMAGE_PATH: 'http://res.cloudinary.com/ddoadcjjl/image/upload/',
       // RESTAdapter Settings
       NAMESPACE: 'api/v1',
+      HK_COUNTRY_CODE: '+852',
 
       PRELOAD_TYPES: ["package_type", "package_category", "donor_condition", "package"],
 

@@ -54,6 +54,10 @@
     "express": "^4.13.3",
     "glob": "^5.0.14",
     "liquid-fire": "0.23.0",
-    "loader.js": "^4.0.0"
+    "loader.js": "^4.0.0",
+    "ember-cli-html5-validation": "0.2.3"
+  },
+  "dependencies": {
+    "cordova-lib": "https://github.com/crossroads/goodcity-lib.git"
   }
 }
