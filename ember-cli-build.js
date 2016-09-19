@@ -30,9 +30,15 @@ module.exports = function(defaults) {
 
   app.import('bower_components/cloudinary/js/jquery.cloudinary.js');
 
-  app.import('bower_components/lightgallery/light-gallery/css/lightGallery.css');
-  app.import('bower_components/lightgallery/light-gallery/js/lightGallery.js');
-  app.import('bower_components/lightgallery/light-gallery/img/loading.gif', {
+  app.import('bower_components/lightgallery/src/css/lightgallery.css');
+  app.import('bower_components/lightgallery/src/css/lg-transitions.css');
+  app.import('bower_components/lightgallery/src/js/lightgallery.js');
+  app.import('bower_components/lightgallery/src/js/lg-zoom.js');
+  app.import('bower_components/lightgallery/src/fonts/lg.eot', { destDir: "fonts" });
+  app.import('bower_components/lightgallery/src/fonts/lg.svg', { destDir: "fonts" });
+  app.import('bower_components/lightgallery/src/fonts/lg.ttf', { destDir: "fonts" });
+  app.import('bower_components/lightgallery/src/fonts/lg.woff', { destDir: "fonts" });
+  app.import('bower_components/lightgallery/src/img/loading.gif', {
     destDir: '/img'
   });
   app.import('bower_components/socket.io-client/socket.io.js');

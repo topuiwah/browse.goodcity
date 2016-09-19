@@ -13,6 +13,7 @@ export default Ember.Controller.extend({
 
   hasCartItems: Ember.computed.alias('cart.isNotEmpty'),
   cartLength: Ember.computed.alias('cart.counter'),
+  hideSideBar: false;
 
   actions: {
     displayCart() {

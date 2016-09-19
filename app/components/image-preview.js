@@ -22,16 +22,16 @@ export default ObserveScreenResize.extend({
   },
 
   initializeLightgallery: function(){
-    var gallery = this.get("lightGalleryObj");
-    if(gallery) { gallery.destroy(); }
-
+    
     var lightGalleryObj = Ember.$("#lightGallery").lightGallery({
+      download: false,
       thumbnail: false,
       hideControlOnEnd: true,
       closable: false,
       counter: true,
       swipeThreshold : 50,
-      enableTouch : true
+      enableTouch : true,
+      selector: '.imageZoom'
     });
     this.set('lightGalleryObj', lightGalleryObj);
   },
@@ -40,4 +40,10 @@ export default ObserveScreenResize.extend({
     this.initializeLightgallery();
   },
 
+  willDestroyElement() {
+    var lightGalleryData = Ember.$('#lightGallery').data('lightGallery');
+    if(lightGalleryData){
+      lightGalleryData.destroy(true);
+    }
+  }
 });

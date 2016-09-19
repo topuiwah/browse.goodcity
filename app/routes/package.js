@@ -15,5 +15,8 @@ export default PublicRoute.extend({
     controller.set("previewUrl", model.get("previewImageUrl"));
     this.controllerFor('application').set('pageTitle',
       this.get('i18n').t("itemdetail.view"));
+    if(this.get('screenresize.isSmallScreen')){
+      this.controllerFor('application').set('hideSideBar', true);
+    }
   }
 });

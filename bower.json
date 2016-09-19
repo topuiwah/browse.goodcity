@@ -11,9 +11,10 @@
     "jquery.cookie": "^1.4.1",
     "modernizr": "^2.8.3",
     "font-awesome": "~4.5.0",
-    "lightgallery": "~1.1.5",
     "socket.io-client": "~1.4.5",
-    "airbrake-js": "~0.5.8"
+    "airbrake-js": "~0.5.8",
+    "lightgallery": "1.2.20",
+    "slick-carousel": "1.5.8"
   },
   "devDependencies": {
     "ember-qunit-notifications": "0.1.0",

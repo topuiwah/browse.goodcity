@@ -32,16 +32,20 @@ export default DS.Model.extend(cloudinaryImage, {
     return this.get('constructor.modelName') === 'item';
   }),
 
-  favouriteImage: Ember.computed('images.@each.favourite', function(){
+  favouriteImage: Ember.computed('images.@each.favourite', function() {
     return this.get("images").filterBy("favourite").get("firstObject");
   }),
 
   otherImages: Ember.computed('images.[]', function(){
-    var images =  this.get("images").toArray();
-    return images.filter((image, index, self) => self.findIndex((t) => t.get('cloudinaryId') === image.get('cloudinaryId')) === index);
+    var images = this.get('images').filter((image, index, self) => self.findIndex((t) => t.get('cloudinaryId') === image.get('cloudinaryId')) === index);
+    return images.removeObject(this.get('favouriteImage'));
   }),
 
-  sortedImages: Ember.computed.alias('otherImages'),
+  sortedImages: Ember.computed('otherImages.[]', 'image', function(){
+    var images = this.get('otherImages').toArray();
+    images.unshift(this.get("favouriteImage"));
+    return images;
+  }),
 
   displayImage: Ember.computed('images.@each.favourite', function() {
     return this.get("favouriteImage") ||
