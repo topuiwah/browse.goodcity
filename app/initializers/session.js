@@ -6,5 +6,9 @@ export default {
     application.inject('component', 'session', 'service:session');
     application.inject('controller', 'cart', 'service:cart');
     application.inject('route', 'cart', 'service:cart');
+    application.inject('component', 'cart', 'service:cart');
+    application.inject('controller', 'screenresize', 'service:screenresize');
+    application.inject('route', 'screenresize', 'service:screenresize');
+    application.inject('component', 'screenresize', 'service:screenresize');
   }
 };

@@ -3,50 +3,7 @@
   </div>
 
   <div id="messageBox" class="small reveal-modal cart-details-sidebar">
-    <div>
-    <p id="messageBoxText">
-      <i class="fa fa-truck" aria-hidden="true"></i> Your Request
-    </p>
-
-    <div class="row">
-      <div class="small-6 columns">
-        <a {{action 'displayCart'}} class="button expand secondary">
-          Continue Browsing
-        </a>
-      </div>
-      <div class="small-6 columns">
-        <a {{action 'checkout'}} class="button expand">
-          Submit Request
-        </a>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="small-12 columns">
-
-        {{#each cartItems as |record|}}
-          <li>
-            <div class="row">
-              <div class="small-3 columns">
-                <img class="thumb-image" src="{{record.favouriteImage.cartImageUrl}}" />
-              </div>
-
-              <div class="small-5 columns">
-                {{record.packageType.name}}
-              </div>
-
-              <div class="small-4 columns remove_link" {{action 'removeItem' record}}>
-                <i class="fa fa-times" aria-hidden="true"></i>
-                <span>Remove</span>
-              </div>
-            </div>
-          </li>
-        {{/each}}
-
-      </div>
-    </div>
-    </div>
-
+    {{partial "cart_content/full_view"}}
   </div>
 
 {{/if}}

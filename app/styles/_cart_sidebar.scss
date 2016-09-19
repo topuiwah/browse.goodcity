@@ -1,0 +1,155 @@
+.cart-details-sidebar {
+  top: 0 !important;
+  height: 100% !important;
+  left: inherit !important;
+  width: 30rem !important;
+  padding: .5rem !important;
+
+  background-color: black !important;
+  border: none;
+  color: white !important;
+
+  @media #{$small-only} {
+    width: 100% !important;
+    margin-top: -1rem;
+  }
+
+  i {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+    vertical-align: bottom;
+  }
+
+  a {
+    color: #fff;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem !important;
+  }
+
+  li {
+    display: block;
+    border-top: 1px solid #505050;
+    padding: 1rem 0;
+    font-size: 0.8rem;
+
+    img {
+      border: 1px solid white;
+    }
+
+    .columns:last-child {
+      text-align: right;
+      color: #A3A3A3;
+      cursor: pointer;
+
+      span {
+        text-decoration: underline;
+      }
+
+      i {
+        font-size: 1rem;
+        vertical-align: inherit;
+        margin-right: 0;
+      }
+    }
+  }
+
+  .button {
+    margin-left: 0 !important;
+    @media #{$small-only} {
+      font-size: 0.7rem !important;
+    }
+  }
+
+  .button.secondary, button.secondary {
+    border-color: #fff;
+    background-color: transparent;
+  }
+}
+
+.cart-icon {
+  font-size: 1.3rem;
+  vertical-align: text-top;
+  color: white;
+}
+
+.show_cart_link {
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: 0.5rem;
+}
+
+.cart-content-images {
+  li img {
+    border: 1px solid white;
+  }
+}
+
+.unread {
+  position: absolute;
+  right: 1.5rem;
+  margin-top: -.3rem;
+  .unread_length {
+    line-height: 1.3rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    font-size: .8rem;
+    display: block;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 50%;
+    background: #ee4c4e;
+    font-weight: 700;
+    margin-top: .2rem;
+    float: inherit;
+  }
+}
+.right-small {
+  border-left: none;
+  cursor: pointer;
+
+  .unread {
+    position: absolute;
+    right: 0.8rem;
+    margin-top: 0.2rem;
+  }
+}
+
+.my_cart {
+  width: 100%!important;
+  background-color: inherit !important;
+  padding: 2rem 4rem !important;
+}
+
+
+.cart-section {
+  background-color: #1A3964;
+  padding: 2rem;
+
+  li {
+    display: block;
+    padding: 1rem 0;
+    border-bottom: 1px solid;
+  }
+
+  li:last-child {
+    border-bottom: none;
+  }
+}
+
+.small-cart-view {
+  background-color: inherit;
+  padding: 0;
+  padding-right: 2rem;
+
+  li:last-child {
+    border-bottom: 1px solid;
+  }
+}
+
+.show_cart_summary {
+  padding: 1rem;
+  border: 1px solid;
+  margin: 1rem 1.5rem 1rem 0;
+}
+

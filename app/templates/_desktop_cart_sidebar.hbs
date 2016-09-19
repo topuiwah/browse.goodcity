@@ -6,7 +6,7 @@
       <div {{action 'displayCart'}} class="show_cart_link">Show</div>
     </li>
 
-    {{#each cartItems as |record|}}
+    {{#each cart.cartItems as |record|}}
       <li {{action "showCartItem" record}}>
         <img class="thumb-image" src="{{record.favouriteImage.thumbImageUrl}}" />
       </li>
