@@ -13,6 +13,8 @@ Router.map(function() {
   this.route('login');
   this.route('authenticate');
   this.route('order_details');
+  this.route('transport_details');
+  this.route('confirm');
   this.route('cart');
 });
 

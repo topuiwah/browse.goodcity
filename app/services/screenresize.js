@@ -13,7 +13,7 @@ export default Ember.Service.extend({
     this.set("isSmallScreen", this.screenResized());
   },
 
-  initComonent: function() {
+  initComponent: function() {
     this.observeScreen();
     var updateScreen = Ember.run.bind(this, this.observeScreen);
     window.addEventListener("resize", updateScreen);
