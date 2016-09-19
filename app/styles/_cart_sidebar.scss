@@ -120,3 +120,36 @@
   background-color: inherit !important;
   padding: 2rem 4rem !important;
 }
+
+
+.cart-section {
+  background-color: #1A3964;
+  padding: 2rem;
+
+  li {
+    display: block;
+    padding: 1rem 0;
+    border-bottom: 1px solid;
+  }
+
+  li:last-child {
+    border-bottom: none;
+  }
+}
+
+.small-cart-view {
+  background-color: inherit;
+  padding: 0;
+  padding-right: 2rem;
+
+  li:last-child {
+    border-bottom: 1px solid;
+  }
+}
+
+.show_cart_summary {
+  padding: 1rem;
+  border: 1px solid;
+  margin: 1rem 1.5rem 1rem 0;
+}
+

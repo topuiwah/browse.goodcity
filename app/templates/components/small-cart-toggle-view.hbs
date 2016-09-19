@@ -1,0 +1,26 @@
+{{#if screenresize.isSmallScreen}}
+
+  <div class="show_cart_summary" {{action "toggleCartSummary"}}>
+    <i class="fa fa-truck cart-icon" aria-hidden="true"></i>
+    Show order summary
+    <i class="fa {{if showCartSummary 'fa-angle-double-up' 'fa-angle-double-down'}}" aria-hidden="true"></i>
+  </div>
+
+  {{#if showCartSummary}}
+    <div class="small-12 columns cart-section small-cart-view">
+      {{#each cart.cartItems as |record|}}
+        <li>
+          <div class="row">
+            <div class="small-3 columns">
+              <img class="thumb-image" src="{{record.favouriteImage.cartImageUrl}}" />
+            </div>
+
+            <div class="small-9 columns">
+              {{record.packageType.name}}
+            </div>
+          </div>
+        </li>
+      {{/each}}
+    </div>
+  {{/if}}
+{{/if}}
