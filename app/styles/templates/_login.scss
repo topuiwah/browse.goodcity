@@ -10,13 +10,14 @@
   }
 
   .organisation-detail {
-    margin: 1rem 0 0 -.5rem;
+    margin: 1rem 0 0 0.4rem;
     padding: 2rem 1.5rem 2rem 2rem;
     background-color: #1A3964;
     font-size: 0.9rem;
     @media #{$small-only} {
-      font-size: 0.7rem;
+      font-size: 0.8rem;
       padding: 1.5rem .5rem 1.5rem 1.5rem;
+      width: 93.5%;
     }
     .detail{
       .name, div {
@@ -24,7 +25,6 @@
       }
       .name {
         padding-bottom: .5rem;
-        margin: 0 .5rem 0 -.5rem;
         font-weight: bold;
         color: white;
       }
@@ -33,6 +33,9 @@
 
   .tab-bar {
     margin-top: 3rem;
+    @media #{$small-only} {
+      margin-top: 1rem;
+    }
   }
 
   .mobile {
@@ -63,5 +66,56 @@
       color: inherit;
       font-size: initial;
     }
+  }
+}
+
+.purpose_section {
+  margin: 1rem 0;
+
+  @media #{$small-only} {
+    font-size: 0.8rem;
+  }
+
+  .title {
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+
+  .checkbox {
+    padding: 0.5rem 0;
+    font-size: 0.75rem;
+
+    label {
+      margin-left: 0;
+
+      @media #{$small-only} {
+        font-size: 0.75rem;
+      }
+    }
+  }
+
+  textarea {
+    margin-top: 1rem;
+    width: 97%;
+    padding: 0.3rem 0.5rem;
+    border: 1px solid $tabbar-menu-icon-color !important;
+    padding-right: 1.5rem;
+  }
+
+  .remove-text{
+    margin-top: 1rem;
+    position: absolute;
+    right: 4%;
+    font-size: 1rem;
+    padding: 0.4rem 0.3rem;
+    cursor: pointer;
+    color: black;
+  }
+}
+.order_button {
+  width: 99% !important;
+
+  a {
+    line-height: 2.5rem;
   }
 }
