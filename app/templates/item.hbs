@@ -82,10 +82,12 @@
           </p>
         {{/each}}
 
-        {{#if presentInCart}}
-          <button class="request-item" {{action 'removeItem' item}}> Remove Item </button>
-        {{else}}
-          <button class="request-item" {{action 'requestItem' item}}> Request Item </button>
+        {{#if hasDraftOrder}}
+          {{#if presentInCart}}
+            <button class="request-item" {{action 'removeItem' item}}> Remove Item </button>
+          {{else}}
+            <button class="request-item" {{action 'requestItem' item}}> Request Item </button>
+          {{/if}}
         {{/if}}
 
 

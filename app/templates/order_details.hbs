@@ -4,55 +4,68 @@
       {{partial "navigation_list"}}
       {{partial "organisation_detail"}}
 
-      <div class="row">
-        <div class = "small-12 columns">
-          <div class="purpose_section">
-            <div class="title">Purpose(s)*</div>
-            <div>Tick any that apply</div>
+      {{#validatable-form onSubmit=(action 'save_order') as |form|}}
 
-            <div class='checkbox'>
-              {{input type="checkbox" name="organisation" checked=organisation id='1' }}
-              <label for='1'><span>
-                For our charity (facilities / programs etc.)
-              </span></label>
+        <div class="row">
+          <div class = "small-12 columns">
+            <div class="purpose_section">
+              <div class="title">Purpose(s)*</div>
+              <div>Tick any that apply</div>
+
+              {{#if blankPurpose}}
+                <div class="error-box">
+                  <i class="fa fa-exclamation-triangle"></i>
+                  Please select purpose from list.
+                </div>
+              {{/if}}
+
+              <div class='checkbox'>
+                {{input type="checkbox" name="organisation" checked=organisation id='1' }}
+                <label for='1'><span>
+                  For our charity (facilities / programs etc.)
+                </span></label>
+              </div>
+
+              <div class='checkbox'>
+                {{input type="checkbox" name="client" checked=client id='2' }}
+                <label for='2'>
+                  <span>
+                    For client / beneficiary (personal use)
+                  </span>
+                </label>
+              </div>
+
+              <div class='checkbox'>
+                {{input type="checkbox" name="trade" checked=trade id='3' }}
+                <label for='3'><span>
+                  For charity sale, bartering (any form of trade)
+                </span></label>
+              </div>
+
+              {{#form-control}}
+                <i class="fa fa-times-circle remove-text" aria-hidden="true" {{action "clearDescription"}}></i>
+                {{auto-resize-textarea data-autoresize=true name="description" value=description required="required" pattern=".*\S.*" id="description"}}
+              {{/form-control}}
+
             </div>
-
-            <div class='checkbox'>
-              {{input type="checkbox" name="client" checked=client id='2' }}
-              <label for='2'>
-                <span>
-                  For client / beneficiary (personal use)
-                </span>
-              </label>
-            </div>
-
-            <div class='checkbox'>
-              {{input type="checkbox" name="trade" checked=trade id='3' }}
-              <label for='3'><span>
-                For charity sale, bartering (any form of trade)
-              </span></label>
-            </div>
-
-            <i class="fa fa-times-circle remove-text" aria-hidden="true" {{action "clearDescription"}}></i>
-            {{auto-resize-textarea data-autoresize=true name="description" value=description required="required" pattern=".*\S.*" id="description"}}
-
           </div>
         </div>
-      </div>
 
-      <div class="row order_button">
-        <div class="small-4 columns">
-          {{#link-to "cart"}}
-            <i class="fa fa-angle-left" aria-hidden="true"></i>
-            Return to cart
-          {{/link-to}}
+        <div class="row order_button">
+          <div class="small-4 columns">
+            {{#link-to "cart"}}
+              <i class="fa fa-angle-left" aria-hidden="true"></i>
+              Return to cart
+            {{/link-to}}
+          </div>
+          <div class="small-8 columns">
+            <button id="submit_pin" class="button expand" {{action 'submit' target=form}}>
+              Continue to transport details
+            </button>
+          </div>
         </div>
-        <div class="small-8 columns">
-          <button id="submit_pin" class="button expand" {{action "save_order"}}>
-            Continue to transport details
-          </button>
-        </div>
-      </div>
+
+      {{/validatable-form}}
     </section>
   </div>
 

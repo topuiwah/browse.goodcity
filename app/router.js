@@ -10,12 +10,19 @@ Router.map(function() {
   this.route('package_category', { path: '/category/:id' });
   this.route('item', { path: '/item/:id' });
   this.route('package', { path: '/package/:id' });
+  this.route('cart');
+
   this.route('login');
   this.route('authenticate');
+
   this.route('order_details');
-  this.route('transport_details');
+
+  this.route('order', { path: '/order/:order_id/' }, function() {
+    this.route('transport_details');
+  });
+
   this.route('confirm');
-  this.route('cart');
+
 });
 
 export default Router;

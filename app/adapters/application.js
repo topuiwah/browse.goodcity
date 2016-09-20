@@ -7,8 +7,10 @@ export default ActiveModelAdapter.extend({
   host:      config.APP.API_HOST_URL,
   session:   Ember.inject.service(),
 
-  headers: Ember.computed(function(){
+
+  headers: Ember.computed("session.authToken", function(){
     return {
+      "Authorization":          `Bearer ${this.get('session.authToken')}`,
       "Accept-Language":        this.get('session.language'),
       "X-GOODCITY-APP-NAME":    config.APP.NAME,
       "X-GOODCITY-APP-VERSION": config.APP.VERSION,

@@ -9,10 +9,15 @@
         <div class="name small-4 columns">Representative:</div>
         <div class="small-8 columns">James Chan</div>
       </div>
-      <div class="row">
-        <div class="name small-4 columns">Purpose(s):</div>
-        <div class="small-8 columns">a distinct section of a piece of writing, usually dealing with a single theme and indicated by a new line, indentation, or numbering.</div>
-      </div>
+
+      {{#if order}}
+        <div class="row">
+          <div class="name small-4 columns">Purpose(s):</div>
+          <div class="small-8 columns">
+            {{order.purposeDescription}}
+          </div>
+        </div>
+      {{/if}}
     </div>
   </div>
 </div>
