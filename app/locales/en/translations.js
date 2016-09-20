@@ -7,6 +7,7 @@ export default {
   "ok": "Ok",
   "must_login": "You must login!",
   "okay": "Okay",
+  "unexpected_error": "Something went wrong",
 
   "application": {
     "loading": "Loading",

@@ -37,5 +37,7 @@ module.exports = function(defaults) {
   });
   app.import('bower_components/socket.io-client/socket.io.js');
 
+  app.import('bower_components/airbrake-js/dist/client.js');
+
   return app.toTree();
 };

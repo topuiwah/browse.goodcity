@@ -4,7 +4,8 @@
     "window",
     "-Promise",
     "Foundation",
-    "io"
+    "io",
+    "airbrakeJs"
   ],
   "browser": true,
   "boss": true,

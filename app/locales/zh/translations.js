@@ -3,6 +3,9 @@ export default {
   "language.zh": "中文",
   "company.name": "Crossroads Foundation",
   "by": "By",
+  "unexpected_error": "出錯了",
+  "okay": "確定",
+
   "application": {
     "loading": "載入中",
     "sidebar": {
