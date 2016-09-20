@@ -55,10 +55,14 @@ module.exports = function(environment) {
 
     // RESTAdapter Settings
     ENV.APP.API_HOST_URL = 'http://localhost:3000';
+    ENV.APP.SOCKETIO_WEBSERVICE_URL = 'http://localhost:1337/goodcity';
 
     ENV.contentSecurityPolicy["connect-src"] = [
       'http://localhost:4202',
       'http://localhost:3000',
+      'http://localhost:1337',
+      'ws://localhost:1337',
+      'wss://localhost:1337',
       'https://api.cloudinary.com'
     ].join(' ');
   }
@@ -83,20 +87,28 @@ module.exports = function(environment) {
   if (environment === 'production') {
 
     ENV.APP.API_HOST_URL = 'https://api.goodcity.hk';
+    ENV.APP.SOCKETIO_WEBSERVICE_URL = 'https://socket.goodcity.hk:81/goodcity';
 
     ENV.contentSecurityPolicy["connect-src"] = [
       'https://app.goodcity.hk',
       'https://api.goodcity.hk',
+      'https://socket.goodcity.hk:81',
+      'ws://socket.goodcity.hk:81',
+      'wss://socket.goodcity.hk:81',
       'https://api.cloudinary.com'
     ].join(' ');
 
     if (process.env.staging === 'true') {
       ENV.staging = true;
       ENV.APP.API_HOST_URL = 'https://api-staging.goodcity.hk';
+      ENV.APP.SOCKETIO_WEBSERVICE_URL = 'https://socket-staging.goodcity.hk:81/goodcity';
 
       ENV.contentSecurityPolicy["connect-src"] = [
         'https://app-staging.goodcity.hk',
         'https://api-staging.goodcity.hk',
+        'https://socket-staging.goodcity.hk:81',
+        'ws://socket-staging.goodcity.hk:81',
+        'wss://socket-staging.goodcity.hk:81',
         'https://api.cloudinary.com'
       ].join(' ');
     }

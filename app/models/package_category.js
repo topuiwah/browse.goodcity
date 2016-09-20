@@ -41,7 +41,7 @@ export default DS.Model.extend({
     return items.uniq();
   }),
 
-  items: Ember.computed('packageTypeCodes', function(){
+  items: Ember.computed('packageTypeCodes', 'packageTypes.@each.getItemPackageList', function(){
     var items = [];
     if(this.get('isParent')) {
       return this.get('allItems');

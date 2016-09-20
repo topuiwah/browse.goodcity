@@ -10,7 +10,7 @@ export default DS.Model.extend({
   items: hasMany('item', { async: false }),
   packages: hasMany('package', { async: false }),
 
-  getItemPackageList: Ember.computed('packages.@each.hasSiblingPackages', function(){
+  getItemPackageList: Ember.computed('_packages.@each.packageType', 'packages.@each.hasSiblingPackages', function(){
     var packages = this.get('packages');
     var items = [];
 
@@ -22,6 +22,10 @@ export default DS.Model.extend({
       items = items.concat(multiPackages.map(pkg => pkg.get("item")).uniq());
     }
     return items.uniq();
+  }),
+
+  _packages: Ember.computed('packages.[]', function() {
+    return this.get("store").peekAll("package");
   }),
 
   _packageCategories: Ember.computed(function() {
