@@ -1,0 +1,70 @@
+.transport-detail {
+  margin: 3rem .5rem;
+  font-size: 1rem;
+  @media #{$small-only} {
+    font-size: 0.7rem;
+    padding: 1.5rem .5rem 1.5rem 1.5rem;
+  }
+  .name, div {
+    cursor: default;
+  }
+  .name {
+    padding-bottom: .5rem;
+    margin: 0 0.2rem 0 -0.2rem;
+    font-weight: bold;
+    color: white;
+  }
+  .collection {
+    margin-top: 1rem;
+  }
+  .radio-button {
+    width: 1.5rem;
+    input[type=radio] {
+      margin: 0 0 1rem -.1rem;
+      height: 1.2rem;
+      width: 1.2rem;
+    }
+  }
+  .radio-button-text {
+    margin-right: 0.7rem;
+    margin-top: -.1rem;
+    @media #{$small-only} {
+      margin-right: -0.5rem;
+    }
+  }
+  .time_inputs {
+    margin-top: .5rem;
+    .date_selector {
+      padding-left: 0 !important;
+      .calender_icon{
+        float: right;
+        display: inline;
+        font-size: 1.3rem;
+        margin-right: 1.2rem;
+        margin-top: -2.8rem;
+
+        @media #{$small-only} {
+          margin-right: 1rem;
+          font-size: 1.1rem;
+          margin-top: -2.9rem;
+        }
+      }
+    }
+    .time_icon {
+      position: absolute;
+      float: right;
+      display: inline;
+      font-size: 1.7rem;
+      margin-right: -4.6rem;
+      margin-top: -3.05rem;
+      margin-left: 7.85rem;
+
+      @media #{$small-only} {
+        font-size: 1.3rem;
+        margin-right: -4.6rem;
+        margin-top: -2.9rem;
+        margin-left: 5.2rem;
+      }
+    }
+  }
+}

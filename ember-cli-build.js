@@ -36,6 +36,16 @@ module.exports = function(defaults) {
     destDir: '/img'
   });
   app.import('bower_components/socket.io-client/socket.io.js');
+  app.import('bower_components/airbrake-js/dist/client.js');
+  app.import('bower_components/moment/moment.js');
+  app.import('bower_components/moment/locale/zh-tw.js');
+  app.import('bower_components/pickadate/lib/picker.js');
+  app.import('bower_components/pickadate/lib/picker.date.js');
+  app.import('bower_components/pickadate/lib/picker.time.js');
+
+  app.import("bower_components/pickadate/lib/themes/default.css");
+  app.import("bower_components/pickadate/lib/themes/default.date.css");
+  app.import("bower_components/pickadate/lib/themes/default.time.css");
 
   app.import('bower_components/airbrake-js/dist/client.js');
 
