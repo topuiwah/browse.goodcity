@@ -35,6 +35,10 @@ module.exports = function(environment) {
       NAMESPACE: 'api/v1',
       HK_COUNTRY_CODE: '+852',
 
+      AIRBRAKE_HOST: "https://errbit.crossroads.org.hk",
+      AIRBRAKE_PROJECT_ID: "57da6273d30d85381d00000b",
+      AIRBRAKE_PROJECT_KEY: "a4776dabb8dadd580c0f92205fc897a6",
+
       PRELOAD_TYPES: ["package_type", "package_category", "donor_condition", "package"],
 
       SHA: process.env.APP_SHA || "00000000",
@@ -54,16 +58,16 @@ module.exports = function(environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
     // RESTAdapter Settings
-    ENV.APP.API_HOST_URL = 'http://localhost:3000';
     ENV.APP.SOCKETIO_WEBSERVICE_URL = 'http://localhost:1337/goodcity';
+    ENV.APP.API_HOST_URL = 'http://localhost:3000';
 
     ENV.contentSecurityPolicy["connect-src"] = [
       'http://localhost:4202',
       'http://localhost:3000',
       'http://localhost:1337',
+      'https://api.cloudinary.com',
       'ws://localhost:1337',
       'wss://localhost:1337',
-      'https://api.cloudinary.com'
     ].join(' ');
   }
 
