@@ -105,9 +105,7 @@ export default Ember.Controller.extend({
     }
 
     if (["create","update"].contains(data.operation)) {
-        var payload = {};
-        payload[type] = item;
-        this.store.pushPayload(payload);
+        this.store.pushPayload(data.item);
     } else if (existingItem) { //delete
       this.store.unloadRecord(existingItem);
     }
