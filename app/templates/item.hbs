@@ -1,4 +1,7 @@
-<nav class="item-controls">
+<nav class="tab-bar item-controls show-for-small tab-bar-placeholder">
+</nav>
+
+<nav class="tab-bar item-controls">
   <section class='main-section'>
     <div class="row">
       <div class="large-8 medium-6 small-12 columns hide-for-small">
@@ -10,20 +13,20 @@
       </div>
 
       <div class="large-4 medium-6 small-12 columns item-page">
-        {{#link-to 'package_category' categoryObj class="tiny info radius left show-for-small item-remove-icon"}}
+        {{#link-to 'package_category' categoryObj class="no-avatar left show-for-small item-remove-icon"}}
           <i class="fa fa-2x fa-times remove-icon"></i>
         {{/link-to}}
 
         <ul class="text-right pagination right">
           <li class="arrow prev enabled-arrow" {{action "setDirectionAndRender" "moveRight" on="click"}}>
-            <a disabled="{{noPreviousItem}}">
+            <a disabled="{{noPreviousItem}}" class="no-avatar">
               <i class="fa fa-arrow-left"></i>
               <span class="hide-for-small">{{t "itemdetail.previous"}}</span>
             </a>
           </li>
 
           <li class="arrow next enabled-arrow" {{action "setDirectionAndRender" "moveLeft" on="click"}}>
-            <a disabled="{{noNextItem}}">
+            <a disabled="{{noNextItem}}" class="no-avatar">
               <span class="hide-for-small">{{t "itemdetail.next"}}</span>
               <i class="fa fa-arrow-right"></i>
             </a>
@@ -35,7 +38,7 @@
   </section>
 </nav>
 
-<section class="view-item {{direction}}">
+<section class="main-section view-item {{direction}}">
   {{#liquid-bind item as |item| }}
 
     <div class="row complete_item_view">
