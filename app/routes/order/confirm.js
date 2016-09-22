@@ -10,9 +10,4 @@ export default AuthorizeRoute.extend({
       order: order || this.store.findRecord('order', orderId)
     });
   },
-
-  setupController(controller) {
-    this._super(...arguments);
-    controller.set('selectedId', "self");
-  }
 });

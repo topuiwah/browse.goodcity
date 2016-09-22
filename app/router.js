@@ -19,6 +19,7 @@ Router.map(function() {
 
   this.route('order', { path: '/order/:order_id/' }, function() {
     this.route('transport_details');
+    this.route('confirm');
   });
 
   this.route('confirm');

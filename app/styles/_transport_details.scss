@@ -39,6 +39,10 @@
     margin-top: .5rem;
     .date_selector {
       padding-left: 0 !important;
+      input {
+        background: white;
+        font-size: 0.8rem;
+      }
       .calender_icon{
         float: right;
         display: inline;
@@ -68,6 +72,13 @@
         margin-top: -2.9rem;
         margin-left: 5.2rem;
       }
+    }
+  }
+
+  .order_button {
+    margin-top: 1rem !important;
+    button {
+      font-size: 0.9rem;
     }
   }
 }

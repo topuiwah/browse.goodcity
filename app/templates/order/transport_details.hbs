@@ -3,65 +3,14 @@
     <section class="main-section login-page">
       {{partial "navigation_list"}}
       {{partial "organisation_detail"}}
+
+      {{#if order.orderTransport}}
+        {{partial "confirm_order"}}
+      {{else}}
+        {{partial "plan_order_transport"}}
+      {{/if}}
+
     </section>
-
-    <div class="transport-detail">
-      <div class="name">Transport method</div>
-
-      <div class="row">
-        <div class="radio-button small-1 columns">
-          {{radio-button
-          name="selectReason"
-          selection=selectedId
-          value="-1"
-          id="-1"}}
-        </div>
-        <label class="radio-button-text small-11 columns" for="-1">
-          We will collect with our own vehicle(s)
-        </label>
-      </div>
-      <div class="row">
-        <div class="radio-button small-1 columns">
-          {{radio-button
-          name="selectReason"
-          selection=selectedId
-          value="0"
-          id="0"}}
-        </div>
-        <label class="radio-button-text small-11 columns" for="0">
-          We would like the items sent (recipient pays the driver)
-        </label>
-      </div>
-
-
-      <div class="row">
-        <div class="name collection">Collection date / time</div>
-        <div class="collection-data">Limited to Crossroad's opening days/times.</div>
-      </div>
-      <div class="row time_inputs">
-        <div class="small-7 columns date_selector">
-          {{select-date
-            name='selectedDate'
-            id='selectedDate'
-            value=''
-            available=available_dates
-            selection=selectedDate
-            placeholder="Date"
-            pattern="[a-zA-Z]{3}\s?[a-zA-Z]{3}\s?[0-9]{1,2}"}}
-          <i class="fa fa-calendar calender_icon"></i>
-        </div>
-        <div class="small-5 columns time_selector">
-          {{select-list
-            content=timeSlots
-            on-change=(action (mut selectedTime))
-            selectedValue=selectedTime
-            prompt="Time"
-            selectArrow=false
-            pattern="[0-9]{1,2}:(00|30)\s?(AM|PM)"}}
-          <i class="fa fa-clock-o time_icon"></i>
-        </div>
-      </div>
-    </div>
   </div>
 
   {{partial "cart_content/checkout_full_view"}}
