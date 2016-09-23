@@ -13,8 +13,12 @@ export default Ember.Service.extend({
     // return store.peekAll('user_profile').get('firstObject') || null;
   }).volatile(),
 
-  clear: function() {
+  clear() {
     this.set("authToken", null);
     this.set("otpAuthKey", null);
-  }
+  },
+
+  draftOrder() {
+    return this.get("store").peekAll("order").filterBy("state", "draft").get("firstObject");
+  },
 });

@@ -5,6 +5,7 @@
     "-Promise",
     "Foundation",
     "io",
+    "moment",
     "airbrakeJs"
   ],
   "browser": true,

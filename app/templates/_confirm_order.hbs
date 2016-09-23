@@ -1,28 +1,45 @@
-<div class = "confirmation-detail small-12 columns">
-  <div class="detail">
-    <div class="row">
-      <div class="name small-4 columns">Transport method:</div>
-      <div class="small-8 columns">Hired van delivery(GoGoVan)</div>
-    </div>
-    <div class="row">
-      <div class="name small-4 columns">Date / Time:</div>
-      <div class="small-8 columns">28th September</div>
-    </div>
-    <div class="row">
-      <div class="name small-4 columns">Delivery district:</div>
-      <div class="small-8 columns">Kowloon, Mei foo</div>
-    </div>
-    <div class="row">
-      <div class="name small-4 columns">Vehicle type:</div>
-      <div class="small-8 columns">5.5 Tonne Truck</div>
-    </div>
-    <div class="row">
-      <div class="name small-4 columns">Extra requirements:</div>
-      <div class="small-8 columns">Borrow trolley; Speak English</div>
-    </div>
-    <div class="row">
-      <div class="name small-4 columns">Contact:</div>
-      <div class="small-8 columns">James Chan, 6111 1111</div>
+<div class="row">
+  <div class = "organisation-detail small-12 columns">
+    <div class="detail">
+      <div class="row">
+        <div class="name small-4 columns">Transport method:</div>
+        <div class="small-8 columns">
+          {{#if order.orderTransport.isGGV}}
+            Hired van delivery(GoGoVan)
+          {{else}}
+            Self vehicle
+          {{/if}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="name small-4 columns">Date:</div>
+        <div class="small-8 columns">{{order.orderTransport.scheduledAt}}</div>
+      </div>
+
+      <div class="row">
+        <div class="name small-4 columns">Time:</div>
+        <div class="small-8 columns">{{order.orderTransport.timeslot}}</div>
+      </div>
+
+      {{#if order.orderTransport.isGGV}}
+        <div class="row">
+          <div class="name small-4 columns">Delivery district:</div>
+          <div class="small-8 columns">Kowloon, Mei foo</div>
+        </div>
+        <div class="row">
+          <div class="name small-4 columns">Vehicle type:</div>
+          <div class="small-8 columns">5.5 Tonne Truck</div>
+        </div>
+        <div class="row">
+          <div class="name small-4 columns">Extra requirements:</div>
+          <div class="small-8 columns">Borrow trolley; Speak English</div>
+        </div>
+        <div class="row">
+          <div class="name small-4 columns">Contact:</div>
+          <div class="small-8 columns">James Chan, 6111 1111</div>
+        </div>
+      {{/if}}
     </div>
   </div>
 </div>
