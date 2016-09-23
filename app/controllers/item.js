@@ -13,7 +13,7 @@ export default Ember.Controller.extend({
 
   direction: null,
 
-  hasDraftOrder: Ember.computed.alias("session.draftOrder()"),
+  hasDraftOrder: Ember.computed.alias("session.draftOrder"),
 
   presentInCart: Ember.computed('item', 'cart.counter', function(){
     return this.get('cart').hasCartItem(this.get('item'));

@@ -18,7 +18,11 @@ export default Ember.Service.extend({
     this.set("otpAuthKey", null);
   },
 
-  draftOrder() {
-    return this.get("store").peekAll("order").filterBy("state", "draft").get("firstObject");
-  },
+  draftOrder: Ember.computed("allOrders.@each.state", function(){
+    return this.get("allOrders").filterBy("state", "draft").get("firstObject");
+  }),
+
+  allOrders: Ember.computed(function(){
+    return this.get("store").peekAll("order");
+  }),
 });
