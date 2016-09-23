@@ -16,6 +16,7 @@ Router.map(function() {
   this.route('authenticate');
 
   this.route('order_details');
+  this.route('my_orders');
 
   this.route('order', { path: '/order/:order_id/' }, function() {
     this.route('transport_details');
@@ -23,7 +24,6 @@ Router.map(function() {
   });
 
   this.route('confirm');
-
 });
 
 export default Router;
