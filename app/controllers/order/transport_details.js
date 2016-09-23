@@ -3,13 +3,33 @@ import AjaxPromise from './../../utils/ajax-promise';
 const { getOwner } = Ember;
 
 export default Ember.Controller.extend({
-  order: Ember.computed.alias("model.order"),
 
+  order: Ember.computed.alias("model.order"),
   selectedDate: null,
   selectedTime: null,
   selectedId: null,
-
+  userName: null,
+  mobilePhone: null,
   isSelfSelected: Ember.computed.equal("selectedId", "self"),
+
+  speakEnglish: false,
+  borrowTrolley: false,
+  porterage: false,
+  longerGoods: false,
+  longGoodSelection: "half",
+
+  gogovanOptions: Ember.computed(function(){
+    var allOptions = this.store.peekAll('gogovan_transport');
+    return allOptions.rejectBy('disabled', true).sortBy('id');
+  }),
+
+  selectedGogovanOption: Ember.computed('gogovanOptions', function(){
+    return this.get('gogovanOptions.firstObject.id');
+  }),
+
+  isSelectedVan: Ember.computed("selectedGogovanOption", function(){
+    return this.get("selectedGogovanOption") === "1";
+  }),
 
   availableDates: Ember.computed({
     get: function() {
@@ -21,11 +41,44 @@ export default Ember.Controller.extend({
     }
   }),
 
+  ggvAvailableDates: Ember.computed('ggvAvailableDates.[]', {
+    get: function() {
+      new AjaxPromise("/available_dates", "GET", this.get('session.authToken'), {schedule_days: 120})
+        .then(data => this.set("ggvAvailableDates", data));
+    },
+    set: function(key, value) {
+      return value;
+    }
+  }),
+
   timeSlots: Ember.computed(function(){
     return [
       {value: "1", name: "10:30AM-1PM"},
       {value: "2", name: "2PM-4PM"},
     ];
+  }),
+
+  user: Ember.computed.alias('order.createdBy'),
+  selectedTerritory: null,
+  selectedDistrict: null,
+
+  initSelectedTerritories: Ember.on('init', function() {
+    if(this.get("selectedDistrict") === null) {
+      this.set("selectedTerritory", this.get("user.address.district.territory"));
+      this.set("selectedDistrict", this.get("user.address.district"));
+    }
+  }),
+
+  territories: Ember.computed(function(){
+    return this.store.peekAll('territory');
+  }),
+
+  districtsByTerritory: Ember.computed('selectedTerritory', function(){
+    if(this.selectedTerritory && this.selectedTerritory.id) {
+      return this.selectedTerritory.get('districts').sortBy('name');
+    } else {
+      return this.store.peekAll('district').sortBy('name');
+    }
   }),
 
   actions: {
@@ -49,5 +102,41 @@ export default Ember.Controller.extend({
           this.transitionToRoute("order.confirm", this.get("order.id"));
         });
     },
+
+    bookGGVSchedule() {
+      var controller = this;
+      var loadingView = getOwner(controller).lookup('component:loading').append();
+      var selectedDate = controller.get('selectedDate');
+
+      var requestProperties = {};
+      requestProperties.scheduled_at = selectedDate;
+      requestProperties.timeslot = this.get('selectedTime.name');
+      requestProperties.transport_type = controller.get("selectedId");
+      requestProperties.need_english = controller.get("speakEnglish");
+      requestProperties.need_cart = controller.get("borrowTrolley");
+      requestProperties.need_carry = controller.get("porterage");
+      requestProperties.order_id = controller.get('order.id');
+      requestProperties.gogovan_transport_id = controller.get('selectedGogovanOption');
+
+      if(this.get("isSelectedVan")) {
+        requestProperties.need_over_6ft = this.get("longerGoods");
+        requestProperties.remove_net = this.get("longGoodSelection");
+      }
+
+      requestProperties.contact_attributes = {
+        name: controller.get("userName"),
+        mobile: "+852" + controller.get("mobilePhone"),
+        address_attributes: {
+          district_id: controller.get('selectedDistrict.id')
+        }
+      };
+
+      new AjaxPromise("/order_transports", "POST", this.get('session.authToken'), { order_transport: requestProperties })
+        .then(data => {
+          this.get("store").pushPayload(data);
+          loadingView.destroy();
+          this.transitionToRoute("order.confirm", this.get("order.id"));
+        });
+    }
   }
 });

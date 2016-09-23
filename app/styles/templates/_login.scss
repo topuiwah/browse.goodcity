@@ -37,36 +37,6 @@
       margin-top: 1rem;
     }
   }
-
-  .mobile {
-    margin-top: 2rem;
-
-    span {
-      position: absolute;
-      color: #000;
-      width: 4rem;
-    }
-
-    input {
-      &#mobile {
-        padding-left: 4rem;
-      }
-
-      font-size: 1rem;
-      color: black;
-    }
-
-    label.form-label {
-      font-size: 0.8rem;
-      padding-bottom: 0.5rem;
-    }
-
-    a {
-      text-decoration: underline;
-      color: inherit;
-      font-size: initial;
-    }
-  }
 }
 
 .purpose_section {
@@ -132,5 +102,35 @@
 
   i {
     color: red;
+  }
+}
+
+.mobile {
+  margin-top: 2rem;
+
+  span {
+    position: absolute;
+    color: #000;
+    width: 4rem;
+  }
+
+  input {
+    &#mobile {
+      padding-left: 4rem;
+    }
+
+    font-size: 1rem;
+    color: black;
+  }
+
+  label.form-label {
+    font-size: 0.8rem;
+    padding-bottom: 0.5rem;
+  }
+
+  a {
+    text-decoration: underline;
+    color: inherit;
+    font-size: initial;
   }
 }
