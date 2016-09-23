@@ -53,8 +53,8 @@ export default Ember.Controller.extend({
 
   timeSlots: Ember.computed(function(){
     return [
-      {value: "1", name: "10:30AM-1PM"},
-      {value: "2", name: "2PM-4PM"},
+      {id: "1", name: "10:30AM-1PM"},
+      {id: "2", name: "2PM-4PM"},
     ];
   }),
 
@@ -87,7 +87,7 @@ export default Ember.Controller.extend({
       var loadingView = getOwner(this).lookup('component:loading').append();
       var transportType = controller.get("selectedId");
       var selectedSlot = controller.get('selectedTime');
-      var slotName = controller.get('timeSlots').filterBy('value', selectedSlot).get('firstObject.name');
+      var slotName = controller.get('timeSlots').filterBy('id', selectedSlot.id).get('firstObject.name');
 
       var scheduleDetails = {
         scheduled_at:   controller.get('selectedDate'),

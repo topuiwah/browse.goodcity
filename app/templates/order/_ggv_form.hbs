@@ -18,7 +18,7 @@
                   value=''
                   available=ggvAvailableDates
                   selection=selectedDate
-                  placeholder=datePrompt
+                  placeholder="Date"
                   pattern="[a-zA-Z]{3}\s?[a-zA-Z]{3}\s?[0-9]{1,2}"}}
                 <i class="fa fa-calendar calender_icon"></i>
               </div>
@@ -27,7 +27,7 @@
                   content=timeSlots
                   on-change=(action (mut selectedTime))
                   selectedValue=selectedTime
-                  prompt=timePrompt
+                  prompt="Time"
                   pattern="[0-9]{1,2}:(00|30)\s?(AM|PM)"}}
                 <i class="fa fa-clock-o time_icon"></i>
               </div>
@@ -142,7 +142,7 @@
             <div class="row time_inputs">
               <div class="small-6 columns">
                 {{#form-control}}
-                  {{input value=userName name="userName" id="name" maxlength="50" required=true}}
+                  {{input value=userName name="userName" id="name" maxlength="50" required=true placeholder="Name"}}
                 {{/form-control}}
               </div>
               <div class="small-6 columns mobile">

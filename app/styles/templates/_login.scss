@@ -70,6 +70,10 @@
     padding: 0.3rem 0.5rem;
     border: 1px solid $tabbar-menu-icon-color;
     padding-right: 1.5rem;
+
+    @media #{$small-only} {
+      font-size: 0.8rem;
+    }
   }
 
   .remove-text{
@@ -83,6 +87,16 @@
 }
 .order_button {
   width: 99% !important;
+
+  @media #{$small-only} {
+    font-size: 0.8rem
+  }
+
+  button {
+    @media #{$small-only} {
+      font-size: 0.8rem !important;
+    }
+  }
 
   a {
     line-height: 2.5rem;
