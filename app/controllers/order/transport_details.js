@@ -4,12 +4,13 @@ const { getOwner } = Ember;
 
 export default Ember.Controller.extend({
 
+  logger: Ember.inject.service(),
   order: Ember.computed.alias("model.order"),
   selectedDate: null,
   selectedTime: null,
   selectedId: null,
-  userName: null,
-  mobilePhone: null,
+  userName: Ember.computed.alias("user.fullName"),
+  mobilePhone: Ember.computed.alias("user.mobileWithoutCountryCode"),
   isSelfSelected: Ember.computed.equal("selectedId", "self"),
 
   speakEnglish: false,
@@ -58,7 +59,7 @@ export default Ember.Controller.extend({
     ];
   }),
 
-  user: Ember.computed.alias('order.createdBy'),
+  user: Ember.computed.alias('session.currentUser'),
   selectedTerritory: null,
   selectedDistrict: null,
 
