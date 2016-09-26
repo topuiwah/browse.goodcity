@@ -71,7 +71,9 @@ export default DS.Model.extend(cloudinaryImage, {
     return images;
   }),
 
-  displayImageUrl: Ember.computed("image", "item.displayImageUrl", function() {
+  displayImage: Ember.computed.alias('image'),
+
+  displayImageUrl: Ember.computed("image", function() {
     return this.get('image.defaultImageUrl') || this.generateUrl(500, 500, true);
   }),
 
