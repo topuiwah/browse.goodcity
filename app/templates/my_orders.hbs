@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="title">My Orders</div>
+  <div class="row order-heading">
+    <div class="small-4 columns">Order No</div>
+    <div class="small-4 columns">Order State</div>
+    <div class="small-4 columns">Item count</div>
+  </div>
+  <div class="small-12 columns">
+    <ul class="list list-items">
+      {{#each arrangedOrders as |order|}}
+        <li {{action "setOrder" order}}>
+          <div class="row">
+            <div class="small-4 columns">
+              {{order.code}}
+            </div>
+            <div class="small-4 columns">
+              {{order.state}}
+            </div>
+            <div class="small-4 columns">
+              {{order.orderItems.length}}
+            </div>
+          </div>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+  {{#if selectedOrder}}
+    <div class="order-summery">
+      {{partial "order/summery"}}
+    </div>
+  {{/if}}
+</div>

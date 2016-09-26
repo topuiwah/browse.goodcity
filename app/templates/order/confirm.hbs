@@ -5,6 +5,20 @@
       {{partial "organisation_detail"}}
       {{partial "confirm_order"}}
     </section>
+    <div class="order_button">
+      <div class="small-4 columns">
+        {{#link-to "cart"}}
+          <i class="fa fa-angle-left" aria-hidden="true"></i>
+            Return to cart
+        {{/link-to}}
+      </div>
+      <div class="small-8 columns">
+        <button id="submit_pin" class="button expand drop_off" {{action 'confirmOrder' order}}>
+          Submit this order
+        </button>
+      </div>
+    </div>
   </div>
   {{partial "cart_content/checkout_full_view"}}
 </div>
+

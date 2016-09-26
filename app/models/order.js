@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import Ember from 'ember';
 
 var attr = DS.attr,
     hasMany = DS.hasMany,
@@ -11,6 +12,20 @@ export default DS.Model.extend({
   purposeDescription: attr('string'),
   ordersPackages: hasMany("orders_packages", { async: false }),
   orderTransport: belongsTo('order_transport', { async: false }),
+  createdAt:        attr('date'),
+  updatedAt:        attr('date'),
 
+  orderItems: Ember.computed('ordersPackages.[]', function() {
+    var items = [];
+    this.get('ordersPackages').forEach(function(record) {
+      var pkg = record.get('package');
+      if (pkg.get('hasSiblingPackages')) {
+        items.push(pkg.get('item'));
+      } else {
+        items.push(pkg);
+      }
+    });
+    return items.uniq();
+  }),
 
 });
