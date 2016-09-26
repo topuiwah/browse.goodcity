@@ -172,8 +172,14 @@
     font-size: 0.7rem;
   }
 
-  .cart_link {
+  a {
     text-decoration: underline;
+    color: inherit;
+
+    &.active {
+      text-decoration: none;
+      color: white;
+    }
   }
 }
 

@@ -10,12 +10,24 @@
   {{#unless session.isLoggedIn}}
     <a class="active">Log in</a> >
     Order details >
+    Transport details >
+    Confirm
   {{else}}
     {{#link-to "order_details"}}Order details{{/link-to}} >
-  {{/unless}}
 
-  Transport details >
-  Confirm
+    {{#if order}}
+      {{#link-to "order.transport_details" order}}Transport details{{/link-to}} >
+    {{else}}
+      Transport details >
+    {{/if}}
+
+    {{#if order.orderTransport}}
+      {{#link-to "order.confirm" order}}Confirm{{/link-to}}
+    {{else}}
+      Confirm
+    {{/if}}
+
+  {{/unless}}
 </div>
 
 {{small-cart-toggle-view}}
