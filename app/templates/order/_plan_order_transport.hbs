@@ -1,0 +1,35 @@
+<div class="transport-detail">
+  <div class="name">Transport method</div>
+
+  <div class="row custom_radio_buttons">
+    <div class="radio-button small-1 columns">
+      {{radio-button
+      name="selectReason"
+      selection=selectedId
+      value="self"
+      id="self"}}
+    </div>
+    <label class="radio-button-text small-11 columns" for="self">
+      We will collect with our own vehicle(s)
+    </label>
+  </div>
+  <div class="row custom_radio_buttons">
+    <div class="radio-button small-1 columns">
+      {{radio-button
+      name="selectReason"
+      selection=selectedId
+      value="ggv"
+      id="ggv"}}
+    </div>
+    <label class="radio-button-text small-11 columns" for="ggv">
+      We would like the items sent (recipient pays the driver)
+    </label>
+  </div>
+
+  {{#if isSelfSelected}}
+    {{partial "order/self_vehicle_form"}}
+  {{else}}
+    {{partial "order/ggv_form"}}
+  {{/if}}
+
+</div>

@@ -13,7 +13,12 @@ export default DS.Model.extend({
 
   contact:  belongsTo('contact', { async: false }),
   order:    belongsTo('order', { async: false }),
+  gogovanTransport:    belongsTo('gogovan_transport', { async: false }),
 
-  isGGV: Ember.computed.equal("transportType", "GGV"),
+  isGGV: Ember.computed.equal("transportType", "ggv"),
+
+  needEnglish: attr("boolean"),
+  needCart: attr("boolean"),
+  needCarry: attr("boolean"),
 
 });

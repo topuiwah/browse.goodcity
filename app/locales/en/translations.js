@@ -61,4 +61,28 @@ export default {
     "auth_error" : "Sorry! Please enter the correct pin."
   },
 
+  "gogovan": {
+    "book_van" : {
+      "title" : "Book Van",
+      "location" : "Collection address (Hong Kong)",
+      "select_day" : "Preferred day/time",
+      "crossroads_time" : "Limited to Crossroads' operating hours",
+      "requirements" : "Extra Requirements",
+      "speak_english" : "Speak English + $5",
+      "van_trolly_cost" : "Borrow trolley(s) + $10/piece",
+      "truck_trolly_cost" : "Borrow trolley(s) + $20/piece",
+      "porterage" : "Labour (negotiate with drivers)",
+      "longer_goods": "Goods longer than 6ft (183cm)",
+      "longer_goods_6ft": "longer than 6ft +$10",
+      "longer_goods_6ft_tall": "longer than 6ft &taller than 2ft(60cm) +$20",
+      "extra_time_charge" : "Extra Time(15 minutes waiting time is included for you to load the van. Extra time incurs a charge.)",
+      "date": "Date",
+      "time": "Time",
+      "am": "AM",
+      "pm": "PM",
+      "vehicle": "Vehicle Type"
+    }
+  }
+
+
 };

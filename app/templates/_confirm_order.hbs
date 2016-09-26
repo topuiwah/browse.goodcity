@@ -25,19 +25,29 @@
       {{#if order.orderTransport.isGGV}}
         <div class="row">
           <div class="name small-4 columns">Delivery district:</div>
-          <div class="small-8 columns">Kowloon, Mei foo</div>
+          <div class="small-8 columns">
+            {{order.orderTransport.contact.address.district.name}},
+            {{order.orderTransport.contact.address.district.territory.name}}
+          </div>
         </div>
         <div class="row">
           <div class="name small-4 columns">Vehicle type:</div>
-          <div class="small-8 columns">5.5 Tonne Truck</div>
+          <div class="small-8 columns">{{order.orderTransport.gogovanTransport.name}}</div>
         </div>
         <div class="row">
           <div class="name small-4 columns">Extra requirements:</div>
-          <div class="small-8 columns">Borrow trolley; Speak English</div>
+          <div class="small-8 columns">
+            {{#if order.orderTransport.needEnglish}}Speak English;{{/if}}
+            {{#if order.orderTransport.needCart}}Borrow trolley;{{/if}}
+            {{#if order.orderTransport.needCarry}}Need Carry;{{/if}}
+          </div>
         </div>
         <div class="row">
           <div class="name small-4 columns">Contact:</div>
-          <div class="small-8 columns">James Chan, 6111 1111</div>
+          <div class="small-8 columns">
+            {{order.orderTransport.contact.name}},
+            {{order.orderTransport.contact.mobile}}
+          </div>
         </div>
       {{/if}}
     </div>
