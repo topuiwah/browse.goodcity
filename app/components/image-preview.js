@@ -5,15 +5,6 @@ export default ObserveScreenResize.extend({
 
   lightGalleryObj: null,
 
-  isSmallScreen: Ember.computed({
-    get() {
-      return this.screenResized();
-    },
-    set(key, value) {
-      return value;
-    }
-  }),
-
   observeScreen: function() {
     if(!this.isDestroyed || !this.isDestroying) {
       this.set("isSmallScreen", this.screenResized());
@@ -22,16 +13,22 @@ export default ObserveScreenResize.extend({
   },
 
   initializeLightgallery: function(){
+
     var gallery = this.get("lightGalleryObj");
     if(gallery) { gallery.destroy(); }
 
     var lightGalleryObj = Ember.$("#lightGallery").lightGallery({
-      thumbnail: false,
+      mode: 'lg-slide',
+      zoom: true,
+      download: false,
+      scale: 1,
       hideControlOnEnd: true,
-      closable: false,
+      closable: true,
+      loop: true,
       counter: true,
-      swipeThreshold : 50,
-      enableTouch : true
+      enableTouch : true,
+      enableDrag: true,
+      selector: '.imageZoom',
     });
     this.set('lightGalleryObj', lightGalleryObj);
   },
@@ -39,5 +36,4 @@ export default ObserveScreenResize.extend({
   didInsertElement() {
     this.initializeLightgallery();
   },
-
 });

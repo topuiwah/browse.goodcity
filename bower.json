@@ -11,7 +11,7 @@
     "jquery.cookie": "^1.4.1",
     "modernizr": "^2.8.3",
     "font-awesome": "~4.5.0",
-    "lightgallery": "~1.1.5",
+    "lightgallery": "1.2.20",
     "socket.io-client": "~1.4.5",
     "airbrake-js": "~0.5.8",
     "moment": "~2.10.3",
