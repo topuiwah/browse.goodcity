@@ -1,6 +1,12 @@
-import PublicRoute from './browse_pages';
+import AuthorizeRoute from './authorize';
 
-export default PublicRoute.extend({
+export default AuthorizeRoute.extend({
+
+  beforeModel() {
+    this._super(...arguments);
+    this.set('cart.checkout', false);
+  },
+
   model() {
     return this.store.peekAll('order');
   },
