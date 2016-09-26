@@ -81,6 +81,18 @@ export default Ember.Controller.extend({
     }
   }),
 
+  gogovanPrice: Ember.computed({
+    get: function() {
+      new AjaxPromise("/gogovan_orders/calculate_price", "POST", this.session.get('authToken'))
+        .then(data => this.set("gogovanPrice", data.base))
+        .catch(error => this.get("logger").error(error));
+      return "";
+    },
+    set: function(key, value) {
+      return value;
+    }
+  }),
+
   actions: {
     bookSchedule() {
       var controller = this;

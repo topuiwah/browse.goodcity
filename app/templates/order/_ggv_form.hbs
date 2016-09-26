@@ -75,59 +75,75 @@
             </div>
 
             <div class="row">
-              <div class="name collection">{{t "gogovan.book_van.requirements"}}</div>
-            </div>
+              <div class="small-8 columns">
+                <div class="name collection">{{t "gogovan.book_van.requirements"}}</div>
 
-            <div class="row">
-              <div class='checkbox'>
-                {{input type="checkbox" name="speakEnglish" checked=speakEnglish id='1' }}
-                <label class="radio-button-text" for='1'><span>{{t "gogovan.book_van.speak_english"}}</span></label>
-              </div>
-
-              <div class='checkbox'>
-                {{input type="checkbox" name="borrowTrolley" checked=borrowTrolley id='2' }}
-                <label class="radio-button-text" for='2'>
-                  <span>
-                    {{#if isSelectedVan}}
-                      {{t "gogovan.book_van.van_trolly_cost"}}
-                    {{else}}
-                      {{t "gogovan.book_van.truck_trolly_cost"}}
-                    {{/if}}
-                  </span>
-                </label>
-              </div>
-
-              <div class='checkbox'>
-                {{input type="checkbox" name="porterage" checked=porterage id='3' }}
-                <label class="radio-button-text" for='3'><span>{{t "gogovan.book_van.porterage"}}</span></label>
-              </div>
-
-              {{#if isSelectedVan}}
                 <div class='checkbox'>
-                  {{input type="checkbox" name="longerGoods" checked=longerGoods id='4' }}
-                  <label class="radio-button-text" for='4'><span>{{t "gogovan.book_van.longer_goods"}}</span></label>
+                  {{input type="checkbox" name="speakEnglish" checked=speakEnglish id='1' }}
+                  <label class="radio-button-text" for='1'><span>{{t "gogovan.book_van.speak_english"}}</span></label>
                 </div>
 
-                {{#if longerGoods}}
-                  <div class="radio_selection">
-                    <div class="custom_radio_buttons">
+                <div class='checkbox'>
+                  {{input type="checkbox" name="borrowTrolley" checked=borrowTrolley id='2' }}
+                  <label class="radio-button-text" for='2'>
+                    <span>
+                      {{#if isSelectedVan}}
+                        {{t "gogovan.book_van.van_trolly_cost"}}
+                      {{else}}
+                        {{t "gogovan.book_van.truck_trolly_cost"}}
+                      {{/if}}
+                    </span>
+                  </label>
+                </div>
 
-                      {{radio-button name="longerGoods" selection=longGoodSelection value="half" id="half"}}
+                <div class='checkbox'>
+                  {{input type="checkbox" name="porterage" checked=porterage id='3' }}
+                  <label class="radio-button-text" for='3'><span>{{t "gogovan.book_van.porterage"}}</span></label>
+                </div>
 
-                      <label class="radio-button-text" for="half">
-                        {{t "gogovan.book_van.longer_goods_6ft"}}
-                      </label>
+                {{#if isSelectedVan}}
+                  <div class='checkbox'>
+                    {{input type="checkbox" name="longerGoods" checked=longerGoods id='4' }}
+                    <label class="radio-button-text" for='4'><span>{{t "gogovan.book_van.longer_goods"}}</span></label>
+                  </div>
+
+                  {{#if longerGoods}}
+                    <div class="radio_selection">
+                      <div class="custom_radio_buttons">
+
+                        {{radio-button name="longerGoods" selection=longGoodSelection value="half" id="half"}}
+
+                        <label class="radio-button-text" for="half">
+                          {{t "gogovan.book_van.longer_goods_6ft"}}
+                        </label>
+                      </div>
+
+                      <div class="custom_radio_buttons">
+                        {{radio-button name="longerGoods" selection=longGoodSelection value="full" id="full"}}
+                        <label class="radio-button-text" for="full">
+                          {{t "gogovan.book_van.longer_goods_6ft_tall"}}
+                        </label>
+                      </div>
                     </div>
+                  {{/if}}
+                {{/if}}
 
-                    <div class="custom_radio_buttons">
-                      {{radio-button name="longerGoods" selection=longGoodSelection value="full" id="full"}}
-                      <label class="radio-button-text" for="full">
-                        {{t "gogovan.book_van.longer_goods_6ft_tall"}}
-                      </label>
+              </div>
+
+              <div class="small-4 columns">
+                <div class="ggv-price-box">
+                  <div class="row">
+                    <div class="small-8 columns price-text">
+                      Best Price estimate
+                      <span>${{gogovanPrice}}</span>
+                    </div>
+                    <div class="small-4 columns ggv_logo">
+                      <img src="assets/images/gogo-van.jpg" class='delivery-image'/>
                     </div>
                   </div>
-                {{/if}}
-              {{/if}}
+                  <div class="ggv_link"><a href="https://www.gogovan.com.hk/en/pricing" target="_blank">Learn more about price</a></div>
+                </div>
+              </div>
 
             </div>
 

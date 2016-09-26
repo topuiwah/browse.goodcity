@@ -45,8 +45,9 @@
 
   .radio-button-text {
     @media #{$small-only} {
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       line-height: 1.5rem;
+      margin-right: 0rem;
     }
   }
 
@@ -154,6 +155,7 @@
 
     .radio-button-text {
       vertical-align: text-bottom;
+      margin-right: -5rem;
     }
   }
 }
@@ -230,4 +232,37 @@
     border: 1px solid $coral-red;
   }
 
+}
+
+.ggv-price-box {
+  height: 5rem;
+  background: #1A3964;
+  width: 7rem;
+  margin-top: 1rem;
+  padding: 0.2rem;
+  font-size: 0.6rem;
+
+  .price-text {
+    text-align: center;
+    span {
+      color: white;
+      font-size: 0.75rem;
+    }
+  }
+
+  .ggv_logo {
+    padding: 0 !important;
+    padding-top: 0.2rem !important;
+
+    img {
+      width: 2rem;
+      height: 2rem;
+      max-width: none;
+    }
+  }
+
+  .ggv_link {
+    padding-top: 0.4rem;
+    text-decoration: underline;
+  }
 }
