@@ -14,7 +14,7 @@ export default ObserveScreenResize.extend({
 
   initializeLightgallery: function(){
 
-    var gallery = this.get("lightGalleryObj");
+    var gallery = Ember.$("#lightGallery").data('lightGallery');
     if(gallery) { gallery.destroy(); }
 
     var lightGalleryObj = Ember.$("#lightGallery").lightGallery({
@@ -36,4 +36,9 @@ export default ObserveScreenResize.extend({
   didInsertElement() {
     this.initializeLightgallery();
   },
+
+  willDestroyElement() {
+    var gallery = Ember.$("#lightGallery").data('lightGallery');
+    if(gallery) { gallery.destroy(); }
+  }
 });
