@@ -19,6 +19,7 @@ deployment:
     branch: master
     commands:
       - bundle exec cap staging deploy
+      - bundle exec rake staging android app:release
   production:
     branch: live
     commands:
