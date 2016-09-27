@@ -25,6 +25,12 @@ export default DS.Model.extend(cloudinaryImage, {
   itemId:          attr('number'),
   stockitSentOn:   attr('date'),
   orderId:         attr('number'),
+  allowWebPublish: attr('boolean'),
+
+  isDispatched: Ember.computed.bool("stockitSentOn"),
+  isAvailable: Ember.computed('isDispatched', 'allowWebPublish', function() {
+    return !this.get("isDispatched") && this.get("allowWebPublish");
+  }),
 
   allPackageCategories: Ember.computed.alias('packageType.allPackageCategories'),
 
@@ -92,6 +98,7 @@ export default DS.Model.extend(cloudinaryImage, {
       name: Ember.get(this, 'packageType.name'),
       imageUrl: Ember.get(this, 'favouriteImage.cartImageUrl'),
       thumbImageUrl: Ember.get(this, 'favouriteImage.thumbImageUrl'),
+      available: Ember.get(this, 'isAvailable')
     });
   }
 });

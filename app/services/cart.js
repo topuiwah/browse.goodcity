@@ -19,7 +19,7 @@ const Service = ArrayProxy.extend({
     return JSON.parse(window.localStorage.getItem('cart') || "[]");
   }),
 
-  cartItems: Ember.computed('[]', '@each.available', function() {
+  cartItems: computed('[]', '@each.available', function() {
     var content = this.get("content");
     var allItems = [];
     content.forEach(record => {
@@ -37,7 +37,7 @@ const Service = ArrayProxy.extend({
       cartItem = item.toCartItem();
     } else {
       cartItem = getOwner(this)._lookupFactory('model:cart-item').create();
-      cartItem.setProperties(item.toJSON());
+      cartItem.setProperties((item.toJSON && item.toJSON()) || item);
     }
     return cartItem;
   },
@@ -52,6 +52,9 @@ const Service = ArrayProxy.extend({
     let foundCartItem = this.findBy('guid', get(cartItem, 'guid'));
 
     if (!foundCartItem) {
+      this.pushObject(cartItem);
+    } else {
+      this.removeItem(foundCartItem);
       this.pushObject(cartItem);
     }
   },
