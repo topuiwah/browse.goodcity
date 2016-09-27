@@ -1,9 +1,12 @@
-<div id="lightGallery">
-
+<div id={{if item.favouriteImage "lightGallery"}}>
   {{#if screenresize.isSmallScreen}}
-    <div data-src={{item.favouriteImage.imageUrl}} class="small-screen-preview view-image show-for-small imageZoom">
-      {{cloudinary-image-tag src=smallScreenPreviewUrl isSmallScreen=true}}
-    </div>
+    {{#if item.favouriteImage}}
+      <div data-src={{item.favouriteImage.imageUrl}} class="small-screen-preview view-image show-for-small imageZoom">
+        {{cloudinary-image-tag src=smallScreenPreviewUrl isSmallScreen=true}}
+      </div>
+    {{else}}
+      {{partial 'no_image'}}
+    {{/if}}
   {{else}}
     <div class="view-image hide-for-small imageZoom" data-src="{{item.favouriteImage.imageUrl}}">
       {{cloudinary-image-tag src=previewUrl}}
@@ -16,3 +19,5 @@
     </div>
   {{/each}}
 </div>
+
+
