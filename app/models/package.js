@@ -89,6 +89,9 @@ export default DS.Model.extend(cloudinaryImage, {
     return CartItem.create({
       id: Ember.get(this, 'id'),
       modelType: "package",
+      name: Ember.get(this, 'packageType.name'),
+      imageUrl: Ember.get(this, 'favouriteImage.cartImageUrl'),
+      thumbImageUrl: Ember.get(this, 'favouriteImage.thumbImageUrl'),
     });
   }
 });

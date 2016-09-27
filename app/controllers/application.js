@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
   subscription: Ember.inject.controller(),
+  messageBox: Ember.inject.service(),
 
   initSubscription: Ember.on('init', function() {
     this.get('subscription').send('wire');
@@ -22,9 +23,9 @@ export default Ember.Controller.extend({
       }, 0);
     },
 
-    showCartItem(item) {
-      var modelName = item.get("isItem") ? "item" : "package";
-      this.transitionToRoute(modelName, item.id,
+    showCartItem(itemId, type) {
+      var item = this.get('store').peekRecord(type, itemId);
+      this.transitionToRoute(type, itemId,
         { queryParams:
           {
             categoryId: item.get("allPackageCategories.firstObject.id")
@@ -32,13 +33,24 @@ export default Ember.Controller.extend({
         });
     },
 
-    removeItem(item) {
+    removeItem(itemId, type) {
+      var item = this.get('store').peekRecord(type, itemId);
       this.get('cart').removeItem(item);
     },
 
     checkout() {
-      this.get('cart').set('checkout', true);
-      this.transitionToRoute('order_details');
+      var cartHasItems = this.get("cart.cartItems").length;
+      if(cartHasItems > 0) {
+        this.get('cart').set('checkout', true);
+        this.transitionToRoute('order_details');
+      } else {
+        this.get('messageBox').alert(
+          "The items in your cart are no longer available. Please add more items in your cart before placing an order. Thank you!",
+          () => {
+            this.get("cart").clearItems();
+            this.set('displayCart', false);
+          });
+      }
     }
   }
 

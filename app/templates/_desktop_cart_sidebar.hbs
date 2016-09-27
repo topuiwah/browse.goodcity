@@ -6,10 +6,18 @@
     </li>
 
     <div class="item-collection">
-      {{#each cart.cartItems as |record|}}
-        <li {{action "showCartItem" record}}>
-          <img class="thumb-image" src="{{record.favouriteImage.thumbImageUrl}}" />
-        </li>
+      {{#each cart.content as |record|}}
+
+        {{#if record.available}}
+          <li {{action "showCartItem" record.id record.modelType}}>
+            <img class="thumb-image" src="{{record.thumbImageUrl}}" />
+          </li>
+        {{else}}
+          <li>
+            <img class="thumb-image grayed-image" src="{{record.thumbImageUrl}}" />
+          </li>
+        {{/if}}
+
       {{/each}}
     </div>
   </ul>

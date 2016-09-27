@@ -9,10 +9,10 @@ const {
 export default EmberObject.extend({
 
   modelType: "",
-
-  total: computed('quantity', 'price', function() {
-    return get(this, 'quantity') * get(this, 'price');
-  }),
+  name: "",
+  imageUrl: "",
+  thumbImageUrl: "",
+  available: true,
 
   guidProps: ['modelType', 'id'],
 
