@@ -30,7 +30,7 @@ export default Ember.Controller.extend({
           _this.set('session.otpAuthKey', null);
           _this.store.pushPayload(data.user);
           _this.setProperties({pin: null});
-          _this.transitionToRoute(_this.get("attemptedTransition.targetName") || "/");
+          _this.transitionToRoute('post_login');
         })
         .catch(function(jqXHR) {
           Ember.$('#pin').closest('div').addClass('error');

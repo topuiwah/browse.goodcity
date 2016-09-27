@@ -13,6 +13,7 @@ Router.map(function() {
   this.route('cart');
 
   this.route('login');
+  this.route('post_login');
   this.route('authenticate');
 
   this.route('order_details');
