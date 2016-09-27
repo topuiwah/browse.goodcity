@@ -23,6 +23,8 @@ export default DS.Model.extend(cloudinaryImage, {
   images:          hasMany('image', { async: false }),
   donorCondition:  belongsTo('donor_condition', { async: false }),
   itemId:          attr('number'),
+  stockitSentOn:   attr('date'),
+  orderId:         attr('number'),
 
   allPackageCategories: Ember.computed.alias('packageType.allPackageCategories'),
 
