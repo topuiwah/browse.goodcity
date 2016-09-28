@@ -19,6 +19,10 @@ export default DS.Model.extend(cloudinaryImage, {
   donorCondition:   belongsTo('donor_condition', { async: false }),
   saleable:         attr('boolean'),
 
+  isAvailable: Ember.computed('packages.@each.isAvailable', function() {
+    return this.get('packages').filterBy("isAvailable").length > 0;
+  }),
+
   images: Ember.computed('packages.@each.images.[]', function(){
     var images = [];
     this.get("packages").forEach(function(pkg){
@@ -68,6 +72,10 @@ export default DS.Model.extend(cloudinaryImage, {
     return CartItem.create({
       id: Ember.get(this, 'id'),
       modelType: "item",
+      name: Ember.get(this, 'packageType.name'),
+      imageUrl: Ember.get(this, 'favouriteImage.cartImageUrl'),
+      thumbImageUrl: Ember.get(this, 'favouriteImage.thumbImageUrl'),
+      available: Ember.get(this, 'isAvailable')
     });
   }
 

@@ -19,9 +19,9 @@ export default Ember.Controller.extend({
     return this.get('cart').hasCartItem(this.get('item'));
   }),
 
-  allPackages: Ember.computed('item.packages', function(){
+  allPackages: Ember.computed('item.packages.@each.isAvailable', function(){
     var item = this.get("item");
-    return item.get("isItem") ? item.get('packages') : [item];
+    return item.get("isItem") ? item.get('packages').filterBy("isAvailable") : [item];
   }),
 
   categoryObj: Ember.computed('categoryId' ,function(){

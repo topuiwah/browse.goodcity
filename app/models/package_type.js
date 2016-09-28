@@ -11,7 +11,7 @@ export default DS.Model.extend({
   packages: hasMany('package', { async: false }),
 
   getItemPackageList: Ember.computed('_packages.@each.packageType', 'packages.@each.hasSiblingPackages', function(){
-    var packages = this.get('packages');
+    var packages = this.get('packages').filterBy("isAvailable");
     var items = [];
 
     if(packages) {

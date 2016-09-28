@@ -104,11 +104,27 @@ export default Ember.Controller.extend({
       return;
     }
 
+    var cartContent = this.get('cart.content');
+    var packageId = data.item.package.id;
+    var cartItem = cartContent.filterBy("modelType", "package").filterBy("id", packageId.toString()).get("firstObject");
+
     if (["create","update"].contains(data.operation)) {
         this.store.pushPayload(data.item);
+
+        if(cartItem) {
+          var pkg = this.store.peekRecord("package", packageId);
+          this.get("cart").pushItem(pkg.toCartItem());
+        }
+
     } else if (existingItem) { //delete
       this.store.unloadRecord(existingItem);
+
+      if(cartItem) {
+        Ember.set(cartItem, "available", false);
+        this.get("cart").pushItem(cartItem);
+      }
     }
+
     run(success);
   }
 });
