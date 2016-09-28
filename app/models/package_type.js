@@ -14,7 +14,7 @@ export default DS.Model.extend({
     var packages = this.get('packages').filterBy("isAvailable");
     var items = [];
 
-    if(packages) {
+    if(packages.length) {
       var singlePackages = packages.rejectBy("hasSiblingPackages") || [];
       items = items.concat(singlePackages.toArray());
 
