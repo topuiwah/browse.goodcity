@@ -111,6 +111,23 @@ export default Ember.Controller.extend({
     if (["create","update"].contains(data.operation)) {
         this.store.pushPayload(data.item);
 
+        var unDispatchedPkg = [];
+        if(cartContent) {
+          var pkge = this.store.peekRecord('package', data.item.package.id);
+          if(pkge.get('stockitSentOn') && pkge.get('hasSiblingPackages')){
+            var pkgs = pkge.get('item.packages');
+            pkgs.forEach(function(record) {
+              if(!record.get('stockitSentOn')) {
+                  unDispatchedPkg.push(record);
+                }
+            });
+          }
+          if(unDispatchedPkg.length === 1) {
+            this.get("cart").removeItem(pkge.get('item'));
+            this.get('cart').pushItem(unDispatchedPkg.get('firstObject').toCartItem());
+          }
+        }
+
         if(cartItem) {
           var pkg = this.store.peekRecord("package", packageId);
           this.get("cart").pushItem(pkg.toCartItem());
