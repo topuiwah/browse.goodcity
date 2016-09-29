@@ -267,7 +267,7 @@
   }
 }
 
-#TransportMessageBox {
+#TransportMessageBox #messageBox{
   color: #f34d4f !important;
   width: 50% !important;
   top: 10%!important;
@@ -275,12 +275,12 @@
     top: 0% !important;
   }
   .button {
-    margin-right: 39% !important;
+    margin-right: 41% !important;
     @media #{$medium-only} {
       margin-right: 42% !important;
     }
     @media #{$small-only} {
-      margin-right: 32% !important;
+      margin-right: 39% !important;
     }
   }
 
