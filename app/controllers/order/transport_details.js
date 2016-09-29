@@ -7,12 +7,15 @@ export default Ember.Controller.extend({
   logger: Ember.inject.service(),
   order: Ember.computed.alias("model.order"),
   selectedDate: null,
+  scheduledDate: null,
+  todaysDate: null,
   selectedTime: null,
   selectedId: null,
   userName: Ember.computed.alias("user.fullName"),
   mobilePhone: Ember.computed.alias("user.mobileWithoutCountryCode"),
   isSelfSelected: Ember.computed.equal("selectedId", "self"),
 
+  displayUserPrompt: false,
   speakEnglish: false,
   borrowTrolley: false,
   porterage: false,
@@ -82,6 +85,34 @@ export default Ember.Controller.extend({
     }
   }),
 
+  triggerTransportMessage: Ember.observer('selectedDate', function() {
+    var date = moment(this.get('selectedDate'));
+    var currentDate = moment(new Date().setHours(0,0,0,0));
+    var diff = moment(new Date(date._d - currentDate._d));
+    if(diff.date() > 4 && (date.day() === 2)){
+      this.set('scheduledDate', date.subtract(3, 'day').format('DD MMMM YYYY'));
+      if(currentDate.day() === 0) {
+        this.set('todaysDate', currentDate.add(2, 'day').format('DD MMMM YYYY'));
+      } else if (currentDate.day() === 1) {
+        this.set('todaysDate', currentDate.add(1, 'day').format('DD MMMM YYYY'));
+      } else {
+        this.set('todaysDate', currentDate.format('DD MMMM YYYY'));
+      }
+    } else if ((date.day() - currentDate.day() === 1) || diff.date() <= 4 || diff.date() > 4) {
+      this.set('scheduledDate', date.subtract(1, 'day').format('DD MMMM YYYY'));
+      if(currentDate.day() === 0) {
+        this.set('todaysDate', currentDate.add(2, 'day').format('DD MMMM YYYY'));
+      } else if (currentDate.day() === 1) {
+        this.set('todaysDate', currentDate.add(1, 'day').format('DD MMMM YYYY'));
+      } else if(diff.date() === 2) {
+        this.set('todaysDate', date.format('DD MMMM YYYY'));
+      } else {
+        this.set('todaysDate', currentDate.format('DD MMMM YYYY'));
+      }
+    }
+    this.set('displayUserPrompt', true);
+  }),
+
   gogovanPrice: Ember.computed({
     get: function() {
       new AjaxPromise("/gogovan_orders/calculate_price", "POST", this.session.get('authToken'))
@@ -96,6 +127,7 @@ export default Ember.Controller.extend({
 
   actions: {
     bookSchedule() {
+      this.set('displayUserPrompt', false);
       var controller = this;
       var loadingView = getOwner(this).lookup('component:loading').append();
       var transportType = controller.get("selectedId");
@@ -117,6 +149,7 @@ export default Ember.Controller.extend({
     },
 
     bookGGVSchedule() {
+      this.set('displayUserPrompt', false);
       var controller = this;
       var loadingView = getOwner(controller).lookup('component:loading').append();
       var selectedDate = controller.get('selectedDate');

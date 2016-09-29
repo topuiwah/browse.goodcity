@@ -266,3 +266,47 @@
     text-decoration: underline;
   }
 }
+
+#TransportMessageBox {
+  color: #f34d4f !important;
+  width: 50% !important;
+  top: 10%!important;
+  @media #{$small-only} {
+    top: 0% !important;
+  }
+  .button {
+    margin-right: 39% !important;
+    @media #{$medium-only} {
+      margin-right: 42% !important;
+    }
+    @media #{$small-only} {
+      margin-right: 32% !important;
+    }
+  }
+
+  .important_text, .reserved_text{
+    color: #f34d4f !important;
+    font-weight: bold;
+  }
+
+  @media #{$small-only} {
+    top: 5% !important;
+    padding: 1rem;
+    width: 100% !important;
+  }
+
+  @media #{$medium-only} {
+    width: 75% !important;
+  }
+
+  div {
+    color: #f34d4f !important;
+    width: 100%;
+    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
+
+    @media #{$small-only} {
+      font-size: 0.9rem;
+    }
+  }
+}
