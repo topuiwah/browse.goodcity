@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
+  application: Ember.inject.controller(),
   queryParams:    ['categoryId', 'sortBy'],
   categoryId:     null,
   sortBy:         "createdAt",
@@ -87,6 +88,9 @@ export default Ember.Controller.extend({
 
     requestItem(item) {
       this.get('cart').pushItem(item);
+      Ember.run.later(this, function() {
+        this.get('application').send('displayCart');
+      }, 0);
     },
 
     removeItem(item) {

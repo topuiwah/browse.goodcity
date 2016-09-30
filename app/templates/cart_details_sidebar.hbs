@@ -1,10 +1,8 @@
-{{#if displayCart}}
-  {{#if showCartDetailSidebar}}
-    <div class="reveal-modal-bg">
-    </div>
+{{#if (is-and displayCart showCartDetailSidebar)}}
+  <div class="reveal-modal-bg">
+  </div>
 
-    <div id="messageBox" class="small reveal-modal cart-details-sidebar cart-items">
-      {{partial "cart_content/full_view"}}
-    </div>
-  {{/if}}
+  <div id="messageBox" class="small reveal-modal cart-details-sidebar cart-items">
+    {{partial "cart_content/full_view"}}
+  </div>
 {{/if}}
