@@ -41,6 +41,7 @@ export default Ember.Controller.extend({
     },
 
     checkout() {
+      this.set('showCartDetailSidebar', false);
       var cartHasItems = this.get("cart.cartItems").length;
       if(cartHasItems > 0) {
         this.get('cart').set('checkout', true);
