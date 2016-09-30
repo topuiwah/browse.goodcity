@@ -9,12 +9,12 @@
       <div class="small-4 columns">
         {{#link-to "cart"}}
           <i class="fa fa-angle-left" aria-hidden="true"></i>
-            Return to cart
+            {{t "order.return_to_cart"}}
         {{/link-to}}
       </div>
       <div class="small-8 columns">
         <button id="submit_pin" class="button expand drop_off" {{action 'confirmOrder' order}}>
-          Submit this order
+          {{t "order.submit_this_order"}}
         </button>
       </div>
     </div>

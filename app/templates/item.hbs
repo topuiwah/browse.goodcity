@@ -89,9 +89,9 @@
 
           {{#unless hasDraftOrder}}
             {{#if presentInCart}}
-              <button class="request-item" {{action 'removeItem' item}}> Remove Item </button>
+              <button class="request-item" {{action 'removeItem' item}}> {{t "item.remove_item"}} </button>
             {{else}}
-              <button class="request-item" {{action 'requestItem' item}}> Request Item </button>
+              <button class="request-item" {{action 'requestItem' item}}> {{t "item.request_item"}} </button>
             {{/if}}
           {{/unless}}
 

@@ -11,19 +11,19 @@
             <div class = "small-12 columns">
               <div class="purpose_section">
                 <div class="title">Purpose(s)*</div>
-                <div>Tick any that apply</div>
+                <div>{{t "order.tick_any"}}</div>
 
                 {{#if blankPurpose}}
                   <div class="error-box">
                     <i class="fa fa-exclamation-triangle"></i>
-                    Please select purpose from list.
+                    {{t "order.select_purpose"}}
                   </div>
                 {{/if}}
 
                 <div class='checkbox'>
                   {{input type="checkbox" name="organisation" checked=organisation id='1' }}
                   <label for='1'><span>
-                    For our charity (facilities / programs etc.)
+                    {{t "order.for_our_charity"}}
                   </span></label>
                 </div>
 
@@ -31,7 +31,7 @@
                   {{input type="checkbox" name="client" checked=client id='2' }}
                   <label for='2'>
                     <span>
-                      For client / beneficiary (personal use)
+                      {{t "order.for_client"}}
                     </span>
                   </label>
                 </div>
@@ -39,7 +39,7 @@
                 <div class='checkbox'>
                   {{input type="checkbox" name="trade" checked=trade id='3' }}
                   <label for='3'><span>
-                    For charity sale, bartering (any form of trade)
+                    {{t "order.for_charity_sale"}}
                   </span></label>
                 </div>
 
@@ -56,12 +56,12 @@
             <div class="small-4 columns">
               {{#link-to "cart"}}
                 <i class="fa fa-angle-left" aria-hidden="true"></i>
-                Return to cart
+                {{t "order.return_to_cart"}}
               {{/link-to}}
             </div>
             <div class="small-8 columns">
               <button id="submit_pin" class="button expand" {{action 'submit' target=form}}>
-                Continue to transport details
+                {{t "order.continue_to_transport_details"}}
               </button>
             </div>
           </div>
