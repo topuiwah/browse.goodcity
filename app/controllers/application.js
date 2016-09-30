@@ -10,6 +10,7 @@ export default Ember.Controller.extend({
   }),
 
   displayCart: false,
+  showCartDetailSidebar: false,
   cartscroll: Ember.inject.service(),
 
   hasCartItems: Ember.computed.alias('cart.isNotEmpty'),
@@ -17,6 +18,7 @@ export default Ember.Controller.extend({
 
   actions: {
     displayCart() {
+      this.set('showCartDetailSidebar', true);
       this.toggleProperty('displayCart');
       Ember.run.later(this, function() {
         this.get('cartscroll').resize();

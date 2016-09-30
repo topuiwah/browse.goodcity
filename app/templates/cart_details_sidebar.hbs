@@ -1,8 +1,10 @@
 {{#if displayCart}}
-  <div class="reveal-modal-bg">
-  </div>
+  {{#if showCartDetailSidebar}}
+    <div class="reveal-modal-bg">
+    </div>
 
-  <div id="messageBox" class="small reveal-modal cart-details-sidebar cart-items">
-    {{partial "cart_content/full_view"}}
-  </div>
+    <div id="messageBox" class="small reveal-modal cart-details-sidebar cart-items">
+      {{partial "cart_content/full_view"}}
+    </div>
+  {{/if}}
 {{/if}}
