@@ -1,17 +1,17 @@
 <div class="cart-controls">
   <p id="messageBoxText">
-    <i class="fa fa-truck" aria-hidden="true"></i> Your Request
+    <i class="fa fa-truck" aria-hidden="true"></i> {{t "cart_content.your_request"}}
   </p>
 
   <div class="row">
     <div class="small-6 columns">
       <a {{action 'displayCart'}} class="button expand secondary">
-        Continue Browsing
+        {{t "cart_content.continue_browsing"}}
       </a>
     </div>
     <div class="small-6 columns">
       <a {{action 'checkout'}} class="button expand">
-        Submit Request
+        {{t "cart_content.submit_request"}}
       </a>
     </div>
   </div>

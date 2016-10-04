@@ -11,13 +11,13 @@
           <li>
             <img src="{{category.imageUrl}}" />
             <div class='main_category'>
-              {{#link-to 'package_category' category class="big_txt"}}
+              {{#link-to 'package_category' category.id class="big_txt"}}
                 {{category.name}} ({{category.items.length}})
               {{/link-to}}
             </div>
             <ul class="list subcategories hide-for-small">
               {{#each category.childCategories as |childCategory|}}
-                {{#link-to 'package_category' childCategory class="custom_a"}}
+                {{#link-to 'package_category' childCategory.id class="custom_a"}}
                   <li>{{childCategory.name}} ({{childCategory.items.length}})</li>
                 {{/link-to}}
               {{/each}}

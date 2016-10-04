@@ -1,30 +1,38 @@
 <nav class="tab-bar">
   <section class="tab-bar-section">
-    <h1 class="title">GoodCity Order</h1>
+    <h1 class="title">{{t "order.goodcity_order"}}</h1>
   </section>
 </nav>
 
 <div class="navigation_list">
-  {{#link-to "cart" classNames="cart_link"}}Cart{{/link-to}} >
+  {{#link-to "cart" classNames="cart_link"}}
+    {{t "order.cart"}}
+  {{/link-to}} >
 
   {{#unless session.isLoggedIn}}
-    <a class="active">Log in</a> >
-    Order details >
-    Transport details >
-    Confirm
+    <a class="active">{{t "order_details.login"}}</a> >
+    {{t "order.order_details"}} >
+    {{t "order.transport_detail"}} >
+    {{t "order.confirm"}}
   {{else}}
-    {{#link-to "order_details"}}Order details{{/link-to}} >
+    {{#link-to "order_details"}}
+      {{t "order.order_details"}}
+    {{/link-to}} >
 
     {{#if order}}
-      {{#link-to "order.transport_details" order}}Transport details{{/link-to}} >
+      {{#link-to "order.transport_details" order}}
+        {{t "order.transport_detail"}}
+      {{/link-to}} >
     {{else}}
-      Transport details >
+      {{t "order.transport_detail"}} >
     {{/if}}
 
     {{#if order.orderTransport}}
-      {{#link-to "order.confirm" order}}Confirm{{/link-to}}
+      {{#link-to "order.confirm" order}}
+        {{t "order.confirm"}}
+      {{/link-to}}
     {{else}}
-      Confirm
+      {{t "order.confirm"}}
     {{/if}}
 
   {{/unless}}

@@ -1,5 +1,5 @@
 <div class="transport-detail">
-  <div class="name">Transport method</div>
+  <div class="name">{{t "order.transport_details.transport_method"}}</div>
 
   <div class="row custom_radio_buttons">
     <div class="radio-button small-1 columns">
@@ -10,7 +10,7 @@
       id="self"}}
     </div>
     <label class="radio-button-text small-11 columns" for="self">
-      We will collect with our own vehicle(s)
+      {{t "order.transport_details.collect_with_own_vehicle"}}
     </label>
   </div>
   <div class="row custom_radio_buttons">
@@ -22,7 +22,7 @@
       id="ggv"}}
     </div>
     <label class="radio-button-text small-11 columns" for="ggv">
-      We would like the items sent (recipient pays the driver)
+      {{t "order.transport_details.send_item_with_driver"}}
     </label>
   </div>
 
@@ -35,17 +35,17 @@
   {{#message-box btn1Text="Okay" id="TransportMessageBox" isVisible=displayUserPrompt classNames="popupOverlay designate-form"}}
     <div class="warning_text important_text">
       <i class="fa fa-exclamation-triangle"></i>
-      Goods are granted on "first come first served" basis.
+      {{t 'plan_transport.first_come_first_serve'}}
     </div>
     <div class="reserved_text">
-      Your requested item will be reserved on {{scheduledDate}}. On that day we will call you to confirm which of the requested items are available before finalizing the order.
+      {{t 'plan_transport.reserved_text' scheduledDate=scheduledDate}}
     </div>
     <div class="info_text">
-      If another person asks for an item you have requested and they arrange the transport before {{scheduledDate}}, they will get the item and you will not.
-      <span class="important_text"> To guarantee your order, arrange transport for {{todaysDate}}</span>(we would then reserve your items today).
+      {{t 'plan_transport.info_text' scheduledDate=scheduledDate}}
+      <span class="important_text"> {{t 'plan_transport.arrange_transport' todaysDate=todaysDate}}</span>{{t 'plan_transport.reserve_your_items'}}
     </div>
     <div class="explanation_text">
-      Each day we put aside items due to dispatch the following day. It is too costly and complicated for us to reserve items for longer. If we are unable to contact you to confirm or if you do not arrive on the {{scheduledDate}}, the items will be released back into stock and your order canceled.
+      {{t 'plan_transport.explanation_text' scheduledDate=scheduledDate}}
     </div>
   {{/message-box}}
 </div>
