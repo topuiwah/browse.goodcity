@@ -3,6 +3,9 @@
 }
 
 .view-item {
+  @media only screen and (min-width: 120.1em) {
+    margin-left: 4rem !important;
+  }
   &.main-section{
     padding-top: 1rem;
     padding-left: 0;
@@ -95,6 +98,9 @@
 }
 
 .item-controls{
+  @media only screen and (min-width: 120.1em) {
+    margin-left: 4rem !important;
+  }
   @media #{$small-only} {
     border-bottom: none;
     top: -3rem;
