@@ -31,7 +31,7 @@ export default DS.Model.extend({
     return this.store.peekAll("package_category");
   }),
 
-  allItems: Ember.computed('childCategories', 'items', function(){
+  allItems: Ember.computed('childCategories.[]', 'items.[]', function(){
     var items = [];
     if(this.get('isParent')) {
       this.get('childCategories').forEach(function(category){
@@ -41,7 +41,7 @@ export default DS.Model.extend({
     return items.uniq();
   }),
 
-  items: Ember.computed('packageTypeCodes', 'packageTypes.@each.getItemPackageList', function(){
+  items: Ember.computed('packageTypeCodes', 'packageTypes.@each.getItemPackageList', 'childCategories.@each.items.[]', function(){
     var items = [];
     if(this.get('isParent')) {
       return this.get('allItems');
