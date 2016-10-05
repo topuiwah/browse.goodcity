@@ -30,13 +30,13 @@
           <div class="small-6 columns">
             {{record.name}}
             {{#unless record.available}}
-              <div class="unavailable">Sorry! This item is no longer available.</div>
+              <div class="unavailable">{{t "cart_content.unavailable"}}</div>
             {{/unless}}
           </div>
 
           <div class="small-3 columns remove_link" {{action 'removeItem' record.id record.modelType}}>
             <i class="fa fa-times" aria-hidden="true"></i>
-            <span>Remove</span>
+            <span>{{t "cart_content.remove"}}</span>
           </div>
         </div>
       </li>

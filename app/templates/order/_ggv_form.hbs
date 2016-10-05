@@ -6,8 +6,8 @@
           <div class="small-12 columns">
 
             <div class="row">
-              <div class="name collection">Delivery date / time</div>
-              <div class="collection-data">Limited to Crossroad's opening days/times.</div>
+              <div class="name collection">{{t "order.vehicle.delivery_date_time"}}</div>
+              <div class="collection-data">{{t "order.limited_crossroads_opening_days_and_time"}}</div>
             </div>
 
             <div class="row time_inputs">
@@ -34,7 +34,7 @@
             </div>
 
             <div class="row">
-              <div class="name collection">Delivery district</div>
+              <div class="name collection">{{t "gogovan.book_van.delivery_district"}}</div>
             </div>
 
             <div class="row location-dropdown">
@@ -58,7 +58,7 @@
             </div>
 
             <div class="row">
-              <div class="name collection">Vehicle type</div>
+              <div class="name collection">{{t "gogovan.book_van.vehicle"}}</div>
             </div>
 
             <div class="gogovan-req ui">
@@ -134,24 +134,24 @@
                 <div class="ggv-price-box">
                   <div class="row">
                     <div class="small-8 columns price-text">
-                      Best Price estimate
+                      {{t "gogovan.book_van.best_price_estimate"}}
                       <span>${{gogovanPrice}}</span>
                     </div>
                     <div class="small-4 columns ggv_logo">
                       <img src="assets/images/gogo-van.jpg" class='delivery-image'/>
                     </div>
                   </div>
-                  <div class="ggv_link"><a href="https://www.gogovan.com.hk/en/pricing" target="_blank">Learn more about price</a></div>
+                  <div class="ggv_link"><a href="https://www.gogovan.com.hk/en/pricing" target="_blank">{{t "gogovan.book_van.learn_about_prices"}}</a></div>
                 </div>
               </div>
 
             </div>
 
             <div class="row">
-              <div class="name collection">Delivery contact person</div>
+              <div class="name collection">{{t "gogovan.book_van.delivery_contact_person"}}</div>
               <div class="collection-data">
-                GoGoVan booking will be placed with this name and number.<br/>
-                Driver will call this contcat to confirm details and liaise at drop-off time.
+                {{t "gogovan.book_van.booking_with_name"}}<br/>
+                {{t "gogovan.book_van.driver_call_to_confirm"}}
               </div>
             </div>
 
@@ -177,12 +177,12 @@
         <div class="small-4 columns">
           {{#link-to "cart"}}
             <i class="fa fa-angle-left" aria-hidden="true"></i>
-            Return to cart
+            {{t "order.return_to_cart"}}
           {{/link-to}}
         </div>
         <div class="small-8 columns">
           <button id="submit_pin" class="button expand book_van" {{action 'submit' target=form}}>
-            Continue to confirm details
+            {{t "order.continue_to_confirm_details"}}
           </button>
         </div>
       </div>
