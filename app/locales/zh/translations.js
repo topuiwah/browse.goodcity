@@ -47,7 +47,8 @@ export default {
     "condition": "條件",
     "quantity": "數量",
     "size": "尺寸",
-    "categories": "分類"
+    "categories": "分類",
+    "image_unavailable": "No image available."
   },
 
   "page": {
@@ -64,7 +65,8 @@ export default {
   "_resend": {
     "no_sms" : "Haven't received SMS code?",
     "please_wait" : "Please wait a few minutes",
-    "resend" : "Resend Code"
+    "resend" : "Resend Code",
+    "back_to_phone_number": "Back to phone number input"
   },
 
   "_verification_pin": {
@@ -92,7 +94,12 @@ export default {
       "am": "AM",
       "pm": "PM",
       "vehicle": "Vehicle Type",
-      "delivery_district": "Delivery district"
+      "delivery_district": "Delivery district",
+      "learn_about_prices": "Learn more about price",
+      "best_price_estimate": "Best Price estimate",
+      "delivery_contact_person": "Delivery contact person",
+      "booking_with_name": "GoGoVan booking will be placed with this name and number.",
+      "driver_call_to_confirm": "Driver will call this contcat to confirm details and liaise at drop-off time.",
     }
   },
 
@@ -113,6 +120,7 @@ export default {
     "continue_browsing": "Continue Browsing",
     "submit_request": "Submit Request",
     "remove": "Remove",
+    "unavailable": "Sorry! This item is no longer available."
   },
 
   "order": {
@@ -143,7 +151,8 @@ export default {
       "send_item_with_driver": "We would like the items sent (recipient pays the driver)"
     },
     "vehicle": {
-      "collection_date_time": "Collection date / time"
+      "collection_date_time": "Collection date / time",
+      "delivery_date_time": "Delivery date / time"
     },
     "gogovan": {
       "requirements": {
@@ -154,7 +163,10 @@ export default {
     },
     "cart_details": {
       "cart_summary": "Show order summary"
-    }
+    },
+    "purpose_section": {
+      "title": "Purpose(s)*"
+    },
   },
   'plan_transport': {
     'first_come_first_serve': 'Goods are granted on "first come first served" basis.',
