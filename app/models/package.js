@@ -1,15 +1,13 @@
 import Ember from 'ember';
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import { belongsTo, hasMany } from 'ember-data/relationships';
 import cloudinaryImage from '../mixins/cloudinary_image';
 const {
   getOwner
 } = Ember;
 
-var attr = DS.attr,
-    belongsTo = DS.belongsTo,
-    hasMany = DS.hasMany;
-
-export default DS.Model.extend(cloudinaryImage, {
+export default Model.extend(cloudinaryImage, {
   quantity:        attr('number'),
   length:          attr('number'),
   width:           attr('number'),
