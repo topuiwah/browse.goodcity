@@ -1,8 +1,6 @@
-import DS from 'ember-data';
+import attr from 'ember-data/attr';
 import Ember from 'ember';
 import Addressable from './addressable';
-
-var attr = DS.attr;
 
 export default Addressable.extend({
   firstName:   attr('string'),

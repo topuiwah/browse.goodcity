@@ -1,11 +1,10 @@
 import Ember from 'ember';
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import { belongsTo } from 'ember-data/relationships';
 import cloudinaryImage from '../mixins/cloudinary_image';
 
-var attr = DS.attr,
-  belongsTo = DS.belongsTo;
-
-export default DS.Model.extend(cloudinaryImage, {
+export default Model.extend(cloudinaryImage, {
   favourite:     attr('boolean'),
   cloudinaryId:  attr('string'),
   package:       belongsTo('package', { async: false }),

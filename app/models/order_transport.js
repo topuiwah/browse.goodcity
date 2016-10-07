@@ -1,10 +1,9 @@
-import DS from 'ember-data';
 import Ember from 'ember';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import { belongsTo } from 'ember-data/relationships';
 
-var attr = DS.attr,
-    belongsTo = DS.belongsTo;
-
-export default DS.Model.extend({
+export default Model.extend({
 
   timeslot:      attr('string'),
   transportType: attr('string'),
