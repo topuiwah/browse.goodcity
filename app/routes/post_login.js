@@ -14,8 +14,5 @@ export default Ember.Route.extend(preloadDataMixin, {
       attemptedTransition.retry();
       this.set('attemptedTransition', null);
     }
-    else {
-      this.transitionTo('/browse');
-    }
   }
 });

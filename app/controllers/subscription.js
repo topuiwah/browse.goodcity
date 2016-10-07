@@ -108,7 +108,7 @@ export default Ember.Controller.extend({
     var packageId = data.item.package.id;
     var cartItem = cartContent.filterBy("modelType", "package").filterBy("id", packageId.toString()).get("firstObject");
 
-    if (["create","update"].contains(data.operation)) {
+    if (["create","update"].includes(data.operation)) {
         this.store.pushPayload(data.item);
 
         var unDispatchedPkg = [];
