@@ -1,5 +1,8 @@
 ul.pagination {
   margin-top: 2.6rem;
+  @media only screen and (min-width: 120.064em) {
+    margin-left: 4rem !important;
+  }
   .arrow a{
     i{
         font-size: 70%;
