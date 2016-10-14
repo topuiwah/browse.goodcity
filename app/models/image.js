@@ -10,27 +10,27 @@ export default Model.extend(cloudinaryImage, {
   package:       belongsTo('package', { async: false }),
   angle:         attr('string'),
 
-  imageUrl: Ember.computed('cloudinaryId', function() {
+  imageUrl: Ember.computed('cloudinaryId', 'angle', function() {
     return this.generateUrl();
   }),
 
-  defaultImageUrl: Ember.computed('cloudinaryId', function() {
+  defaultImageUrl: Ember.computed('cloudinaryId', 'angle', function() {
     return this.generateUrl(500, 500, true);
   }),
 
-  thumbImageUrl: Ember.computed('cloudinaryId', function() {
+  thumbImageUrl: Ember.computed('cloudinaryId', 'angle', function() {
     return this.generateUrl(50, 50, true);
   }),
 
-  cartImageUrl: Ember.computed('cloudinaryId', function() {
+  cartImageUrl: Ember.computed('cloudinaryId', 'angle', function() {
     return this.generateUrl(80, 80, true);
   }),
 
-  previewImageUrl: Ember.computed('cloudinaryId', function() {
+  previewImageUrl: Ember.computed('cloudinaryId', 'angle', function() {
     return this.generateUrl(265, 265, true);
   }),
 
-  smallScreenPreviewImageUrl: Ember.computed('cloudinaryId', function() {
+  smallScreenPreviewImageUrl: Ember.computed('cloudinaryId', 'angle', function() {
     return this.generateUrl(640, 365, true);
   }),
 });
