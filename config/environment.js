@@ -5,7 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'browse',
     environment: environment,
     rootURL: '/',
-    locationType: 'auto',
+    defaultLocationType: 'auto',
     
     EmberENV: {
       FEATURES: {
