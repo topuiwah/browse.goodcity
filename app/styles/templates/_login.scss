@@ -5,6 +5,10 @@
 }
 
 .login-page {
+  @media #{$medium-only}{
+    margin-left: 3.5rem;
+  }
+
   .tab-bar-section {
     padding: 0;
   }
