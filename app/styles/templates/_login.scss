@@ -5,6 +5,10 @@
 }
 
 .login-page {
+  @media #{$medium-only}{
+    margin-left: 3.5rem;
+  }
+
   .tab-bar-section {
     padding: 0;
   }
@@ -14,6 +18,7 @@
     padding: 2rem 1.5rem 2rem 2rem;
     background-color: #1A3964;
     font-size: 0.9rem;
+    width: 98% !important;
     @media #{$small-only} {
       font-size: 0.8rem;
       padding: 1.5rem .5rem 1.5rem 1.5rem;
@@ -35,36 +40,6 @@
     margin-top: 3rem;
     @media #{$small-only} {
       margin-top: 1rem;
-    }
-  }
-
-  .mobile {
-    margin-top: 2rem;
-
-    span {
-      position: absolute;
-      color: #000;
-      width: 4rem;
-    }
-
-    input {
-      &#mobile {
-        padding-left: 4rem;
-      }
-
-      font-size: 1rem;
-      color: black;
-    }
-
-    label.form-label {
-      font-size: 0.8rem;
-      padding-bottom: 0.5rem;
-    }
-
-    a {
-      text-decoration: underline;
-      color: inherit;
-      font-size: initial;
     }
   }
 }
@@ -100,6 +75,10 @@
     padding: 0.3rem 0.5rem;
     border: 1px solid $tabbar-menu-icon-color;
     padding-right: 1.5rem;
+
+    @media #{$small-only} {
+      font-size: 0.8rem;
+    }
   }
 
   .remove-text{
@@ -113,6 +92,16 @@
 }
 .order_button {
   width: 99% !important;
+
+  @media #{$small-only} {
+    font-size: 0.8rem
+  }
+
+  button {
+    @media #{$small-only} {
+      font-size: 0.8rem !important;
+    }
+  }
 
   a {
     line-height: 2.5rem;
@@ -132,5 +121,35 @@
 
   i {
     color: red;
+  }
+}
+
+.mobile {
+  margin-top: 2rem;
+
+  span {
+    position: absolute;
+    color: #000;
+    width: 4rem;
+  }
+
+  input {
+    &#mobile {
+      padding-left: 4rem;
+    }
+
+    font-size: 1rem;
+    color: black;
+  }
+
+  label.form-label {
+    font-size: 0.8rem;
+    padding-bottom: 0.5rem;
+  }
+
+  a {
+    text-decoration: underline;
+    color: inherit;
+    font-size: initial;
   }
 }

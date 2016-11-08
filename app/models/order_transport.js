@@ -1,10 +1,9 @@
-import DS from 'ember-data';
 import Ember from 'ember';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import { belongsTo } from 'ember-data/relationships';
 
-var attr = DS.attr,
-    belongsTo = DS.belongsTo;
-
-export default DS.Model.extend({
+export default Model.extend({
 
   timeslot:      attr('string'),
   transportType: attr('string'),
@@ -13,7 +12,12 @@ export default DS.Model.extend({
 
   contact:  belongsTo('contact', { async: false }),
   order:    belongsTo('order', { async: false }),
+  gogovanTransport:    belongsTo('gogovan_transport', { async: false }),
 
-  isGGV: Ember.computed.equal("transportType", "GGV"),
+  isGGV: Ember.computed.equal("transportType", "ggv"),
+
+  needEnglish: attr("boolean"),
+  needCart: attr("boolean"),
+  needCarry: attr("boolean"),
 
 });

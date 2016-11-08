@@ -3,6 +3,8 @@ machine:
     version: 4
 
 dependencies:
+  pre:
+    - npm install -g bower
   post:
     - ./node_modules/ember-cli/node_modules/bower/bin/bower install
 
@@ -19,6 +21,7 @@ deployment:
     branch: master
     commands:
       - bundle exec cap staging deploy
+      - bundle exec rake staging android app:release
   production:
     branch: live
     commands:

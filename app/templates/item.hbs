@@ -1,29 +1,29 @@
+<nav class="tab-bar item-controls show-for-small tab-bar-placeholder">
+</nav>
+
 <nav class="tab-bar item-controls">
   <section class='main-section'>
     <div class="row">
-      <div class="large-8 medium-6 small-12 columns hide-for-small">
-        <h1 class="package_catogory_header">
-          {{#link-to 'package_category' categoryObj.id class="category_link"}}
-            {{categoryObj.name}}
-          {{/link-to}} \ {{item.packageType.name}}
-        </h1>
+      <div class="large-8 medium-6 small-12 columns hide-for-small package_catogory_header">
+          {{#link-to 'package_category' categoryObj.id class="package_category_link"}}{{categoryObj.name}}{{/link-to}}
+          <span class="package-type">\ {{item.packageType.name}}</span>
       </div>
 
       <div class="large-4 medium-6 small-12 columns item-page">
-        {{#link-to 'package_category' categoryObj class="button tiny info radius left show-for-small item-remove-icon"}}
+        {{#link-to 'package_category' categoryObj class="no-avatar left show-for-small item-remove-icon"}}
           <i class="fa fa-2x fa-times remove-icon"></i>
         {{/link-to}}
 
         <ul class="text-right pagination right">
           <li class="arrow prev enabled-arrow" {{action "setDirectionAndRender" "moveRight" on="click"}}>
-            <a disabled="{{noPreviousItem}}">
+            <a disabled="{{noPreviousItem}}" class="no-avatar">
               <i class="fa fa-arrow-left"></i>
               <span class="hide-for-small">{{t "itemdetail.previous"}}</span>
             </a>
           </li>
 
           <li class="arrow next enabled-arrow" {{action "setDirectionAndRender" "moveLeft" on="click"}}>
-            <a disabled="{{noNextItem}}">
+            <a disabled="{{noNextItem}}" class="no-avatar">
               <span class="hide-for-small">{{t "itemdetail.next"}}</span>
               <i class="fa fa-arrow-right"></i>
             </a>
@@ -64,39 +64,39 @@
         </nav>
 
         {{!--  --}}
-        <div class="item_details">
-          {{t "itemdetail.condition"}}: {{item.donorCondition.name}}
-        </div>
 
-        {{#each allPackages key="@index" as |package|}}
-          <div class="item_name">{{package.notes}}</div>
-          <p>
-            <div class="item_details">
-              {{t "itemdetail.quantity"}}: {{package.quantity}}
-            </div>
-            <div class="item_details">
-              {{#if package.dimensions}}
-                {{t "itemdetail.size"}}: {{package.dimensions}}
-              {{/if}}
-            </div>
-          </p>
-        {{/each}}
+        <div class="all-items main-section">
+          <div class="item_details">
+            {{t "itemdetail.condition"}}: {{item.donorCondition.name}}
+          </div>
 
-        {{#unless hasDraftOrder}}
-          {{#if presentInCart}}
-            <button class="request-item" {{action 'removeItem' item}}> Remove Item </button>
-          {{else}}
-            <button class="request-item" {{action 'requestItem' item}}> Request Item </button>
-          {{/if}}
-        {{/unless}}
-
-
-        <div class="item_details item_categories">
-          {{#each item.allPackageCategories key="@index" as |category|}}
-            {{#link-to 'package_category' category class="category_link"}}
-              {{category.name}}
-            {{/link-to}},
+          {{#each allPackages key="@index" as |package|}}
+            <div class="item_name">{{package.notes}}</div>
+            <p>
+              <div class="item_details">
+                {{t "itemdetail.quantity"}}: {{package.quantity}}
+              </div>
+              <div class="item_details">
+                {{#if package.dimensions}}
+                  {{t "itemdetail.size"}}: {{package.dimensions}}
+                {{/if}}
+              </div>
+            </p>
           {{/each}}
+
+          {{#unless hasDraftOrder}}
+            {{#if presentInCart}}
+              <button class="request-item" {{action 'removeItem' item}}> {{t "item.remove_item"}} </button>
+            {{else}}
+              <button class="request-item" {{action 'requestItem' item}}> {{t "item.request_item"}} </button>
+            {{/if}}
+          {{/unless}}
+
+          <div class="item_details item_categories">
+            {{#each item.allPackageCategories key="@index" as |category|}}
+              {{#link-to 'package_category' category class="category_link"}}<span class="underline_text">{{category.name}}</span>{{/link-to}}
+            {{/each}}
+          </div>
         </div>
         {{!--  --}}
       </div>

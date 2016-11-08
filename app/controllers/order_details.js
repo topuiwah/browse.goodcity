@@ -9,6 +9,8 @@ export default Ember.Controller.extend({
   client: false,
   trade: false,
 
+  order: Ember.computed.alias('session.draftOrder'),
+
   blankPurpose: Ember.computed("organisation", 'client', 'trade', {
     get() {
       return !(this.get("organisation") || this.get('client') || this.get('trade'));

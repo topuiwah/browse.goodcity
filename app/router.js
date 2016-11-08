@@ -2,7 +2,8 @@ import Ember from 'ember';
 import config from './config/environment';
 
 const Router = Ember.Router.extend({
-  location: config.locationType
+  location: config.locationType,
+  rootURL: config.rootURL
 });
 
 Router.map(function() {
@@ -13,9 +14,11 @@ Router.map(function() {
   this.route('cart');
 
   this.route('login');
+  this.route('post_login');
   this.route('authenticate');
 
   this.route('order_details');
+  this.route('my_orders');
 
   this.route('order', { path: '/order/:order_id/' }, function() {
     this.route('transport_details');
@@ -23,7 +26,6 @@ Router.map(function() {
   });
 
   this.route('confirm');
-
 });
 
 export default Router;

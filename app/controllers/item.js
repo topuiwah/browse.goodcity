@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
+  application: Ember.inject.controller(),
   queryParams:    ['categoryId', 'sortBy'],
   categoryId:     null,
   sortBy:         "createdAt",
@@ -19,9 +20,9 @@ export default Ember.Controller.extend({
     return this.get('cart').hasCartItem(this.get('item'));
   }),
 
-  allPackages: Ember.computed('item.packages', function(){
+  allPackages: Ember.computed('item.packages.@each.isAvailable', function(){
     var item = this.get("item");
-    return item.get("isItem") ? item.get('packages') : [item];
+    return item.get("isItem") ? item.get('packages').filterBy("isAvailable") : [item];
   }),
 
   categoryObj: Ember.computed('categoryId' ,function(){
@@ -87,6 +88,9 @@ export default Ember.Controller.extend({
 
     requestItem(item) {
       this.get('cart').pushItem(item);
+      Ember.run.later(this, function() {
+        this.get('application').send('displayCart');
+      }, 0);
     },
 
     removeItem(item) {

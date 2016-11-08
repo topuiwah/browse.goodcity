@@ -5,39 +5,59 @@
         <div class="name small-4 columns">Transport method:</div>
         <div class="small-8 columns">
           {{#if order.orderTransport.isGGV}}
-            Hired van delivery(GoGoVan)
+            {{t "order.hired_van"}}
           {{else}}
-            Self vehicle
+            {{t "order.self_vehicle"}}
           {{/if}}
         </div>
       </div>
 
       <div class="row">
-        <div class="name small-4 columns">Date:</div>
+        <div class="name small-4 columns">{{t "date"}}:</div>
         <div class="small-8 columns">{{order.orderTransport.scheduledAt}}</div>
       </div>
 
       <div class="row">
-        <div class="name small-4 columns">Time:</div>
+        <div class="name small-4 columns">{{t "time"}}:</div>
         <div class="small-8 columns">{{order.orderTransport.timeslot}}</div>
       </div>
 
       {{#if order.orderTransport.isGGV}}
         <div class="row">
-          <div class="name small-4 columns">Delivery district:</div>
-          <div class="small-8 columns">Kowloon, Mei foo</div>
+          <div class="name small-4 columns">
+            {{t "gogovan.book_van.delivery_district"}}:
+          </div>
+          <div class="small-8 columns">
+            {{order.orderTransport.contact.address.district.name}},
+            {{order.orderTransport.contact.address.district.territory.name}}
+          </div>
         </div>
         <div class="row">
-          <div class="name small-4 columns">Vehicle type:</div>
-          <div class="small-8 columns">5.5 Tonne Truck</div>
+          <div class="name small-4 columns">
+            {{t "gogovan.book_van.vehicle"}}:
+          </div>
+          <div class="small-8 columns">{{order.orderTransport.gogovanTransport.name}}</div>
         </div>
         <div class="row">
-          <div class="name small-4 columns">Extra requirements:</div>
-          <div class="small-8 columns">Borrow trolley; Speak English</div>
+          <div class="name small-4 columns">{{t "gogovan.book_van.requirements"}}:</div>
+          <div class="small-8 columns">
+            {{#if order.orderTransport.needEnglish}}
+              {{t "order.gogovan.requirements.speak_english"}};
+            {{/if}}
+            {{#if order.orderTransport.needCart}}
+              {{t "order.gogovan.requirements.borrow"}}
+            {{/if}}
+            {{#if order.orderTransport.needCarry}}
+              {{t "order.gogovan.requirements.carry"}}
+            {{/if}}
+          </div>
         </div>
         <div class="row">
-          <div class="name small-4 columns">Contact:</div>
-          <div class="small-8 columns">James Chan, 6111 1111</div>
+          <div class="name small-4 columns">{{t "contact"}}:</div>
+          <div class="small-8 columns">
+            {{order.orderTransport.contact.name}},
+            {{order.orderTransport.contact.mobile}}
+          </div>
         </div>
       {{/if}}
     </div>

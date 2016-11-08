@@ -1,15 +1,13 @@
 import Ember from 'ember';
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import { belongsTo, hasMany } from 'ember-data/relationships';
 import cloudinaryImage from '../mixins/cloudinary_image';
 const {
   getOwner
 } = Ember;
 
-var attr = DS.attr,
-    belongsTo = DS.belongsTo,
-    hasMany   = DS.hasMany;
-
-export default DS.Model.extend(cloudinaryImage, {
+export default Model.extend(cloudinaryImage, {
   donorDescription: attr('string'),
   createdAt:        attr('date'),
   updatedAt:        attr('date'),
@@ -18,6 +16,10 @@ export default DS.Model.extend(cloudinaryImage, {
   packageType:      belongsTo('package_type', { async: false }),
   donorCondition:   belongsTo('donor_condition', { async: false }),
   saleable:         attr('boolean'),
+
+  isAvailable: Ember.computed('packages.@each.isAvailable', function() {
+    return this.get('packages').filterBy("isAvailable").length > 0;
+  }),
 
   images: Ember.computed('packages.@each.images.[]', function(){
     var images = [];
@@ -37,11 +39,15 @@ export default DS.Model.extend(cloudinaryImage, {
   }),
 
   otherImages: Ember.computed('images.[]', function(){
-    var images =  this.get("images").toArray();
-    return images.filter((image, index, self) => self.findIndex((t) => t.get('cloudinaryId') === image.get('cloudinaryId')) === index);
+    var images = this.get('images').filter((image, index, self) => self.findIndex((t) => t.get('cloudinaryId') === image.get('cloudinaryId')) === index);
+    return images.removeObject(this.get('favouriteImage'));
   }),
 
-  sortedImages: Ember.computed.alias('otherImages'),
+  sortedImages: Ember.computed('otherImages.[]', 'image', function(){
+    var images = this.get('otherImages').toArray();
+    images.unshift(this.get("favouriteImage"));
+    return images;
+  }),
 
   displayImage: Ember.computed('images.@each.favourite', function() {
     return this.get("favouriteImage") ||
@@ -64,6 +70,10 @@ export default DS.Model.extend(cloudinaryImage, {
     return CartItem.create({
       id: Ember.get(this, 'id'),
       modelType: "item",
+      name: Ember.get(this, 'packageType.name'),
+      imageUrl: Ember.get(this, 'favouriteImage.cartImageUrl'),
+      thumbImageUrl: Ember.get(this, 'favouriteImage.thumbImageUrl'),
+      available: Ember.get(this, 'isAvailable')
     });
   }
 

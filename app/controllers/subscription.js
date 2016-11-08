@@ -104,11 +104,44 @@ export default Ember.Controller.extend({
       return;
     }
 
-    if (["create","update"].contains(data.operation)) {
+    var cartContent = this.get('cart.content');
+    var packageId = data.item.package.id;
+    var cartItem = cartContent.filterBy("modelType", "package").filterBy("id", packageId.toString()).get("firstObject");
+
+    if (["create","update"].includes(data.operation)) {
         this.store.pushPayload(data.item);
+
+        var unDispatchedPkg = [];
+        if(cartContent) {
+          var pkge = this.store.peekRecord('package', data.item.package.id);
+          if(pkge.get('stockitSentOn') && pkge.get('hasSiblingPackages')){
+            var pkgs = pkge.get('item.packages');
+            pkgs.forEach(function(record) {
+              if(!record.get('stockitSentOn')) {
+                  unDispatchedPkg.push(record);
+                }
+            });
+          }
+          if(unDispatchedPkg.length === 1) {
+            this.get("cart").removeItem(pkge.get('item'));
+            this.get('cart').pushItem(unDispatchedPkg.get('firstObject').toCartItem());
+          }
+        }
+
+        if(cartItem) {
+          var pkg = this.store.peekRecord("package", packageId);
+          this.get("cart").pushItem(pkg.toCartItem());
+        }
+
     } else if (existingItem) { //delete
       this.store.unloadRecord(existingItem);
+
+      if(cartItem) {
+        Ember.set(cartItem, "available", false);
+        this.get("cart").pushItem(cartItem);
+      }
     }
+
     run(success);
   }
 });

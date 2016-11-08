@@ -1,19 +1,19 @@
 <nav class="tab-bar show-for-small">
-    <section class="left-small">
-      <a class="left-off-canvas-toggle menu-icon" href="#">
-        <span></span>
-      </a>
-    </section>
+  <section class="left-small">
+    <a class="left-off-canvas-toggle menu-icon" href="#">
+      <span></span>
+    </a>
+  </section>
 
-    <section class="middle tab-bar-section show-for-small">
-      <h1>{{pageTitle}}</h1>
-    </section>
+  <section class="middle tab-bar-section show-for-small">
+    <h1>{{pageTitle}}</h1>
+  </section>
 
-    {{#if hasCartItems}}
-      <section class="right-small" {{action 'displayCart'}}>
-        {{partial 'cart_truck_icon'}}
-      </section>
-    {{/if}}
+  {{#if hasCartItems}}
+    <section class="right-small" {{action 'displayCart'}}>
+      {{partial 'cart_truck_icon'}}
+    </section>
+  {{/if}}
 </nav>
 
 <aside class="left-off-canvas-menu menu-list">
@@ -26,7 +26,7 @@
     </li>
 
     <li>
-      {{#link-to "browse" class="menu-2"}}
+      {{#link-to "my_orders" class="menu-2"}}
         <i class="fa fa-shopping-cart"></i>
         <div>{{t "application.sidebar.myorders"}}</div>
       {{/link-to}}

@@ -4,68 +4,70 @@
       {{partial "navigation_list"}}
       {{partial "organisation_detail"}}
 
-      {{#validatable-form onSubmit=(action 'save_order') as |form|}}
+      {{#unless order}}
+        {{#validatable-form onSubmit=(action 'save_order') as |form|}}
 
-        <div class="row">
-          <div class = "small-12 columns">
-            <div class="purpose_section">
-              <div class="title">Purpose(s)*</div>
-              <div>Tick any that apply</div>
+          <div class="row">
+            <div class = "small-12 columns">
+              <div class="purpose_section">
+                <div class="title">{{t "order.purpose_section.title"}}</div>
+                <div>{{t "order.tick_any"}}</div>
 
-              {{#if blankPurpose}}
-                <div class="error-box">
-                  <i class="fa fa-exclamation-triangle"></i>
-                  Please select purpose from list.
+                {{#if blankPurpose}}
+                  <div class="error-box">
+                    <i class="fa fa-exclamation-triangle"></i>
+                    {{t "order.select_purpose"}}
+                  </div>
+                {{/if}}
+
+                <div class='checkbox'>
+                  {{input type="checkbox" name="organisation" checked=organisation id='1' }}
+                  <label for='1'><span>
+                    {{t "order.for_our_charity"}}
+                  </span></label>
                 </div>
-              {{/if}}
 
-              <div class='checkbox'>
-                {{input type="checkbox" name="organisation" checked=organisation id='1' }}
-                <label for='1'><span>
-                  For our charity (facilities / programs etc.)
-                </span></label>
+                <div class='checkbox'>
+                  {{input type="checkbox" name="client" checked=client id='2' }}
+                  <label for='2'>
+                    <span>
+                      {{t "order.for_client"}}
+                    </span>
+                  </label>
+                </div>
+
+                <div class='checkbox'>
+                  {{input type="checkbox" name="trade" checked=trade id='3' }}
+                  <label for='3'><span>
+                    {{t "order.for_charity_sale"}}
+                  </span></label>
+                </div>
+
+                {{#form-control}}
+                  <i class="fa fa-times-circle remove-text" aria-hidden="true" {{action "clearDescription"}}></i>
+                  {{auto-resize-textarea data-autoresize=true name="description" value=description required="required" pattern=".*\S.*" id="description"}}
+                {{/form-control}}
+
               </div>
-
-              <div class='checkbox'>
-                {{input type="checkbox" name="client" checked=client id='2' }}
-                <label for='2'>
-                  <span>
-                    For client / beneficiary (personal use)
-                  </span>
-                </label>
-              </div>
-
-              <div class='checkbox'>
-                {{input type="checkbox" name="trade" checked=trade id='3' }}
-                <label for='3'><span>
-                  For charity sale, bartering (any form of trade)
-                </span></label>
-              </div>
-
-              {{#form-control}}
-                <i class="fa fa-times-circle remove-text" aria-hidden="true" {{action "clearDescription"}}></i>
-                {{auto-resize-textarea data-autoresize=true name="description" value=description required="required" pattern=".*\S.*" id="description"}}
-              {{/form-control}}
-
             </div>
           </div>
-        </div>
 
-        <div class="row order_button">
-          <div class="small-4 columns">
-            {{#link-to "cart"}}
-              <i class="fa fa-angle-left" aria-hidden="true"></i>
-              Return to cart
-            {{/link-to}}
+          <div class="row order_button">
+            <div class="small-4 columns">
+              {{#link-to "cart"}}
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+                {{t "order.return_to_cart"}}
+              {{/link-to}}
+            </div>
+            <div class="small-8 columns">
+              <button id="submit_pin" class="button expand" {{action 'submit' target=form}}>
+                {{t "order.continue_to_transport_details"}}
+              </button>
+            </div>
           </div>
-          <div class="small-8 columns">
-            <button id="submit_pin" class="button expand" {{action 'submit' target=form}}>
-              Continue to transport details
-            </button>
-          </div>
-        </div>
 
-      {{/validatable-form}}
+        {{/validatable-form}}
+      {{/unless}}
     </section>
   </div>
 

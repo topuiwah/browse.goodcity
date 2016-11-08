@@ -5,33 +5,30 @@ export default ObserveScreenResize.extend({
 
   lightGalleryObj: null,
 
-  isSmallScreen: Ember.computed({
-    get() {
-      return this.screenResized();
-    },
-    set(key, value) {
-      return value;
-    }
-  }),
-
   observeScreen: function() {
-    if(this.isDestroyed || this.isDestroying) {
+    if(!this.isDestroyed || !this.isDestroying) {
       this.set("isSmallScreen", this.screenResized());
       this.initializeLightgallery();
     }
   },
 
   initializeLightgallery: function(){
-    var gallery = this.get("lightGalleryObj");
+
+    var gallery = Ember.$("#lightGallery").data('lightGallery');
     if(gallery) { gallery.destroy(); }
 
     var lightGalleryObj = Ember.$("#lightGallery").lightGallery({
-      thumbnail: false,
+      mode: 'lg-slide',
+      zoom: true,
+      download: false,
+      scale: 1,
       hideControlOnEnd: true,
-      closable: false,
+      closable: true,
+      loop: true,
       counter: true,
-      swipeThreshold : 50,
-      enableTouch : true
+      enableTouch : true,
+      enableDrag: true,
+      selector: '.imageZoom',
     });
     this.set('lightGalleryObj', lightGalleryObj);
   },
@@ -40,4 +37,8 @@ export default ObserveScreenResize.extend({
     this.initializeLightgallery();
   },
 
+  willDestroyElement() {
+    var gallery = Ember.$("#lightGallery").data('lightGallery');
+    if(gallery) { gallery.destroy(); }
+  }
 });

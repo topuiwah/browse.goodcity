@@ -30,7 +30,7 @@ export default Ember.Controller.extend({
           _this.set('session.otpAuthKey', null);
           _this.store.pushPayload(data.user);
           _this.setProperties({pin: null});
-          _this.transitionToRoute(_this.get("attemptedTransition.targetName") || "/");
+          _this.transitionToRoute('post_login');
         })
         .catch(function(jqXHR) {
           Ember.$('#pin').closest('div').addClass('error');
@@ -54,7 +54,7 @@ export default Ember.Controller.extend({
           this.transitionToRoute('/authenticate');
         })
         .catch(error => {
-          if ([422, 403].contains(error.status)) {
+          if ([422, 403].includes(error.status)) {
             Ember.$('#mobile').closest('.mobile').addClass('error');
             return;
           }

@@ -1,0 +1,51 @@
+<div class="transport-detail">
+  <div class="name">{{t "order.transport_details.transport_method"}}</div>
+
+  <div class="row custom_radio_buttons">
+    <div class="radio-button small-1 columns">
+      {{radio-button
+      name="selectReason"
+      selection=selectedId
+      value="self"
+      id="self"}}
+    </div>
+    <label class="radio-button-text small-11 columns" for="self">
+      {{t "order.transport_details.collect_with_own_vehicle"}}
+    </label>
+  </div>
+  <div class="row custom_radio_buttons">
+    <div class="radio-button small-1 columns">
+      {{radio-button
+      name="selectReason"
+      selection=selectedId
+      value="ggv"
+      id="ggv"}}
+    </div>
+    <label class="radio-button-text small-11 columns" for="ggv">
+      {{t "order.transport_details.send_item_with_driver"}}
+    </label>
+  </div>
+
+  {{#if isSelfSelected}}
+    {{partial "order/self_vehicle_form"}}
+  {{else}}
+    {{partial "order/ggv_form"}}
+  {{/if}}
+
+  {{#message-box btn1Text="Okay" id="TransportMessageBox" isVisible=displayUserPrompt classNames="popupOverlay designate-form"}}
+    <div class="warning_text important_text">
+      <i class="fa fa-exclamation-triangle"></i>
+      {{t 'plan_transport.first_come_first_serve'}}
+    </div>
+    <div class="reserved_text">
+      {{t 'plan_transport.reserved_text' scheduledDate=scheduledDate}}
+    </div>
+    <div class="info_text">
+      {{t 'plan_transport.info_text' scheduledDate=scheduledDate}}
+      <span class="important_text"> {{t 'plan_transport.arrange_transport' todaysDate=todaysDate}}</span>{{t 'plan_transport.reserve_your_items'}}
+    </div>
+    <div class="explanation_text">
+      {{t 'plan_transport.explanation_text' scheduledDate=scheduledDate}}
+    </div>
+  {{/message-box}}
+</div>

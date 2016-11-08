@@ -1,18 +1,23 @@
-<div class="row" id="lightGallery">
-
-  {{#if isSmallScreen}}
-    <div data-src={{item.favouriteImage.imageUrl}} class="small-screen-preview view-image show-for-small">
-      {{cloudinary-image-tag src=smallScreenPreviewUrl}}
-    </div>
+<div id={{if item.favouriteImage "lightGallery"}}>
+  {{#if screenresize.isSmallScreen}}
+    {{#if item.favouriteImage}}
+      <div data-src={{item.favouriteImage.imageUrl}} class="small-screen-preview view-image show-for-small imageZoom">
+        {{cloudinary-image-tag src=smallScreenPreviewUrl isSmallScreen=true}}
+      </div>
+    {{else}}
+      {{partial 'no_image'}}
+    {{/if}}
   {{else}}
-    <div class="view-image hide-for-small" data-src="{{item.favouriteImage.imageUrl}}">
+    <div class="view-image hide-for-small imageZoom" data-src="{{item.favouriteImage.imageUrl}}">
       {{cloudinary-image-tag src=previewUrl}}
     </div>
   {{/if}}
 
   {{#each item.otherImages key="@index" as |image|}}
-    <div data-src={{image.imageUrl}} class="image-src hidden">
+    <div data-src={{image.imageUrl}} class="image-src hidden imageZoom">
       <img class="thumb-image" src="{{image.thumbImageUrl}}" />
     </div>
   {{/each}}
 </div>
+
+

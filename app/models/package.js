@@ -1,15 +1,13 @@
 import Ember from 'ember';
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import { belongsTo, hasMany } from 'ember-data/relationships';
 import cloudinaryImage from '../mixins/cloudinary_image';
 const {
   getOwner
 } = Ember;
 
-var attr = DS.attr,
-    belongsTo = DS.belongsTo,
-    hasMany = DS.hasMany;
-
-export default DS.Model.extend(cloudinaryImage, {
+export default Model.extend(cloudinaryImage, {
   quantity:        attr('number'),
   length:          attr('number'),
   width:           attr('number'),
@@ -23,6 +21,14 @@ export default DS.Model.extend(cloudinaryImage, {
   images:          hasMany('image', { async: false }),
   donorCondition:  belongsTo('donor_condition', { async: false }),
   itemId:          attr('number'),
+  stockitSentOn:   attr('date'),
+  orderId:         attr('number'),
+  allowWebPublish: attr('boolean'),
+
+  isDispatched: Ember.computed.bool("stockitSentOn"),
+  isAvailable: Ember.computed('isDispatched', 'allowWebPublish', function() {
+    return !this.get("isDispatched") && this.get("allowWebPublish");
+  }),
 
   allPackageCategories: Ember.computed.alias('packageType.allPackageCategories'),
 
@@ -71,7 +77,9 @@ export default DS.Model.extend(cloudinaryImage, {
     return images;
   }),
 
-  displayImageUrl: Ember.computed("image", "item.displayImageUrl", function() {
+  displayImage: Ember.computed.alias('image'),
+
+  displayImageUrl: Ember.computed("image", function() {
     return this.get('image.defaultImageUrl') || this.generateUrl(500, 500, true);
   }),
 
@@ -85,6 +93,10 @@ export default DS.Model.extend(cloudinaryImage, {
     return CartItem.create({
       id: Ember.get(this, 'id'),
       modelType: "package",
+      name: Ember.get(this, 'packageType.name'),
+      imageUrl: Ember.get(this, 'favouriteImage.cartImageUrl'),
+      thumbImageUrl: Ember.get(this, 'favouriteImage.thumbImageUrl'),
+      available: Ember.get(this, 'isAvailable')
     });
   }
 });

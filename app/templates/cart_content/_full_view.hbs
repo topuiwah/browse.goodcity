@@ -1,17 +1,17 @@
 <div class="cart-controls">
   <p id="messageBoxText">
-    <i class="fa fa-truck" aria-hidden="true"></i> Your Request
+    <i class="fa fa-truck" aria-hidden="true"></i> {{t "cart_content.your_request"}}
   </p>
 
   <div class="row">
     <div class="small-6 columns">
       <a {{action 'displayCart'}} class="button expand secondary">
-        Continue Browsing
+        {{t "cart_content.continue_browsing"}}
       </a>
     </div>
     <div class="small-6 columns">
       <a {{action 'checkout'}} class="button expand">
-        Submit Request
+        {{t "cart_content.submit_request"}}
       </a>
     </div>
   </div>
@@ -20,20 +20,23 @@
 <div class="row item-collection">
   <div class="small-12 columns">
 
-    {{#each cart.cartItems as |record|}}
+    {{#each cart.content as |record|}}
       <li>
         <div class="row">
           <div class="small-3 columns">
-            <img class="thumb-image" src="{{record.favouriteImage.cartImageUrl}}" />
+            <img class="thumb-image {{unless record.available 'grayed-image'}}" src="{{record.imageUrl}}" />
           </div>
 
-          <div class="small-5 columns">
-            {{record.packageType.name}}
+          <div class="small-6 columns">
+            {{record.name}}
+            {{#unless record.available}}
+              <div class="unavailable">{{t "cart_content.unavailable"}}</div>
+            {{/unless}}
           </div>
 
-          <div class="small-4 columns remove_link" {{action 'removeItem' record}}>
+          <div class="small-3 columns remove_link" {{action 'removeItem' record.id record.modelType}}>
             <i class="fa fa-times" aria-hidden="true"></i>
-            <span>Remove</span>
+            <span>{{t "cart_content.remove"}}</span>
           </div>
         </div>
       </li>

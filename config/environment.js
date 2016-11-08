@@ -5,7 +5,8 @@ module.exports = function(environment) {
     modulePrefix: 'browse',
     environment: environment,
     baseURL: '/',
-    locationType: 'auto',
+    defaultLocationType: 'auto',
+    
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -39,8 +40,8 @@ module.exports = function(environment) {
       AIRBRAKE_PROJECT_ID: "57da6273d30d85381d00000b",
       AIRBRAKE_PROJECT_KEY: "a4776dabb8dadd580c0f92205fc897a6",
 
-      PRELOAD_TYPES: ["package_type", "package_category", "donor_condition", "package"],
-      PRELOAD_AUTHORIZED_TYPES: ["order"],
+      PRELOAD_TYPES: ["package_type", "district", "territory", "package_category", "donor_condition", "package"],
+      PRELOAD_AUTHORIZED_TYPES: ["order", "gogovan_transport"],
 
       SHA: process.env.APP_SHA || "00000000",
       VERSION: "1.0.0"
@@ -48,6 +49,10 @@ module.exports = function(environment) {
 
     i18n: {
       defaultLocale: 'en'
+    },
+    cordova: {
+      rebuildOnChange: false,
+      emulate: false
     }
   };
 

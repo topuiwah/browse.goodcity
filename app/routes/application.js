@@ -9,10 +9,17 @@ export default Ember.Route.extend(preloadDataMixin, {
   logger: Ember.inject.service(),
   messageBox: Ember.inject.service(),
   i18n: Ember.inject.service(),
+  previousRoute: null,
 
-  beforeModel() {
+  beforeModel(transition) {
     this.set("i18n.locale", this.get("session.language") || config.i18n.defaultLocale);
-    Ember.onerror = window.onerror = error => this.handleError(error);
+    this.set('previousRoute',transition);
+    Ember.onerror = window.onerror = error => {
+      if(error.errors && error.errors[0] && error.errors[0].status === "401") {
+        transition.abort();
+      }
+      this.handleError(error);
+    };
     return this.preloadData();
   },
 
@@ -31,9 +38,20 @@ export default Ember.Route.extend(preloadDataMixin, {
       try { status = parseInt(reason.errors[0].status); }
       catch (err) { status = reason.status; }
 
-      this.get("logger").error(reason);
-      this.get("messageBox").alert(this.get("i18n").t("unexpected_error"));
-
+      if (status === 401) {
+        if (this.session.get('isLoggedIn')) {
+          this.session.clear();
+          this.store.unloadAll();
+          var loginController = this.controllerFor('login');
+          loginController.set('attemptedTransition', this.get('previousRoute'));
+          this.get('messageBox').alert(this.get("i18n").t('must_login'), () =>
+            this.transitionTo('login')
+          );
+        }
+      } else {
+        this.get("logger").error(reason);
+        this.get("messageBox").alert(this.get("i18n").t("unexpected_error"));
+      }
     } catch (err) {}
   },
 
