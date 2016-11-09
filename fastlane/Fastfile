@@ -38,7 +38,7 @@ platform :ios do
     deliver(
       username: ENV["ITUNESCONNECT_USER"],
       ipa: ENV["IPA_FILE"],
-      skip_binary_upload: false,
+      skip_binary_upload: true,
       skip_screenshots: true,
       app_version: "#{version_number}",
       copyright: "#{Time.now.year} Crossroads Foundation Limited",

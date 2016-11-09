@@ -6,7 +6,7 @@
   </description>
   <author href="https://www.crossroads.org.hk">Crossroads</author>
   <content src="index.html" />
-
+  <hook src="scripts/update_build_number.py" type="before_prepare" />
   <access origin="*" />
   <preference name="DisallowOverscroll" value="true" />
 

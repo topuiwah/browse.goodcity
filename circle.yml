@@ -17,10 +17,15 @@ dependencies:
     - echo 'export PATH=$ANDROID_HOME/build-tools/23.0.3:$PATH' >> ~/.circlerc
     - npm install bower ember-cli phantomjs-prebuilt cordova
     - node circle-branch.js
-    - brew upgrade openssl
     - gem update fastlane
   post:
     - ./node_modules/ember-cli/node_modules/bower/bin/bower install
+    - |
+      if [ "${CIRCLE_BRANCH}" = 'live' ] ; then
+        echo 'export PROVISIONING_FILE=browse.goodcity.hk.mobileprovision' >> ~/.circlerc
+      else
+        echo 'export PROVISIONING_FILE=browse-staging.goodcity.hk.mobileprovision' >> ~/.circlerc
+      fi
 
 test:
   pre:
@@ -41,6 +46,8 @@ deployment:
       - ./install-provisioning-file.sh:
           pwd: scripts
       - bundle exec cap staging deploy
+      - PATH=$(npm bin):$PATH; azure-filestore download -f goodcity.keystore:
+          pwd: cordova
       - bundle exec rake staging android app:release
       - bundle exec rake staging ios app:release
   production:
