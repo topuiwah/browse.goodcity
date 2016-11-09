@@ -57,7 +57,7 @@ namespace :app do
   desc "Uploads the app to TestFairy and Azure storage"
   task deploy: %w(testfairy:upload azure:upload)
   desc "Equivalent to rake app:build app:deploy"
-  task release: %w(app:build testfairy:upload)
+  task release: %w(app:build testfairy:upload azure:upload)
 end
 
 ENVIRONMENTS.each do |env|
