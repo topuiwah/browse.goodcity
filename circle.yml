@@ -16,7 +16,6 @@ dependencies:
     - ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --all --filter platform-tools,build-tools-23.0.3,android-23,extra-android-m2repository,extra-google-m2repository
     - echo 'export PATH=$ANDROID_HOME/build-tools/23.0.3:$PATH' >> ~/.circlerc
     - npm install bower ember-cli phantomjs-prebuilt cordova
-    - node circle-branch.js
     - gem update fastlane
   post:
     - ./node_modules/ember-cli/node_modules/bower/bin/bower install
