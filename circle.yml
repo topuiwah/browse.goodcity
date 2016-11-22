@@ -18,7 +18,7 @@ dependencies:
     - npm install bower ember-cli phantomjs-prebuilt cordova
     - gem update fastlane
   post:
-    - ./node_modules/ember-cli/node_modules/bower/bin/bower install
+    - ./node_modules/bower/bin/bower install
     - |
       if [ "${CIRCLE_BRANCH}" = 'live' ] ; then
         echo 'export PROVISIONING_FILE=browse.goodcity.hk.mobileprovision' >> ~/.circlerc
