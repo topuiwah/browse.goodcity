@@ -5,14 +5,20 @@ export default PublicRoute.extend({
   messageBox: Ember.inject.service(),
   isPublished: null,
   transition: null,
+
+  beforeModel(transition) {
+    this._super(...arguments);
+    this.set('transition', transition);
+  },
+
   model(params, transition) {
     var pkg = this.store.peekRecord('package', params["id"]);
     if(!pkg) {
       this.set('isPublished', false);
-      this.set('transition', transition);
     } else {
       this.set('isPublished', true);
     }
+    this.set('transition', transition);
     return pkg;
   },
 
@@ -29,7 +35,7 @@ export default PublicRoute.extend({
   },
 
   afterModel() {
-    if(!this.get('isPublished')) {
+    if(this.get('isPublished') !== null && !this.get('isPublished')) {
       this.get('transition').abort();
       this.get('messageBox').alert('Sorry! This item is no longer available.',
         () => {
