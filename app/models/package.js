@@ -16,7 +16,7 @@ export default Model.extend(cloudinaryImage, {
 
   createdAt:       attr('date'),
   updatedAt:       attr('date'),
-  item:            belongsTo('item', { async: true }),
+  item:            belongsTo('item', { async: false }),
   packageType:     belongsTo('package_type', { async: false }),
   images:          hasMany('image', { async: false }),
   donorCondition:  belongsTo('donor_condition', { async: false }),
