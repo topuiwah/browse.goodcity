@@ -12,7 +12,7 @@ export default Model.extend(cloudinaryImage, {
   createdAt:        attr('date'),
   updatedAt:        attr('date'),
 
-  packages:         hasMany('package', { async: false }),
+  packages:         hasMany('package', { async: true }),
   packageType:      belongsTo('package_type', { async: false }),
   donorCondition:   belongsTo('donor_condition', { async: false }),
   saleable:         attr('boolean'),

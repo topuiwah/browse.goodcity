@@ -9,6 +9,7 @@ export default PublicRoute.extend({
   beforeModel(transition) {
     this._super(...arguments);
     this.set('transition', transition);
+    this.set('isPublished', null);
   },
 
   model(params, transition) {
