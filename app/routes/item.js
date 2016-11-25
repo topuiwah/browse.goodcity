@@ -14,8 +14,7 @@ export default PublicRoute.extend({
 
   model(params, transition) {
     var item = this.store.peekRecord('item', params["id"]);
-    var itemData = this.store.findRecord('item', params["id"], { reload: true });
-    if(!itemData.get('isAvailable')) {
+    if(!item) {
       this.set('isPublished', false);
     } else {
       this.set('isPublished', true);
