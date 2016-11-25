@@ -9,11 +9,13 @@ export default PublicRoute.extend({
   beforeModel(transition) {
     this._super(...arguments);
     this.set('transition', transition);
+    this.set('isPublished', null);
   },
 
   model(params, transition) {
     var item = this.store.peekRecord('item', params["id"]);
-    if(!item) {
+    var itemData = this.store.findRecord('item', params["id"]);
+    if(!itemData.get('isAvailable')) {
       this.set('isPublished', false);
     } else {
       this.set('isPublished', true);
