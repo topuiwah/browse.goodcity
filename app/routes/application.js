@@ -12,6 +12,12 @@ export default Ember.Route.extend(preloadDataMixin, {
   previousRoute: null,
 
   beforeModel(transition) {
+    try {
+      localStorage.test = "isSafariPrivateBrowser";
+    } catch (e) {
+      this.get("messageBox").alert(this.get("i18n").t("QuotaExceededError"));
+    }
+    localStorage.removeItem('test');
     this.set("i18n.locale", this.get("session.language") || config.i18n.defaultLocale);
     this.set('previousRoute',transition);
     Ember.onerror = window.onerror = error => {
@@ -38,7 +44,10 @@ export default Ember.Route.extend(preloadDataMixin, {
       try { status = parseInt(reason.errors[0].status); }
       catch (err) { status = reason.status; }
 
-      if (status === 401) {
+      if(reason.name === "QuotaExceededError") {
+        this.get("logger").error(reason);
+        this.get("messageBox").alert(this.get("i18n").t("QuotaExceededError"));
+      } else if (status === 401) {
         if (this.session.get('isLoggedIn')) {
           this.session.clear();
           this.store.unloadAll();
