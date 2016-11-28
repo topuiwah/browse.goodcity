@@ -8,7 +8,7 @@ export default {
   "must_login": "You must login!",
   "okay": "Okay",
   "unexpected_error": "Something went wrong",
-  "QuotaExceededError": "This site may not work properly in Safari's <b>private mode.</b> Please try</br><ul><li><a href='http://www.apple.com/itunes/' style='color: black; background-color: #dee4eb;'>Downloading the iOS App</a></li><li>Using regular (not private) mode in Safari</li><li>Using Chrome's private browsing mode</li></ul>",
+  "QuotaExceededError": "This site may not work properly in Safari's <b>private mode.</b> Please try</br><ul><li><a href='http://www.apple.com/itunes/' style='color: black!important; background-color: #dee4eb !important;'>Downloading the iOS App</a></li><li>Using regular (not private) mode in Safari</li><li>Using Chrome's private browsing mode</li></ul>",
   "show": "Show",
   "date": "Date",
   "time": "Time",
