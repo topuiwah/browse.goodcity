@@ -121,7 +121,8 @@ export default {
     "continue_browsing": "Continue Browsing",
     "submit_request": "Submit Request",
     "remove": "Remove",
-    "unavailable": "Sorry! This item is no longer available."
+    "unavailable": "Sorry! This item is no longer available.",
+    "notice" : "Delivery will be made one or two Crossroads operating days after you submit your order."
   },
 
   "order": {
