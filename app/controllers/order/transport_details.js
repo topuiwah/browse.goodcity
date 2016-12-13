@@ -114,12 +114,12 @@ export default Ember.Controller.extend({
     }
     return secondDate;
   }),
-  triggerTransportMessage: Ember.observer('selectedDate', function() {
+  triggerSelectedDate: Ember.observer('selectedDate', function() {
     this.set('scheduledDate', moment(this.get('selectedDate')).format('DD MMMM YYYY'));
 
   }),
 
-  triggerTransportMessage: Ember.observer('isSelfSelected', function() {
+  triggerDateOnSwitch: Ember.observer('isSelfSelected', function() {
     this.set('selectedDate',null);
 
   }),
