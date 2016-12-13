@@ -169,12 +169,5 @@ export default {
       "title": "Purpose(s)*"
     },
   },
-  'plan_transport': {
-    'first_come_first_serve': 'Goods are granted on "first come first served" basis.',
-    'reserved_text': 'Your requested item will be reserved on {{scheduledDate}}. On that day we will call you to confirm which of the requested items are available before finalizing the order.',
-    'info_text': 'If another person asks for an item you have requested and they arrange the transport before {{scheduledDate}}, they will get the item and you will not.',
-    'arrange_transport': 'To guarantee your order, arrange transport for {{todaysDate}}',
-    'reserve_your_items': '(we would then reserve your items today).',
-    'explanation_text': 'Each day we put aside items due to dispatch the following day. It is too costly and complicated for us to reserve items for longer. If we are unable to contact you to confirm or if you do not arrive on the {{scheduledDate}}, the items will be released back into stock and your order canceled.'
-  }
+
 };

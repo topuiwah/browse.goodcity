@@ -15,6 +15,7 @@ export default Ember.Controller.extend({
   mobilePhone: Ember.computed.alias("user.mobileWithoutCountryCode"),
   isSelfSelected: Ember.computed.equal("selectedId", "self"),
 
+
   displayUserPrompt: false,
   speakEnglish: false,
   borrowTrolley: false,
@@ -67,6 +68,7 @@ export default Ember.Controller.extend({
   selectedDistrict: null,
 
   initSelectedTerritories: Ember.on('init', function() {
+
     if(this.get("selectedDistrict") === null) {
       this.set("selectedTerritory", this.get("user.address.district.territory"));
       this.set("selectedDistrict", this.get("user.address.district"));
@@ -85,32 +87,41 @@ export default Ember.Controller.extend({
     }
   }),
 
-  triggerTransportMessage: Ember.observer('selectedDate', function() {
-    var date = moment(this.get('selectedDate'));
-    var currentDate = moment(new Date().setHours(0,0,0,0));
-    var diff = moment(new Date(date._d - currentDate._d));
-    if(diff.date() > 4 && (date.day() === 2)){
-      this.set('scheduledDate', date.subtract(3, 'day').format('DD MMMM YYYY'));
-      if(currentDate.day() === 0) {
-        this.set('todaysDate', currentDate.add(2, 'day').format('DD MMMM YYYY'));
-      } else if (currentDate.day() === 1) {
-        this.set('todaysDate', currentDate.add(1, 'day').format('DD MMMM YYYY'));
-      } else {
-        this.set('todaysDate', currentDate.format('DD MMMM YYYY'));
-      }
-    } else if ((date.day() - currentDate.day() === 1) || diff.date() <= 4 || diff.date() > 4) {
-      this.set('scheduledDate', date.subtract(1, 'day').format('DD MMMM YYYY'));
-      if(currentDate.day() === 0) {
-        this.set('todaysDate', currentDate.add(2, 'day').format('DD MMMM YYYY'));
-      } else if (currentDate.day() === 1) {
-        this.set('todaysDate', currentDate.add(1, 'day').format('DD MMMM YYYY'));
-      } else if(diff.date() === 2) {
-        this.set('todaysDate', date.format('DD MMMM YYYY'));
-      } else {
-        this.set('todaysDate', currentDate.format('DD MMMM YYYY'));
-      }
+  dateSlot1: Ember.computed(function(){
+
+    var firstDate = moment(new Date().setHours(0,0,0,0));
+    //add dates for testing
+    //firstDate=firstDate.add(7, 'day');
+    if(firstDate.day() === 0) {
+      firstDate=firstDate.add(2, 'day').format('DD MMMM YYYY');
     }
-    this.set('displayUserPrompt', true);
+    else if(firstDate.day() === 6) {
+      firstDate=firstDate.add(3, 'day').format('DD MMMM YYYY');
+    }
+    else{
+      firstDate=firstDate.add(1, 'day').format('DD MMMM YYYY');
+    }
+    return firstDate;
+  }),
+  dateSlot2: Ember.computed(function(){
+    var secondDate = moment(this.get('dateSlot1'));
+
+    if(secondDate.day() === 6) {
+      secondDate=secondDate.add(3, 'day').format('DD MMMM YYYY');
+    }
+    else{
+      secondDate=secondDate.add(1, 'day').format('DD MMMM YYYY');
+    }
+    return secondDate;
+  }),
+  triggerTransportMessage: Ember.observer('selectedDate', function() {
+    this.set('scheduledDate', moment(this.get('selectedDate')).format('DD MMMM YYYY'));
+
+  }),
+
+  triggerTransportMessage: Ember.observer('isSelfSelected', function() {
+    this.set('selectedDate',null);
+
   }),
 
   gogovanPrice: Ember.computed({
@@ -133,6 +144,9 @@ export default Ember.Controller.extend({
       var transportType = controller.get("selectedId");
       var selectedSlot = controller.get('selectedTime');
       var slotName = controller.get('timeSlots').filterBy('id', selectedSlot.id).get('firstObject.name');
+      var selectedDateSlot=controller.get('selectedDate');
+      selectedDateSlot= selectedDateSlot==null? controller.get('dateSlot1'):selectedDateSlot;
+
 
       var scheduleDetails = {
         scheduled_at:   controller.get('selectedDate'),
@@ -152,10 +166,11 @@ export default Ember.Controller.extend({
       this.set('displayUserPrompt', false);
       var controller = this;
       var loadingView = getOwner(controller).lookup('component:loading').append();
-      var selectedDate = controller.get('selectedDate');
+      var selectedDateSlot=controller.get('selectedDate');
+      selectedDateSlot= selectedDateSlot==null? controller.get('dateSlot1'):selectedDateSlot;
 
       var requestProperties = {};
-      requestProperties.scheduled_at = selectedDate;
+      requestProperties.scheduled_at = selectedDateSlot;
       requestProperties.timeslot = this.get('selectedTime.name');
       requestProperties.transport_type = controller.get("selectedId");
       requestProperties.need_english = controller.get("speakEnglish");
