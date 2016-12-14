@@ -119,7 +119,7 @@ export default {
   "cart_content": {
     "your_request": "Your Request",
     "continue_browsing": "Continue Browsing",
-    "submit_request": "Submit Request",
+    "submit_request": "Submit Order",
     "remove": "Remove",
     "unavailable": "Sorry! This item is no longer available.",
     "notice" : "Delivery will be made one or two Crossroads operating days after you submit your order."
