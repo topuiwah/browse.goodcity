@@ -149,7 +149,7 @@ export default Ember.Controller.extend({
 
 
       var scheduleDetails = {
-        scheduled_at:   controller.get('selectedDate'),
+        scheduled_at:   selectedDateSlot,
         timeslot:       slotName,
         transport_type: transportType,
         order_id:       this.get("order.id") };
