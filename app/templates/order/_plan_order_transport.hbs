@@ -32,20 +32,7 @@
     {{partial "order/ggv_form"}}
   {{/if}}
 
-  {{#message-box btn1Text="Okay" id="TransportMessageBox" isVisible=displayUserPrompt classNames="popupOverlay designate-form"}}
-    <div class="warning_text important_text">
-      <i class="fa fa-exclamation-triangle"></i>
-      {{t 'plan_transport.first_come_first_serve'}}
-    </div>
-    <div class="reserved_text">
-      {{t 'plan_transport.reserved_text' scheduledDate=scheduledDate}}
-    </div>
-    <div class="info_text">
-      {{t 'plan_transport.info_text' scheduledDate=scheduledDate}}
-      <span class="important_text"> {{t 'plan_transport.arrange_transport' todaysDate=todaysDate}}</span>{{t 'plan_transport.reserve_your_items'}}
-    </div>
-    <div class="explanation_text">
-      {{t 'plan_transport.explanation_text' scheduledDate=scheduledDate}}
-    </div>
-  {{/message-box}}
+
+
+
 </div>
