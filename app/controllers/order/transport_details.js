@@ -15,7 +15,6 @@ export default Ember.Controller.extend({
   mobilePhone: Ember.computed.alias("user.mobileWithoutCountryCode"),
   isSelfSelected: Ember.computed.equal("selectedId", "self"),
 
-
   displayUserPrompt: false,
   speakEnglish: false,
   borrowTrolley: false,
@@ -68,7 +67,6 @@ export default Ember.Controller.extend({
   selectedDistrict: null,
 
   initSelectedTerritories: Ember.on('init', function() {
-
     if(this.get("selectedDistrict") === null) {
       this.set("selectedTerritory", this.get("user.address.district.territory"));
       this.set("selectedDistrict", this.get("user.address.district"));
@@ -88,7 +86,6 @@ export default Ember.Controller.extend({
   }),
 
   dateSlot1: Ember.computed(function(){
-
     var firstDate = moment(new Date().setHours(0,0,0,0));
     //add dates for testing
     //firstDate=firstDate.add(7, 'day');
@@ -103,9 +100,9 @@ export default Ember.Controller.extend({
     }
     return firstDate;
   }),
+
   dateSlot2: Ember.computed(function(){
     var secondDate = moment(this.get('dateSlot1'));
-
     if(secondDate.day() === 6) {
       secondDate=secondDate.add(3, 'day').format('DD MMMM YYYY');
     }
@@ -116,12 +113,10 @@ export default Ember.Controller.extend({
   }),
   triggerSelectedDate: Ember.observer('selectedDate', function() {
     this.set('scheduledDate', moment(this.get('selectedDate')).format('DD MMMM YYYY'));
-
   }),
 
   triggerDateOnSwitch: Ember.observer('isSelfSelected', function() {
     this.set('selectedDate',null);
-
   }),
 
   gogovanPrice: Ember.computed({
@@ -146,7 +141,6 @@ export default Ember.Controller.extend({
       var slotName = controller.get('timeSlots').filterBy('id', selectedSlot.id).get('firstObject.name');
       var selectedDateSlot=controller.get('selectedDate');
       selectedDateSlot= selectedDateSlot==null? controller.get('dateSlot1'):selectedDateSlot;
-
 
       var scheduleDetails = {
         scheduled_at:   selectedDateSlot,

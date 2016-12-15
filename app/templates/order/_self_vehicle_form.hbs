@@ -1,82 +1,69 @@
 {{#if availableDates}}
-  {{#validatable-form onSubmit=(action 'bookSchedule') as |form|}}
-
+{{#validatable-form onSubmit=(action 'bookSchedule') as |form|}}
 <div class="row">
   <div class="name collection">
-        {{t "order.vehicle.collection_date_time"}}
-      </div>
+    {{t "order.vehicle.collection_date_time"}}
+  </div>
   <div class="collection-data">
-        {{t "order.limited_crossroads_opening_days_and_time"}}
-      </div>
+    {{t "order.limited_crossroads_opening_days_and_time"}}
+  </div>
 </div>
 <div class="row time_inputs" >
   <div class=" custom_radio_buttons small-12 columns">
     <div class="radio-button small-1 columns">
-              {{radio-button
-                checked=dateSlot1
-                name='selectedDate'
-                id=dateSlot1
-                value=dateSlot1
-                selection=selectedDate
-                required='true' }}
+      {{radio-button
+      checked=dateSlot1
+      name='selectedDate'
+      id=dateSlot1
+      value=dateSlot1
+      selection=selectedDate
+      required='true' }}
     </div>
-
-
-
     <label class="fa fa-calendar calender_icon radio-button-text " for={{dateSlot1}}>
-              {{dateSlot1}}
+    {{dateSlot1}}
     </label>
   </div>
   <div class=" custom_radio_buttons small-12 columns">
     <div class="radio-button small-1 columns special">
-              {{radio-button
-                name='selectedDate'
-                id=dateSlot2
-                value=dateSlot2
-                selection=selectedDate
-                required='true'}}
+      {{radio-button
+      name='selectedDate'
+      id=dateSlot2
+      value=dateSlot2
+      selection=selectedDate
+      required='true'}}
     </div>
-
-
     <label class="fa fa-calendar calender_icon radio-button-text" for={{dateSlot2}}>
-              {{dateSlot2}}
+    {{dateSlot2}}
     </label>
   </div>
-
   <div class="small-12 columns time_selector ">
     {{select-list
-          content=timeSlots
-          on-change=(action (mut selectedTime))
-          selectedValue=selectedTime
-          prompt=(t 'time')
-          selectArrow=false
-          required=true
-          pattern="[0-9]{1,2}:(00|30)\s?(AM|PM)"}}
+    content=timeSlots
+    on-change=(action (mut selectedTime))
+    selectedValue=selectedTime
+    prompt=(t 'time')
+    selectArrow=false
+    required='true'
+    pattern="[0-9]{1,2}:(00|30)\s?(AM|PM)"}}
     <i class="fa fa-clock-o time_icon"></i>
   </div>
 </div>
 <div class="row order_button">
   <div class="small-4 columns">
-        {{#link-to "cart"}}
-
-
+    {{#link-to "cart"}}
     <i class="fa fa-angle-left" aria-hidden="true"></i>
-          {{t "order.return_to_cart"}}
-        {{/link-to}}
-
-
+    {{t "order.return_to_cart"}}
+    {{/link-to}}
   </div>
   <div class="small-8 columns">
     <button id="submit_pin" class="button expand drop_off" {{action 'submit' target=form}}>
-          {{t "order.continue_to_confirm_details"}}
-        </button>
+    {{t "order.continue_to_confirm_details"}}
+    </button>
   </div>
 </div>
-  {{/validatable-form}}
+{{/validatable-form}}
 {{else}}
-
-
 <div class="loading_container">
-    {{partial 'loading'}}
-  </div>
+  {{partial 'loading'}}
+</div>
 {{/if}}
