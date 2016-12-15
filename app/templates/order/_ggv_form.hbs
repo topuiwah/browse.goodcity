@@ -16,7 +16,7 @@
       required='true' }}
     </div>
     <label class="fa fa-calendar calender_icon radio-button-text " for={{dateSlot1}}>
-    {{dateSlot1}}
+      {{dateSlot1}}
     </label>
   </div>
   <div class=" custom_radio_buttons small-12 columns">
@@ -29,7 +29,7 @@
       required='true'}}
     </div>
     <label class="fa fa-calendar calender_icon radio-button-text" for={{dateSlot2}}>
-    {{dateSlot2}}
+      {{dateSlot2}}
     </label>
   </div>
   <div class="small-12 columns time_selector ">
@@ -77,7 +77,7 @@
           <li class="radio">
             {{radio-button name="selectionTest" selection=selectedGogovanOption value=option.id id=option.specialId}}
             <label class="radio-wrap small-only-text-center" for={{option.specialId}}>
-            {{option.name}}
+              {{option.name}}
             </label>
           </li>
           {{/each}}
@@ -96,11 +96,11 @@
             {{input type="checkbox" name="borrowTrolley" checked=borrowTrolley id='2' }}
             <label class="radio-button-text" for='2'>
             <span>
-            {{#if isSelectedVan}}
-            {{t "gogovan.book_van.van_trolly_cost"}}
-            {{else}}
-            {{t "gogovan.book_van.truck_trolly_cost"}}
-            {{/if}}
+              {{#if isSelectedVan}}
+              {{t "gogovan.book_van.van_trolly_cost"}}
+              {{else}}
+              {{t "gogovan.book_van.truck_trolly_cost"}}
+              {{/if}}
             </span>
             </label>
           </div>
@@ -122,13 +122,13 @@
             <div class="custom_radio_buttons">
               {{radio-button name="longerGoods" selection=longGoodSelection value="half" id="half"}}
               <label class="radio-button-text" for="half">
-              {{t "gogovan.book_van.longer_goods_6ft"}}
+                {{t "gogovan.book_van.longer_goods_6ft"}}
               </label>
             </div>
             <div class="custom_radio_buttons">
               {{radio-button name="longerGoods" selection=longGoodSelection value="full" id="full"}}
               <label class="radio-button-text" for="full">
-              {{t "gogovan.book_van.longer_goods_6ft_tall"}}
+                {{t "gogovan.book_van.longer_goods_6ft_tall"}}
               </label>
             </div>
           </div>
@@ -163,13 +163,13 @@
       <div class="row time_inputs">
         <div class="small-6 columns">
           {{#form-control}}
-          {{input value=userName name="userName" id="name" maxlength="50" required=true placeholder="Name"}}
+            {{input value=userName name="userName" id="name" maxlength="50" required=true placeholder="Name"}}
           {{/form-control}}
         </div>
         <div class="small-6 columns mobile">
           {{#form-control}}
-          <span class="prefix">+852</span>
-          {{numeric-input value=mobilePhone name="mobilePhone" id="mobile" maxlength="8" required=true pattern=".{8,}"}}
+            <span class="prefix">+852</span>
+            {{numeric-input value=mobilePhone name="mobilePhone" id="mobile" maxlength="8" required=true pattern=".{8,}"}}
           {{/form-control}}
         </div>
       </div>
@@ -179,13 +179,13 @@
 <div class="row order_button">
   <div class="small-4 columns">
     {{#link-to "cart"}}
-    <i class="fa fa-angle-left" aria-hidden="true"></i>
-    {{t "order.return_to_cart"}}
+      <i class="fa fa-angle-left" aria-hidden="true"></i>
+      {{t "order.return_to_cart"}}
     {{/link-to}}
   </div>
   <div class="small-8 columns">
     <button id="submit_pin" class="button expand book_van" {{action 'submit' target=form}}>
-    {{t "order.continue_to_confirm_details"}}
+      {{t "order.continue_to_confirm_details"}}
     </button>
   </div>
 </div>
