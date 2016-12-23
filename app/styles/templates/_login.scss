@@ -18,11 +18,11 @@
     padding: 2rem 1.5rem 2rem 2rem;
     background-color: #1A3964;
     font-size: 0.9rem;
-    width: 98% !important;
+    width: 95%!important;
     @media #{$small-only} {
       font-size: 0.8rem;
-      padding: 1.5rem .5rem 1.5rem 1.5rem;
-      width: 93.5% !important;
+      padding: 1.5rem 0.5rem 1.5rem 1.5rem;
+      width: 93.5%!important;
     }
     .detail{
       .name, div {
@@ -37,6 +37,7 @@
   }
 
   .tab-bar {
+    width: 96.5% !important;
     margin-top: 3rem;
     @media #{$small-only} {
       margin-top: 1rem;
@@ -151,5 +152,12 @@
     text-decoration: underline;
     color: inherit;
     font-size: initial;
+  }
+}
+
+.center_align{
+    margin-left: 20%;
+    @media #{$small-only} {
+    margin-left: 10%;
   }
 }
