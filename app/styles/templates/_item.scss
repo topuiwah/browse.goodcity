@@ -196,28 +196,9 @@
   // height: 19.2vw;
   @media #{$small-only} {
     margin-bottom: -2px;
-    margin-top: -51px;
   }
 }
 
-.slick-slide {
-  .img{
-    min-height: 100% !important;
-  }
-   @media #{$small-only} {
-    background-size: cover;
-    height: 18rem;
-    object-fit: cover;
-    .img{
-      width: 100% !important;
-    }
-  }
-}
-.slick-slide img {
-  width: 100%;
-  min-height: 100%;
-
-  }
 
 .no-avatar {
   @media #{$small-only} {

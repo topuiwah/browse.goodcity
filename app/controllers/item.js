@@ -57,7 +57,6 @@ export default Ember.Controller.extend({
   }),
 
   actions: {
-
     showPreview(image) {
       this.set('previewUrl', image.get("previewImageUrl"));
     },

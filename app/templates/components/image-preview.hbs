@@ -1,27 +1,26 @@
-<div id={{if item.favouriteImage "lightGallery"}}>
-  {{#if screenresize.isSmallScreen}}
-    {{#if item.favouriteImage}}
-      {{#slick-carousel autoplay=true autoplaySpeed=2500 speed=500 swipeToSlide=true infinite=true  mobileFirst=true touchMove=true slidesToShow=1 slidesToScroll=1 adaptiveHeight=false }}
-          {{#each item.images as |image|}}
-            <div data-src={{image.imageUrl}} class=" imageZoom">
-              <img src="{{image.imageUrl}}" />
-            </div>
-          {{/each}}
-        {{/slick-carousel}}
+{{#if screenresize.isSmallScreen}}
+  <div class="row" id="lightGallery">
+    {{#if item.images.length}}
+      {{#slick-carousel class="ember-carousel no_bottom_margin" autoplay=true autoplaySpeed=2500 speed=500 swipeToSlide=true infinite=false  mobileFirst=true touchMove=true slidesToShow=1 slidesToScroll=1}}
+        {{#each item.images as |image|}}
+          <div data-src={{image.imageUrl}} class='imageZoom'>
+            {{cloudinary-image-tag src=image.imageUrl isSmallScreen=true}}
+          </div>
+        {{/each}}
+      {{/slick-carousel}}
     {{else}}
-      {{partial 'no_image'}}
+      {{partial "no_image"}}
     {{/if}}
-  {{else}}
-    <div class="view-image hide-for-small imageZoom" data-src="{{item.favouriteImage.imageUrl}}">
+  </div>
+{{else}}
+  <div id='lightGallery'>
+    <div class="imageZoom view-image hide-for-small" data-src="{{item.favouriteImage.imageUrl}}">
       {{cloudinary-image-tag src=previewUrl}}
     </div>
-  {{/if}}
-
-  {{#each item.images key="@index" as |image|}}
-    <div data-src={{image.imageUrl}} class="image-src hidden imageZoom">
-      <img class="thumb-image" src="{{image.thumbImageUrl}}" />
-    </div>
-  {{/each}}
-</div>
-
-
+    {{#each item.otherImages key="@index" as |image|}}
+      <div data-src={{image.imageUrl}} class="image-src hidden imageZoom">
+        <img class="thumb-image" src="{{image.thumbImageUrl}}" />
+      </div>
+    {{/each}}
+  </div>
+{{/if}}
