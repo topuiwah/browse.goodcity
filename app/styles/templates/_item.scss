@@ -48,6 +48,7 @@
     }
   }
 
+
   .thumb-image {
     margin-bottom: 0.5rem;
     cursor: pointer;
@@ -188,6 +189,23 @@
 #lightGallery {
   @media #{$small-only} {
     margin-top: -15%;
+  }
+}
+
+.slick-slider {
+  // height: 19.2vw;
+  @media #{$small-only} {
+    margin-bottom: -2px;
+    margin-top: -51px;
+  }
+}
+
+.slick-slide {
+   @media #{$small-only} {
+    background-size: cover;
+  width: 100%;
+  height: 18rem;
+  object-fit: cover;
   }
 }
 

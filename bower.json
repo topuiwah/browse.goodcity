@@ -14,7 +14,8 @@
     "socket.io-client": "~1.4.5",
     "airbrake-js": "~0.5.8",
     "moment": "~2.10.3",
-    "pickadate": "3.5.5"
+    "pickadate": "3.5.5",
+    "slick-carousel": "1.5.8"
   },
   "devDependencies": {
     "ember-qunit-notifications": "0.1.0",
