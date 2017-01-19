@@ -201,13 +201,23 @@
 }
 
 .slick-slide {
+  .img{
+    min-height: 100% !important;
+  }
    @media #{$small-only} {
     background-size: cover;
-  width: 100%;
-  height: 18rem;
-  object-fit: cover;
+    height: 18rem;
+    object-fit: cover;
+    .img{
+      width: 100% !important;
+    }
   }
 }
+.slick-slide img {
+  width: 100%;
+  min-height: 100%;
+
+  }
 
 .no-avatar {
   @media #{$small-only} {

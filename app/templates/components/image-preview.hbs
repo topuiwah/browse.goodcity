@@ -1,9 +1,13 @@
 <div id={{if item.favouriteImage "lightGallery"}}>
   {{#if screenresize.isSmallScreen}}
     {{#if item.favouriteImage}}
-      <div data-src={{item.favouriteImage.imageUrl}} class="small-screen-preview view-image show-for-small imageZoom">
-        {{cloudinary-image-tag src=smallScreenPreviewUrl isSmallScreen=true}}
-      </div>
+      {{#slick-carousel autoplay=true autoplaySpeed=2500 speed=500 swipeToSlide=true infinite=true  mobileFirst=true touchMove=true slidesToShow=1 slidesToScroll=1 adaptiveHeight=false }}
+          {{#each item.images as |image|}}
+            <div data-src={{image.imageUrl}} class=" imageZoom">
+              <img src="{{image.imageUrl}}" />
+            </div>
+          {{/each}}
+        {{/slick-carousel}}
     {{else}}
       {{partial 'no_image'}}
     {{/if}}
@@ -13,7 +17,7 @@
     </div>
   {{/if}}
 
-  {{#each item.otherImages key="@index" as |image|}}
+  {{#each item.images key="@index" as |image|}}
     <div data-src={{image.imageUrl}} class="image-src hidden imageZoom">
       <img class="thumb-image" src="{{image.thumbImageUrl}}" />
     </div>
