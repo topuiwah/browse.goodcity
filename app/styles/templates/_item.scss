@@ -48,6 +48,7 @@
     }
   }
 
+
   .thumb-image {
     margin-bottom: 0.5rem;
     cursor: pointer;
@@ -190,6 +191,14 @@
     margin-top: -15%;
   }
 }
+
+.slick-slider {
+  // height: 19.2vw;
+  @media #{$small-only} {
+    margin-bottom: -2px;
+  }
+}
+
 
 .no-avatar {
   @media #{$small-only} {
