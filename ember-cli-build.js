@@ -7,7 +7,7 @@ module.exports = function(defaults) {
     sourcemaps: ['js', 'css'],
     'esw-cache-fallback': {
       patterns: [
-        '/api/v1/(.+)'
+        'https://api-staging.goodcity.hk/api/v1(.+)'
       ],
     },
     fingerprint: {
