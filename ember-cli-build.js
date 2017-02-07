@@ -5,6 +5,11 @@ var webRelease = ['production', 'staging'].indexOf(process.env.EMBER_ENV) !== -1
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     sourcemaps: ['js', 'css'],
+    'esw-cache-fallback': {
+      patterns: [
+        '/api/v1/(.+)'
+      ],
+    },
     fingerprint: {
       extensions: ['js', 'css', 'png', 'jpg', 'gif', 'map'],
       enabled: webRelease
@@ -41,7 +46,7 @@ module.exports = function(defaults) {
   app.import('bower_components/lightgallery/src/img/loading.gif', {
     destDir: '/img'
   });
-  
+
   app.import('bower_components/socket.io-client/socket.io.js');
   app.import('bower_components/airbrake-js/dist/client.js');
   app.import('bower_components/moment/moment.js');
