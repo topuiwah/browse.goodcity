@@ -5,7 +5,7 @@
     <div class="collection-data">{{t "order.limited_crossroads_opening_days_and_time"}}</div>
   </div>
   <div class="row time_inputs" >
-    <div class=" custom_radio_buttons small-12 columns">
+    <div class=" custom_radio_buttons align-text small-12 columns">
       <div class="radio-button small-1 columns">
         {{radio-button
         checked=dateSlot1
@@ -15,11 +15,12 @@
         selection=selectedDate
         required='true' }}
       </div>
-      <label class="fa fa-calendar calender_icon radio-button-text " for={{dateSlot1}}>
+      <label class="font-awesome-margin fa fa-calendar calender_icon radio-button-text"  for={{dateSlot1}} ></label>
+      <label class="radio-button-text " for={{dateSlot1}}>
         {{dateSlot1}}
       </label>
     </div>
-    <div class=" custom_radio_buttons small-12 columns">
+    <div class=" custom_radio_buttons align-text small-12 columns">
       <div class="radio-button small-1 columns special">
         {{radio-button
         name='selectedDate'
@@ -28,7 +29,8 @@
         selection=selectedDate
         required='true'}}
       </div>
-      <label class="fa fa-calendar calender_icon radio-button-text" for={{dateSlot2}}>
+      <label class="font-awesome-margin fa fa-calendar calender_icon radio-button-text" for={{dateSlot2}} ></label>
+      <label class="radio-button-text" for={{dateSlot2}}>
         {{dateSlot2}}
       </label>
     </div>
