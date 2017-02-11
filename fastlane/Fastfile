@@ -48,7 +48,7 @@ platform :android do
     ENV["SUPPLY_APK"] = ENV["TESTFAIRY_IPA_PATH"] = apk_file_path
     raise_if_no_env_var("GOOGLE_PLAY_KEY_FILE")
     ENV["SUPPLY_JSON_KEY"] = File.join(Dir.pwd, ENV["GOOGLE_PLAY_KEY_FILE"])
-    raise "Google Play private key file not found! (#{SUPPLY_JSON_KEY})" unless File.exist?(ENV["SUPPLY_JSON_KEY"])
+    raise "Google Play private key file not found! (#{ENV["SUPPLY_JSON_KEY"]})" unless File.exist?(ENV["SUPPLY_JSON_KEY"])
   end
 
   desc "Generate staging build (just upload to TestFairy)"
