@@ -19,20 +19,21 @@ dependencies:
     - gem update fastlane
   post:
     - ./node_modules/bower/bin/bower install
-    - |
-      if [ "${CIRCLE_BRANCH}" = 'live' ] ; then
-        echo 'export PROVISIONING_FILE=browse.goodcity.hk.mobileprovision' >> ~/.circlerc
-      else
-        echo 'export PROVISIONING_FILE=browse-staging.goodcity.hk.mobileprovision' >> ~/.circlerc
-      fi
+    # - |
+    #   if [ "${CIRCLE_BRANCH}" = 'live' ] ; then
+    #     echo 'export PROVISIONING_FILE=browse.goodcity.hk.mobileprovision' >> ~/.circlerc
+    #   else
+    #     echo 'export PROVISIONING_FILE=browse-staging.goodcity.hk.mobileprovision' >> ~/.circlerc
+    #   fi
 
 test:
   pre:
-    - ./node_modules/ember-cli/bin/ember server:
-        background: true
+    # - ./node_modules/ember-cli/bin/ember server:
+        # background: true
     - sleep 5
   override:
-    - ./node_modules/ember-cli/bin/ember test
+    # - ./node_modules/ember-cli/bin/ember test
+    - echo "No testing"
   post:
     - echo "Killing ember server to free memory for app build" && killall ember
 
@@ -49,6 +50,14 @@ deployment:
           pwd: cordova
       - bundle exec rake staging android app:release
       - bundle exec rake staging ios app:release
+  ci-mobile-provision:
+    branch: ci-mobile-provision
+    commands:
+      - bundle exec rake staging ios app:build
+      - ipa distribute:testfairy
+          --key     "$TESTFAIRY_API_KEY"
+          --comment "CircleCI build $CIRCLE_BUILD_URL"
+    
   production:
     branch: live
     commands:
