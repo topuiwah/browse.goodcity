@@ -5,7 +5,7 @@ platform :ios do
   before_all do
     # set up the path to built app
     ipa_path = ENV["CIRCLE_ARTIFACTS"]
-    ENV["IPA_FILE"] = "#{ipa_path}/Browse.ipa"
+    ENV["IPA_FILE"] = Dir["#{ipa_path}/*.ipa"].first # match staging or production
 
     # ensure iTunes connect credentials are set up
     itc_user = ENV["ITUNESCONNECT_USER"] || ""
@@ -16,6 +16,12 @@ platform :ios do
 
     # add credentials to keychain
     sh %{ source ~/.circlerc; fastlane-credentials add --username $ITUNESCONNECT_USER --password $ITUNESCONNECT_PASSWORD }
+  end
+
+  # FL_TESTFAIRY_API_KEY
+  desc "Upload to TestFairy"
+  lane :testfairy_upload do
+    testfairy(comment: ENV["COMMENT"]) 
   end
 
   desc "Upload to TestFlight"
