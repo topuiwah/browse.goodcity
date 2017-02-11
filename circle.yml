@@ -54,7 +54,7 @@ deployment:
     branch: ci-mobile-provision
     commands:
       - bundle exec rake staging ios app:build
-      - fastlane ios testfairy_upload COMMENT="CircleCI build $CIRCLE_BUILD_URL"
+      - fastlane ios testfairy_upload FL_TESTFAIRY_COMMENT="CircleCI build $CIRCLE_BUILD_URL"
     
   production:
     branch: live
