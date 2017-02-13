@@ -49,9 +49,12 @@
 
     @media #{$small-only} {
       font-size: 0.7rem;
-
       margin-right: 0rem;
     }
+  }
+
+  .align-text {
+    display: inline;
   }
 
   select {
@@ -112,10 +115,6 @@
       //   margin-left: 80%;
       // }
 
-      .align-text{
-        display: flex;
-      }
-
       .font-awesome-margin{
         margin-top: 0.1rem;
       }
@@ -154,7 +153,6 @@
     label::before {
       top: 5px;
     }
-
     span {
       @media #{$large-only} {
         margin-left: 0.5rem;
@@ -179,7 +177,6 @@
   width: 100%;
   margin: rem-calc(0 0 20 0);
   padding: 0;
-
   border-spacing: 0.1rem;
   color: white;
   table-layout: fixed !important;
