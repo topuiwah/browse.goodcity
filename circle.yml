@@ -22,6 +22,8 @@ dependencies:
     - gem update fastlane
     - PATH=$(npm bin):$PATH; azure-filestore download -f goodcity.keystore:
         pwd: cordova
+    - PATH=$(npm bin):$PATH; azure-filestore download -d google-play -f $GOOGLE_PLAY_KEY_FILE:
+        pwd: fastlane
       
   post:
     - ./node_modules/bower/bin/bower install
@@ -57,8 +59,6 @@ deployment:
   production:
     branch: live
     commands:
-      - PATH=$(npm bin):$PATH; azure-filestore download -d google-play -f $GOOGLE_PLAY_KEY_FILE:
-          pwd: fastlane
       - bundle exec cap production deploy
       - bundle exec rake production android app:build
       - bundle exec rake production ios app:build
