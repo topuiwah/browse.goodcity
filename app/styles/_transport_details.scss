@@ -53,6 +53,25 @@
     }
   }
 
+  .input-text {
+    background: #f46769 !important;
+    color: #fff !important;
+    padding: .2rem !important;
+    margin-top: -1rem;
+    font-size: small;
+    width: 60%;
+    @media #{$small-only} {
+      max-width: none !important;
+      width: 100% !important;
+    }
+  }
+
+  .input-error{
+    select:invalid {
+      border-color: #f34d4f!important;
+      background: #fddbdc!important;
+    }
+  }
   .align-text {
     display: inline;
   }
@@ -64,7 +83,6 @@
       max-width: none !important;
       width: 100% !important;
     }
-
   }
 
   .name, div {

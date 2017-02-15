@@ -21,6 +21,7 @@ export default Ember.Controller.extend({
   porterage: false,
   longerGoods: false,
   longGoodSelection: "half",
+  timeisSelected: false,
 
   gogovanOptions: Ember.computed(function(){
     var allOptions = this.store.peekAll('gogovan_transport');
@@ -111,6 +112,7 @@ export default Ember.Controller.extend({
     }
     return secondDate;
   }),
+
   triggerSelectedDate: Ember.observer('selectedDate', function() {
     this.set('scheduledDate', moment(this.get('selectedDate')).format('DD MMMM YYYY'));
   }),
@@ -132,6 +134,7 @@ export default Ember.Controller.extend({
   }),
 
   actions: {
+
     bookSchedule() {
       this.set('displayUserPrompt', false);
       var controller = this;
