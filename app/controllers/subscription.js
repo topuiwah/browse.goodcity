@@ -109,11 +109,11 @@ export default Ember.Controller.extend({
     var cartItem = cartContent.filterBy("modelType", "package").filterBy("id", packageId.toString()).get("firstObject");
 
     if (["create","update"].includes(data.operation)) {
-      if(data.item.package.allow_web_publish) {
-        this.store.pushPayload(data.item);
-      } else {
+      if(!data.item.package.allow_web_publish) {
         return false;
       }
+
+      this.store.pushPayload(data.item);
 
       var unDispatchedPkg = [];
       if(cartContent) {
