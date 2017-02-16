@@ -30,14 +30,13 @@ dependencies:
 
 test:
   pre:
-    # - ./node_modules/ember-cli/bin/ember server:
-    #     background: true
+    - ./node_modules/ember-cli/bin/ember server:
+        background: true
     - sleep 5
   override:
-    # - ./node_modules/ember-cli/bin/ember test
-    - echo "No testing"
+    - ./node_modules/ember-cli/bin/ember test
   post:
-    # - echo "Killing ember server to free memory for app build" && killall ember
+    - echo "Killing ember server to free memory for app build" && killall ember
 
 deployment:
   staging:
@@ -48,14 +47,6 @@ deployment:
       - fastlane ios staging
       - bundle exec rake staging android app:build
       - fastlane android staging
-  ci-mobile-provision:
-    branch: ci-mobile-provision
-    commands:
-      # - bundle exec rake staging ios app:build
-      # - fastlane ios staging
-      - bundle exec rake staging android app:build
-      - fastlane android staging
-
   production:
     branch: live
     commands:
