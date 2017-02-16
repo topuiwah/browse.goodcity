@@ -111,6 +111,8 @@ export default Ember.Controller.extend({
     if (["create","update"].includes(data.operation)) {
       if(data.item.package.allow_web_publish) {
         this.store.pushPayload(data.item);
+      } else {
+        return false;
       }
 
       var unDispatchedPkg = [];
@@ -120,8 +122,8 @@ export default Ember.Controller.extend({
           var pkgs = pkge.get('item.packages');
           pkgs.forEach(function(record) {
             if(!record.get('stockitSentOn')) {
-                unDispatchedPkg.push(record);
-              }
+              unDispatchedPkg.push(record);
+            }
           });
         }
         if(unDispatchedPkg.length === 1) {
