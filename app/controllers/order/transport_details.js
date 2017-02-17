@@ -22,6 +22,15 @@ export default Ember.Controller.extend({
   longerGoods: false,
   longGoodSelection: "half",
 
+  timeValidationTrigger: Ember.observer('selectedTime', function() {
+    if(!this.get("selectedTime.name")) {
+      $('.time_selector').addClass('form__control--error');
+      return false;
+    } else {
+      $('.time_selector').removeClass('form__control--error');
+    }
+  }),
+
   gogovanOptions: Ember.computed(function(){
     var allOptions = this.store.peekAll('gogovan_transport');
     return allOptions.rejectBy('disabled', true).sortBy('id');
@@ -133,6 +142,12 @@ export default Ember.Controller.extend({
 
   actions: {
     bookSchedule() {
+      if(!this.get("selectedTime.name")) {
+        $('.time_selector').addClass('form__control--error');
+        return false;
+      } else {
+        $('.time_selector').removeClass('form__control--error');
+      }
       this.set('displayUserPrompt', false);
       var controller = this;
       var loadingView = getOwner(this).lookup('component:loading').append();

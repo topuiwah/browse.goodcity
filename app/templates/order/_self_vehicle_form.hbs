@@ -1,5 +1,4 @@
 {{#if availableDates}}
-  {{#validatable-form onSubmit=(action 'bookSchedule') as |form|}}
   <div class="row">
     <div class="name collection">
       {{t "order.vehicle.collection_date_time"}}
@@ -58,12 +57,11 @@
       {{/link-to}}
     </div>
     <div class="small-8 columns">
-      <button id="submit_pin" class="button expand drop_off" {{action 'submit' target=form}}>
+      <button id="submit_pin" class="button expand drop_off" {{action 'bookSchedule'}}>
         {{t "order.continue_to_confirm_details"}}
       </button>
     </div>
   </div>
-{{/validatable-form}}
 {{else}}
   <div class="loading_container">
     {{partial 'loading'}}
