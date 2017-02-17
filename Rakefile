@@ -41,7 +41,6 @@ CLEAN.include("dist", "cordova/www", "#{CORDOVA_PATH}/platforms/android/build",
 CLOBBER.include("cordova/platforms", "cordova/plugins")
 PLATFORMS = %w(android ios windows).freeze
 ENVIRONMENTS = %w(staging production).freeze
-TESTFAIRY_PLATFORMS=%w(android ios)
 TESTFAIRY_PLUGIN_URL = "https://github.com/testfairy/testfairy-cordova-plugin"
 TESTFAIRY_PLUGIN_NAME = "com.testfairy.cordova-plugin"
 KEYSTORE_FILE = "#{CORDOVA_PATH}/goodcity.keystore"
