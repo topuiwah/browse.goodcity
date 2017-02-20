@@ -49,6 +49,7 @@ export default Ember.Route.extend(preloadDataMixin, {
         this.get("messageBox").alert(this.get("i18n").t("QuotaExceededError"));
       } else if (reason.name === "NotFoundError" && reason.code === 8) {
         this.get("logger").error(reason);
+        return false;
       } else if (status === 401) {
         if (this.session.get('isLoggedIn')) {
           this.session.clear();
