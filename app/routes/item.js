@@ -15,6 +15,7 @@ export default PublicRoute.extend({
   model(params, transition) {
     var item = this.store.peekRecord('item', params["id"]);
     if(!item || !item.get("quantity")) {
+      this.store.unloadRecord(item);
       this.set('isPublished', false);
     } else {
       this.set('isPublished', true);
