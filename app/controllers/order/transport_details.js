@@ -173,10 +173,10 @@ export default Ember.Controller.extend({
 
     bookGGVSchedule() {
       if(!this.get("selectedTime.name")) {
-        $('.time_selector').addClass('form__control--error');
+        Ember.$('.time_selector').addClass('form__control--error');
         return false;
       } else {
-        $('.time_selector').removeClass('form__control--error');
+        Ember.$('.time_selector').removeClass('form__control--error');
       }
       this.set('displayUserPrompt', false);
       var controller = this;
