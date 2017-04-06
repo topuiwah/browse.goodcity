@@ -7,39 +7,41 @@ machine:
     FL_TESTFAIRY_AUTO_UPDATE: "on"
     PILOT_SKIP_SUBMISSION: true
     PILOT_WAIT_PROCESSING_INTERVAL: 60
-    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
+    ANDROID_HOME: "${HOME}/android-sdk"
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:$HOME/.yarn/bin:$ANDROID_HOME/tools"
 
 dependencies:
-  override:
-    - yarn install
+  cache_directories:
+    - ~/.yarn
   pre:
     - brew update
     - brew install homebrew/versions/node4-lts
     - brew install watchman
-    - brew install android-sdk
-    - echo 'export ANDROID_HOME=/usr/local/opt/android-sdk' >> ~/.circlerc
-    - ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --all --filter platform-tools,build-tools-23.0.3,android-23,extra-android-m2repository,extra-google-m2repository
-    - echo 'export PATH=$ANDROID_HOME/build-tools/23.0.3:$PATH' >> ~/.circlerc
+    - mkdir -p $ANDROID_HOME
+    - curl -o $ANDROID_HOME/android-sdk.zip https://dl.google.com/android/repository/tools_r23.0.1-macosx.zip
+    - unzip -d $ANDROID_HOME $ANDROID_HOME/android-sdk.zip
+    - ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --all --filter platform-tools,build-tools-23.0.1,android-23,extra-android-m2repository,extra-google-m2repository
     - curl -o- -L https://yarnpkg.com/install.sh | bash
     - yarn add --force node-sass
     - yarn add bower ember-cli phantomjs-prebuilt cordova
     - bundle install
     - gem update fastlane
+  override:
+    - yarn install
+  post:
+    - bower install
     - PATH=$(npm bin):$PATH; azure-filestore download -f goodcity.keystore:
         pwd: cordova
     - PATH=$(npm bin):$PATH; azure-filestore download -d google-play -f $GOOGLE_PLAY_KEY_FILE:
         pwd: fastlane
 
-  post:
-    - ./node_modules/bower/bin/bower install
-
 test:
   pre:
-    - ./node_modules/ember-cli/bin/ember server:
+    - ember server:
         background: true
     - sleep 5
   override:
-    - ./node_modules/ember-cli/bin/ember test
+    - ember test
   post:
     - echo "Killing ember server to free memory for app build" && killall ember
 

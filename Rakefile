@@ -82,7 +82,7 @@ namespace :ember do
   task :bower_install do
     sh %{ bower install }
   end
-  task :yarn_install do
+  task yarn_install: :select_branch do
     sh %{ yarn install }
   end
   desc "Ember build with Cordova enabled"
