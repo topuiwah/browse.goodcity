@@ -36,25 +36,24 @@ dependencies:
 
 test:
   pre:
-    # - ember server:
-        # background: true
+    - ember server:
+        background: true
     - sleep 5
   override:
-    - sleep 1
-    # - ember test
+    - ember test
   post:
-    # - echo "Killing ember server to free memory for app build" && killall ember
+    - echo "Killing ember server to free memory for app build" && killall ember
     
 
 deployment:
   staging:
-    branch: circleci-fixes
+    branch: master
     commands:
-      # - bundle exec cap staging deploy
-      # - bundle exec rake staging ios app:build
-      # - fastlane ios staging
+      - bundle exec cap staging deploy
+      - bundle exec rake staging ios app:build
+      - fastlane ios staging
       - bundle exec rake staging android app:build
-      # - fastlane android staging
+      - fastlane android staging
   production:
     branch: live
     commands:
