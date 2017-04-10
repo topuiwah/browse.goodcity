@@ -28,7 +28,7 @@
     "broccoli-uglify-js": "^0.2.0",
     "connect-restreamer": "^1.0.3",
     "cors": "^2.7.1",
-    "ember-ajax": "2.5.1",
+    "ember-ajax": "^2.5.1",
     "ember-cli": "^2.12.0",
     "ember-cli-app-version": "^2.0.1",
     "ember-cli-babel": "^5.1.10",
@@ -48,7 +48,7 @@
     "ember-cli-sri": "^2.1.1",
     "ember-cli-test-loader": "1.1.0",
     "ember-cli-uglify": "^1.2.0",
-    "ember-data": "^2.11.0",
+    "ember-data": "2.11.0",
     "ember-data-factory-guy": "2.7.0-beta.8",
     "ember-disable-proxy-controllers": "^1.0.1",
     "ember-export-application-global": "^1.0.5",
@@ -68,6 +68,7 @@
     "loader.js": "^4.0.1"
   },
   "dependencies": {
+    "ember-cli-babel": "^5.1.10",
     "azure-api": "git://github.com/crossroads/azure-api.git#master",
     "cordova-lib": "https://github.com/crossroads/goodcity-lib.git"
   }
