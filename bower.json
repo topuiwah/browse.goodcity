@@ -9,7 +9,6 @@
     "jquery-placeholder": "^2.1.0",
     "jquery.cookie": "^1.4.1",
     "modernizr": "^2.8.3",
-    "ember-cli-photoswipe": "1.1.0",
     "font-awesome": "~4.6.3",
     "lightgallery": "1.2.20",
     "socket.io-client": "~1.4.5",
