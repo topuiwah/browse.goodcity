@@ -59,6 +59,7 @@
     "ember-infinity": "0.2.5",
     "ember-load-initializers": "^0.5.1",
     "ember-resolver": "^2.1.0",
+    "ember-service-worker": "0.6.1",
     "ember-welcome-page": "^1.0.3",
     "express": "^4.14.0",
     "glob": "^4.5.3",
