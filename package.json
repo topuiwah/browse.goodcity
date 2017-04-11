@@ -66,6 +66,7 @@
     "ember-try": "0.2.8",
     "ember-watson": "^0.8.1",
     "express": "^4.13.3",
+    "glob": "^5.0.14",
     "ember-welcome-page": "^1.0.3",
     "express": "^4.14.0",
     "glob": "^4.5.3",
