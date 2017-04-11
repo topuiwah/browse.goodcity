@@ -46,13 +46,13 @@ test:
 
 deployment:
   staging:
-    branch: Fix-test-cases
+    branch: master
     commands:
-      # - bundle exec cap staging deploy
-      # - bundle exec rake staging ios app:build
-      # - fastlane ios staging
-      # - bundle exec rake staging android app:build
-      # - fastlane android staging
+      - bundle exec cap staging deploy
+      - bundle exec rake staging ios app:build
+      - fastlane ios staging
+      - bundle exec rake staging android app:build
+      - fastlane android staging
   production:
     branch: live
     commands:
