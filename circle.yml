@@ -8,7 +8,7 @@ machine:
     PILOT_SKIP_SUBMISSION: true
     PILOT_WAIT_PROCESSING_INTERVAL: 60
     ANDROID_HOME: "${HOME}/android-sdk"
-    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:${HOME}/.yarn/bin:${ANDROID_HOME}/tools"
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:$HOME/.yarn/bin:$ANDROID_HOME/tools"
 
 dependencies:
   cache_directories:
@@ -43,7 +43,6 @@ test:
     - ember test
   post:
     - echo "Killing ember server to free memory for app build" && killall ember
-    
 
 deployment:
   staging:

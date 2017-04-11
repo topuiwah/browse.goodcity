@@ -101,13 +101,11 @@ namespace :ember do
 end
 
 namespace :cordova do
-
   desc "Install cordova package globally"
   task :install do
     sh %{ npm list --depth 1 --global cordova; if [ $? -ne 0 ]; then npm install -g cordova; fi }
     sh %{ npm list --depth 1 --global cordova-update-config; if [ $? -ne 0 ]; then npm install -g cordova-update-config; fi }
   end
-
   desc "Cordova prepare {platform}"
   task :prepare do
     # Before cordova prepare build ember app that will auto update the dist folder too
@@ -141,7 +139,6 @@ namespace :cordova do
       sh %{ if [ -e "#{app_file}" ]; then cp "#{app_file}" "${CIRCLE_ARTIFACTS:-$BUILD_STAGINGDIRECTORY}/"; fi }
     end
   end
-
 end
 
 namespace :azure do
