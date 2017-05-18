@@ -4,7 +4,7 @@
 
   @media #{$small-only} {
     font-size: 0.7rem;
-    padding: 0 .5rem 0rem 0rem;
+    padding: 0 0.1% 0rem 0rem;
     margin: 3rem 0rem;
   }
 
@@ -20,13 +20,14 @@
   }
 
   .custom_radio_buttons {
+    padding-bottom:0.3rem;
     @media #{$large-only} {
-      line-height: 0rem;
-      margin-bottom: 0.7rem;
+      line-height: 1.5rem;
+      // padding: 0.3rem;
     }
 
     .radio-buttons {
-      margin-top: 0.1rem;
+      margin-top: 0.9rem;
 
       @media #{$small-only} {
         margin-top: 0.3rem;
@@ -34,9 +35,10 @@
     }
 
     input[type=radio] {
+      vertical-align: text-top;
       height: 1.2rem;
       width: 1.2rem;
-
+      margin: 0 0 0 0px;
       @media #{$large-only} {
         margin-bottom: 0;
       }
@@ -44,16 +46,25 @@
   }
 
   .radio-button-text {
+
     @media #{$small-only} {
       font-size: 0.7rem;
-      line-height: 1.5rem;
       margin-right: 0rem;
     }
   }
 
+  .align-text {
+    display: inline;
+  }
+
   select {
-    width: 100%;
-    max-width: none;
+    height: 2rem;
+    width: 60%;
+    @media #{$small-only} {
+      max-width: none !important;
+      width: 100% !important;
+    }
+
   }
 
   .name, div {
@@ -74,41 +85,43 @@
   .time_inputs {
     margin-top: .5rem !important;
 
-    .date_selector {
+    .time_selector {
+      padding-top: 0.5rem;
       padding-left: 0 !important;
-      input {
-        background: white;
-        font-size: 0.8rem;
-      }
-      .calender_icon{
-        float: right;
-        display: inline;
-        font-size: 1.3rem;
-        margin-right: 1.2rem;
-        margin-top: -2.8rem;
+      float: left;
+      position: relative !important;
+      width: 50%;
 
-        @media #{$small-only} {
-          margin-right: 1rem;
-          font-size: 1.1rem;
-          margin-top: -2.9rem;
-        }
-      }
     }
     .time_icon {
+      position:absolute;
+      color:#555;
       position: absolute;
       float: right;
       display: inline;
       font-size: 1.7rem;
       margin-right: -4.6rem;
-      margin-top: -3.05rem;
-      margin-left: 9rem;
+      margin-top: -2.8rem;
+      margin-left: 42%;
 
       @media #{$small-only} {
-        font-size: 1.3rem;
-        margin-right: -4.6rem;
-        margin-top: -2.9rem;
-        margin-left: 6.2rem;
+
+
+        margin-left: 68%;
       }
+      //  @media #{$medium-only} {
+      //   font-size: 1.7rem;
+      //   margin-top: -3.3 rem;
+      //   margin-left: 80%;
+      // }
+
+      .font-awesome-margin{
+        margin-top: 0.1rem;
+      }
+    }
+    .radio-button-text {
+      margin-left: 0.4rem;
+      margin-bottom: 0.1rem;
     }
   }
 
@@ -140,7 +153,6 @@
     label::before {
       top: 5px;
     }
-
     span {
       @media #{$large-only} {
         margin-left: 0.5rem;
@@ -154,7 +166,7 @@
     margin-left: 2.2rem;
 
     .radio-button-text {
-      vertical-align: text-bottom;
+      vertical-align: text-center;
       margin-right: -5rem;
     }
   }
@@ -165,7 +177,6 @@
   width: 100%;
   margin: rem-calc(0 0 20 0);
   padding: 0;
-
   border-spacing: 0.1rem;
   color: white;
   table-layout: fixed !important;
@@ -206,7 +217,7 @@
     padding: rem-calc(9 5);
     color: $white;
     /* font-size: rem-calc(15) !important; */
-    width: 100%;
+    width: 90%;
     text-align: center;
   }
 

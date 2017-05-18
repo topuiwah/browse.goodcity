@@ -14,7 +14,7 @@ export default PublicRoute.extend({
 
   model(params, transition) {
     var pkg = this.store.peekRecord('package', params["id"]);
-    if(!pkg) {
+    if(!pkg || !pkg.get("quantity")) {
       this.set('isPublished', false);
     } else {
       this.set('isPublished', true);
