@@ -1,12 +1,14 @@
 import attr from 'ember-data/attr';
 import Ember from 'ember';
 import Addressable from './addressable';
+import { hasMany } from 'ember-data/relationships';
 
 export default Addressable.extend({
   firstName:   attr('string'),
   lastName:    attr('string'),
   mobile:      attr('string'),
   createdAt:   attr('date'),
+  organisations: hasMany('organisation', {async: false}),
 
   mobileWithoutCountryCode: Ember.computed('mobile', function(){
     var mobile = this.get('mobile');
