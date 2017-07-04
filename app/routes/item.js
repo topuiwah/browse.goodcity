@@ -16,6 +16,16 @@ export default PublicRoute.extend({
     return item;
   },
 
+  afterModel(model){
+    if(!model.get('isAvailable')) {
+      this.get('transition').abort();
+      this.get('messageBox').alert('Sorry! This item is no longer available.',
+      () => {
+        this.transitionTo('/browse');
+      });
+    }
+  },
+
   setupController(controller, model){
     controller.set('model', model);
     controller.set("previewUrl", model.get("previewImageUrl"));
