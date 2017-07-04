@@ -17,6 +17,14 @@ export default Model.extend(cloudinaryImage, {
   donorCondition:   belongsTo('donor_condition', { async: false }),
   saleable:         attr('boolean'),
 
+  quantity: Ember.computed('packages.@each.quantity', function(){
+    let totalQuantity = 0;
+    this.get("packages").forEach(function(pkg){
+      totalQuantity = totalQuantity + pkg.get('quantity');
+    });
+    return totalQuantity;
+  }),
+
   isAvailable: Ember.computed('packages.@each.isAvailable', function() {
     return this.get('packages').filterBy("isAvailable").length > 0;
   }),

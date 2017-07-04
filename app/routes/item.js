@@ -17,7 +17,7 @@ export default PublicRoute.extend({
   },
 
   afterModel(model){
-    if(!model.get('isAvailable')) {
+    if(!model.get('isAvailable') || !model.get('quantity')) {
       this.get('transition').abort();
       this.get('messageBox').alert('Sorry! This item is no longer available.',
       () => {
