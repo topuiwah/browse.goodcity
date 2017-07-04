@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import AuthorizeRoute from './authorize';
 
 export default AuthorizeRoute.extend({
@@ -8,6 +9,10 @@ export default AuthorizeRoute.extend({
   },
 
   model() {
-    return this.store.peekAll('order');
+    return Ember.RSVP.hash({
+      organisation: this.store.peekAll('organisation').objectAt(0),
+      user: this.store.peekAll('user').objectAt(0),
+      orders: this.store.peekAll('order')
+    });
   },
 });
