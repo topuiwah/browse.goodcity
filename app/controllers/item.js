@@ -1,7 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-
+  
+  messageBox: Ember.inject.service(),
   application: Ember.inject.controller(),
   queryParams:    ['categoryId', 'sortBy'],
   categoryId:     null,
@@ -13,6 +14,15 @@ export default Ember.Controller.extend({
   smallScreenPreviewUrl: Ember.computed.alias('item.displayImage.smallScreenPreviewImageUrl'),
 
   direction: null,
+
+  hasQuantityAndIsAvailable: Ember.observer('item.quantity', 'item.isAvailable', function() {
+    if(!this.get('item.isAvailable') || !this.get('item.quantity')) {
+      this.get('messageBox').alert('Sorry! This item is no longer available.',
+      () => {
+        this.transitionTo('/browse');
+      });
+    }
+  }),
 
   hasDraftOrder: Ember.computed.alias("session.draftOrder"),
 
