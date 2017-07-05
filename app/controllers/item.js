@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  
+
   messageBox: Ember.inject.service(),
   application: Ember.inject.controller(),
   queryParams:    ['categoryId', 'sortBy'],
@@ -19,7 +19,7 @@ export default Ember.Controller.extend({
     if(!this.get('item.isAvailable') || !this.get('item.quantity')) {
       this.get('messageBox').alert('Sorry! This item is no longer available.',
       () => {
-        this.transitionTo('/browse');
+        this.transitionToRoute('/browse');
       });
     }
   }),
