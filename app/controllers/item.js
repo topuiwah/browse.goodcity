@@ -14,6 +14,15 @@ export default Ember.Controller.extend({
 
   direction: null,
 
+  hasQuantityAndIsAvailable: Ember.observer('item.quantity', 'item.isAvailable', function() {
+    if(!this.get('item.isAvailable') || !this.get('item.quantity')) {
+      this.get('messageBox').alert('Sorry! This item is no longer available.',
+      () => {
+        this.transitionTo('/browse');
+      });
+    }
+  }),
+
   hasDraftOrder: Ember.computed.alias("session.draftOrder"),
 
   presentInCart: Ember.computed('item', 'cart.counter', function(){
