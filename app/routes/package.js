@@ -36,7 +36,7 @@ export default PublicRoute.extend({
   },
 
   afterModel() {
-    if(!$('#messageBox').is(':visible') && (this.get('isPublished') !== null && !this.get('isPublished'))) {
+    if(this.get('isPublished') !== null && !this.get('isPublished')) {
       this.get('transition').abort();
       this.get('messageBox').alert('Sorry! This item is no longer available.',
         () => {
