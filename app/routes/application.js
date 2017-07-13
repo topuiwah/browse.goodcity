@@ -64,7 +64,7 @@ export default Ember.Route.extend(preloadDataMixin, {
         this.get("logger").error(reason);
         this.get("messageBox").alert(this.get("i18n").t("unexpected_error"));
       }
-    } catch (err) {}
+    } catch (err) { console.log(err); }
   },
 
   actions: {
@@ -77,7 +77,7 @@ export default Ember.Route.extend(preloadDataMixin, {
     error(reason) {
       try {
         this.handleError(reason);
-      } catch (err) {}
+      } catch (err) { console.log(err); }
     }
   },
 

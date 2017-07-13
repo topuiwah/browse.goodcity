@@ -35,6 +35,6 @@ export default ObserveScreenResize.extend({
       this.smallScreenOffCanvas();
       Ember.$('.off-canvas-wrap').removeClass('move-right').removeClass('move-left');
     }
-  },
+  }
 
 });

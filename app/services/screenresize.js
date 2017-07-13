@@ -24,6 +24,6 @@ export default Ember.Service.extend({
     this.observeScreen();
     var updateScreen = Ember.run.bind(this, this.observeScreen);
     window.addEventListener("resize", updateScreen);
-  }.on("init"),
+  }.on("init")
 
 });

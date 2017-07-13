@@ -32,5 +32,5 @@ export default Model.extend(cloudinaryImage, {
 
   smallScreenPreviewImageUrl: Ember.computed('cloudinaryId', 'angle', function() {
     return this.generateUrl(640, 365, true);
-  }),
+  })
 });

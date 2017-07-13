@@ -7,6 +7,6 @@ export default Model.extend({
   quantity: attr('number'),
   state:    attr('string'),
   package:  belongsTo('package', { async: false }),
-  order:    belongsTo('order', { async: false }),
+  order:    belongsTo('order', { async: false })
 
 });

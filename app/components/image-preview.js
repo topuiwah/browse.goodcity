@@ -28,7 +28,7 @@ export default ObserveScreenResize.extend({
       counter: true,
       enableTouch : true,
       enableDrag: true,
-      selector: '.imageZoom',
+      selector: '.imageZoom'
     });
     this.set('lightGalleryObj', lightGalleryObj);
   },

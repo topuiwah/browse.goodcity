@@ -14,5 +14,5 @@ export default AuthorizeRoute.extend({
       user: this.store.peekAll('user').objectAt(0),
       orders: this.store.peekAll('order')
     });
-  },
+  }
 });

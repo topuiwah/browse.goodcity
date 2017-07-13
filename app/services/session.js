@@ -24,5 +24,5 @@ export default Ember.Service.extend({
 
   allOrders: Ember.computed(function(){
     return this.get("store").peekAll("order");
-  }),
+  })
 });

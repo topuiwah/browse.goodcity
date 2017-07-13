@@ -94,7 +94,7 @@ const Service = ArrayProxy.extend({
     if (this.localStorage) {
       window.localStorage.setItem('cart', JSON.stringify(this.payload()));
     }
-  }),
+  })
 });
 
 Service.reopenClass({

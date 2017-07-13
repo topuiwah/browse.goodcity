@@ -18,6 +18,6 @@ export default Model.extend({
 
   needEnglish: attr("boolean"),
   needCart: attr("boolean"),
-  needCarry: attr("boolean"),
+  needCarry: attr("boolean")
 
 });

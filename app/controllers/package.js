@@ -13,5 +13,5 @@ export default itemController.extend({
         this.transitionToRoute('/browse');
       });
     }
-  }),
+  })
 });

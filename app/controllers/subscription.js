@@ -73,7 +73,7 @@ export default Ember.Controller.extend({
         this.set("lastOnline", Date.now());
       }));
       socket.connect(); // manually connect since it's not auto-connecting if you logout and then back in
-    },
+    }
   },
 
   batch: function(events, success) {

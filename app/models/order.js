@@ -25,6 +25,6 @@ export default Model.extend({
       }
     });
     return items.uniq();
-  }),
+  })
 
 });

@@ -11,5 +11,5 @@ export default AuthorizeRoute.extend({
       user: this.store.peekAll('user').objectAt(0),
       order: order || this.store.findRecord('order', orderId)
     });
-  },
+  }
 });
