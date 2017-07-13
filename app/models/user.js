@@ -17,5 +17,5 @@ export default Addressable.extend({
 
   fullName: Ember.computed('firstName', 'lastName', function(){
     return (this.get('firstName') + " " + this.get('lastName'));
-  }),
+  })
 });

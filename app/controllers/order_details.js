@@ -60,6 +60,6 @@ export default Ember.Controller.extend({
           this.transitionToRoute("order.transport_details", data.order.id);
         });
     }
-  },
+  }
 
 });

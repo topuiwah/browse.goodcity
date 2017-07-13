@@ -7,6 +7,6 @@ export default Model.extend({
   district: belongsTo('district', { async: false }),
 
   addressableType: attr('string'),
-  addressable: belongsTo('addressable', { polymorphic: true, async: false }),
+  addressable: belongsTo('addressable', { polymorphic: true, async: false })
 
 });

@@ -9,5 +9,5 @@ export default Model.extend({
   website:              attr('string'),
   descriptionEn:        attr('string'),
   descriptionZhTw:      attr('string'),
-  user:                 belongsTo('user', { async: false }),
+  user:                 belongsTo('user', { async: false })
 });

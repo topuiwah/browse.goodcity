@@ -9,6 +9,6 @@ export default Ember.Component.extend({
   initComonent: function() {
     var updateScreen = Ember.run.bind(this, this.observeScreen);
     window.addEventListener("resize", updateScreen);
-  }.on("init"),
+  }.on("init")
 
 });

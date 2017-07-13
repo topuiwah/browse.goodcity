@@ -100,7 +100,7 @@ export default {
       "best_price_estimate": "Best Price estimate",
       "delivery_contact_person": "Delivery contact person",
       "booking_with_name": "GoGoVan booking will be placed with this name and number.",
-      "driver_call_to_confirm": "Driver will call this contcat to confirm details and liaise at drop-off time.",
+      "driver_call_to_confirm": "Driver will call this contcat to confirm details and liaise at drop-off time."
     }
   },
 
@@ -113,7 +113,7 @@ export default {
 
   "item": {
     "request_item": "Request Item",
-    "remove_item": "Remove Item",
+    "remove_item": "Remove Item"
   },
 
   "cart_content": {
@@ -168,7 +168,7 @@ export default {
     },
     "purpose_section": {
       "title": "Purpose(s)*"
-    },
-  },
+    }
+  }
 
 };

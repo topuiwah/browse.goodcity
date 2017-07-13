@@ -12,6 +12,6 @@ export default Ember.Component.extend({
 
   showPaginationBar: Ember.computed('pagedContent.totalPages', function() {
     return this.get('pagedContent.totalPages') > 1;
-  }),
+  })
 
 });

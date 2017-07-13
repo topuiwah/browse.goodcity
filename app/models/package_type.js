@@ -42,6 +42,6 @@ export default Model.extend({
       if(parentCategory) { categories = categories.concat(parentCategory); }
     });
     return categories.uniq();
-  }),
+  })
 
 });
