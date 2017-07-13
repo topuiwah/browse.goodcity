@@ -46,7 +46,7 @@ export default Model.extend(cloudinaryImage, {
 
   packageTypeObject: Ember.computed('packageType', function() {
     var obj = this.get('packageType').getProperties('id', 'name', 'isItemTypeNode');
-    obj.id = obj.packageTypeId = parseInt(obj.id);
+    obj.id = obj.packageTypeId = parseInt(obj.id, 10);
     return obj;
   }),
 

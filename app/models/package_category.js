@@ -23,7 +23,7 @@ export default Model.extend({
   }),
 
   allChildCategories: Ember.computed('_packageCategories.[]', function() {
-    return this.get('_packageCategories').filterBy('parentId', parseInt(this.get("id")));
+    return this.get('_packageCategories').filterBy('parentId', parseInt(this.get("id"), 10));
   }),
 
   _packageCategories: Ember.computed(function() {
