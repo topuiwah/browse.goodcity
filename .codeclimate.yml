@@ -2,7 +2,6 @@
 engines:
   eslint:
     enabled: true
-    radix: ["error", "as-needed"]
   fixme:
     enabled: true
 ratings:
@@ -11,3 +10,4 @@ ratings:
 exclude_paths:
 - server/
 - config/
+- tests/

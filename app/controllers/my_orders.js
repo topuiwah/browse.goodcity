@@ -9,6 +9,6 @@ export default Ember.Controller.extend({
   actions: {
     setOrder(order) {
       this.set('selectedOrder', order);
-    },
+    }
   }
 });

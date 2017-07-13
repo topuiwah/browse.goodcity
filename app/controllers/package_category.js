@@ -37,5 +37,5 @@ export default Ember.Controller.extend({
       name: c.get("nameItemsCount"),
       id: c.get("id")
     }));
-  }),
+  })
 });

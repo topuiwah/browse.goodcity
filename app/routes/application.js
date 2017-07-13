@@ -41,7 +41,7 @@ export default Ember.Route.extend(preloadDataMixin, {
     try
     {
       var status;
-      try { status = parseInt(reason.errors[0].status); }
+      try { status = parseInt(reason.errors[0].status, 10); }
       catch (err) { status = reason.status; }
 
       if(reason.name === "QuotaExceededError") {
