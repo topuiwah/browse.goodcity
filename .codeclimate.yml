@@ -2,7 +2,6 @@
 engines:
   eslint:
     enabled: true
-    radix: ["error", "as-needed"]
   fixme:
     enabled: true
 ratings:
