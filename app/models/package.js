@@ -30,7 +30,7 @@ export default Model.extend(cloudinaryImage, {
   updateAllowwebpublishQtyIfDesignated: Ember.observer('allowWebPublish', 'quantity', 'orderId', function() {
     Ember.run.once(this, function() {
       if(this.get("orderId")) {
-        this.set("quantity", 0);
+        this.set("allowWebPublish", false);
       }
     });
   }),
@@ -41,7 +41,7 @@ export default Model.extend(cloudinaryImage, {
   }),
 
   isUnavailableAndDesignated: Ember.computed('isDispatched', 'allowWebPublish', 'orderId', function() {
-    return !this.get("isDispatched") && this.get("allowWebPublish") && this.get("quantity") && this.get("orderId");
+    return !this.get("isDispatched") && this.get("allowWebPublish") && this.get("orderId");
   }),
 
   allPackageCategories: Ember.computed.alias('packageType.allPackageCategories'),
