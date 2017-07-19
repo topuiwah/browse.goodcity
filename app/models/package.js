@@ -40,7 +40,7 @@ export default Model.extend(cloudinaryImage, {
     return !this.get("isDispatched") && this.get("allowWebPublish") && this.get("quantity");
   }),
 
-  isUnavailableAndDesignated: Ember.computed('isDispatched', 'allowWebPublish', 'orderId', function() {
+  isUnavailableAndDesignated: Ember.computed('isDispatched', 'allowWebPublish', function() {
     return !this.get("isDispatched") && this.get("allowWebPublish") && this.get("orderId");
   }),
 
