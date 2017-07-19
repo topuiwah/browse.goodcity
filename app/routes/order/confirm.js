@@ -4,7 +4,11 @@ import AuthorizeRoute from './../authorize';
 export default AuthorizeRoute.extend({
   
   beforeModel(transition) {
-    var path = this.router.router.currentHandlerInfos.pop();
+    var path;
+    var routerInfo = this.router.router.currentHandlerInfos;
+    if(routerInfo){
+      path = routerInfo.pop();
+    }
     if(path && path.name === "my_orders") {
       transition.abort();
       this.transitionTo('/browse');
