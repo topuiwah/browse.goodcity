@@ -30,7 +30,6 @@ export default Model.extend(cloudinaryImage, {
   updateAllowwebpublishQtyIfDesignated: Ember.observer('allowWebPublish', 'quantity', 'orderId', function() {
     Ember.run.once(this, function() {
       if(this.get("orderId")) {
-        this.set("allowWebPublish", false);
         this.set("quantity", 0);
       }
     });
