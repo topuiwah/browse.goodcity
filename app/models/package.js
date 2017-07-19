@@ -33,7 +33,7 @@ export default Model.extend(cloudinaryImage, {
         this.set("allowWebPublish", false);
         this.set("quantity", 0);
       }
-    })
+    });
   }),
 
   isDispatched: Ember.computed.bool("stockitSentOn"),
