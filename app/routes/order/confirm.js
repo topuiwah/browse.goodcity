@@ -2,6 +2,15 @@ import Ember from 'ember';
 import AuthorizeRoute from './../authorize';
 
 export default AuthorizeRoute.extend({
+  
+  beforeModel(transition) {
+    var path = this.router.router.currentHandlerInfos.pop();
+    if(path && path.name === "my_orders") {
+      transition.abort();
+      this.transitionTo('/browse');
+    }
+  },
+  
   model() {
     var orderId = this.paramsFor('order').order_id;
     var order = this.store.peekRecord('order', orderId);
