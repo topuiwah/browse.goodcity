@@ -7,7 +7,8 @@ export default itemController.extend({
   package:           Ember.computed.alias('model'),
 
   hasQuantityAndIsAvailable: Ember.observer('package.isAvailable', 'package.orderId', 'package.isUnavailableAndDesignated', function() {
-    if(this.get('target').currentPath === 'package' && (!this.get('package.isUnavailableAndDesignated'))) {
+    var currentPath = this.get('target').currentPath;
+    if((currentPath === 'package' || currentPath === "package_category" ) && !this.get('package.isUnavailableAndDesignated')) {
       this.get('messageBox').alert('Sorry! This item is no longer available.',
       () => {
         this.transitionToRoute('/browse');
