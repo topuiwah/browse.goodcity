@@ -17,7 +17,8 @@ export default Ember.Controller.extend({
 
   hasQuantityAndIsAvailable: Ember.observer('item.isAvailable', 'item.packages.@each.orderId', 'item.isUnavailableAndDesignated', function() {
     var currentPath = this.get('target').currentPath;
-    if((currentPath === 'item' || currentPath === "package_category") && !this.get('item.isUnavailableAndDesignated')) {
+    var isItemAvailable = this.get('item.isUnavailableAndDesignated');
+    if((currentPath === 'item' || currentPath === "package_category") && !isItemAvailable && isItemAvailable !== null) {
       this.get('messageBox').alert('Sorry! This item is no longer available.',
       () => {
         this.transitionToRoute('/browse');
