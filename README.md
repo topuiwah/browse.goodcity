@@ -1,4 +1,11 @@
 # browse.goodcity
+
+[![Circle CI](https://circleci.com/gh/crossroads/browse.goodcity.svg?style=svg)](https://circleci.com/gh/crossroads/browse.goodcity)
+[![Code Climate](https://codeclimate.com/github/crossroads/browse.goodcity/badges/gpa.svg)](https://codeclimate.com/github/crossroads/browse.goodcity)
+[![Issue Count](https://codeclimate.com/github/crossroads/browse.goodcity/badges/issue_count.svg)](https://codeclimate.com/github/crossroads/browse.goodcity)
+[![Test Coverage](https://codeclimate.com/github/crossroads/browse.goodcity/badges/coverage.svg)](https://codeclimate.com/github/crossroads/browse.goodcity)
+
+
 GoodCity Web Interface
 
 This README outlines the details of collaborating on this Ember application.
