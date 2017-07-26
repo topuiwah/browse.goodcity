@@ -25,9 +25,23 @@ export default Model.extend(cloudinaryImage, {
   orderId:         attr('number'),
   allowWebPublish: attr('boolean'),
 
+
+  //This is fix for live update for ticket GCW-1632(only implemented on singleton packages, nee to change for qty packages)
+  updateAllowwebpublishQtyIfDesignated: Ember.observer('allowWebPublish', 'quantity', 'orderId', function() {
+    Ember.run.once(this, function() {
+      if(this.get("orderId")) {
+        this.set("allowWebPublish", false);
+      }
+    });
+  }),
+
   isDispatched: Ember.computed.bool("stockitSentOn"),
   isAvailable: Ember.computed('isDispatched', 'allowWebPublish', function() {
-    return !this.get("isDispatched") && this.get("allowWebPublish");
+    return !this.get("isDispatched") && this.get("allowWebPublish") && this.get("quantity");
+  }),
+
+  isUnavailableAndDesignated: Ember.computed('isDispatched', 'allowWebPublish', function() {
+    return !this.get("isDispatched") && this.get("allowWebPublish") && this.get("orderId");
   }),
 
   allPackageCategories: Ember.computed.alias('packageType.allPackageCategories'),
@@ -46,7 +60,7 @@ export default Model.extend(cloudinaryImage, {
 
   packageTypeObject: Ember.computed('packageType', function() {
     var obj = this.get('packageType').getProperties('id', 'name', 'isItemTypeNode');
-    obj.id = obj.packageTypeId = parseInt(obj.id);
+    obj.id = obj.packageTypeId = parseInt(obj.id, 10);
     return obj;
   }),
 

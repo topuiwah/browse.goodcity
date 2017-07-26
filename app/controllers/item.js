@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
+  messageBox: Ember.inject.service(),
   application: Ember.inject.controller(),
   queryParams:    ['categoryId', 'sortBy'],
   categoryId:     null,
@@ -13,6 +14,17 @@ export default Ember.Controller.extend({
   smallScreenPreviewUrl: Ember.computed.alias('item.displayImage.smallScreenPreviewImageUrl'),
 
   direction: null,
+
+  hasQuantityAndIsAvailable: Ember.observer('item.isAvailable', 'item.packages.@each.orderId', 'item.isUnavailableAndDesignated', function() {
+    var currentPath = this.get('target').currentPath;
+    var isItemAvailable = this.get('item.isUnavailableAndDesignated');
+    if((currentPath === 'item' || currentPath === "package_category") && !isItemAvailable && isItemAvailable !== null) {
+      this.get('messageBox').alert('Sorry! This item is no longer available.',
+      () => {
+        this.transitionToRoute('/browse');
+      });
+    }
+  }),
 
   hasDraftOrder: Ember.computed.alias("session.draftOrder"),
 
