@@ -12,15 +12,18 @@ export default Ember.Controller.extend({
   noPreviousItem: Ember.computed.empty('previousItem'),
   hideThumbnails: Ember.computed.gt('item.sortedImages.length', 1),
   smallScreenPreviewUrl: Ember.computed.alias('item.displayImage.smallScreenPreviewImageUrl'),
+  itemNotAvailableShown: false,
 
   direction: null,
 
   hasQuantityAndIsAvailable: Ember.observer('item.isAvailable', 'item.packages.@each.orderId', 'item.isUnavailableAndDesignated', function() {
     var currentPath = this.get('target').currentPath;
     var isItemAvailable = this.get('item.isUnavailableAndDesignated');
-    if((currentPath === 'item' || currentPath === "package_category") && !isItemAvailable && isItemAvailable !== null) {
+    if((currentPath === 'item' || currentPath === "package_category") && !isItemAvailable && isItemAvailable !== null && !this.get("itemNotAvailableShown")) {
+      this.set("itemNotAvailableShown", true);
       this.get('messageBox').alert('Sorry! This item is no longer available.',
       () => {
+        this.set("itemNotAvailableShown", false);
         this.transitionToRoute('/browse');
       });
     }
