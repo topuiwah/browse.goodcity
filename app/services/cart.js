@@ -33,7 +33,7 @@ const Service = ArrayProxy.extend({
   currentCartItem(item) {
     let cartItem;
 
-    if (item.toCartItem) {
+    if (item && item.toCartItem) {
       cartItem = item.toCartItem();
     } else {
       cartItem = getOwner(this)._lookupFactory('model:cart-item').create();
