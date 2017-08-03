@@ -50,7 +50,7 @@ export default Ember.Route.extend(preloadDataMixin, {
     }
   },
 
-  showSomethingWentWrong() {
+  showSomethingWentWrong(reason) {
     this.get("logger").error(reason);
     if(!this.get('isErrPopUpAlreadyShown')) {
       this.set('isErrPopUpAlreadyShown', true);
@@ -76,7 +76,7 @@ export default Ember.Route.extend(preloadDataMixin, {
       } else if (status === 401) {
         this.showLoginError();
       } else {
-        this.showSomethingWentWrong();
+        this.showSomethingWentWrong(reason);
       }
     } catch (err) { console.log(err); }
   },

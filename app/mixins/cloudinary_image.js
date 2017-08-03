@@ -2,7 +2,7 @@ import Ember from "ember";
 
 export default Ember.Mixin.create({
 
-  getOptions() {
+  getOptions(version, crop, height, width, id) {
     return {
       version: version,
       height: height,
@@ -25,7 +25,7 @@ export default Ember.Mixin.create({
     }
     var version = id.split("/")[0];
     var filename = id.substring(id.indexOf("/") + 1);
-    var options = this.getOptions();
+    var options = this.getOptions(version, crop, height, width, id);
     if(angle) { options["angle"] = angle; }
     return Ember.$.cloudinary.url(filename, options);
   }
