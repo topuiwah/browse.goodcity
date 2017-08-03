@@ -54,6 +54,11 @@ export default Ember.Controller.extend({
     return unDispatchedPackage;
   },
 
+  updateCart(pkge, unDispatchedPkg) {
+    this.get("cart").removeItem(pkge.get('item'));
+    this.get('cart').pushItem(unDispatchedPkg.get('firstObject').toCartItem());
+  };
+
   actions: {
     wire() {
       var updateStatus = Ember.run.bind(this, this.updateStatus);
@@ -133,8 +138,7 @@ export default Ember.Controller.extend({
         var pkge = this.store.peekRecord('package', data.item.package.id);
         unDispatchedPkg = this.getUndispatchedPackages(pkge);
         if(unDispatchedPkg.length === 1) {
-          this.get("cart").removeItem(pkge.get('item'));
-          this.get('cart').pushItem(unDispatchedPkg.get('firstObject').toCartItem());
+          this.updateCart(pkge, unDispatchedPkg);
         }
       }
 
