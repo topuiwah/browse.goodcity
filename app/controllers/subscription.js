@@ -42,7 +42,6 @@ export default Ember.Controller.extend({
   }),
 
   getUndispatchedPackages(pkge) {
-
     var unDispatchedPackage = [];
       if(pkge.get('stockitSentOn') && pkge.get('hasSiblingPackages')){
         var pkgs = pkge.get('item.packages');
