@@ -5,11 +5,7 @@ export default PublicRoute.extend({
   messageBox: Ember.inject.service(),
   isAvailable: false,
 
-  beforeModel(transition) {
-    this._super(...arguments);
-  },
-
-  model(params, transition) {
+  model(params) {
     return this.store.peekRecord('item', params["id"]);
   },
 
