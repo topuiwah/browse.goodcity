@@ -38,6 +38,28 @@ export default Ember.Route.extend(preloadDataMixin, {
     });
   },
 
+  showLoginError() {
+    if (this.session.get('isLoggedIn')) {
+      this.session.clear();
+      this.store.unloadAll();
+      var loginController = this.controllerFor('login');
+      loginController.set('attemptedTransition', this.get('previousRoute'));
+      this.get('messageBox').alert(this.get("i18n").t('must_login'), () =>
+        this.transitionTo('login')
+      );
+    }
+  },
+
+  showSomethingWentWrong(reason) {
+    this.get("logger").error(reason);
+    if(!this.get('isErrPopUpAlreadyShown')) {
+      this.set('isErrPopUpAlreadyShown', true);
+      this.get("messageBox").alert(this.get("i18n").t("unexpected_error"), () => {
+        this.set('isErrPopUpAlreadyShown', false);
+      });
+    }
+  },
+
   handleError: function(reason) {
     try
     {
@@ -52,23 +74,9 @@ export default Ember.Route.extend(preloadDataMixin, {
         this.get("logger").error(reason);
         return false;
       } else if (status === 401) {
-        if (this.session.get('isLoggedIn')) {
-          this.session.clear();
-          this.store.unloadAll();
-          var loginController = this.controllerFor('login');
-          loginController.set('attemptedTransition', this.get('previousRoute'));
-          this.get('messageBox').alert(this.get("i18n").t('must_login'), () =>
-            this.transitionTo('login')
-          );
-        }
+        this.showLoginError();
       } else {
-        this.get("logger").error(reason);
-        if(!this.get('isErrPopUpAlreadyShown')) {
-          this.set('isErrPopUpAlreadyShown', true);
-          this.get("messageBox").alert(this.get("i18n").t("unexpected_error"), () => {
-            this.set('isErrPopUpAlreadyShown', false);
-          });
-        }
+        this.showSomethingWentWrong(reason);
       }
     } catch (err) { console.log(err); }
   },

@@ -41,6 +41,19 @@ export default Ember.Controller.extend({
     window.addEventListener("offline", updateStatus);
   }),
 
+  getUndispatchedPackages(pkge) {
+    var unDispatchedPackage = [];
+      if(pkge.get('stockitSentOn') && pkge.get('hasSiblingPackages')){
+        var pkgs = pkge.get('item.packages');
+        pkgs.forEach(function(record) {
+          if(!record.get('stockitSentOn')) {
+            unDispatchedPackage.push(record);
+          }
+        });
+      }
+    return unDispatchedPackage;
+  },
+
   actions: {
     wire() {
       var updateStatus = Ember.run.bind(this, this.updateStatus);
@@ -118,14 +131,7 @@ export default Ember.Controller.extend({
       var unDispatchedPkg = [];
       if(cartContent) {
         var pkge = this.store.peekRecord('package', data.item.package.id);
-        if(pkge.get('stockitSentOn') && pkge.get('hasSiblingPackages')){
-          var pkgs = pkge.get('item.packages');
-          pkgs.forEach(function(record) {
-            if(!record.get('stockitSentOn')) {
-              unDispatchedPkg.push(record);
-            }
-          });
-        }
+        unDispatchedPkg = this.getUndispatchedPackages(pkge);
         if(unDispatchedPkg.length === 1) {
           this.get("cart").removeItem(pkge.get('item'));
           this.get('cart').pushItem(unDispatchedPkg.get('firstObject').toCartItem());
