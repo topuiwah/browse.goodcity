@@ -14,7 +14,7 @@ export default Ember.Mixin.create({
       protocol: 'https:',
       default_image: "default_item_image.jpg"
     };
-  }
+  },
 
   generateUrl: function(width, height, crop) {
     //e.g. cloudinaryId = 1406959628/wjvaksnadntp239n6vwe.png
