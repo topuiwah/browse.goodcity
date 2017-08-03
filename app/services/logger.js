@@ -12,8 +12,7 @@ export default Ember.Service.extend({
     if (config.environment === "production" || config.staging) {
       var userName = this.get("session.currentUser.fullName");
       var userId = this.get("session.currentUser.id");
-      var error = reason instanceof Error || typeof reason !== "object" ?
-          reason : JSON.stringify(reason);
+      var error = this.getError(reason);
       var environment = config.staging ? "staging" : config.environment;
       var version = `${config.APP.SHA}`;
 
@@ -24,5 +23,10 @@ export default Ember.Service.extend({
       airbrake.setHost(config.APP.AIRBRAKE_HOST);
       airbrake.notify({ error, context: { userId, userName, environment, version } });
     }
+  },
+
+  getError: function(reason) {
+    return reason instanceof Error || typeof reason !== "object" ?
+          reason : JSON.stringify(reason);
   }
 });
