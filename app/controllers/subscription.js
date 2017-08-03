@@ -59,6 +59,11 @@ export default Ember.Controller.extend({
     this.get('cart').pushItem(unDispatchedPkg.get('firstObject').toCartItem());
   },
 
+  addItemToCart(cartItem) {
+    Ember.set(cartItem, "available", false);
+    this.get("cart").pushItem(cartItem);
+  },
+
   actions: {
     wire() {
       var updateStatus = Ember.run.bind(this, this.updateStatus);
@@ -130,9 +135,7 @@ export default Ember.Controller.extend({
       if(data.item.package.allow_web_publish === null) {
         return false;
       }
-
       this.store.pushPayload(data.item);
-
       var unDispatchedPkg = [];
       if(cartContent) {
         var pkge = this.store.peekRecord('package', data.item.package.id);
@@ -141,21 +144,15 @@ export default Ember.Controller.extend({
           this.updateCart(pkge, unDispatchedPkg);
         }
       }
-
       if(cartItem) {
-        var pkg = this.store.peekRecord("package", packageId);
-        this.get("cart").pushItem(pkg.toCartItem());
+        this.get("cart").pushItem(this.store.peekRecord("package", packageId).toCartItem());
       }
-
     } else if (existingItem) { //delete
       this.store.unloadRecord(existingItem);
-
       if(cartItem) {
-        Ember.set(cartItem, "available", false);
-        this.get("cart").pushItem(cartItem);
+        this.addItemToCart(cartItem);
       }
     }
-
     run(success);
   }
 });
