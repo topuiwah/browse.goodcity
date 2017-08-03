@@ -57,7 +57,7 @@ export default Ember.Controller.extend({
   updateCart(pkge, unDispatchedPkg) {
     this.get("cart").removeItem(pkge.get('item'));
     this.get('cart').pushItem(unDispatchedPkg.get('firstObject').toCartItem());
-  };
+  },
 
   actions: {
     wire() {
