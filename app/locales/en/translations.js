@@ -1,6 +1,6 @@
 export default {
   // "key.with.interpolation": "Text with {{anInterpolation}}"
-  "offline_error": "Unable to complete action, please check your internet connection."
+  "offline_error": "Unable to complete action, please check your internet connection.",
   "language.en": "English",
   "language.zh": "中文",
   "company.name": "Crossroads Foundation",
