@@ -77,21 +77,11 @@ export default Ember.Route.extend(preloadDataMixin, {
         this.get("logger").error(reason);
         this.get("messageBox").alert(this.get("i18n").t("QuotaExceededError"));
       } else if (reason.name === "NotFoundError" && reason.code === 8) {
-        this.get("logger").error(reason);
         return false;
       } else if (status === 401) {
-        if (this.session.get('isLoggedIn')) {
-          this.session.clear();
-          this.store.unloadAll();
-          var loginController = this.controllerFor('login');
-          loginController.set('attemptedTransition', this.get('previousRoute'));
-          this.get('messageBox').alert(this.get("i18n").t('must_login'), () =>
-            this.transitionTo('login')
-          );
-        }
+        this.showLoginError();
       } else {
-        this.get("logger").error(reason);
-        this.get("messageBox").alert(this.get("i18n").t("unexpected_error"));
+        this.showSomethingWentWrong(reason);
       }
     } catch (err) { console.log(err); }
   },
