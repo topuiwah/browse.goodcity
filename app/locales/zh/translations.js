@@ -1,4 +1,5 @@
 export default {
+  "offline_error": "Unable to complete action, please check your internet connection."
   "language.en": "English",
   "language.zh": "中文",
   "company.name": "Crossroads Foundation",
