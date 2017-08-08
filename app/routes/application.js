@@ -60,16 +60,30 @@ export default Ember.Route.extend(preloadDataMixin, {
     }
   },
 
+  offlineError(reason){
+    this.get("messageBox").alert(this.get("i18n").t("offline_error"));
+    if(!reason.isAdapterError){
+      this.get("logger").error(reason);
+    }
+  },
+
+  quotaExceededError(reason){
+    this.get("logger").error(reason);
+    this.get("messageBox").alert(this.get("i18n").t("QuotaExceededError"));
+  },
+
   handleError: function(reason) {
     try
     {
       var status;
+      // let hasPopup = Ember.$('.reveal-modal:visible').length > 0;
       try { status = parseInt(reason.errors[0].status, 10); }
       catch (err) { status = reason.status; }
 
-      if(reason.name === "QuotaExceededError") {
-        this.get("logger").error(reason);
-        this.get("messageBox").alert(this.get("i18n").t("QuotaExceededError"));
+      if(!window.navigator.onLine){
+        this.offlineError(reason);
+      } else if(reason.name === "QuotaExceededError") {
+        this.quotaExceededError(reason);
       } else if (reason.name === "NotFoundError" && reason.code === 8) {
         return false;
       } else if (status === 401) {
