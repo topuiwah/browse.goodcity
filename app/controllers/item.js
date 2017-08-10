@@ -2,10 +2,11 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
-  messageBox: Ember.inject.service(),
-  application: Ember.inject.controller(),
+  messageBox:     Ember.inject.service(),
+  application:    Ember.inject.controller(),
   queryParams:    ['categoryId', 'sortBy'],
   categoryId:     null,
+  cart:           Ember.inject.service(),
   sortBy:         "createdAt",
   item:           Ember.computed.alias('model'),
   noNextItem:     Ember.computed.empty('nextItem'),
@@ -21,6 +22,7 @@ export default Ember.Controller.extend({
     var isItemUnavailable = this.get('item.isUnavailableAndDesignated');
     if((currentPath === 'item' || currentPath === "package_category") && isItemUnavailable && isItemUnavailable !== null && !this.get("itemNotAvailableShown")) {
       this.set("itemNotAvailableShown", true);
+      this.get('cart').removeItem(this.get('item'));
       this.get('messageBox').alert('Sorry! This item is no longer available.',
       () => {
         this.set("itemNotAvailableShown", false);

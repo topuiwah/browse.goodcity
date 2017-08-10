@@ -6,6 +6,7 @@ export default itemController.extend({
   messageBox:           Ember.inject.service(),
   package:              Ember.computed.alias('model'),
   pkgNotAvailableShown: false,
+  cart:                 Ember.inject.service(),
 
   hasQuantityAndIsAvailable: Ember.observer('package.isAvailable', 'package.orderId', 'package.isUnavailableAndDesignated', function() {
     var currentPath;
@@ -19,6 +20,7 @@ export default itemController.extend({
     }
     if((currentPath === 'package' || currentPath === "package_category" ) && ispkgUnavailable && ispkgUnavailable !== null && !this.get('pkgNotAvailableShown')) {
       this.set('pkgNotAvailableShown', true);
+      this.get('cart').removeItem(pkg);
       this.get('messageBox').alert('Sorry! This item is no longer available.',
       () => {
         this.set('pkgNotAvailableShown', false);
