@@ -30,7 +30,7 @@ export default Model.extend(cloudinaryImage, {
   }),
 
   isUnavailableAndDesignated: Ember.computed('packages.@each.isUnavailableAndDesignated', function() {
-    return this.get('packages').filterBy("isUnavailableAndDesignated").length > 0;
+    return this.get('packages').filterBy("isUnavailableAndDesignated").length === this.get('packages').length;
   }),
 
   images: Ember.computed('packages.@each.images.[]', function(){
