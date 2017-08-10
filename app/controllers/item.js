@@ -19,10 +19,13 @@ export default Ember.Controller.extend({
 
   hasQuantityAndIsAvailable: Ember.observer('item.isAvailable', 'item.packages.@each.orderId', 'item.isUnavailableAndDesignated', function() {
     var currentPath = this.get('target').currentPath;
+    var item = this.get("item");
     var isItemUnavailable = this.get('item.isUnavailableAndDesignated');
     if((currentPath === 'item' || currentPath === "package_category") && isItemUnavailable && isItemUnavailable !== null && !this.get("itemNotAvailableShown")) {
       this.set("itemNotAvailableShown", true);
-      this.get('cart').removeItem(this.get('item'));
+      if(this.get('cart').hasCartItem(item)) {
+        this.get('cart').removeItem(item);
+      }
       this.get('messageBox').alert('Sorry! This item is no longer available.',
       () => {
         this.set("itemNotAvailableShown", false);
