@@ -58,5 +58,4 @@ deployment:
       - bundle exec cap production deploy
       - bundle exec rake production android app:build
       - bundle exec rake production ios app:build
-      - fastlane android beta
       - fastlane ios beta
