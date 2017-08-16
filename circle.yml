@@ -27,6 +27,7 @@ dependencies:
     - yarn add --force node-sass
     - yarn add bower
     - bundle install
+    - gem update fastlane spaceship
     - bower install
     - PATH=$(npm bin):$PATH; azure-filestore download -f goodcity.keystore:
         pwd: cordova
@@ -58,5 +59,4 @@ deployment:
       - bundle exec cap production deploy
       - bundle exec rake production android app:build
       - bundle exec rake production ios app:build
-      - fastlane android beta
       - fastlane ios beta
