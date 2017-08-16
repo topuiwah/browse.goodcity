@@ -2,25 +2,33 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
-  messageBox: Ember.inject.service(),
-  application: Ember.inject.controller(),
+  messageBox:     Ember.inject.service(),
+  application:    Ember.inject.controller(),
   queryParams:    ['categoryId', 'sortBy'],
   categoryId:     null,
+  cart:           Ember.inject.service(),
   sortBy:         "createdAt",
   item:           Ember.computed.alias('model'),
   noNextItem:     Ember.computed.empty('nextItem'),
   noPreviousItem: Ember.computed.empty('previousItem'),
   hideThumbnails: Ember.computed.gt('item.sortedImages.length', 1),
   smallScreenPreviewUrl: Ember.computed.alias('item.displayImage.smallScreenPreviewImageUrl'),
+  itemNotAvailableShown: false,
 
   direction: null,
 
   hasQuantityAndIsAvailable: Ember.observer('item.isAvailable', 'item.packages.@each.orderId', 'item.isUnavailableAndDesignated', function() {
     var currentPath = this.get('target').currentPath;
-    var isItemAvailable = this.get('item.isUnavailableAndDesignated');
-    if((currentPath === 'item' || currentPath === "package_category") && !isItemAvailable && isItemAvailable !== null) {
+    var item = this.get("item");
+    var isItemUnavailable = this.get('item.isUnavailableAndDesignated');
+    if((currentPath === 'item' || currentPath === "package_category") && isItemUnavailable && isItemUnavailable !== null && !this.get("itemNotAvailableShown")) {
+      this.set("itemNotAvailableShown", true);
+      if(this.get('cart').hasCartItem(item)) {
+        this.get('cart').removeItem(item);
+      }
       this.get('messageBox').alert('Sorry! This item is no longer available.',
       () => {
+        this.set("itemNotAvailableShown", false);
         this.transitionToRoute('/browse');
       });
     }

@@ -38,37 +38,58 @@ export default Ember.Route.extend(preloadDataMixin, {
     });
   },
 
+  showLoginError() {
+    if (this.session.get('isLoggedIn')) {
+      this.session.clear();
+      this.store.unloadAll();
+      var loginController = this.controllerFor('login');
+      loginController.set('attemptedTransition', this.get('previousRoute'));
+      this.get('messageBox').alert(this.get("i18n").t('must_login'), () =>
+        this.transitionTo('login')
+      );
+    }
+  },
+
+  showSomethingWentWrong(reason) {
+    this.get("logger").error(reason);
+    if(!this.get('isErrPopUpAlreadyShown')) {
+      this.set('isErrPopUpAlreadyShown', true);
+      this.get("messageBox").alert(this.get("i18n").t("unexpected_error"), () => {
+        this.set('isErrPopUpAlreadyShown', false);
+      });
+    }
+  },
+
+  offlineError(reason){
+    this.get("messageBox").alert(this.get("i18n").t("offline_error"));
+    if(!reason.isAdapterError){
+      this.get("logger").error(reason);
+    }
+  },
+
+  quotaExceededError(reason){
+    this.get("logger").error(reason);
+    this.get("messageBox").alert(this.get("i18n").t("QuotaExceededError"));
+  },
+
   handleError: function(reason) {
     try
     {
       var status;
+      // let hasPopup = Ember.$('.reveal-modal:visible').length > 0;
       try { status = parseInt(reason.errors[0].status, 10); }
       catch (err) { status = reason.status; }
 
-      if(reason.name === "QuotaExceededError") {
-        this.get("logger").error(reason);
-        this.get("messageBox").alert(this.get("i18n").t("QuotaExceededError"));
+      if(!window.navigator.onLine){
+        this.offlineError(reason);
+      } else if(reason.name === "QuotaExceededError") {
+        this.quotaExceededError(reason);
       } else if (reason.name === "NotFoundError" && reason.code === 8) {
-        this.get("logger").error(reason);
         return false;
       } else if (status === 401) {
-        if (this.session.get('isLoggedIn')) {
-          this.session.clear();
-          this.store.unloadAll();
-          var loginController = this.controllerFor('login');
-          loginController.set('attemptedTransition', this.get('previousRoute'));
-          this.get('messageBox').alert(this.get("i18n").t('must_login'), () =>
-            this.transitionTo('login')
-          );
-        }
+        this.showLoginError();
       } else {
-        this.get("logger").error(reason);
-        if(!this.get('isErrPopUpAlreadyShown')) {
-          this.set('isErrPopUpAlreadyShown', true);
-          this.get("messageBox").alert(this.get("i18n").t("unexpected_error"), () => {
-            this.set('isErrPopUpAlreadyShown', false);
-          });
-        }
+        this.showSomethingWentWrong(reason);
       }
     } catch (err) { console.log(err); }
   },

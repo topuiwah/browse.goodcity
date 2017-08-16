@@ -3,27 +3,21 @@ import Ember from 'ember';
 
 export default PublicRoute.extend({
   messageBox: Ember.inject.service(),
-  transition: null,
   isAvailable: false,
+  transition: null,
 
   beforeModel(transition) {
     this._super(...arguments);
     this.set('transition', transition);
   },
 
-  model(params, transition) {
-    var item = this.store.peekRecord('item', params["id"]);
-    if(!item || !item.get("quantity") || !item.get("isAvailable")) {
-      this.set('isAvailable', false);
-    } else {
-      this.set('isAvailable', true);
-    }
-    this.set('transition', transition);
-    return item;
+  model(params) {
+    return this.store.peekRecord('item', params["id"]);
   },
 
-  afterModel(){
-    if(!this.get('isAvailable')) {
+  afterModel(model) {
+    var isItemUnavailable = model.get('isUnavailableAndDesignated');
+    if(isItemUnavailable && isItemUnavailable !== null) {
       this.get('transition').abort();
       this.get('messageBox').alert('Sorry! This item is no longer available.',
       () => {

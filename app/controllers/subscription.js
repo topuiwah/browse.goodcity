@@ -41,6 +41,29 @@ export default Ember.Controller.extend({
     window.addEventListener("offline", updateStatus);
   }),
 
+  getUndispatchedPackages(pkge) {
+    var unDispatchedPackage = [];
+      if(pkge.get('stockitSentOn') && pkge.get('hasSiblingPackages')){
+        var pkgs = pkge.get('item.packages');
+        pkgs.forEach(function(record) {
+          if(!record.get('stockitSentOn')) {
+            unDispatchedPackage.push(record);
+          }
+        });
+      }
+    return unDispatchedPackage;
+  },
+
+  updateCart(pkge, unDispatchedPkg) {
+    this.get("cart").removeItem(pkge.get('item'));
+    this.get('cart').pushItem(unDispatchedPkg.get('firstObject').toCartItem());
+  },
+
+  addItemToCart(cartItem) {
+    Ember.set(cartItem, "available", false);
+    this.get("cart").pushItem(cartItem);
+  },
+
   actions: {
     wire() {
       var updateStatus = Ember.run.bind(this, this.updateStatus);
@@ -112,40 +135,24 @@ export default Ember.Controller.extend({
       if(data.item.package.allow_web_publish === null) {
         return false;
       }
-
       this.store.pushPayload(data.item);
-
       var unDispatchedPkg = [];
       if(cartContent) {
         var pkge = this.store.peekRecord('package', data.item.package.id);
-        if(pkge.get('stockitSentOn') && pkge.get('hasSiblingPackages')){
-          var pkgs = pkge.get('item.packages');
-          pkgs.forEach(function(record) {
-            if(!record.get('stockitSentOn')) {
-              unDispatchedPkg.push(record);
-            }
-          });
-        }
+        unDispatchedPkg = this.getUndispatchedPackages(pkge);
         if(unDispatchedPkg.length === 1) {
-          this.get("cart").removeItem(pkge.get('item'));
-          this.get('cart').pushItem(unDispatchedPkg.get('firstObject').toCartItem());
+          this.updateCart(pkge, unDispatchedPkg);
         }
       }
-
       if(cartItem) {
-        var pkg = this.store.peekRecord("package", packageId);
-        this.get("cart").pushItem(pkg.toCartItem());
+        this.get("cart").pushItem(this.store.peekRecord("package", packageId).toCartItem());
       }
-
     } else if (existingItem) { //delete
       this.store.unloadRecord(existingItem);
-
       if(cartItem) {
-        Ember.set(cartItem, "available", false);
-        this.get("cart").pushItem(cartItem);
+        this.addItemToCart(cartItem);
       }
     }
-
     run(success);
   }
 });
