@@ -27,6 +27,7 @@ dependencies:
     - yarn add --force node-sass
     - yarn add bower
     - bundle install
+    - gem update fastlane 2.48.0
     - bower install
     - PATH=$(npm bin):$PATH; azure-filestore download -f goodcity.keystore:
         pwd: cordova
