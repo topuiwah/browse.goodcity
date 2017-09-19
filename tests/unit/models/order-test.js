@@ -2,13 +2,13 @@ import Ember from 'ember';
 import { test, moduleForModel } from 'ember-qunit';
 
 moduleForModel('order', {
-  needs: ['model:orders_package', 'model:order_transport']
+  needs: ['model:orders_package', 'model:order_transport', 'model:user', 'model:organisation', 'model:address']
 });
 
 test('Relationship with other models', function(assert){
   assert.expect(4);
 
-  var order = this.subject().store().modelFor('order');
+  var order = this.store().modelFor('order');
   var relationshipWithOrdersPackage = Ember.get(order, 'relationshipsByName').get('ordersPackages');
   var relationshipWithOrderTransport = Ember.get(order, 'relationshipsByName').get('orderTransport');
 
