@@ -6,6 +6,8 @@ moduleForModel('donor-condition', {
 });
 
 test('item relationship', function(assert) {
+  assert.expect(2);
+
   var donorCondition = this.subject().store.modelFor('donorCondition');
   var relationship = Ember.get(donorCondition, 'relationshipsByName').get('items');
 
@@ -13,7 +15,18 @@ test('item relationship', function(assert) {
   assert.equal(relationship.kind, 'hasMany');
 });
 
+test('check attributes', function(assert){
+  assert.expect(1);
+
+  var model = this.subject();
+
+  var name = Object.keys(model.toJSON()).indexOf('name') > -1;
+  assert.ok(name);
+});
+
 test('Valid ember-data Model', function(assert) {
+  assert.expect(1);
+
   var record;
   var subject = this.subject();
 
