@@ -30,3 +30,8 @@ test('gogovan_transport is valid data model', function(assert){
   assert.equal(record.get('name'), "gogovan");
 });
 
+test('computed property: specialId', function(assert){
+  assert.expect(1);
+  var gogovanTransport = this.subject({id: 1, name: 'gogovan'});
+  assert.equal(gogovanTransport.get('specialId'), '1_ggv');
+});
