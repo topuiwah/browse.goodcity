@@ -16,7 +16,6 @@ test('Relationship with other models', function(assert){
 });
 
 test('Check attributes', function(assert){
-  test('Check attributes', function(assert){
   assert.expect(1);
 
   var model = this.subject();
