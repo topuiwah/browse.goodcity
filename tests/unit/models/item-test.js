@@ -59,3 +59,37 @@ test('allPackageCategories', function(assert) {
 
   assert.equal(record.get('allPackageCategories.firstObject.id'), [pkgCategory.id]);
 });
+
+
+test('isItem', function(assert){
+  var record, pkgType;
+  var subject = this.subject();
+  assert.expect(1);
+
+  Ember.run(function() {
+    subject.store.createRecord('package_type', {id: 5, code: "ABC"});
+    pkgType = subject.store.peekRecord('package_type', 5);
+
+    subject.store.createRecord('item', {id: 5, packageType: pkgType});
+    record = subject.store.peekRecord('item', 5);
+  });
+
+  assert.equal(record.get('isItem'), true);
+});
+
+
+test('isAvailable', function(assert){
+  assert.expect(1);
+  var package1, package2;
+
+  var model = this.subject();
+  var store = this.store();
+
+  Ember.run(function(){
+    package1 = store.createRecord('package', { id: 1, quantity: 2, isAvailable: true });
+    package2 = store.createRecord('package', { id: 2, quantity: 2, isAvailable: true });
+    model.get('packages').pushObjects([package1, package2]);
+  });
+
+  assert.equal(model.get('isAvailable'), true);
+});
