@@ -4,7 +4,7 @@ export default {
   "language.zh": "中文",
   "company.name": "Crossroads Foundation",
   "by": "By",
-  "ok": "Ok",
+  "ok": "確定",
   "must_login": "You must login!",
   "unexpected_error": "出錯了",
   "QuotaExceededError": "Site may not work in Safari's <b>private mode.</b> Please try</br><ul><li><a href='http://www.apple.com/itunes/' style='color: black!important; background-color: #dee4eb !important;'>Downloading the iOS App</a></li><li>Using regular (not private) mode in Safari</li><li>Using Chrome's private browsing mode</li></ul>",
