@@ -47,38 +47,33 @@ test('allPackageCategories', function(assert) {
   var subject = this.subject();
 
   Ember.run(function() {
-    subject.store.createRecord('package_type', {id: 5, code: "ABC"});
-    pkgType = subject.store.peekRecord('package_type', 5);
+    pkgType = subject.store.createRecord('package_type', {id: 5, code: "ABC"});
 
-    subject.store.createRecord('item', {id: 5, packageType: pkgType});
-    record = subject.store.peekRecord('item', 5);
+    record = subject.store.createRecord('item', {id: 5, packageType: pkgType});
 
-    subject.store.createRecord('package_category', {id: 5, packageTypeCodes: "ABC"});
-    pkgCategory = subject.store.peekRecord('package_category', 5);
+    pkgCategory = subject.store.createRecord('package_category', {id: 5, packageTypeCodes: "ABC"});
   });
 
   assert.equal(record.get('allPackageCategories.firstObject.id'), [pkgCategory.id]);
 });
 
 
-test('isItem', function(assert){
+test('isItem: returns true if model is item', function(assert){
   var record, pkgType;
   var subject = this.subject();
   assert.expect(1);
 
   Ember.run(function() {
-    subject.store.createRecord('package_type', {id: 5, code: "ABC"});
-    pkgType = subject.store.peekRecord('package_type', 5);
+    pkgType = subject.store.createRecord('package_type', {id: 5, code: "ABC"});
 
-    subject.store.createRecord('item', {id: 5, packageType: pkgType});
-    record = subject.store.peekRecord('item', 5);
+    record =  subject.store.createRecord('item', {id: 5, packageType: pkgType});
   });
 
   assert.equal(record.get('isItem'), true);
 });
 
 
-test('isAvailable', function(assert){
+test('isAvailable: returns true if all packages are available', function(assert){
   assert.expect(1);
   var package1, package2;
 
@@ -92,4 +87,69 @@ test('isAvailable', function(assert){
   });
 
   assert.equal(model.get('isAvailable'), true);
+});
+
+test('quantity: returns total quantity of all packages', function(assert){
+  assert.expect(1);
+  var package1, package2;
+
+  var model = this.subject();
+  var store = this.store();
+
+  Ember.run(function(){
+    package1 = store.createRecord('package', { id: 1, quantity: 2 });
+    package2 = store.createRecord('package', { id: 2, quantity: 2 });
+    model.get('packages').pushObjects([package1, package2]);
+  });
+
+  var totalQty = package1.get('quantity') + package2.get('quantity');
+  assert.equal(model.get('quantity'), totalQty);
+});
+
+test('isUnavailableAndDesignated: returns true if all packages are unavailable and designated', function(assert){
+  assert.expect(1);
+  var package1, package2;
+
+  var model = this.subject();
+  var store = this.store();
+
+  Ember.run(function(){
+    package1 = store.createRecord('package', { id: 1, quantity: 2, isUnavailableAndDesignated: true });
+    package2 = store.createRecord('package', { id: 2, quantity: 2, isUnavailableAndDesignated: true });
+    model.get('packages').pushObjects([package1, package2]);
+  });
+
+  assert.equal(model.get('isUnavailableAndDesignated'), true);
+});
+
+test('isUnavailableAndDesignated: returns false if all packages are not unavailable and designated', function(assert){
+  assert.expect(1);
+  var package1, package2;
+
+  var model = this.subject();
+  var store = this.store();
+
+  Ember.run(function(){
+    package1 = store.createRecord('package', { id: 1, quantity: 2, isUnavailableAndDesignated: true });
+    package2 = store.createRecord('package', { id: 2, quantity: 2, isUnavailableAndDesignated: false });
+    model.get('packages').pushObjects([package1, package2]);
+  });
+
+  assert.equal(model.get('isUnavailableAndDesignated'), false);
+});
+
+test('images: returns blank array if associated package do not have any image', function(assert){
+  assert.expect(2);
+  var package1;
+
+  var model = this.subject();
+  var store = this.store();
+
+  Ember.run(function(){
+    package1 = store.createRecord('package', { id: 1, quantity: 2, isUnavailableAndDesignated: true });
+    model.get('packages').pushObjects([package1]);
+  });
+
+  assert.equal(model.get('images').get('length'), 0);
+  assert.equal(Ember.compare(model.get('images'), []), 0);
 });
