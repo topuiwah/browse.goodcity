@@ -18,6 +18,17 @@ test('check attributes', function(assert){
   assert.ok(mobile);
 });
 
+test('Relationships with other models', function(assert){
+  assert.expect(2);
+
+  var user = this.store().modelFor('user');
+  var relationshipsWithOrganisation = Ember.get(user, 'relationshipsByName').get('organisations');
+
+  assert.equal(relationshipsWithOrganisation.key, 'organisations');
+  assert.equal(relationshipsWithOrganisation.kind, 'hasMany');
+});
+
+
 test('check mobileWithoutCountryCode computedProperty', function(assert){
   assert.expect(1);
   var model = this.subject();
