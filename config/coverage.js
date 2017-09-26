@@ -1,3 +1,7 @@
 module.exports = {
-  excludes: ['app/routes/*']
+  coverageEnvVar: 'COVERAGE',
+  coverageFolder: 'coverage',
+  excludes: [
+    '/app/routes'
+  ]
 }
