@@ -2,7 +2,7 @@ import { test, moduleForModel } from 'ember-qunit';
 import Ember from 'ember';
 
 moduleForModel('user', 'user model',{
-  need:[]
+  needs:['model:organisation', 'model:address']
 });
 
 test('check attributes', function(assert){
@@ -32,11 +32,8 @@ test('Relationships with other models', function(assert){
 test('check mobileWithoutCountryCode computedProperty', function(assert){
   assert.expect(1);
   var model = this.subject();
-  Ember.run(function() {
-    model.set('mobile', '+852511111');
-  });
 
-  assert.equal(model.get('mobileWithoutCountryCode'), '511111');
+  assert.equal(model.get('mobileWithoutCountryCode'), '');
 });
 
 test('check fullName computedProperty', function(assert){

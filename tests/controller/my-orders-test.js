@@ -3,15 +3,15 @@ import startApp from '../helpers/start-app';
 import TestHelper from 'ember-data-factory-guy/factory-guy-test-helper';
 import Ember from 'ember';
 import FactoryGuy from 'ember-data-factory-guy';
-import '../factories/designation';
+import '../factories/order';
 
-var App, designation;
+var App, order;
 
 moduleFor('controller:my_orders', 'my_orders controller', {
   beforeEach: function() {
     App = startApp({}, 2);
     TestHelper.setup();
-    designation = FactoryGuy.make("designation");
+    order = FactoryGuy.make("order");
   },
   afterEach: function() {
     Ember.run(function() { TestHelper.teardown(); });
@@ -37,8 +37,8 @@ test('calling setOrder action sets order ', function(assert) {
 
   assert.equal(ctrl.get('selectedOrder'), null);
 
-  ctrl.send('setOrder', designation);
+  ctrl.send('setOrder', order);
 
-  assert.equal(ctrl.get('selectedOrder'), designation);
+  assert.equal(ctrl.get('selectedOrder'), order);
 });
 
