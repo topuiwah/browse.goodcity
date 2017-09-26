@@ -1,3 +1,5 @@
 module.exports = {
-  excludes: ['/app/routes/*']
+  excludes: [
+    '/app'
+  ]
 }
