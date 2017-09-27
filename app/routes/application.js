@@ -14,13 +14,13 @@ export default Ember.Route.extend(preloadDataMixin, {
 
   init() {
     var _this = this;
-    var storageHandler = function (object) {
+    var storageHandler = function () {
       if(!window.localStorage.getItem('authToken')) {
         window.location.reload();
       }
     };
     window.addEventListener("storage", function() {
-      storageHandler(_this);
+      storageHandler();
     }, false);
   },
 
