@@ -13,7 +13,6 @@ export default Ember.Route.extend(preloadDataMixin, {
   isErrPopUpAlreadyShown: false,
 
   init() {
-    var _this = this;
     var storageHandler = function () {
       if(!window.localStorage.getItem('authToken')) {
         window.location.reload();
