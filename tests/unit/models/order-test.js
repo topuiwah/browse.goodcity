@@ -92,3 +92,20 @@ test('orderItems: returns order item if package have sibling', function(assert){
   assert.equal(model.get('orderItems').get('length'), 1);
   assert.equal(Ember.compare(model.get('orderItems'), [item]), 0);
 });
+
+test('orderItems: returns order item if hasSibling is true', function(assert){
+  var ordersPackage1, package1, item, model, store;
+
+  model = this.subject();
+  store = this.store();
+
+  Ember.run(function(){
+    item = store.createRecord('item', { id: 1, saleable: true });
+    package1 = store.createRecord('package', { id: 1, quantity: 1, item: item, hasSiblingPackages: true });
+    ordersPackage1 = store.createRecord('orders_package', { id: 1, state: 'dispatched', package: package1 });
+    model.get('ordersPackages').pushObjects([ordersPackage1]);
+  });
+
+  assert.equal(model.get('orderItems').get('length'), 1);
+  assert.equal(Ember.compare(model.get('orderItems'), [item]), 0);
+});
