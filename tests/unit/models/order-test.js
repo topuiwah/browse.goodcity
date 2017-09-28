@@ -2,7 +2,8 @@ import Ember from 'ember';
 import { test, moduleForModel } from 'ember-qunit';
 
 moduleForModel('order', {
-  needs: ['model:orders_package', 'model:order_transport', 'model:user', 'model:organisation', 'model:address']
+  needs: ['model:orders_package', 'model:order_transport', 'model:user', 'model:organisation', 'model:address',
+    'model:package', 'model:item', 'model:package-type', 'model:image', 'model:donor-condition']
 });
 
 test('Relationship with other models', function(assert){
@@ -52,4 +53,42 @@ test('Order is valid data model', function(assert){
   });
 
   assert.equal(record.get('code'), "LocalOrder");
+});
+
+test('orderItems: returns order package if package do not have sibling', function(assert){
+  var ordersPackage1,  package1, model, store;
+
+  assert.expect(2);
+
+  model = this.subject();
+  store = this.store();
+
+  Ember.run(function(){
+    package1 = store.createRecord('package', { id: 1, quantity: 1 });
+    ordersPackage1 = store.createRecord('orders_package', { id: 1, state: 'dispatched', package: package1 });
+    model.get('ordersPackages').pushObjects([ordersPackage1]);
+  });
+
+  assert.equal(model.get('orderItems').get('length'), 1);
+  assert.equal(Ember.compare(model.get('orderItems'), [package1]), 0);
+});
+
+test('orderItems: returns order item if package have sibling', function(assert){
+  var ordersPackage1, package1, package2, item, model, store;
+
+  assert.expect(2);
+
+  model = this.subject();
+  store = this.store();
+
+  Ember.run(function(){
+    item = store.createRecord('item', { id: 1, saleable: true });
+    package1 = store.createRecord('package', { id: 1, quantity: 1, item: item });
+    package2 = store.createRecord('package', { id: 2, quantity: 1, item: item });
+    ordersPackage1 = store.createRecord('orders_package', { id: 1, state: 'dispatched', package: package1 });
+    model.get('ordersPackages').pushObjects([ordersPackage1]);
+  });
+
+  assert.equal(model.get('orderItems').get('length'), 1);
+  assert.equal(Ember.compare(model.get('orderItems'), [item]), 0);
 });
