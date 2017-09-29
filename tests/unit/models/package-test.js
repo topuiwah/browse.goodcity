@@ -60,3 +60,63 @@ test('dimensions', function(assert) {
 
   assert.equal(record.get('dimensions'), "10 x 10 x 10cm");
 });
+
+test('isDispatched: check package is dispatched or not', function(assert){
+  var record, store;
+
+  assert.expect(1);
+
+  store = this.store();
+
+  Ember.run(function(){
+    record = store.createRecord('package', { id: 1, stockitSentOn: "12/2/2017" });
+  });
+
+  assert.equal(record.get('isDispatched'), true);
+});
+
+test('image: returns favourite image', function(assert){
+  var image, package1, model, store;
+
+  model = this.subject();
+  store = this.store();
+
+  Ember.run(function(){
+    package1 = store.createRecord('package', { id: 1, quantity: 2 });
+    image = store.createRecord('image', { id: 1, favourite: true, package: package1 });
+  });
+
+  assert.equal(package1.get('image.id'), image.get('id'));
+});
+
+test('otherImages', function(assert){
+  var package1, image1, image2, store, model;
+
+  model = this.subject();
+  store = this.store();
+
+  Ember.run(function(){
+    package1 = store.createRecord('package', { id: 1, quantity: 2 });
+    image1 = store.createRecord('image', { id: 1, favourite: true, package: package1 });
+    image2 = store.createRecord('image', { id: 2, favourite: false, package: package1 });
+  });
+
+  assert.equal(package1.get('otherImages').get('length'), 1);
+  assert.equal(Ember.compare(package1.get('otherImages'), [image2]), 0);
+});
+
+test('sortedImages: Returns sorted images', function(assert){
+  var package1, image1, image2, store, model;
+
+  model = this.subject();
+  store = this.store();
+
+  Ember.run(function(){
+    package1 = store.createRecord('package', { id: 1, quantity: 2 });
+    image1 = store.createRecord('image', { id: 1, favourite: true, package: package1 });
+    image2 = store.createRecord('image', { id: 2, favourite: false, package: package1 });
+  });
+
+  assert.equal(package1.get('sortedImages').get('length'), 2);
+  assert.equal(Ember.compare(package1.get('sortedImages'), [image1, image2]), 0);
+});
