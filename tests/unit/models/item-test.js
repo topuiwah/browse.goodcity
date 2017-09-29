@@ -153,3 +153,35 @@ test('images: returns blank array if associated package do not have any image', 
   assert.equal(model.get('images').get('length'), 0);
   assert.equal(Ember.compare(model.get('images'), []), 0);
 });
+
+test('favouriteImage: Returns first fav image', function(assert){
+  var image, package1, model, store, item;
+
+  model = this.subject();
+  store = this.store();
+
+  Ember.run(function(){
+    item = store.createRecord('item', { id: 1, saleable: true });
+    package1 = store.createRecord('package', { id: 1, quantity: 2 });
+    model.get('packages').pushObjects([package1]);
+    image = store.createRecord('image', { id: 1, favourite: true, package: package1 });
+  });
+
+  assert.equal(model.get('favouriteImage.id'), image.get('id'));
+});
+
+test('displayImage: Returns image to be dispayed', function(assert){
+  var image, package1, model, store, item;
+
+  model = this.subject();
+  store = this.store();
+
+  Ember.run(function(){
+    item = store.createRecord('item', { id: 1, saleable: true });
+    package1 = store.createRecord('package', { id: 1, quantity: 2 });
+    model.get('packages').pushObjects([package1]);
+    image = store.createRecord('image', { id: 1, favourite: true, package: package1 });
+  });
+
+  assert.equal(model.get('displayImage.id'), image.get('id'));
+});
