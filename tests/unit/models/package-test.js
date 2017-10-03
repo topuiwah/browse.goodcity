@@ -120,3 +120,30 @@ test('sortedImages: Returns sorted images', function(assert){
   assert.equal(package1.get('sortedImages').get('length'), 2);
   assert.equal(Ember.compare(package1.get('sortedImages'), [image1, image2]), 0);
 });
+
+test('isAvailable: Checks package is available or not', function(assert){
+  var package1, store, model;
+
+  model = this.subject();
+  store = this.store();
+
+  Ember.run(function(){
+    package1 = store.createRecord('package', { id: 1, quantity: 1, isDispatched: false, allowWebPublish: true});
+  });
+
+  assert.equal(package1.get('isAvailable'), 1);
+});
+
+test('isUnavailableAndDesignated: Checks is package unavailable and designated', function(assert){
+  var package1, store, model;
+
+  model = this.subject();
+  store = this.store();
+
+  Ember.run(function(){
+    package1 = store.createRecord('package', { id: 1, quantity: 1, isDispatched: false, allowWebPublish: false});
+  });
+
+  assert.equal(package1.get('isUnavailableAndDesignated'), true);
+});
+
