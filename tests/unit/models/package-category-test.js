@@ -51,3 +51,17 @@ test('Check attributes', function(assert){
   assert.ok(name);
   assert.ok(packageTypeCodes);
 });
+
+test('nameItemsCount: Returns name and items count', function(assert){
+  var packageCategory = this.subject({ id: 1, name: 'Name'});
+
+  assert.equal(packageCategory.get('nameItemsCount'), "Name (0)");
+});
+
+test('packageTypes: returns blank array if no packageTypes are present', function(assert){
+  var model = this.subject();
+
+  assert.expect(2);
+  assert.equal(model.get('packageTypes.length'), 0);
+  assert.equal(Ember.compare(model.get('packageTypes'), []), 0);
+});
