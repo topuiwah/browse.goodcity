@@ -14,7 +14,8 @@ export default Ember.Route.extend(preloadDataMixin, {
 
   init() {
     var storageHandler = function () {
-      if(!window.localStorage.getItem('authToken')) {
+      var authToken = window.localStorage.getItem('authToken');
+      if(authToken !== null && authToken.length === 0) {
         window.location.reload();
       }
     };
