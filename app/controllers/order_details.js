@@ -29,6 +29,10 @@ export default Ember.Controller.extend({
       var description = this.get("description");
       var purpose_ids = [];
       var package_ids = [];
+      var org;
+      if(this.model && this.model.organisation){
+        org = this.model.organisation;
+      }
 
       if(this.get("organisation")) { purpose_ids.push(1); }
       if(this.get("client")) { purpose_ids.push(2); }
@@ -47,6 +51,7 @@ export default Ember.Controller.extend({
       });
 
       var orderParams = {
+        organisation: org,
         purpose_description: description,
         state: "draft",
         purpose_ids: purpose_ids,
