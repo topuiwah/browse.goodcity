@@ -13,14 +13,16 @@ export default Ember.Route.extend(preloadDataMixin, {
   isErrPopUpAlreadyShown: false,
 
   init() {
-    var storageHandler = function () {
-      var authToken = window.localStorage.getItem('authToken');
-      if(authToken !== null && authToken.length === 0) {
-        window.location.reload();
+    var _this = this;
+    var storageHandler = function (object) {
+      if(!window.localStorage.getItem('authToken')) {
+        object.get('messageBox').alert(object.get("i18n").t('must_login'), () => {
+          object.transitionTo('login');
+        });
       }
     };
     window.addEventListener("storage", function() {
-      storageHandler();
+      storageHandler(_this);
     }, false);
   },
 
