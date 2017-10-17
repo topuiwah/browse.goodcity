@@ -17,7 +17,7 @@ export default Ember.Route.extend(preloadDataMixin, {
     var _this = this;
     var storageHandler = function (object) {
       var currentPath = window.location.href;
-      if(!window.localStorage.getItem('authToken') && !object.get('isMustLoginAlreadyShown') && !(currentPath.includes("login") || currentPath.includes("authenticate") || currentPath.includes("#/browse") || currentPath.includes("#/category") || currentPath.includes("#/package"))) {
+      if(!window.localStorage.getItem('authToken') && !object.get('isMustLoginAlreadyShown') && !(currentPath.includes("login") || currentPath.includes("authenticate") || currentPath.includes("#/browse") || currentPath.includes("#/category") || currentPath.includes("#/package") || currentPath.includes("#/item"))) {
         object.set('isMustLoginAlreadyShown', true);
         object.get('messageBox').alert(object.get("i18n").t('must_login'), () => {
           object.transitionTo("login");
