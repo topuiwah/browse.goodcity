@@ -11,16 +11,21 @@ export default Ember.Route.extend(preloadDataMixin, {
   i18n: Ember.inject.service(),
   previousRoute: null,
   isErrPopUpAlreadyShown: false,
+  isMustLoginAlreadyShown: false,
 
   init() {
-    var storageHandler = function () {
-      var authToken = window.localStorage.getItem('authToken');
-      if(authToken !== null && authToken.length === 0) {
-        window.location.reload();
+    var _this = this;
+    var storageHandler = function (object) {
+      var currentPath = window.location.href;
+      if(!window.localStorage.getItem('authToken') && !object.get('isMustLoginAlreadyShown') && !(currentPath.includes("login") || currentPath.includes("authenticate") || currentPath.includes("#/browse") || currentPath.includes("#/category") || currentPath.includes("#/package"))) {
+        object.set('isMustLoginAlreadyShown', true);
+        object.get('messageBox').alert(object.get("i18n").t('must_login'), () => {
+          object.transitionTo("login");
+        });
       }
     };
     window.addEventListener("storage", function() {
-      storageHandler();
+      storageHandler(_this);
     }, false);
   },
 
