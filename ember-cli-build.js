@@ -4,7 +4,10 @@ var webRelease = ['production', 'staging'].indexOf(process.env.EMBER_ENV) !== -1
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
-    sourcemaps: ['js', 'css'],
+    sourcemaps: {
+      enabled: true,
+      extensions: ['js']
+    },
     fingerprint: {
       extensions: ['js', 'css', 'png', 'jpg', 'gif', 'map'],
       enabled: webRelease
