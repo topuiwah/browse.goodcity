@@ -30,6 +30,7 @@ dependencies:
     - bundle install
     - gem update fastlane spaceship
     - bower install
+    - ember build
     - PATH=$(npm bin):$PATH; azure-filestore download -f goodcity.keystore:
         pwd: cordova
     - PATH=$(npm bin):$PATH; azure-filestore download -d google-play -f $GOOGLE_PLAY_KEY_FILE:
