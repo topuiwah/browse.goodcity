@@ -8,6 +8,11 @@ module.exports = function(defaults) {
       enabled: true,
       extensions: ['js']
     },
+    minifyJS: {
+      options: {
+        exclude: ["**/vendor.js"]
+      }
+    },
     fingerprint: {
       extensions: ['js', 'css', 'png', 'jpg', 'gif', 'map'],
       enabled: webRelease
