@@ -6,6 +6,10 @@ module.exports = function(environment) {
     environment: environment,
     baseURL: '/',
     defaultLocationType: 'auto',
+
+    rollbar: {
+      accessToken: 'f6ae344aa2b143009c619a6c775e3343'
+    },
     
     EmberENV: {
       FEATURES: {
