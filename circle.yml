@@ -31,6 +31,8 @@ dependencies:
     - gem update fastlane spaceship
     - bower install
     - ember build
+    - curl https://api.rollbar.com/api/1/sourcemap -F access_token=f6ae344aa2b143009c619a6c775e3343 -F version="0" -F minified_url=https://browse-staging.goodcity.hk/assets/browse.js -F source_map=https://browse-staging.goodcity.hk/assets/browse.map
+
     - PATH=$(npm bin):$PATH; azure-filestore download -f goodcity.keystore:
         pwd: cordova
     - PATH=$(npm bin):$PATH; azure-filestore download -d google-play -f $GOOGLE_PLAY_KEY_FILE:
