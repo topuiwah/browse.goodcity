@@ -7,10 +7,6 @@ module.exports = function(environment) {
     baseURL: '/',
     defaultLocationType: 'auto',
 
-    rollbar: {
-      accessToken: 'f6ae344aa2b143009c619a6c775e3343'
-    },
-    
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -54,9 +50,19 @@ module.exports = function(environment) {
     i18n: {
       defaultLocale: 'en'
     },
+
     cordova: {
       rebuildOnChange: false,
       emulate: false
+    },
+
+    rollbar: {
+      accessToken: 'f6ae344aa2b143009c619a6c775e3343',
+      enabled: environment !== 'development',
+      captureUncaught: true,
+      payload: {
+        environment: 'development'
+      }
     }
   };
 
@@ -69,15 +75,16 @@ module.exports = function(environment) {
 
     // RESTAdapter Settings
     ENV.APP.SOCKETIO_WEBSERVICE_URL = 'http://localhost:1337/goodcity';
-    ENV.APP.API_HOST_URL = 'http://localhost:3000';
+    ENV.APP.API_HOST_URL = 'http://localhost:4000';
 
     ENV.contentSecurityPolicy["connect-src"] = [
       'http://localhost:4202',
-      'http://localhost:3000',
+      'http://localhost:4000',
       'http://localhost:1337',
       'https://api.cloudinary.com',
       'ws://localhost:1337',
       'wss://localhost:1337',
+      'https://api.rollbar.com'
     ].join(' ');
   }
 
@@ -106,6 +113,7 @@ module.exports = function(environment) {
     ENV.contentSecurityPolicy["connect-src"] = [
       'https://app.goodcity.hk',
       'https://api.goodcity.hk',
+      'https://api.rollbar.com',
       'https://socket.goodcity.hk:81',
       'ws://socket.goodcity.hk:81',
       'wss://socket.goodcity.hk:81',
@@ -120,6 +128,7 @@ module.exports = function(environment) {
       ENV.contentSecurityPolicy["connect-src"] = [
         'https://app-staging.goodcity.hk',
         'https://api-staging.goodcity.hk',
+        'https://api.rollbar.com',
         'https://socket-staging.goodcity.hk:81',
         'ws://socket-staging.goodcity.hk:81',
         'wss://socket-staging.goodcity.hk:81',
