@@ -8,7 +8,7 @@ module.exports = function(environment) {
     defaultLocationType: 'auto',
 
     rollbar: {
-      accessToken: 'f6ae344aa2b143009c619a6c775e3343'
+      accessToken: 'f6ae344aa2b143009c619a6c775e3343',
       payload: {
         client: {
           javascript: {
