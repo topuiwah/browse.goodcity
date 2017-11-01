@@ -10,7 +10,7 @@ module.exports = function(defaults) {
     },
     minifyJS: {
       options: {
-        exclude: [**/browse.js"]
+        exclude: ["**/browse.js"]
       }
     },
     fingerprint: {
