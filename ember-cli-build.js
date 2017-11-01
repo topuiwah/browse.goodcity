@@ -10,11 +10,11 @@ module.exports = function(defaults) {
     },
     minifyJS: {
       options: {
-        exclude: ["**/vendor.js", "**/browse.js"]
+        exclude: [**/browse.js"]
       }
     },
     fingerprint: {
-      extensions: ['css', 'png', 'jpg', 'gif'],
+      extensions: ['css', 'png', 'jpg', 'gif', 'map'],
       enabled: webRelease
     },
     gzip: {
