@@ -36,6 +36,7 @@ export default Model.extend(cloudinaryImage, {
   }),
 
   isDispatched: Ember.computed.bool("stockitSentOn"),
+
   isAvailable: Ember.computed('isDispatched', 'allowWebPublish', function() {
     return !this.get("isDispatched") && this.get("allowWebPublish") && this.get("quantity");
   }),

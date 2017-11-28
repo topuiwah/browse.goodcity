@@ -10,6 +10,7 @@ export default Model.extend({
   purposeDescription: attr('string'),
   ordersPackages: hasMany("orders_packages", { async: false }),
   orderTransport: belongsTo('order_transport', { async: false }),
+  organisation: belongsTo('organisation', { async: false }),
   createdById:      belongsTo('user', { async: false }),
   createdAt:        attr('date'),
   updatedAt:        attr('date'),
