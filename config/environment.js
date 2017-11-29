@@ -13,7 +13,6 @@ module.exports = function(environment) {
         client: {
           javascript: {
             source_map_enabled: true, //this is now true by default
-            code_version: require('child_process').execSync('git rev-parse HEAD').toString().trim(),
             // Optionally have Rollbar guess which frames the error was thrown from
             // when the browser does not provide line and column numbers.
             environment: environment,
@@ -71,6 +70,12 @@ module.exports = function(environment) {
       emulate: false
     }
   };
+
+  if (process.env.SOURCE_VERSION) {
+    let packageJson = require('../package.json');
+    let gitHash = process.env.SOURCE_VERSION.substr(0, 7);
+    ENV.emberRollbarClient.payload.client.javascript['code_version'] = `${packageJson.version}+${gitHash}`;
+  }
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
