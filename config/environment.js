@@ -16,7 +16,8 @@ module.exports = function(environment) {
             code_version: require('child_process').execSync('git rev-parse HEAD').toString().trim(),
             // Optionally have Rollbar guess which frames the error was thrown from
             // when the browser does not provide line and column numbers.
-            environment: environment
+            environment: environment,
+            guess_uncaught_frames: false
           }
         }
       }
