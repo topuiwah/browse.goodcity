@@ -17,7 +17,6 @@ export default Ember.Service.extend({
       var userId = currentUser.get("id");
       var error = this.getError(reason);
       var environment = config.staging ? "staging" : config.environment;
-      var version = `${config.APP.SHA}`;
       this.set('rollbar.currentUser', currentUser);
       this.get('rollbar').error(error, data = { id: userId, username: userName, environment: environment});
     }
