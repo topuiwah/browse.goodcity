@@ -52,11 +52,6 @@ module.exports = function(environment) {
       // RESTAdapter Settings
       NAMESPACE: 'api/v1',
       HK_COUNTRY_CODE: '+852',
-
-      AIRBRAKE_HOST: "https://errbit.crossroads.org.hk",
-      AIRBRAKE_PROJECT_ID: "57da6273d30d85381d00000b",
-      AIRBRAKE_PROJECT_KEY: "a4776dabb8dadd580c0f92205fc897a6",
-
       PRELOAD_TYPES: ["package_type", "district", "territory", "package_category", "donor_condition", "package"],
       PRELOAD_AUTHORIZED_TYPES: ["order", "gogovan_transport"],
 

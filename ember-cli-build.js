@@ -51,7 +51,6 @@ module.exports = function(defaults) {
   });
 
   app.import('bower_components/socket.io-client/socket.io.js');
-  app.import('bower_components/airbrake-js/dist/client.js');
   app.import('bower_components/moment/moment.js');
   // app.import('bower_components/moment/locale/zh-tw.js');
 
@@ -61,8 +60,6 @@ module.exports = function(defaults) {
   app.import("bower_components/pickadate/lib/themes/default.css");
   app.import("bower_components/pickadate/lib/themes/default.date.css");
   app.import("bower_components/pickadate/lib/themes/default.time.css");
-
-  app.import('bower_components/airbrake-js/dist/client.js');
 
   return app.toTree();
 };
