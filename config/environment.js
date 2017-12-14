@@ -7,7 +7,8 @@ module.exports = function(environment) {
     baseURL: '/',
     defaultLocationType: 'auto',
 
-    rollbar: {
+    'emberRollbarClient': {
+      enabled: environment !== 'test' && environment !== 'development',
       accessToken: 'f6ae344aa2b143009c619a6c775e3343',
       payload: {
         client: {
@@ -17,7 +18,7 @@ module.exports = function(environment) {
             // Optionally have Rollbar guess which frames the error was thrown from
             // when the browser does not provide line and column numbers.
             environment: environment,
-            guess_uncaught_frames: true
+            guess_uncaught_frames: false
           }
         }
       }
@@ -51,11 +52,6 @@ module.exports = function(environment) {
       // RESTAdapter Settings
       NAMESPACE: 'api/v1',
       HK_COUNTRY_CODE: '+852',
-
-      AIRBRAKE_HOST: "https://errbit.crossroads.org.hk",
-      AIRBRAKE_PROJECT_ID: "57da6273d30d85381d00000b",
-      AIRBRAKE_PROJECT_KEY: "a4776dabb8dadd580c0f92205fc897a6",
-
       PRELOAD_TYPES: ["package_type", "district", "territory", "package_category", "donor_condition", "package"],
       PRELOAD_AUTHORIZED_TYPES: ["order", "gogovan_transport"],
 
