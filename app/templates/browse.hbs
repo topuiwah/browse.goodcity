@@ -9,7 +9,7 @@
       <ul class="small-block-grid-3 large-block-grid-5 xxlarge-block-grid-6 list">
         {{#each parentCategories as |category|}}
           <li>
-            {#link-to 'package_category' category.id}}
+            {{#link-to 'package_category' category.id}}
               <img src="{{category.imageUrl}}"/>
             {{/link-to}}
             <div class='main_category'>
