@@ -213,6 +213,9 @@ export default Ember.Controller.extend({
           loadingView.destroy();
           this.transitionToRoute("order.confirm", this.get("order.id"));
         });
+    },
+    openCart(){
+      this.transitionToRoute('cart');
     }
   }
 });

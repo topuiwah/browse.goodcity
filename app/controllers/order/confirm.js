@@ -20,6 +20,9 @@ export default Ember.Controller.extend({
           this.get('cart').clearItems();
           this.transitionToRoute("/my_orders", data.order.id);
         });
+    },
+    openCart(){
+      this.transitionToRoute('cart');
     }
   }
 });

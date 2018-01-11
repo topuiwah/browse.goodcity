@@ -64,6 +64,9 @@ export default Ember.Controller.extend({
           loadingView.destroy();
           this.transitionToRoute("order.transport_details", data.order.id);
         });
+    },
+    openCart(){
+      this.transitionToRoute('cart');
     }
   }
 
