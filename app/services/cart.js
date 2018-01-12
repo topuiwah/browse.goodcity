@@ -14,6 +14,7 @@ const Service = ArrayProxy.extend({
   localStorage: true,
   checkout: Ember.computed.localStorage(),
   store: Ember.inject.service(),
+  isAnyItemMissing: false,
 
   content: computed(function(){
     return JSON.parse(window.localStorage.getItem('cart') || "[]");
@@ -50,6 +51,10 @@ const Service = ArrayProxy.extend({
   pushItem(item) {
     let cartItem = this.currentCartItem(item);
     let foundCartItem = this.findBy('guid', get(cartItem, 'guid'));
+    let isAvailable = get(cartItem, 'available');
+    if(!isAvailable){
+      this.set('isAnyItemMissing', true);
+    }
 
     if (!foundCartItem) {
       this.pushObject(cartItem);

@@ -54,6 +54,10 @@ export default Ember.Controller.extend({
             this.set('displayCart', false);
           });
       }
+    },
+
+    openCart(){
+      this.transitionToRoute('cart');
     }
   }
 
