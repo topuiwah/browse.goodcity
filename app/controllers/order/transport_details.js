@@ -1,8 +1,9 @@
 import Ember from 'ember';
 import AjaxPromise from './../../utils/ajax-promise';
+import applicationController from './../application';
 const { getOwner } = Ember;
 
-export default Ember.Controller.extend({
+export default applicationController.extend({
 
   logger: Ember.inject.service(),
   order: Ember.computed.alias("model.order"),
@@ -213,9 +214,6 @@ export default Ember.Controller.extend({
           loadingView.destroy();
           this.transitionToRoute("order.confirm", this.get("order.id"));
         });
-    },
-    openCart(){
-      this.transitionToRoute('cart');
     }
   }
 });

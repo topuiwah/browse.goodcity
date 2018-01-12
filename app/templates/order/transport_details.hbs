@@ -1,6 +1,4 @@
-{{#message-box btn1Text='ok' btn1Callback=(action "openCart") isVisible=cart.isAnyItemMissing}}
-  <p> One or many items in your cart are no longer available. Please remove those items from cart and then proceed. </p>
-{{/message-box}}
+{{partial 'order/alert_item_not_available'}}
 <div class="row checkout_pages">
   <div class="small-12 large-6 columns">
     <section class="main-section login-page">
