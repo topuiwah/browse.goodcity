@@ -1,7 +1,7 @@
 {
   "name": "browse",
   "dependencies": {
-    "ember": "~2.11.0",
+    "ember": "~2.13.0",
     "ember-cli-shims": "0.1.1",
     "cloudinary": "~1.0.24",
     "foundation": "~5.5.0",
