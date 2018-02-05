@@ -10,7 +10,7 @@
     "jquery.cookie": "^1.4.1",
     "modernizr": "^2.8.3",
     "photoswipe": "4.1.0",
-    "font-awesome": "~4.6.3",
+    "font-awesome": "~4.7.0",
     "lightgallery": "1.2.20",
     "socket.io-client": "~1.4.5",
     "moment": "~2.10.3",
