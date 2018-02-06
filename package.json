@@ -61,7 +61,7 @@
     "ember-load-initializers": "^1.0.0",
     "ember-offline": "1.0.0",
     "ember-resolver": "^4.5.0",
-    "ember-rollbar-client": "0.5.2",
+    "ember-rollbar-client": "0.2.2",
     "ember-try": "0.2.8",
     "ember-watson": "^0.8.1",
     "express": "^4.13.3",
