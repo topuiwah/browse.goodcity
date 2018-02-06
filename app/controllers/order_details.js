@@ -1,8 +1,9 @@
 import Ember from 'ember';
 import AjaxPromise from 'browse/utils/ajax-promise';
 const { getOwner } = Ember;
+import applicationController from './application';
 
-export default Ember.Controller.extend({
+export default applicationController.extend({
   description: "",
 
   organisation: false,
@@ -66,5 +67,4 @@ export default Ember.Controller.extend({
         });
     }
   }
-
 });

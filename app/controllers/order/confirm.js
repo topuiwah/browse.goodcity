@@ -1,8 +1,9 @@
 import Ember from 'ember';
+import applicationController from './../application';
 import AjaxPromise from 'browse/utils/ajax-promise';
 const { getOwner } = Ember;
 
-export default Ember.Controller.extend({
+export default applicationController.extend({
   cart: Ember.inject.service(),
   order: Ember.computed.alias("model.order"),
 
