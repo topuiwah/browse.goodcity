@@ -62,7 +62,7 @@
     "ember-offline": "1.0.0",
     "ember-resolver": "^4.5.0",
     "ember-rollbar-client": "0.2.2",
-    "ember-try": "0.2.8",
+    "ember-try": "0.2.23",
     "ember-watson": "^0.8.1",
     "express": "^4.13.3",
     "glob": "^5.0.14",
