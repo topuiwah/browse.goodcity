@@ -63,7 +63,7 @@
     "ember-resolver": "^4.5.0",
     "ember-rollbar-client": "0.2.2",
     "ember-try": "0.2.23",
-    "ember-watson": "^0.8.1",
+    "ember-watson": "^0.9.1",
     "express": "^4.13.3",
     "glob": "^5.0.14",
     "liquid-fire": "0.27.1",
