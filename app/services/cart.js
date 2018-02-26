@@ -38,7 +38,7 @@ const Service = ArrayProxy.extend({
       cartItem = item.toCartItem();
     } else {
       cartItem = getOwner(this)._lookupFactory('model:cart-item').create();
-      cartItem.setProperties((item.toJSON && item.toJSON()) || item);
+      cartItem.setProperties((item && item.toJSON && item.toJSON()) || item);
     }
     return cartItem;
   },
