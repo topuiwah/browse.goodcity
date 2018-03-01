@@ -52,7 +52,7 @@ const Service = ArrayProxy.extend({
     this.set("isAnyItemMissing", false);
     let cartItem = this.currentCartItem(item);
     let foundCartItem = this.findBy('guid', get(cartItem, 'guid'));
-    let isUnavailable = get(cartItem, 'available');
+    let isUnavailable = foundCartItem.available;
     if(!isUnavailable){
       this.set('isAnyItemMissing', true);
     }
