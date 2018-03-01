@@ -23,7 +23,7 @@ export default Ember.Route.extend(preloadDataMixin, {
     var storageHandler = function (object) {
       var currentPath = window.location.href;
       var authToken = window.localStorage.getItem('authToken');
-      if(!authToken && !object.get('isMustLoginAlreadyShown') && this.unlessIncludesCurrentPath()) {
+      if(!authToken && !object.get('isMustLoginAlreadyShown') && object.unlessIncludesCurrentPath()) {
         object.set('isMustLoginAlreadyShown', true);
         object.get('messageBox').alert(object.get("i18n").t('must_login'), () => {
           window.location.reload();
