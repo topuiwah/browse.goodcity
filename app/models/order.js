@@ -18,11 +18,13 @@ export default Model.extend({
   orderItems: Ember.computed('ordersPackages.[]', function() {
     var items = [];
     this.get('ordersPackages').forEach(function(record) {
-      var pkg = record.get('package');
-      if (pkg.get('hasSiblingPackages')) {
-        items.push(pkg.get('item'));
-      } else {
-        items.push(pkg);
+      if(record) {
+        var pkg = record.get('package');
+        if (pkg.get('hasSiblingPackages')) {
+          items.push(pkg.get('item'));
+        } else {
+          items.push(pkg);
+        }
       }
     });
     return items.uniq();
