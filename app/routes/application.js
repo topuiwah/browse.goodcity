@@ -13,17 +13,22 @@ export default Ember.Route.extend(preloadDataMixin, {
   isErrPopUpAlreadyShown: false,
   isMustLoginAlreadyShown: false,
 
+  unlessIncludesCurrentPath() {
+    var currentPath = window.location.href;
+    return !(currentPath.indexOf("login") >= 0 || currentPath.indexOf("authenticate") || currentPath.indexOf("browse") >=0 || currentPath.indexOf("category") >= 0 || currentPath.indexOf("package") >= 0 || currentPath.indexOf("item") || window.location.pathname === "/");
+  },
+
   init() {
     var _this = this;
     var storageHandler = function (object) {
       var currentPath = window.location.href;
       var authToken = window.localStorage.getItem('authToken');
-      if(!authToken && !object.get('isMustLoginAlreadyShown') && !(currentPath.includes("login") || currentPath.includes("authenticate") || currentPath.includes("#/browse") || currentPath.includes("#/category") || currentPath.includes("#/package") || currentPath.includes("#/item") || window.location.pathname === "/")) {
+      if(!authToken && !object.get('isMustLoginAlreadyShown') && object.unlessIncludesCurrentPath()) {
         object.set('isMustLoginAlreadyShown', true);
         object.get('messageBox').alert(object.get("i18n").t('must_login'), () => {
           window.location.reload();
         });
-      } else if(authToken && (currentPath.includes("login") || currentPath.includes("authenticate"))) {
+      } else if(authToken && (currentPath.indexOf("login") >= 0 || currentPath.indexOf("authenticate") >= 0)) {
         object.transitionTo("/");
       }
     };

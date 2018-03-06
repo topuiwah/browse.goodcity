@@ -38,7 +38,7 @@ const Service = ArrayProxy.extend({
       cartItem = item.toCartItem();
     } else {
       cartItem = getOwner(this)._lookupFactory('model:cart-item').create();
-      cartItem.setProperties((item.toJSON && item.toJSON()) || item);
+      cartItem.setProperties((item && item.toJSON()) || item);
     }
     return cartItem;
   },
@@ -49,10 +49,10 @@ const Service = ArrayProxy.extend({
   },
 
   pushItem(item) {
+    this.set("isAnyItemMissing", false);
     let cartItem = this.currentCartItem(item);
     let foundCartItem = this.findBy('guid', get(cartItem, 'guid'));
-    let isAvailable = get(cartItem, 'available');
-    if(!isAvailable){
+    if(foundCartItem && !foundCartItem.available){
       this.set('isAnyItemMissing', true);
     }
 
