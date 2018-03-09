@@ -35,6 +35,12 @@ test('Check attributes', function(assert){
   assert.ok(descriptionZhTw);
 });
 
+test('check nameAndDescription computed property', function(assert) {
+  assert.expect(1);
+  var organisation = this.subject({ nameEn: 'Crossroads', descriptionEn: 'Foundation' });
+  assert.equal(organisation.get('nameAndDescription'), 'Crossroads Foundation');
+});
+
 test('Organisation is valid data model', function(assert){
   assert.expect(1);
 
