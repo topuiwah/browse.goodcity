@@ -1,12 +1,6 @@
 import { test, moduleForModel } from 'ember-qunit';
 import Ember from 'ember';
 
-moduleForModel('address', 'Address Model', {
-  needs: ['model:district', 'model:addressable']
-});
-
-import { test, moduleForModel } from 'ember-qunit';
-import Ember from 'ember';
 
 moduleForModel('address', 'Address model',{
   needs: ['model:addressable','model:district']
@@ -48,14 +42,6 @@ test('check fullAddress computedProperty', function(assert){
   assert.equal(model.get('fullAddress'), '24 Crossroads Tai chung');
 });
 
-
-test('check attributes', function(assert){
-  var model = this.subject();
-
-  var addressableType = Object.keys(model.toJSON()).indexOf('addressableType') > -1;
-
-  assert.ok(addressableType);
-});
 
 
 test('Address is a valid ember-data Model', function(assert){
