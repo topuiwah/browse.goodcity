@@ -24,6 +24,15 @@ test('check attributes', function(assert){
   assert.ok(name);
 });
 
+test('check name computed property', function(assert){
+  assert.expect(1);
+
+  var model = this.subject({ name: 'Used' });
+
+  assert.equal(model.get("name"), 'Used');
+});
+
+
 test('Valid ember-data Model', function(assert) {
   assert.expect(1);
 
