@@ -9,6 +9,7 @@ export default Addressable.extend({
   mobile:      attr('string'),
   createdAt:   attr('date'),
   organisations: hasMany('organisation', {async: false}),
+  organisationsUsers: hasMany('organisationsUsers', {async: false}),
 
   mobileWithoutCountryCode: Ember.computed('mobile', function(){
     var mobile = this.get('mobile');
