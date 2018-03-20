@@ -2,7 +2,7 @@ import Ember from 'ember';
 import { test, moduleForModel } from 'ember-qunit';
 
 moduleForModel('order', {
-  needs: ['model:orders_package', 'model:order_transport', 'model:user', 'model:organisation', 'model:address',
+  needs: ['model:orders_package', 'model:order_transport', 'model:user', 'model:organisation', 'model:address', 'model:organisations-user',
     'model:package', 'model:item', 'model:package-type', 'model:image', 'model:donor-condition']
 });
 
