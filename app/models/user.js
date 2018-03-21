@@ -11,6 +11,9 @@ export default Addressable.extend({
   organisations: hasMany('organisation', {async: false}),
   organisationsUsers: hasMany('organisationsUsers', {async: false}),
 
+  userRoles: hasMany('userRoles', { async: false }),
+  roles: hasMany('roles', { async: false }),
+
   mobileWithoutCountryCode: Ember.computed('mobile', function(){
     var mobile = this.get('mobile');
     return mobile ? ((mobile.includes("+852")) ? mobile.substring('4') : mobile) : '';
