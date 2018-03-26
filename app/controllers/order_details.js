@@ -47,8 +47,10 @@ export default applicationController.extend({
       var loadingView = getOwner(this).lookup('component:loading').append();
 
       this.get("cart.cartItems").forEach(record => {
-        var ids = record.get("isItem") ? record.get("packages").map(pkg => pkg.get("id")) : [record.get("id")];
-        package_ids = package_ids.concat(ids);
+        if(record) {
+          var ids = record.get("isItem") ? record.get("packages").map(pkg => pkg.get("id")) : [record.get("id")];
+          package_ids = package_ids.concat(ids);
+        }
       });
 
       var orderParams = {
