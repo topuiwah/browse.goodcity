@@ -35,6 +35,14 @@ export default Model.extend(cloudinaryImage, {
     });
   }),
 
+  _unloadRecord: Ember.observer('allowWebPublish', function() {
+    Ember.run.once(this, function() {
+      if(!this.get("allowWebPublish")) {
+        this.store.unloadRecord(this);
+      }
+    });
+  }),
+
   isDispatched: Ember.computed.bool("stockitSentOn"),
 
   isAvailable: Ember.computed('isDispatched', 'allowWebPublish', function() {
