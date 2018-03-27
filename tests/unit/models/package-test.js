@@ -129,11 +129,12 @@ test('isAvailable: Checks package is available or not', function(assert){
   assert.equal(package1.get('isAvailable'), 1);
 });
 
-test('isUnavailableAndDesignated: Checks is package unavailable and designated', function(assert){
-  var package1 = this.subject({ id: 1, quantity: 1, isDispatched: false, allowWebPublish: false });
+// This test case is no longer valid
+// test('isUnavailableAndDesignated: Checks is package unavailable and designated', function(assert){
+//   var package1 = this.subject({ id: 1, quantity: 1, isDispatched: false, allowWebPublish: false });
 
-  assert.expect(1);
+//   assert.expect(1);
 
-  assert.equal(package1.get('isUnavailableAndDesignated'), true);
-});
+//   assert.equal(package1.get('isUnavailableAndDesignated'), true);
+// });
 
