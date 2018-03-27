@@ -35,7 +35,7 @@ export default Model.extend(cloudinaryImage, {
     });
   }),
 
-  _unloadRecord: Ember.observer('allowWebPublish', function() {
+  _unloadRecord: Ember.observer('id', 'itemId', 'orderId', 'allowWebPublish', function() {
     Ember.run.once(this, function() {
       if(!this.get("allowWebPublish")) {
         this.store.unloadRecord(this);
