@@ -1,6 +1,6 @@
 module.exports = {
   excludes: [
-    '*/routes/**/*', '*/**/router.js', '*/templates/**/*'
+    '*/routes/**/*', '*/**/router.js', "public/*/**/*", '*/serializers/**/*'
   ],
   coverageFolder: 'coverage'
 }

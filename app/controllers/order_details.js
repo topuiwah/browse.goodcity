@@ -31,8 +31,8 @@ export default applicationController.extend({
       var purpose_ids = [];
       var package_ids = [];
       var user_organisation_id;
-      if(this.model && this.model.organisation){
-        user_organisation_id = this.model.organisation.id;
+      if(this.model && this.model.user && this.model.user.get('organisationsUsers').length){
+        user_organisation_id = this.model.user.get('organisationsUsers.firstObject.organisationId');
       }
 
       if(this.get("organisation")) { purpose_ids.push(1); }
@@ -47,8 +47,10 @@ export default applicationController.extend({
       var loadingView = getOwner(this).lookup('component:loading').append();
 
       this.get("cart.cartItems").forEach(record => {
-        var ids = record.get("isItem") ? record.get("packages").map(pkg => pkg.get("id")) : [record.get("id")];
-        package_ids = package_ids.concat(ids);
+        if(record) {
+          var ids = record.get("isItem") ? record.get("packages").map(pkg => pkg.get("id")) : [record.get("id")];
+          package_ids = package_ids.concat(ids);
+        }
       });
 
       var orderParams = {
