@@ -118,6 +118,9 @@ namespace :cordova do
     log("Preparing app for #{platform}")
     Dir.chdir(CORDOVA_PATH) do
       system({"ENVIRONMENT" => environment}, "cordova prepare #{platform}")
+      if environment == "staging"
+        system({"ENVIRONMENT" => environment}, "cordova-hcp build")
+      end
     end
 
     if platform == "ios"
