@@ -36,7 +36,7 @@ require "rake/clean"
 
 ROOT_PATH = File.dirname(__FILE__)
 CORDOVA_PATH = "#{ROOT_PATH}/cordova"
-CLEAN.include("dist", "#{CORDOVA_PATH}/platforms/android/build",
+CLEAN.include("dist", "cordova/www", "#{CORDOVA_PATH}/platforms/android/build",
   "#{CORDOVA_PATH}/platforms/ios/build")
 CLOBBER.include("cordova/platforms", "cordova/plugins")
 PLATFORMS = %w(android ios windows).freeze
