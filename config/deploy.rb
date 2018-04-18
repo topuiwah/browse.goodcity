@@ -17,10 +17,13 @@ namespace :deploy do
     end
   end
 
-  task :upload_cordova_folder, roles: :web do
-    puts "#{ROOT_PATH}/cordova/"
-    puts "#{deploy_to}/cordova"
-    run "ln -nfs #{ROOT_PATH}/cordova/ #{deploy_to}/cordova"
+  task :upload_cordova_folder do
+    puts "inside upload cordova"
+    on roles(:web) do
+      puts "#{ROOT_PATH}/cordova/"
+      puts "#{deploy_to}/cordova"
+      run "ln -nfs #{ROOT_PATH}/cordova/ #{deploy_to}/cordova"
+    end
   end
 
   desc "Upload the ember build"
@@ -49,4 +52,4 @@ namespace :deploy do
 end
 
 task deploy: %w(deploy:build deploy:upload)
-after "deploy:build", "deploy:upload_cordova_folder"
+after 'deploy:build', 'deploy:upload_cordova_folder'
