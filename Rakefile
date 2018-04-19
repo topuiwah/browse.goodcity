@@ -75,7 +75,8 @@ end
 namespace :cordova do
   task :upload do
     puts "#{ROOT_PATH}/cordova"
-    execute :ln, '-s', "/var/www/html/browse.goodcity.hk/", "#{ROOT_PATH}/cordova"
+    sh %{ln -s "/var/www/html/browse.goodcity.hk/" "#{CORDOVA_PATH}"}
+    # exec :ln, '-s', "/var/www/html/browse.goodcity.hk/", "#{ROOT_PATH}/cordova"
   end
 end
 
