@@ -17,15 +17,6 @@ namespace :deploy do
     end
   end
 
-  task :upload_cordova_folder do
-    puts "inside upload cordova"
-    on roles(:web) do
-      puts "#{ROOT_PATH}/cordova/"
-      puts "#{deploy_to}/cordova"
-      execute :ln, '-s', "#{deploy_to}", "#{ROOT_PATH}/cordova"
-    end
-  end
-
   desc "Upload the ember build"
   task :upload do
     tarball = "#{fetch(:application)}.tar.gz"
@@ -47,6 +38,17 @@ namespace :deploy do
       within "dist" do
         execute :rm, "-f", tarball
       end
+    end
+  end
+end
+
+namespace :cordova  do
+  task :upload_cordova_folder do
+    puts "inside upload cordova"
+    on roles(:app) do
+      puts "#{ROOT_PATH}/cordova/"
+      puts "#{deploy_to}/cordova"
+      execute :ln, '-s', "#{deploy_to}", "/Users/distiller/browse.goodcity/cordova"
     end
   end
 end
