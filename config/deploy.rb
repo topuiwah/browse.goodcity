@@ -22,7 +22,7 @@ namespace :deploy do
     on roles(:web) do
       puts "#{ROOT_PATH}/cordova/"
       puts "#{deploy_to}/cordova"
-      sh %{ "ln -nfs #{ROOT_PATH}/cordova #{deploy_to}/cordova" }
+      execute :ln, '-s', "#{deploy_to}", "#{ROOT_PATH}/cordova"
     end
   end
 
