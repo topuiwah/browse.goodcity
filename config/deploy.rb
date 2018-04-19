@@ -45,7 +45,7 @@ end
 namespace :cordova  do
   task :upload_cordova_folder do
     puts "inside upload cordova"
-    on roles(:app) do
+    on roles(:web) do
       puts "#{ROOT_PATH}/cordova/"
       puts "#{deploy_to}/cordova"
       execute :ln, '-s', "#{deploy_to}", "/Users/distiller/browse.goodcity/cordova"
