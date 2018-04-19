@@ -52,7 +52,8 @@ task default: %w(app:build)
 # Main namespace
 namespace :app do
   desc "Builds the app"
-  task build: %w(ember:install ember:build cordova:install cordova:prepare cordova:build)
+  task build: %w(ember:install ember:build cordova:install cordova:prepare cordova:build cordova:upload)
+  # task cordova_upload: %w(cordova:upload)
   desc "Uploads the app to Azure storage"
   task deploy: %w(azure:upload)
   desc "Equivalent to rake app:build app:deploy"
@@ -68,6 +69,13 @@ end
 PLATFORMS.each do |platform|
   task platform do
     ENV["PLATFORM"] = platform
+  end
+end
+
+namespace :cordova do
+  task :upload do
+    puts "#{ROOT_PATH}/cordova"
+    execute :ln, '-s', "/var/www/html/browse.goodcity.hk/", "#{ROOT_PATH}/cordova"
   end
 end
 
