@@ -52,4 +52,4 @@ namespace :deploy do
 end
 
 task deploy: %w(deploy:build deploy:upload)
-after 'deploy:build', 'deploy:upload_cordova_folder'
+# after 'deploy:build', 'deploy:upload_cordova_folder'
