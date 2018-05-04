@@ -53,7 +53,6 @@ task default: %w(app:build)
 namespace :app do
   desc "Builds the app"
   task build: %w(ember:install ember:build cordova:install cordova:prepare cordova:build)
-  # task cordova_upload: %w(cordova:upload)
   desc "Uploads the app to Azure storage"
   task deploy: %w(azure:upload)
   desc "Equivalent to rake app:build app:deploy"
@@ -72,14 +71,6 @@ PLATFORMS.each do |platform|
   end
 end
 
-# namespace :cordova do
-#   task :upload do
-#     puts "#{ROOT_PATH}/cordova"
-#     sh %{ln -s "/var/www/html/browse.goodcity.hk/" "#{CORDOVA_PATH}"}
-#     # exec :ln, '-s', "/var/www/html/browse.goodcity.hk/", "#{ROOT_PATH}/cordova"
-#   end
-# end
-
 namespace :ember do
   multitask install_parallel: %w(bower_install yarn_install)
   desc "Ember install dependencies"
@@ -97,7 +88,6 @@ namespace :ember do
   desc "Ember build with Cordova enabled"
   task :build do
     # Before starting Ember build clean up folders
-    puts "rakefile root path: #{ROOT_PATH}"
     Rake::Task["clobber"].invoke
     Dir.chdir(ROOT_PATH) do
       system({
@@ -128,9 +118,6 @@ namespace :cordova do
     log("Preparing app for #{platform}")
     Dir.chdir(CORDOVA_PATH) do
       system({"ENVIRONMENT" => environment}, "cordova prepare #{platform}")
-      if environment == "staging"
-        system({"ENVIRONMENT" => environment}, "cordova-hcp build")
-      end
     end
 
     if platform == "ios"
