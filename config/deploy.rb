@@ -1,6 +1,4 @@
 lock '3.4.0'
-require "fileutils"
-ROOT_PATH = File.dirname(__FILE__)
 
 set :application, 'browse.goodcity'
 set :deploy_to, '/var/www/html/browse.goodcity.hk'
@@ -16,7 +14,6 @@ namespace :deploy do
       system(env, "ember build --environment=production")
     end
   end
-
   desc "Upload the ember build"
   task :upload do
     tarball = "#{fetch(:application)}.tar.gz"
@@ -42,16 +39,4 @@ namespace :deploy do
   end
 end
 
-namespace :cordova  do
-  task :upload_cordova_folder do
-    puts "inside upload cordova"
-    on roles(:web) do
-      puts "#{ROOT_PATH}/cordova/"
-      puts "#{deploy_to}/cordova"
-      execute :ln, '-s', "#{deploy_to}", "/Users/distiller/browse.goodcity/cordova"
-    end
-  end
-end
-
 task deploy: %w(deploy:build deploy:upload)
-# after 'deploy:build', 'deploy:upload_cordova_folder'
