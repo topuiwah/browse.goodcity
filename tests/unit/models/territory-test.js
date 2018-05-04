@@ -2,7 +2,7 @@ import Ember from 'ember';
 import { test, moduleForModel } from 'ember-qunit';
 
 moduleForModel('territory', {
-  needs: ['model:district']
+  needs: ['model:district', 'model:user-role']
 });
 
 test('Relationship with other models', function(assert){
