@@ -20,13 +20,11 @@ export default Ember.Controller.extend({
   isUserLoggedIn: Ember.computed('loggedInUser', function() {
     this.set('loggedInUser', false);
     let authToken = window.localStorage.authToken;
-    let loggedIn = false;
-    if(authToken === null || authToken === undefined) {
-      loggedIn = false;
+    if(authToken) {
+      return true;
     } else {
-      loggedIn = true
+      return false;
     }
-    return loggedIn;
   }),
 
   actions: {
