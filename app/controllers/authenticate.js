@@ -6,6 +6,7 @@ const { getOwner } = Ember;
 export default Ember.Controller.extend({
 
   messageBox: Ember.inject.service(),
+  application: Ember.inject.controller(),
   attemptedTransition: null,
   pin: "",
   mobilePhone: "",
@@ -30,6 +31,7 @@ export default Ember.Controller.extend({
           _this.set('session.otpAuthKey', null);
           _this.store.pushPayload(data.user);
           _this.setProperties({pin: null});
+          _this.get("application").set('loggedInUser', true);
           _this.transitionToRoute('post_login');
         })
         .catch(function(jqXHR) {

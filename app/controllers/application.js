@@ -4,6 +4,7 @@ export default Ember.Controller.extend({
 
   subscription: Ember.inject.controller(),
   messageBox: Ember.inject.service(),
+  loggedInUser: false,
 
   initSubscription: Ember.on('init', function() {
     this.get('subscription').send('wire');
@@ -16,7 +17,25 @@ export default Ember.Controller.extend({
   hasCartItems: Ember.computed.alias('cart.isNotEmpty'),
   cartLength: Ember.computed.alias('cart.counter'),
 
+  isUserLoggedIn: Ember.computed('loggedInUser', function() {
+    this.set('loggedInUser', false);
+    let authToken = window.localStorage.authToken;
+    let loggedIn = false;
+    if(authToken === null || authToken === undefined) {
+      loggedIn = false;
+    } else {
+      loggedIn = true
+    }
+    return loggedIn;
+  }),
+
   actions: {
+    logMeOut() {
+      this.session.clear(); // this should be first since it updates isLoggedIn status
+      this.set('loggedInUser', "");
+      this.transitionToRoute('browse');
+    },
+
     displayCart() {
       this.set('showCartDetailSidebar', true);
       this.toggleProperty('displayCart');
