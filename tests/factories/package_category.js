@@ -12,7 +12,8 @@ FactoryGuy.define('package_category', {
     packageTypeCodes: FactoryGuy.generate("name")
   },
   parent_package_category: {
-    parentId: null
+    parentId: null,
+    packageTypeCodes: null
   },
 });
 

@@ -15,7 +15,8 @@ FactoryGuy.define('package', {
     item:     FactoryGuy.belongsTo('item'),
     packageType:  FactoryGuy.belongsTo('package_type'),
     notes:    "example",
-    state:    "expected"
+    state:    "expected",
+    allowWebPublish: true
   }
 });
 
