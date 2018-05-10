@@ -6,10 +6,12 @@ export default PublicRoute.extend({
   },
 
   setupController(controller, model){
-    controller.set('model', model);
-    controller.set("category", model);
+    if(model) {
+      controller.set('model', model);
+      controller.set("category", model);
+      this.controllerFor('application').set('pageTitle', model.get("name"));
+    }
     controller.set("selectedCategoryId", null);
     controller.set("selectedSort", ["createdAt:desc"]);
-    this.controllerFor('application').set('pageTitle', model.get("name"));
   }
 });

@@ -24,7 +24,7 @@ FactoryGuy.define('item', {
     packageType: FactoryGuy.belongsTo('package_type')
   },
   received_item: {
-    packageType: FactoryGuy.belongsTo('package_type'),
+    //packageType: FactoryGuy.belongsTo('package_type'),
     packages: FactoryGuy.hasMany('package', 2, { state: "received" })
   }
 });
