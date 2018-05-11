@@ -65,6 +65,10 @@ export default {
     "smscode": "Get 4-digit SMS code"
   },
 
+  "logout": {
+    "logout": "Logout"
+  },
+
   "_resend": {
     "no_sms" : "Haven't received SMS code?",
     "please_wait" : "Please wait a few minutes",

@@ -38,6 +38,14 @@
         <div>{{t "application.sidebar.faq"}}</div>
       {{/link-to}}
     </li>
+    {{#if isUserLoggedIn}}
+      <li>
+        <a href="#" class="menu-5" {{action "logMeOut"}}>
+          <i class="fa fa-sign-out"></i>
+          <div>{{t "logout.logout"}}</div>
+        </a>
+      </li>
+    {{/if}}
 
     <li class="language">
       {{language-switcher}}

@@ -6,6 +6,7 @@ const { getOwner } = Ember;
 export default Ember.Controller.extend({
 
   messageBox: Ember.inject.service(),
+  application: Ember.inject.controller(),
   attemptedTransition: null,
   pin: "",
   mobilePhone: "",
@@ -30,6 +31,7 @@ export default Ember.Controller.extend({
           _this.set('session.otpAuthKey', null);
           _this.store.pushPayload(data.user);
           _this.setProperties({pin: null});
+          _this.get("application").set('loggedInUser', true);
           _this.transitionToRoute('post_login');
         })
         .catch(function(jqXHR) {
@@ -46,6 +48,7 @@ export default Ember.Controller.extend({
     resendPin() {
       var mobile = this.get('mobile');
       var loadingView = getOwner(this).lookup('component:loading').append();
+      var _this = this;
 
       new AjaxPromise("/auth/send_pin", "POST", null, {mobile: mobile})
         .then(data => {
@@ -54,7 +57,11 @@ export default Ember.Controller.extend({
           this.transitionToRoute('/authenticate');
         })
         .catch(error => {
-          if ([422, 403].includes(error.status)) {
+          if([401].includes(error.status)) {
+             _this.get("messageBox").alert("You are not authorized.", () => {
+              _this.transitionToRoute("/");
+             });
+          } else if ([422, 403].includes(error.status)) {
             Ember.$('#mobile').closest('.mobile').addClass('error');
             return;
           }

@@ -10,6 +10,13 @@ export default applicationController.extend({
   actions: {
     confirmOrder() {
       var order = this.get('order');
+      var orderItems = order.get('orderItems');
+      if(orderItems.length && orderItems.getEach("allowWebPublish").includes(false)) {
+        this.get("messageBox").alert(this.get('i18n').t('items_not_available'), () => {
+          this.transitionToRoute("cart");
+        });
+        return false;
+      }
       var loadingView = getOwner(this).lookup('component:loading').append();
       var orderParams = {
         state_event: "submit"
