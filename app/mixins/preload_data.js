@@ -20,6 +20,13 @@ export default Ember.Mixin.create({
           })
       );
 
+      promises.push(
+        new AjaxPromise("/browse_orders", "GET", this.session.get("authToken"))
+          .then(data => {
+            this.store.pushPayload(data);
+          })
+      );
+
       promises = promises.concat(retrieve(config.APP.PRELOAD_AUTHORIZED_TYPES));
     }
 
