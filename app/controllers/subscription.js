@@ -12,6 +12,7 @@ export default Ember.Controller.extend({
   lastOnline: Date.now(),
   deviceTtl: 0,
   deviceId: Math.random().toString().substring(2),
+  browse: Ember.inject.controller(),
   // logger: Ember.inject.service(),
   status: {
     online: false
@@ -117,6 +118,9 @@ export default Ember.Controller.extend({
 
     var type = Object.keys(data.item)[0];
     var item = Ember.$.extend({}, data.item[type]);
+    if(type === "package" || type === "Package") {
+      this.get("browse").toggleProperty("packageCategoryReloaded");
+    }
     this.store.normalize(type, item);
 
     var existingItem = this.store.peekRecord(type, item.id);

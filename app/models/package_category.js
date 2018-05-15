@@ -9,20 +9,21 @@ export default Model.extend({
 
   isParent: Ember.computed.equal("parentId", null),
   isChild:  Ember.computed.notEmpty("parentId"),
+  reloadPackageCategory: false,
 
-  parentCategory: Ember.computed('parentId', function(){
+  parentCategory: Ember.computed('parentId', 'reloadPackageCategory', function(){
     return this.get('parentId') ? this.store.peekRecord('package_category', this.get('parentId')) : null;
   }),
 
-  nameItemsCount: Ember.computed('name', 'items.[]', function(){
+  nameItemsCount: Ember.computed('name', 'items.[]', 'reloadPackageCategory', function(){
     return this.get("name") + " (" + this.get("items.length") + ")";
   }),
 
-  childCategories: Ember.computed('allChildCategories', function() {
+  childCategories: Ember.computed('allChildCategories', 'reloadPackageCategory', function() {
     return this.get('allChildCategories').rejectBy('items.length', 0);
   }),
 
-  allChildCategories: Ember.computed('_packageCategories.[]', function() {
+  allChildCategories: Ember.computed('_packageCategories.[]', 'reloadPackageCategory', function() {
     return this.get('_packageCategories').filterBy('parentId', parseInt(this.get("id"), 10));
   }),
 
@@ -30,7 +31,7 @@ export default Model.extend({
     return this.store.peekAll("package_category");
   }),
 
-  allItems: Ember.computed('childCategories', 'items', function(){
+  allItems: Ember.computed('childCategories', 'items', 'reloadPackageCategory', function(){
     var items = [];
     if(this.get('isParent')) {
       this.get('childCategories').forEach(function(category){
@@ -40,7 +41,7 @@ export default Model.extend({
     return items.uniq();
   }),
 
-  items: Ember.computed('packageTypeCodes', 'packageTypes.@each.getItemPackageList', 'childCategories.@each.items.[]', function(){
+  items: Ember.computed('reloadPackageCategory', 'packageTypeCodes', 'packageTypes.@each.getItemPackageList', 'childCategories.@each.items.[]', function(){
     var items = [];
     if(this.get('isParent')) {
       return this.get('allItems');
@@ -58,7 +59,7 @@ export default Model.extend({
     return this.store.peekAll("package_type");
   }),
 
-  packageTypes: Ember.computed('packageTypeCodes', "_packageTypes.[]", function(){
+  packageTypes: Ember.computed('reloadPackageCategory', 'packageTypeCodes', "_packageTypes.[]", function(){
     if (this.get('packageTypeCodes.length') > 0) {
       var list = this.get('packageTypeCodes').split(',');
       return this.get("_packageTypes").filter(p => list.indexOf(p.get("code")) > -1);
