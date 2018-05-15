@@ -9,7 +9,7 @@ export default Model.extend({
   items: hasMany('item', { async: false }),
   packages: hasMany('package', { async: false }),
 
-  getItemPackageList: Ember.computed('_packages.@each.packageType', 'packages.@each.hasSiblingPackages', 'packages.@each.isAvailable', function(){
+  getItemPackageList: Ember.computed('packages.@each.allowWebPublish', '_packages.@each.packageType', 'packages.@each.hasSiblingPackages', 'packages.@each.isAvailable', function(){
     var packages = this.get('packages').filterBy("isAvailable");
     var items = [];
 
