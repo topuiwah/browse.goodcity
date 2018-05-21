@@ -19,7 +19,7 @@ test('check attributes', function(assert){
 test('scheduledDate returns date in D MM YYYY format', function(assert) {
   assert.expect(1);
   var order_transport = this.subject({ scheduledAt: 1520418712981 });
-  assert.equal(order_transport.get('scheduledDate'), "7 March 2018");
+  assert.equal(order_transport.get('scheduledDate'), "Wed March 7, 2018");
 });
 
 test('type returns capitalize GGV transport type', function(assert) {
