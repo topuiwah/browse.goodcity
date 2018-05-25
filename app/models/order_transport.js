@@ -21,7 +21,7 @@ export default Model.extend({
   needCarry: attr("boolean"),
 
   scheduledDate: Ember.computed('scheduledAt', function() {
-    return moment(this.get('scheduledAt')).format("D MMMM YYYY");
+    return moment(this.get('scheduledAt')).format("ddd LL");
   }),
 
   type: Ember.computed('transportType', function(){
