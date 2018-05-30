@@ -15,6 +15,10 @@ export default Model.extend({
   createdAt:        attr('date'),
   updatedAt:        attr('date'),
 
+  updatedState: Ember.computed('state', function() {
+    return this.get("state");
+  }),
+
   orderItems: Ember.computed('ordersPackages.[]', function() {
     var items = [];
     this.get('ordersPackages').forEach(function(record) {

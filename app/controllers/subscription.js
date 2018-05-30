@@ -115,6 +115,10 @@ export default Ember.Controller.extend({
 
   // each action below is an event in a channel
   update_store: function(data, success) {
+    if(data["item"]["designation"]) {
+      data["item"]["order"] = data["item"]["designation"];
+      delete data["item"]["designation"];
+    }
 
     var type = Object.keys(data.item)[0];
     var item = Ember.$.extend({}, data.item[type]);
@@ -122,6 +126,11 @@ export default Ember.Controller.extend({
       this.get("browse").toggleProperty("packageCategoryReloaded");
     }
     this.store.normalize(type, item);
+
+    if(type === "order" || type === "Order") {
+      this.store.pushPayload(data.item);
+      return false;
+    }
 
     var existingItem = this.store.peekRecord(type, item.id);
     var hasNewItemSaving = this.store.peekAll(type).any(function(o) { return o.id === null && o.get("isSaving"); });
