@@ -127,7 +127,7 @@ export default Ember.Controller.extend({
     }
     this.store.normalize(type, item);
 
-    if(type === "order" || type === "Order") {
+    if(type.toLowerCase() === "order") {
       this.store.pushPayload(data.item);
       return false;
     }
