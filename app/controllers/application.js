@@ -1,4 +1,6 @@
 import Ember from 'ember';
+import AjaxPromise from 'browse/utils/ajax-promise';
+const { getOwner } = Ember;
 
 export default Ember.Controller.extend({
 
@@ -16,6 +18,8 @@ export default Ember.Controller.extend({
 
   hasCartItems: Ember.computed.alias('cart.isNotEmpty'),
   cartLength: Ember.computed.alias('cart.counter'),
+
+  draftOrder: Ember.computed.alias('session.draftOrder'),
 
   isUserLoggedIn: Ember.computed('loggedInUser', function() {
     this.set('loggedInUser', false);
@@ -50,7 +54,23 @@ export default Ember.Controller.extend({
 
     removeItem(itemId, type) {
       var item = this.get('store').peekRecord(type, itemId);
-      this.get('cart').removeItem(item);
+      var orderPackages = this.store.peekAll('orders_package');
+      var orderPackageId;
+      if(this.get('draftOrder')){
+        orderPackages.forEach(function(order){
+          if(order.get('package.id') == itemId){
+            orderPackageId = order.id;
+          }
+        });
+        var loadingView = getOwner(this).lookup('component:loading').append();
+        new AjaxPromise(`/orders_packages/${orderPackageId}`, "DELETE", this.get('session.authToken'))
+        .then(data => {
+          this.get('cart').removeItem(item);
+          loadingView.destroy();
+        });
+      }else{
+        this.get('cart').removeItem(item);
+      }
     },
 
     checkout() {
