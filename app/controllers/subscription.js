@@ -18,6 +18,8 @@ export default Ember.Controller.extend({
     online: false
   },
 
+  draftOrder: Ember.computed.alias('session.draftOrder'),
+
   updateStatus: Ember.observer('socket', function () {
     var socket = this.get("socket");
     var online = navigator.connection ? navigator.connection.type !== "none" : navigator.onLine;
@@ -128,8 +130,16 @@ export default Ember.Controller.extend({
     this.store.normalize(type, item);
 
     if(type.toLowerCase() === "order") {
-      this.store.pushPayload(data.item);
-      return false;
+      if (data.operation !== "delete") {
+        this.store.pushPayload(data.item);
+        return false;
+      } else {
+        var order = this.store.peekRecord("order", this.get('draftOrder').id);
+        if(order){
+          this.store.unloadRecord(order);
+        }
+        return false;
+      }
     }
 
     var existingItem = this.store.peekRecord(type, item.id);

@@ -61,13 +61,13 @@ export default Ember.Controller.extend({
       var orderPackageId;
       if(this.get('draftOrder')){
         orderPackages.forEach(function(order){
-          if(order.get('package.id') == itemId){
+          if(order.get('package.id') === itemId){
             orderPackageId = order.id;
           }
         });
         var loadingView = getOwner(this).lookup('component:loading').append();
         new AjaxPromise(`/orders_packages/${orderPackageId}`, "DELETE", this.get('session.authToken'))
-        .then(data => {
+        .then(() => {
           this.get('cart').removeItem(item);
           loadingView.destroy();
         });
