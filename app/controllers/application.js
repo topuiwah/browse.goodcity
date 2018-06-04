@@ -31,6 +31,9 @@ export default Ember.Controller.extend({
     logMeOut() {
       this.session.clear(); // this should be first since it updates isLoggedIn status
       this.set('loggedInUser', "");
+      this.get("cart").clearItems();
+      this.store.unloadAll('order');
+      this.store.unloadAll('orders_package');
       this.transitionToRoute('browse');
     },
 
