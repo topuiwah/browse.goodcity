@@ -19,6 +19,7 @@ export default {
   "processing": "processing",
   "closed": "closed",
   "cancelled": "cancelled",
+  "not_found": "Oooops, the location you're headed to doesn't seem to exist anymore. Sorry!",
   "awaiting_dispatch": "awaiting dispatch",
   "items_not_available": "One or many items in your cart are no longer available. Please remove those items from cart and then proceed.",
 

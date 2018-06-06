@@ -4,3 +4,18 @@
   bottom: 0px;
   top: auto;
 }
+
+.xy-center {
+  margin-top: 30%;
+  margin-left: 55%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  @media #{$medium-only} {
+    margin-top: 75%;
+  }
+  @media #{$small-only} {
+    margin-top: 75%;
+    margin-left: 50%;
+  }
+}

@@ -26,6 +26,7 @@ Router.map(function() {
   });
 
   this.route('confirm');
+  this.route('not-found', { path: '/*path' });
 });
 
 export default Router;
