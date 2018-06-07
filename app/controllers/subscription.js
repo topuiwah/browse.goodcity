@@ -134,7 +134,7 @@ export default Ember.Controller.extend({
         this.store.pushPayload(data.item);
         return false;
       } else {
-        var order = this.store.peekRecord("order", this.get('draftOrder').id);
+        var order = this.store.peekRecord("order", this.get('draftOrder.id'));
         if(order){
           this.store.unloadRecord(order);
         }
