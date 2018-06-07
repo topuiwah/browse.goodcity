@@ -21,7 +21,7 @@ export default Model.extend({
 
   orderItems: Ember.computed('ordersPackages.[]', function() {
     var items = [];
-    this.get('ordersPackages').forEach(function(record) {
+     this.store.peekAll("orders_package").filterBy("orderId", parseInt(this.id)).forEach(function(record) {
       if(record) {
         var pkg = record.get('package');
         if (pkg.get('hasSiblingPackages')) {

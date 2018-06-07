@@ -5,10 +5,12 @@ import Ember from 'ember';
 
 export default Model.extend({
 
-  quantity: attr('number'),
-  state:    attr('string'),
-  package:  belongsTo('package', { async: false }),
-  order:    belongsTo('order', { async: false }),
+  quantity:  attr('number'),
+  state:     attr('string'),
+  package:   belongsTo('package', { async: false }),
+  order:     belongsTo('order', { async: false }),
+  orderId:   attr("number"),
+  packageId: attr("number"),
 
   availableQty: Ember.computed("quantity", function() {
     return this.get('quantity');

@@ -142,6 +142,14 @@ export default Ember.Controller.extend({
       }
     }
 
+    if(type.toLowerCase() === "orders_package"){
+      var deletingOrdersPackage = this.store.peekRecord('orders_package', item.id);
+      if(deletingOrdersPackage){
+        this.store.unloadRecord(deletingOrdersPackage);
+      }
+      return false;
+    }
+
     var existingItem = this.store.peekRecord(type, item.id);
     var hasNewItemSaving = this.store.peekAll(type).any(function(o) { return o.id === null && o.get("isSaving"); });
     var existingItemIsSaving = existingItem && existingItem.get("isSaving");
