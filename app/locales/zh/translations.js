@@ -155,6 +155,9 @@ export default {
     "continue_to_transport_details": "Continue to transport details",
     "hired_van": "Hired van delivery(GoGoVan)",
     "self_vehicle": "Self vehicle",
+    "order_detail_pop_up": "Add items to your cart before submitting Order details.",
+    "transport_order_detail_pop_up": "You need to fill up Order details first",
+    "transport_details_pop_up": "Add items to your cart before submitting transport details.",
     "transport_details": {
       "transport_method": "Transport method",
       "collect_with_own_vehicle": "We will collect with our own vehicle(s)",

@@ -3,13 +3,7 @@
     <section class="main-section login-page">
       {{partial "navigation_list"}}
       {{partial "organisation_detail"}}
-
-      {{#if order.orderTransport}}
-        {{partial "confirm_order"}}
-      {{else}}
-        {{partial "order/plan_order_transport"}}
-      {{/if}}
-
+      {{partial "order/plan_order_transport"}}
     </section>
   </div>
 
