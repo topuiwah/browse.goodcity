@@ -9,6 +9,8 @@ export default applicationController.extend({
   organisation: false,
   client: false,
   trade: false,
+  messageBox: Ember.inject.service(),
+  i18n: Ember.inject.service(),
 
   order: Ember.computed.alias('session.draftOrder'),
 
@@ -26,7 +28,17 @@ export default applicationController.extend({
       this.set("description", "");
     },
 
-    save_order(){
+    save_order() {
+      var cartHasItems = this.get("cart.cartItems").length;
+      if(!cartHasItems) {
+        this.get("messageBox").alert(this.get("i18n").t("order.order_detail_pop_up"), () => {
+          this.transitionToRoute("index");
+        });
+        return false;
+      }
+      var _this = this;
+      var url, method;
+      var order = this.get("order");
       var description = this.get("description");
       var purpose_ids = [];
       var package_ids = [];
@@ -61,9 +73,34 @@ export default applicationController.extend({
         cart_package_ids: package_ids
       };
 
-      new AjaxPromise("/orders", "POST", this.get('session.authToken'), { order: orderParams })
+      if(order && order.get("isDraft")) {
+        url = "/orders/" + order.get("id");
+        method = "PUT";
+      } else {
+        url = "/orders";
+        method = "POST";
+      }
+
+      new AjaxPromise(url, method, this.get('session.authToken'), { order: orderParams })
         .then(data => {
           this.get("store").pushPayload(data);
+          if(data.order.state === "draft") {
+            _this.set("description", data.order.purpose_description);
+            purpose_ids = data.orders_purposes.filterBy("order_id", data.order.id).getEach("purpose_id");
+            purpose_ids.forEach(id => {
+              switch (id) {
+                case 1:
+                  this.set("organisation", true);
+                  break;
+                case 2:
+                  this.set("client", true);
+                  break;
+                case 3:
+                  this.set("trade", true);
+                  break;
+              }
+            });
+          }
           loadingView.destroy();
           this.transitionToRoute("order.transport_details", data.order.id);
         });
