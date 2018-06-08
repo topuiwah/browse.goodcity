@@ -44,8 +44,8 @@
           </div>
         </li>
       {{else}}
-      <div align="center">
-        <p style="font-size: 1.5rem !important;">{{t "cart_content.empty_cart"}}<b><a {{action 'displayCart'}} style="font-size: 1.4rem !important;padding-left: 0px;">{{t "cart_content.find_items"}}</a></b></p>
+      <div align="center" class="cart-message-box">
+        <p>{{t "cart_content.empty_cart"}}<b><a {{action 'displayCart'}} class="empty-cart-message">{{t "cart_content.find_items"}}</a></b></p>
       </div>
     {{/each}}
 
