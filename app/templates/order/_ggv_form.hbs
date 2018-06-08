@@ -190,4 +190,7 @@
       </button>
     </div>
   </div>
+  {{#if order.isDraft}}
+    {{partial "order/cancel_order"}}
+  {{/if}}
 {{/book-van}}

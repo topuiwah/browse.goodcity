@@ -22,6 +22,8 @@ export default applicationController.extend({
   porterage: false,
   longerGoods: false,
   longGoodSelection: "half",
+  messageBox: Ember.inject.service(),
+  i18n: Ember.inject.service(),
 
   timeValidationTrigger: Ember.observer('selectedTime', function() {
     if(!this.get("selectedTime.name")) {
@@ -173,6 +175,30 @@ export default applicationController.extend({
   },
 
   actions: {
+    cancelOrderPopUp(orderId) {
+      this.get("messageBox").custom(this.get("i18n").t("order.order_delete_confirmation"),
+        this.get("i18n").t("order.cancel_order"),
+        () => {
+          this.send("cancelOrder", orderId);
+        },
+        this.get("i18n").t("not_now")
+        );
+    },
+
+    cancelOrder(orderId) {
+      var order = this.store.peekAll("order", orderId);
+      if(order) {
+        this.get("cart").clearItems();
+        var loadingView = getOwner(this).lookup('component:loading').append();
+        new AjaxPromise("/orders/" + orderId, "DELETE", this.get('session.authToken'))
+        .then(data => {
+          this.get("store").pushPayload(data);
+          loadingView.destroy();
+          this.transitionToRoute("index");
+        });
+      }
+    },
+
     bookSchedule() {
       var cartEmpty = this.isCartEmpty("order.transport_details_pop_up");
       if(cartEmpty) { return false; }
