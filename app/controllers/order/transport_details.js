@@ -156,14 +156,13 @@ export default applicationController.extend({
     var order = this.store.peekAll("order").filterBy("state", "draft").get("firstObject");
     var messageBox = this.get("messageBox");
     var i18n = this.get("i18n");
+    var cartHasItems = this.get("cart.cartItems").length;
     if(!order) {
       messageBox.alert(i18n.t("order.transport_order_detail_pop_up"), () => {
         this.transitionToRoute("order_details");
       });
       return true;
-    }
-    var cartHasItems = this.get("cart.cartItems").length;
-    if(!cartHasItems) {
+    } else if(!cartHasItems) {
       messageBox.alert(i18n.t(message), () => {
         this.transitionToRoute("index");
       });
