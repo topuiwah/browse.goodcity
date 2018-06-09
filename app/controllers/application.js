@@ -1,10 +1,13 @@
 import Ember from 'ember';
+import AjaxPromise from 'browse/utils/ajax-promise';
+const { getOwner } = Ember;
 
 export default Ember.Controller.extend({
 
   subscription: Ember.inject.controller(),
   messageBox: Ember.inject.service(),
   loggedInUser: false,
+  i18n: Ember.inject.service(),
 
   initSubscription: Ember.on('init', function() {
     this.get('subscription').send('wire');
@@ -24,6 +27,30 @@ export default Ember.Controller.extend({
   }),
 
   actions: {
+    cancelOrderPopUp(orderId) {
+      this.get("messageBox").custom(this.get("i18n").t("order.order_delete_confirmation"),
+        this.get("i18n").t("order.cancel_order"),
+        () => {
+          this.send("cancelOrder", orderId);
+        },
+        this.get("i18n").t("not_now")
+        );
+    },
+
+    cancelOrder(orderId) {
+      var order = this.store.peekAll("order", orderId);
+      if(order) {
+        this.get("cart").clearItems();
+        var loadingView = getOwner(this).lookup('component:loading').append();
+        new AjaxPromise("/orders/" + orderId, "DELETE", this.get('session.authToken'))
+        .then(data => {
+          this.get("store").pushPayload(data);
+          loadingView.destroy();
+          this.transitionToRoute("index");
+        });
+      }
+    },
+
     logMeOut() {
       this.session.clear(); // this should be first since it updates isLoggedIn status
       this.set('loggedInUser', "");
