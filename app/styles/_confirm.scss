@@ -7,10 +7,4 @@
 
 .cancel_order {
   margin-top: -1rem;
-  @media #{$small-only} {
-    margin-right: -4.5rem !important;
-  }
-  @media #{$large-only} {
-    margin-right: -6rem !important;
-  }
 }
