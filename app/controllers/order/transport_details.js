@@ -178,7 +178,7 @@ export default applicationController.extend({
     bookSchedule() {
       var cartEmpty = this.isCartEmpty("order.transport_details_pop_up");
       if(cartEmpty) { return false; }
-      var order = this.get("order");
+      var order = this.get("store").peekAll("order").filterBy("state", "draft").get("firstObject");
       var url, method, params;
       if(!this.get("selectedTime.name")) {
         Ember.$('.time_selector').addClass('form__control--error');
@@ -217,7 +217,7 @@ export default applicationController.extend({
     bookGGVSchedule() {
       var cartEmpty = this.isCartEmpty("order.transport_details_pop_up");
       if(cartEmpty) { return false; }
-      var order = this.get("order");
+      var order = this.get("store").peekAll("order").filterBy("state", "draft").get("firstObject");
       var url, method, params;
       if(!this.get("selectedTime.name")) {
         Ember.$('.time_selector').addClass('form__control--error');
