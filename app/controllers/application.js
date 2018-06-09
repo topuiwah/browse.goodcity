@@ -44,6 +44,7 @@ export default Ember.Controller.extend({
         var loadingView = getOwner(this).lookup('component:loading').append();
         new AjaxPromise("/orders/" + orderId, "DELETE", this.get('session.authToken'))
         .then(data => {
+          this.get("store").unloadRecord("order", order.get("id"));
           this.get("store").pushPayload(data);
           loadingView.destroy();
           this.transitionToRoute("index");
