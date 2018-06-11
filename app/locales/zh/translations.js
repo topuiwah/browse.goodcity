@@ -131,7 +131,9 @@ export default {
     "submit_request": "Submit Order",
     "remove": "Remove",
     "unavailable": "Sorry! This item is no longer available.",
-    "notice" : "Delivery will be made one or two Crossroads operating days after you submit your order."
+    "notice" : "Delivery will be made one or two Crossroads operating days after you submit your order.",
+    "empty_cart" : "Your cart is empty.",
+    "find_items" : "Find some items to request."
   },
 
   "order": {

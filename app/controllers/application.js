@@ -20,6 +20,8 @@ export default Ember.Controller.extend({
   hasCartItems: Ember.computed.alias('cart.isNotEmpty'),
   cartLength: Ember.computed.alias('cart.counter'),
 
+  draftOrder: Ember.computed.alias('session.draftOrder'),
+
   isUserLoggedIn: Ember.computed('loggedInUser', function() {
     this.set('loggedInUser', false);
     let authToken = window.localStorage.authToken;
@@ -55,6 +57,9 @@ export default Ember.Controller.extend({
     logMeOut() {
       this.session.clear(); // this should be first since it updates isLoggedIn status
       this.set('loggedInUser', "");
+      this.get("cart").clearItems();
+      this.store.unloadAll('order');
+      this.store.unloadAll('orders_package');
       this.transitionToRoute('browse');
     },
 
@@ -78,7 +83,19 @@ export default Ember.Controller.extend({
 
     removeItem(itemId, type) {
       var item = this.get('store').peekRecord(type, itemId);
-      this.get('cart').removeItem(item);
+      var ordersPackages = this.store.peekAll('orders_package');
+      var orderPackageId;
+      if(this.get('draftOrder')){
+        orderPackageId = ordersPackages.filterBy('packageId', parseInt(itemId)).get('firstObject.id');
+        var loadingView = getOwner(this).lookup('component:loading').append();
+        new AjaxPromise(`/orders_packages/${orderPackageId}`, "DELETE", this.get('session.authToken'))
+        .then(() => {
+          this.get('cart').removeItem(item);
+          loadingView.destroy();
+        });
+      }else{
+        this.get('cart').removeItem(item);
+      }
     },
 
     checkout() {
