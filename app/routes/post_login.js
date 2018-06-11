@@ -17,8 +17,8 @@ export default Ember.Route.extend(preloadDataMixin, {
     var package_ids = [];
 
     if (ordersPackages.length) {
-      ordersPackages.forEach(order => {
-        this.get('cart').pushItem(order.get('package'));
+      ordersPackages.forEach(ordersPackage => {
+        this.get('cart').pushItem(ordersPackage.get('package'));
       });
 
       if (this.get('draftOrder')) {

@@ -60,11 +60,7 @@ export default Ember.Controller.extend({
       var ordersPackages = this.store.peekAll('orders_package');
       var orderPackageId;
       if(this.get('draftOrder')){
-        ordersPackages.forEach(order => {
-          if(order.get('package.id') === itemId){
-            orderPackageId = order.id;
-          }
-        });
+        orderPackageId = ordersPackages.filterBy('packageId', parseInt(itemId)).get('firstObject.id');
         var loadingView = getOwner(this).lookup('component:loading').append();
         new AjaxPromise(`/orders_packages/${orderPackageId}`, "DELETE", this.get('session.authToken'))
         .then(() => {
