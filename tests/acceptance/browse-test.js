@@ -3,7 +3,7 @@ import { module, test } from 'qunit';
 import startApp from '../helpers/start-app';
 import {make} from 'ember-data-factory-guy';
 
-var App, pkgCategory1, pkgCategory2, subcategory1, pkgType, category_title, subcategory_title, empty_category_title;
+var App, pkgCategory1, pkgCategory2, subcategory1, pkgType, category_title, subcategory_title, empty_category_title, order, orders_packages;
 
 module('Acceptance | Browse Page', {
   beforeEach: function() {
@@ -12,7 +12,14 @@ module('Acceptance | Browse Page', {
     pkgCategory1 = make("parent_package_category");
     subcategory1 = make("package_category", {parentId: parseInt(pkgCategory1.id), packageTypeCodes: pkgType.get("code") });
     pkgCategory2 = make("parent_package_category");
+    order = make("order");
+    orders_package = make("orders_package");
 
+    mockFindAll("order").returns({
+      json:
+        {orders: [order.toJSON({includeId: true})],
+        orders_packages: [orders_package.toJSON({includeId: true})]}
+      });
     category_title = pkgCategory1.get('name') + " ("+ pkgCategory1.get("items.length") +")";
     subcategory_title = subcategory1.get('name') + " ("+ subcategory1.get("items.length") +")";
     empty_category_title = pkgCategory2.get('name') + " ("+ pkgCategory2.get("items.length") +")";
@@ -49,3 +56,10 @@ test("should list main-category without subcategories if has no items", function
   });
 });
 
+test("clear orders and orders_packages from ember data on logout", function(assert){
+  visit("/");
+  click(".left-off-canvas-menu li:nth-child(4)");
+  andThen(function(){
+    assert.equal(currentURL(), "/browse");
+  });
+});
