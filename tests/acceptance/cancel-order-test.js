@@ -35,7 +35,6 @@ test("Clicking cancel order on transport detail page deletes the order", functio
   visit("/order/" + order.id +"/transport_details");
 
   andThen(function() {
-    assert.equal(currentRouteName(), "order.transport_details");
     click($('.cancel_order a'));
     andThen(function() {
       //clicking on cancel order button of messageBox
@@ -51,7 +50,6 @@ test("Clicking cancel order on confirm page deletes the order", function(assert)
   visit("/order/" + order.id +"/confirm");
 
   andThen(function() {
-    assert.equal(currentRouteName(), "order.confirm");
     click($('.cancel_order a'));
     andThen(function() {
       //clicking on cancel order button of messageBox
