@@ -31,7 +31,7 @@ module('Acceptance | Cancel Order', {
   }
 });
 
-test("Clicking cancel order on transport detail page deletes the order", function(assert) {
+test("Clicking cancel order on transport detail page deletes the order", function() {
   visit("/order/" + order.id +"/transport_details");
 
   andThen(function() {
@@ -46,7 +46,7 @@ test("Clicking cancel order on transport detail page deletes the order", functio
   });
 });
 
-test("Clicking cancel order on confirm page deletes the order", function(assert) {
+test("Clicking cancel order on confirm page deletes the order", function() {
   visit("/order/" + order.id +"/confirm");
 
   andThen(function() {
