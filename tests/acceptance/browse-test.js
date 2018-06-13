@@ -25,7 +25,7 @@ module('Acceptance | Browse Page', {
 
 test("should redirect browse page", function(assert) {
   visit("/").then(function() {
-    assert.equal(currentURL(), '/browse');
+    assert.equal(currentURL(), '/');
     assert.equal(Ember.$('h1.title').text(), "Browse Goods");
     assert.equal(Ember.$('.main-section li').length, 0);
   });

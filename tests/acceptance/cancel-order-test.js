@@ -8,6 +8,7 @@ var App, order, pkg, ordersPacakge;
 
 module('Acceptance | Cancel Order', {
   beforeEach: function() {
+    window.localStorage.authToken = '"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2LCJpYXQiOjE1MTg3NzI4MjcsImlzcyI6Ikdvb2RDaXR5SEsiLCJleHAiOjE1MTk5ODI0Mjd9.WdsVvss9khm81WNScV5r6DiIwo8CQfHM1c4ON2IACes"';
     App = startApp();
     order = make("order", { state: "draft" });
     pkg = make("package");
@@ -25,6 +26,7 @@ module('Acceptance | Cancel Order', {
   },
 
   afterEach: function() {
+    window.localStorage.removeItem("authToken");
     Ember.run(App, App.destroy);
   }
 });
