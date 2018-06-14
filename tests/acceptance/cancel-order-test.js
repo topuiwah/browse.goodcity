@@ -26,7 +26,6 @@ module('Acceptance | Cancel Order', {
   },
 
   afterEach: function() {
-    window.localStorage.removeItem("authToken");
     Ember.run(App, App.destroy);
   }
 });
