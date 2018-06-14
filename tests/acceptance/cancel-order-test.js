@@ -22,7 +22,7 @@ module('Acceptance | Cancel Order', {
      });
     $.mockjax({ url: "/api/v1/auth/current_user_profil*",
       responseText: data });
-    visit("/browse");
+    visit("/");
   },
 
   afterEach: function() {
