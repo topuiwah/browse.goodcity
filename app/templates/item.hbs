@@ -84,13 +84,11 @@
             </p>
           {{/each}}
 
-          {{#unless hasDraftOrder}}
-            {{#if presentInCart}}
-              <button class="request-item" {{action 'removeItem' item}}> {{t "item.remove_item"}} </button>
-            {{else}}
-              <button class="request-item" {{action 'requestItem' item}}> {{t "item.request_item"}} </button>
-            {{/if}}
-          {{/unless}}
+          {{#if presentInCart}}
+            <button class="request-item" {{action 'removeItem' item}}> {{t "item.remove_item"}} </button>
+          {{else}}
+            <button class="request-item" {{action 'requestItem' item}}> {{t "item.request_item"}} </button>
+          {{/if}}
 
           <div class="item_details item_categories">
             {{#each item.allPackageCategories key="@index" as |category|}}

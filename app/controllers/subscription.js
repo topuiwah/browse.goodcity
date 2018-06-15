@@ -18,6 +18,8 @@ export default Ember.Controller.extend({
     online: false
   },
 
+  draftOrder: Ember.computed.alias('session.draftOrder'),
+
   updateStatus: Ember.observer('socket', function () {
     var socket = this.get("socket");
     var online = navigator.connection ? navigator.connection.type !== "none" : navigator.onLine;
@@ -115,6 +117,10 @@ export default Ember.Controller.extend({
 
   // each action below is an event in a channel
   update_store: function(data, success) {
+    if(data["item"]["designation"]) {
+      data["item"]["order"] = data["item"]["designation"];
+      delete data["item"]["designation"];
+    }
 
     var type = Object.keys(data.item)[0];
     var item = Ember.$.extend({}, data.item[type]);
@@ -122,6 +128,19 @@ export default Ember.Controller.extend({
       this.get("browse").toggleProperty("packageCategoryReloaded");
     }
     this.store.normalize(type, item);
+
+    if(type.toLowerCase() === "order") {
+      if (data.operation !== "delete") {
+        this.store.pushPayload(data.item);
+        return false;
+      } else {
+        var order = this.store.peekRecord("order", this.get('draftOrder.id'));
+        if(order){
+          this.store.unloadRecord(order);
+        }
+        return false;
+      }
+    }
 
     var existingItem = this.store.peekRecord(type, item.id);
     var hasNewItemSaving = this.store.peekAll(type).any(function(o) { return o.id === null && o.get("isSaving"); });

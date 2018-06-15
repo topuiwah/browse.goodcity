@@ -1,10 +1,13 @@
 import Ember from 'ember';
+import AjaxPromise from 'browse/utils/ajax-promise';
+const { getOwner } = Ember;
 
 export default Ember.Controller.extend({
 
   subscription: Ember.inject.controller(),
   messageBox: Ember.inject.service(),
   loggedInUser: false,
+  i18n: Ember.inject.service(),
 
   initSubscription: Ember.on('init', function() {
     this.get('subscription').send('wire');
@@ -17,6 +20,8 @@ export default Ember.Controller.extend({
   hasCartItems: Ember.computed.alias('cart.isNotEmpty'),
   cartLength: Ember.computed.alias('cart.counter'),
 
+  draftOrder: Ember.computed.alias('session.draftOrder'),
+
   isUserLoggedIn: Ember.computed('loggedInUser', function() {
     this.set('loggedInUser', false);
     let authToken = window.localStorage.authToken;
@@ -24,9 +29,44 @@ export default Ember.Controller.extend({
   }),
 
   actions: {
+    cancelOrderPopUp(orderId) {
+      this.get("messageBox").custom(this.get("i18n").t("order.order_delete_confirmation"),
+        this.get("i18n").t("order.cancel_order"),
+        () => {
+          this.send("cancelOrder", orderId);
+        },
+        this.get("i18n").t("not_now")
+        );
+    },
+
+    cancelOrder(orderId) {
+      var _this = this;
+      var order = _this.store.peekAll("order").filterBy("state", "draft").get("firstObject");
+      if(order) {
+        var loadingView = getOwner(this).lookup('component:loading').append();
+        new AjaxPromise("/orders/" + orderId, "DELETE", _this.get('session.authToken'))
+        .then(data => {
+          _this.get("cart").clearItems();
+          if(order) {
+            _this.store.unloadRecord(order);
+          }
+          _this.store.pushPayload(data);
+          loadingView.destroy();
+          _this.transitionToRoute("index", { queryParams:
+            {
+              orderCancelled: true
+            }
+          });
+        });
+      }
+    },
+
     logMeOut() {
       this.session.clear(); // this should be first since it updates isLoggedIn status
       this.set('loggedInUser', "");
+      this.get("cart").clearItems();
+      this.store.unloadAll('order');
+      this.store.unloadAll('orders_package');
       this.transitionToRoute('browse');
     },
 
@@ -50,7 +90,19 @@ export default Ember.Controller.extend({
 
     removeItem(itemId, type) {
       var item = this.get('store').peekRecord(type, itemId);
-      this.get('cart').removeItem(item);
+      var ordersPackages = this.store.peekAll('orders_package');
+      var orderPackageId;
+      if(this.get('draftOrder')){
+        orderPackageId = ordersPackages.filterBy('packageId', parseInt(itemId)).get('firstObject.id');
+        var loadingView = getOwner(this).lookup('component:loading').append();
+        new AjaxPromise(`/orders_packages/${orderPackageId}`, "DELETE", this.get('session.authToken'))
+        .then(() => {
+          this.get('cart').removeItem(item);
+          loadingView.destroy();
+        });
+      }else{
+        this.get('cart').removeItem(item);
+      }
     },
 
     checkout() {

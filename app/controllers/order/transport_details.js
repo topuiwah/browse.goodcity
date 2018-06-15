@@ -22,6 +22,8 @@ export default applicationController.extend({
   porterage: false,
   longerGoods: false,
   longGoodSelection: "half",
+  messageBox: Ember.inject.service(),
+  i18n: Ember.inject.service(),
 
   timeValidationTrigger: Ember.observer('selectedTime', function() {
     if(!this.get("selectedTime.name")) {
@@ -141,8 +143,43 @@ export default applicationController.extend({
     }
   }),
 
+  getUrlAndMethod(order, url, method) {
+    if(order && order.get("isDraft") && order.get("orderTransport")) {
+      url = "/order_transports/" + order.get("orderTransport.id");
+      method = "PUT";
+    } else {
+      url = "/order_transports";
+      method = "POST";
+    }
+    return { url: url, method: method };
+  },
+
+  isCartEmpty(message) {
+    var order = this.store.peekAll("order").filterBy("state", "draft").get("firstObject");
+    var messageBox = this.get("messageBox");
+    var i18n = this.get("i18n");
+    var cartHasItems = this.get("cart.cartItems").length;
+    if(!order) {
+      messageBox.alert(i18n.t("order.transport_order_detail_pop_up"), () => {
+        this.transitionToRoute("order_details");
+      });
+      return true;
+    } else if(!cartHasItems) {
+      messageBox.alert(i18n.t(message), () => {
+        this.transitionToRoute("index");
+      });
+      return true;
+    } else {
+      return false;
+    }
+  },
+
   actions: {
     bookSchedule() {
+      var cartEmpty = this.isCartEmpty("order.transport_details_pop_up");
+      if(cartEmpty) { return false; }
+      var order = this.get("store").peekAll("order").filterBy("state", "draft").get("firstObject");
+      var url, method, params;
       if(!this.get("selectedTime.name")) {
         Ember.$('.time_selector').addClass('form__control--error');
         return false;
@@ -164,7 +201,12 @@ export default applicationController.extend({
         transport_type: transportType,
         order_id:       this.get("order.id") };
 
-      new AjaxPromise("/order_transports", "POST", this.get('session.authToken'), { order_transport: scheduleDetails })
+      params = this.getUrlAndMethod(order, url, method);
+
+      url = params["url"];
+      method = params["method"];
+
+      new AjaxPromise(url, method, this.get('session.authToken'), { order_transport: scheduleDetails })
         .then(data => {
           this.get("store").pushPayload(data);
           loadingView.destroy();
@@ -173,6 +215,10 @@ export default applicationController.extend({
     },
 
     bookGGVSchedule() {
+      var cartEmpty = this.isCartEmpty("order.transport_details_pop_up");
+      if(cartEmpty) { return false; }
+      var order = this.get("store").peekAll("order").filterBy("state", "draft").get("firstObject");
+      var url, method, params;
       if(!this.get("selectedTime.name")) {
         Ember.$('.time_selector').addClass('form__control--error');
         return false;
@@ -208,7 +254,12 @@ export default applicationController.extend({
         }
       };
 
-      new AjaxPromise("/order_transports", "POST", this.get('session.authToken'), { order_transport: requestProperties })
+      params = this.getUrlAndMethod(order, url, method);
+
+      url = params["url"];
+      method = params["method"];
+
+      new AjaxPromise(url, method, this.get('session.authToken'), { order_transport: requestProperties })
         .then(data => {
           this.get("store").pushPayload(data);
           loadingView.destroy();

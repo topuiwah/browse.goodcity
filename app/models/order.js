@@ -14,6 +14,20 @@ export default Model.extend({
   createdById:      belongsTo('user', { async: false }),
   createdAt:        attr('date'),
   updatedAt:        attr('date'),
+  ordersPurposes:     hasMany('ordersPurpose', { async: false }),
+
+  isGoodCityOrder: Ember.computed.equal('detailType', 'GoodCity'),
+  isDraft: Ember.computed.equal("state", "draft"),
+  isSubmitted: Ember.computed.equal("state", "submitted"),
+  isAwaitingDispatch: Ember.computed.equal("state", "awaiting_dispatch"),
+  isDispatching: Ember.computed.equal("state", "dispatching"),
+  isClosed: Ember.computed.equal("state", "closed"),
+  isProcessing: Ember.computed.equal("state", "processing"),
+  isCancelled: Ember.computed.equal("state", "cancelled"),
+
+  updatedState: Ember.computed('state', function() {
+    return this.get("state");
+  }),
 
   orderItems: Ember.computed('ordersPackages.[]', function() {
     var items = [];

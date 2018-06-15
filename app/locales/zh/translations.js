@@ -18,6 +18,9 @@ export default {
   "processing": "processing",
   "closed": "closed",
   "cancelled": "cancelled",
+  "not_now": "Not Now",
+  "not_found": "Oooops, the location you're headed to doesn't seem to exist anymore. Sorry!",
+  "awaiting_dispatch": "awaiting dispatch",
   "items_not_available": "One or many items in your cart are no longer available. Please remove those items from cart and then proceed.",
 
   "application": {
@@ -128,12 +131,16 @@ export default {
     "submit_request": "Submit Order",
     "remove": "Remove",
     "unavailable": "Sorry! This item is no longer available.",
-    "notice" : "Delivery will be made one or two Crossroads operating days after you submit your order."
+    "notice" : "Delivery will be made one or two Crossroads operating days after you submit your order.",
+    "empty_cart" : "Your cart is empty.",
+    "find_items" : "Find some items to request."
   },
 
   "order": {
     "organisation": "Organisation",
+    "order_delete_confirmation": "This will delete all order information and cannot be undone.",
     "representative": "Representative",
+    "cancel_order": "Cancel Order",
     "purpose": "Purpose(s)",
     "login": "Log in",
     "goodcity_order": "GoodCity Order",
@@ -153,6 +160,9 @@ export default {
     "continue_to_transport_details": "Continue to transport details",
     "hired_van": "Hired van delivery(GoGoVan)",
     "self_vehicle": "Self vehicle",
+    "order_detail_pop_up": "Add items to your cart before submitting Order details.",
+    "transport_order_detail_pop_up": "You need to fill up Order details first",
+    "transport_details_pop_up": "Add items to your cart before submitting transport details.",
     "transport_details": {
       "transport_method": "Transport method",
       "collect_with_own_vehicle": "We will collect with our own vehicle(s)",

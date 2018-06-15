@@ -9,6 +9,8 @@ export default Model.extend({
   state:    attr('string'),
   package:  belongsTo('package', { async: false }),
   order:    belongsTo('order', { async: false }),
+  orderId:   attr("number"),
+  packageId: attr("number"),
 
   availableQty: Ember.computed("quantity", function() {
     return this.get('quantity');

@@ -12,6 +12,10 @@
     margin-top: 0;
   }
 
+  .cancel_order {
+    margin-top: -1rem;
+  }
+
   .row {
     @media #{$small-only} {
       margin-left: 0 !important;
