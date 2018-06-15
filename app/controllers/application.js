@@ -40,16 +40,23 @@ export default Ember.Controller.extend({
     },
 
     cancelOrder(orderId) {
-      var order = this.store.peekAll("order", orderId);
+      var _this = this;
+      var order = _this.store.peekAll("order").filterBy("state", "draft").get("firstObject");
       if(order) {
         var loadingView = getOwner(this).lookup('component:loading').append();
-        new AjaxPromise("/orders/" + orderId, "DELETE", this.get('session.authToken'))
+        new AjaxPromise("/orders/" + orderId, "DELETE", _this.get('session.authToken'))
         .then(data => {
-          this.get("cart").clearItems();
-          this.get("store").unloadRecord("order", order.get("id"));
-          this.get("store").pushPayload(data);
+          _this.get("cart").clearItems();
+          if(order) {
+            _this.store.unloadRecord(order);
+          }
+          _this.store.pushPayload(data);
           loadingView.destroy();
-          this.transitionToRoute("index");
+          _this.transitionToRoute("index", { queryParams:
+            {
+              orderCancelled: true
+            }
+          });
         });
       }
     },
