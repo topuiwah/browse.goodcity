@@ -42,10 +42,10 @@ export default Ember.Controller.extend({
     cancelOrder(orderId) {
       var order = this.store.peekAll("order", orderId);
       if(order) {
-        this.get("cart").clearItems();
         var loadingView = getOwner(this).lookup('component:loading').append();
         new AjaxPromise("/orders/" + orderId, "DELETE", this.get('session.authToken'))
         .then(data => {
+          this.get("cart").clearItems();
           this.get("store").unloadRecord("order", order.get("id"));
           this.get("store").pushPayload(data);
           loadingView.destroy();
