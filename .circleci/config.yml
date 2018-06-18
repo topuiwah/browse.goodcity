@@ -30,6 +30,7 @@ jobs:
           command: yarn add codeclimate-test-reporter
       - run:
           name: Test
+          command: yarn add ember-cli
           command: ember server
           command: sleep 5
           command: COVERAGE=true ember test
