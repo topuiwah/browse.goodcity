@@ -3,21 +3,18 @@ jobs:
   build:
     macos:
       xcode: "9.0"
+    environment:
+      GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx1024m -XX:+HeapDumpOnOutOfMemoryError"'
+      XCODE_SCHEME: browse.goodcity
+      XCODE_WORKSPACE: browse.goodcity
+      GYM_CODE_SIGNING_IDENTITY: "iPhone Distribution: Crossroads Foundation Limited"
+      FL_TESTFAIRY_AUTO_UPDATE: "on"
+      PILOT_SKIP_SUBMISSION: true
+      PILOT_WAIT_PROCESSING_INTERVAL: 60
+      ANDROID_HOME: "${HOME}/android-sdk"
+      PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:$HOME/.yarn/bin:$ANDROID_HOME/tools"
+
     steps:
       # Commands will execute in macOS container
       # with Xcode 9.0 installed
       - run: xcodebuild -version
-      - run:
-          name: Adding ENV variables
-          # Environment variable for a single command shell
-          environment:
-            GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx1024m -XX:+HeapDumpOnOutOfMemoryError"'
-            XCODE_SCHEME: browse.goodcity
-            XCODE_WORKSPACE: browse.goodcity
-            GYM_CODE_SIGNING_IDENTITY: "iPhone Distribution: Crossroads Foundation Limited"
-            FL_TESTFAIRY_AUTO_UPDATE: "on"
-            PILOT_SKIP_SUBMISSION: true
-            PILOT_WAIT_PROCESSING_INTERVAL: 60
-            ANDROID_HOME: "${HOME}/android-sdk"
-            PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:$HOME/.yarn/bin:$ANDROID_HOME/tools"
-
