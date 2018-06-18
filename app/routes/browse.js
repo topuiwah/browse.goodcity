@@ -25,6 +25,7 @@ export default PublicRoute.extend({
       controller.set('showCartDetailSidebar', false);
     }
     controller.set('model', model);
+    controller.toggleProperty("triggerFlashMessage");
     this.controllerFor('application').set('pageTitle', this.get('i18n').t("browse.title"));
   }
 });
