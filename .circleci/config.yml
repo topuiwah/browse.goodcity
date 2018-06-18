@@ -24,4 +24,3 @@ jobs:
           command: yarn install
           command: yarn add --force node-sass bower ember-cli phantomjs-prebuilt cordova codeclimate-test-reporter
           command: bundle install
-          command: bower install
