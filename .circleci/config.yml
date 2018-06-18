@@ -29,7 +29,7 @@ jobs:
     command: PATH=$(npm bin):$PATH; azure-filestore download -f goodcity.keystore: pwd: cordova
     command: PATH=$(npm bin):$PATH; azure-filestore download -d google-play -f $GOOGLE_PLAY_KEY_FILE: pwd: fastlane
 
-  -run:
+  - run:
     name: Tests
     command: ember server
     command: sleep 5
