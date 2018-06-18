@@ -9,4 +9,3 @@ jobs:
           command: brew update
           command: brew install homebrew/core/node6-lts
           command: brew install watchman
-          command: mkdir -p ${ANDROID_HOME}
