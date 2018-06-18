@@ -1,6 +1,9 @@
 version: 2
 jobs:
   build:
+    machine:
+      ruby:
+        version: 2.2.2
     macos:
       xcode: "9.0"
     environment:
