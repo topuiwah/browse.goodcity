@@ -137,6 +137,8 @@ export default {
   },
 
   "order": {
+    "flash_submit_message": "Order submitted successfully",
+    "flash_cancelled_message": "Order was cancelled",
     "organisation": "Organisation",
     "order_delete_confirmation": "This will delete all order information and cannot be undone.",
     "representative": "Representative",

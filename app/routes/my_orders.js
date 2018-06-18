@@ -14,5 +14,10 @@ export default AuthorizeRoute.extend({
       user: this.store.peekAll('user').objectAt(0),
       orders: this.store.peekAll('order')
     });
+  },
+
+  setupController(controller, model){
+    this._super(controller, model);
+    controller.toggleProperty("triggerFlashMessage");
   }
 });
