@@ -1,8 +1,6 @@
 version: 2
 jobs:
   build:
-    machine:
-      image: circleci/classic:201708-01
     docker:
       - image: circleci/ruby:2.3
     macos:
