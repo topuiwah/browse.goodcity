@@ -21,5 +21,4 @@ jobs:
           command: brew install homebrew/core/node6-lts
           command: brew upgrade yarn
           command: yarn install
-          command: yarn add --force node-sass
-          command: yarn add bower ember-cli phantomjs-prebuilt cordova
+          command: yarn add --force node-sass bower ember-cli phantomjs-prebuilt cordova codeclimate-test-reporter
