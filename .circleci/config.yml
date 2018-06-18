@@ -12,41 +12,31 @@ jobs:
       ANDROID_HOME: "${HOME}/android-sdk"
       PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:$HOME/.yarn/bin:$ANDROID_HOME/tools"
 
-  dependencies:
-    cache_directories:
-      - ~/.yarn
-      - ~/android-sdk
-    pre:
-      - brew update
-      - brew install homebrew/core/node6-lts
-      - brew install watchman
-      - mkdir -p ${ANDROID_HOME}
-      - if ! $(grep -q "Revision=23.0.1" $ANDROID_HOME/tools/source.properties); then (curl -o ~/android-sdk.zip https://dl.google.com/android/repository/tools_r23.0.1-macosx.zip && unzip -d ${ANDROID_HOME} ~/android-sdk.zip) && (( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --all --filter platform-tools,build-tools-23.0.1,android-23,extra-android-m2repository,extra-google-m2repository); fi
-      - if ! (which yarn); then curl -o- -L https://yarnpkg.com/install.sh | bash; fi
-    override:
-      - yarn install
-    post:
-      - yarn add --force node-sass
-      - yarn add bower ember-cli@2.12.2 phantomjs-prebuilt cordova
-      - yarn add codeclimate-test-reporter
-      - bundle install
-      - bower install
-      - PATH=$(npm bin):$PATH; azure-filestore download -f goodcity.keystore:
-          pwd: cordova
-      - PATH=$(npm bin):$PATH; azure-filestore download -d google-play -f $GOOGLE_PLAY_KEY_FILE:
-          pwd: fastlane
+  - run:
+    name: Pre installations
+    command: brew update
+    command: brew install homebrew/core/node6-lts
+    command: brew install watchman
+    command: mkdir -p ${ANDROID_HOME}
+    command: if ! $(grep -q "Revision=23.0.1" $ANDROID_HOME/tools/source.properties); then (curl -o ~/android-sdk.zip https://dl.google.com/android/repository/tools_r23.0.1-macosx.zip && unzip -d ${ANDROID_HOME} ~/android-sdk.zip) && (( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --all --filter platform-tools,build-tools-23.0.1,android-23,extra-android-m2repository,extra-google-m2repository); fi
+    command: if ! (which yarn); then curl -o- -L https://yarnpkg.com/install.sh | bash; fi
+    command: yarn install
+    command: yarn add --force node-sass
+    command: yarn add bower ember-cli@2.12.2 phantomjs-prebuilt cordova
+    command: yarn add codeclimate-test-reporter
+    command: bundle install
+    command: bower install
+    command: PATH=$(npm bin):$PATH; azure-filestore download -f goodcity.keystore: pwd: cordova
+    command: PATH=$(npm bin):$PATH; azure-filestore download -d google-play -f $GOOGLE_PLAY_KEY_FILE: pwd: fastlane
 
-  test:
-    pre:
-      - ember server:
-          background: true
-      - sleep 5
-    override:
-      - COVERAGE=true ember test
-    post:
-      - codeclimate-test-reporter < 'coverage/lcov.info'
-      - ember build
-      - echo "Killing ember server to free memory for app build" && killall ember
+  -run:
+    name: Tests
+    command: ember server
+    command: sleep 5
+    command: COVERAGE=true ember test
+    command: codeclimate-test-reporter < 'coverage/lcov.info'
+    command: ember build
+    command: echo "Killing ember server to free memory for app build" && killall ember
 
   deployment:
     staging:
