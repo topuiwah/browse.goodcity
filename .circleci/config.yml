@@ -13,7 +13,6 @@ jobs:
       PILOT_WAIT_PROCESSING_INTERVAL: 60
       ANDROID_HOME: "${HOME}/android-sdk"
       PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:$HOME/.yarn/bin:$ANDROID_HOME/tools"
-
   - run:
     name: Pre installations
     command: brew update
@@ -30,7 +29,6 @@ jobs:
     command: bower install
     command: PATH=$(npm bin):$PATH; azure-filestore download -f goodcity.keystore: pwd: cordova
     command: PATH=$(npm bin):$PATH; azure-filestore download -d google-play -f $GOOGLE_PLAY_KEY_FILE: pwd: fastlane
-
   - run:
     name: Tests
     command: ember server
