@@ -28,9 +28,9 @@ jobs:
           command: yarn add bower
           command: yarn add ember-cli phantomjs-prebuilt cordova
           command: yarn add codeclimate-test-reporter
+          command: bower install
       - run:
           name: Test
-          command: yarn add ember-cli
           command: ember server
           command: sleep 5
           command: COVERAGE=true ember test
