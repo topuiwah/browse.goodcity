@@ -25,7 +25,6 @@ jobs:
           command: brew upgrade bower
           command: yarn install
           command: yarn add --force node-sass bower ember-cli phantomjs-prebuilt cordova codeclimate-test-reporter
-          command: bundle install
       - run:
           name: Test
           command: ember server
