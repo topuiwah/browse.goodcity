@@ -1,6 +1,5 @@
 version: 2
 jobs:
   build:
-    ember:
-      version: 2.13
-
+    macos:
+      xcode: "9.0"
