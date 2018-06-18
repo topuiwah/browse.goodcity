@@ -5,18 +5,17 @@ import {make} from 'ember-data-factory-guy';
 import { mockFindAll } from 'ember-data-factory-guy';
 import FactoryGuy from 'ember-data-factory-guy';
 
-var App,oldItem, pkgCategory, subcategory1, pkg, pkgType1, pkgType2, subcategory2, order, order1, ordersPackage, ordersPackage1, gogo_van, order_purpose;
+var App, pkgCategory, subcategory1, pkg, pkgType1, pkgType2, subcategory2, order, ordersPackage, ordersPackage1, gogo_van, order_purpose;
 
 module('Acceptance | Cart Page', {
   beforeEach: function() {
     window.localStorage.authToken = '"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2LCJpYXQiOjE1MTg3NzI4MjcsImlzcyI6Ikdvb2RDaXR5SEsiLCJleHAiOjE1MTk5ODI0Mjd9.WdsVvss9khm81WNScV5r6DiIwo8CQfHM1c4ON2IACes"';
     App = startApp();
-    var store = FactoryGuy.store;
     pkgType1     = make("package_type_with_packages");
     pkgType2     = make("package_type_with_packages");
     pkgCategory  = make("parent_package_category");
     order = make("order", { state: "draft" });
-    pkg = make('package')
+    pkg = make('package');
     ordersPackage = make("orders_package", { quantity: 1, state: "requested", package: pkg, order: order});
     ordersPackage1 = make("orders_package", { quantity: 1, state: "requested", package: pkg, order: order});
     order_purpose = make("orders_purpose");
@@ -54,26 +53,26 @@ test("delete orders_packages from orders in draft", function(assert){
       visit("/cart");
       andThen(function(){
         click(".expand:last");
-      andThen(function(){
-        assert.equal(currentURL(), "/order_details");
-
-        click('input#1');
         andThen(function(){
-          $("#purpose_1").prop('checked', true);
-          $("#description").val("Test");
-          click("#submit_pin");
+          assert.equal(currentURL(), "/order_details");
+
+          click('input#1');
           andThen(function(){
-            visit("/cart");
+            $("#purpose_1").prop('checked', true);
+            $("#description").val("Test");
+            click("#submit_pin");
             andThen(function(){
-              assert.equal(currentURL(),"/cart");
-              click(".item-collection li:first span");
+              visit("/cart");
               andThen(function(){
-                assert.equal(store.peekAll("orders_package").get("length"), 1);
+                assert.equal(currentURL(),"/cart");
+                click(".item-collection li:first span");
+                andThen(function(){
+                  assert.equal(store.peekAll("orders_package").get("length"), 1);
+                });
               });
             });
           });
         });
-      });
       });
     });
 
