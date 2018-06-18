@@ -3,6 +3,8 @@ jobs:
   build:
     macos:
       xcode: "9.0"
+    docker:
+      - image: circleci/android:api-23-alpha
     environment:
       GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx1024m -XX:+HeapDumpOnOutOfMemoryError"'
       XCODE_SCHEME: browse.goodcity
@@ -11,8 +13,8 @@ jobs:
       FL_TESTFAIRY_AUTO_UPDATE: "on"
       PILOT_SKIP_SUBMISSION: true
       PILOT_WAIT_PROCESSING_INTERVAL: 60
-      ANDROID_HOME: "/opt/android/sdk"
     steps:
+      - restore_cache:
       - run:
           name: Installations
           command: |
@@ -20,5 +22,4 @@ jobs:
             echo '${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:$HOME/.yarn/bin:$ANDROID_HOME/tools'
           command: brew update
           command: brew install homebrew/core/node6-lts
-          command: if ! $(grep -q "Revision=23.0.1" $ANDROID_HOME/tools/source.properties); then (curl -o ~/android-sdk.zip https://dl.google.com/android/repository/tools_r23.0.1-macosx.zip && unzip -n ${ANDROID_HOME} ~/android-sdk.zip) && (( sleep 5 && while [ 1 ]; do sleep 1; echo y; done )); fi
-          command: android update sdk --no-ui --all --filter platform-tools,build-tools-23.0.1,android-23,extra-android-m2repository,extra-google-m2repository
+          command: if ! $(grep -q "Revision=23.0.1" $ANDROID_HOME/tools/source.properties); then (curl -o ~/android-sdk.zip https://dl.google.com/android/repository/tools_r23.0.1-macosx.zip && unzip -n ${ANDROID_HOME} ~/android-sdk.zip) && (( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --all --filter platform-tools,build-tools-23.0.1,android-23,extra-android-m2repository,extra-google-m2repository); fi
