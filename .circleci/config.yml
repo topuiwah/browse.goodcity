@@ -11,6 +11,7 @@ jobs:
       FL_TESTFAIRY_AUTO_UPDATE: "on"
       PILOT_SKIP_SUBMISSION: true
       PILOT_WAIT_PROCESSING_INTERVAL: 60
+      ANDROID_HOME: "/opt/android/sdk"
     steps:
       - run:
           name: Installations
