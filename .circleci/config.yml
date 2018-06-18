@@ -1,8 +1,8 @@
 version: 2
 jobs:
   build:
-    ruby:
-      version: 2.2.2
+    docker:
+      - image: circleci/ruby:2.3
     macos:
       xcode: "9.0"
     environment:
