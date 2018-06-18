@@ -93,11 +93,18 @@ export default Ember.Controller.extend({
       var ordersPackages = this.store.peekAll('orders_package');
       var orderPackageId;
       if(this.get('draftOrder')){
-        orderPackageId = ordersPackages.filterBy('packageId', parseInt(itemId)).get('firstObject.id');
+        //orderPackageId = ordersPackages.filterBy('packageId', parseInt(itemId)).get('firstObject.id');
+        ordersPackages.forEach(order => {
+          if(order.get('package.id') === itemId){
+            orderPackageId = order.id;
+          }
+        });
         var loadingView = getOwner(this).lookup('component:loading').append();
         new AjaxPromise(`/orders_packages/${orderPackageId}`, "DELETE", this.get('session.authToken'))
         .then(() => {
           this.get('cart').removeItem(item);
+          var ordersPackage = this.get('store').peekRecord('orders_package', orderPackageId);
+          this.get('store').unloadRecord(ordersPackage);
           loadingView.destroy();
         });
       }else{

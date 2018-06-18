@@ -5,28 +5,24 @@ import {make} from 'ember-data-factory-guy';
 import { mockFindAll } from 'ember-data-factory-guy';
 import FactoryGuy from 'ember-data-factory-guy';
 
-var App, packageData,oldItem, pkgCategory, subcategory1, pkg, pkgType1, pkgType2, subcategory2, order, orders_package, orders_package1, gogo_van;
+var App,oldItem, pkgCategory, subcategory1, pkg, pkgType1, pkgType2, subcategory2, order, order1, ordersPackage, ordersPackage1, gogo_van, order_purpose;
 
 module('Acceptance | Cart Page', {
   beforeEach: function() {
+    window.localStorage.authToken = '"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2LCJpYXQiOjE1MTg3NzI4MjcsImlzcyI6Ikdvb2RDaXR5SEsiLCJleHAiOjE1MTk5ODI0Mjd9.WdsVvss9khm81WNScV5r6DiIwo8CQfHM1c4ON2IACes"';
     App = startApp();
+    var store = FactoryGuy.store;
     pkgType1     = make("package_type_with_packages");
     pkgType2     = make("package_type_with_packages");
     pkgCategory  = make("parent_package_category");
+    order = make("order", { state: "draft" });
+    pkg = make('package')
+    ordersPackage = make("orders_package", { quantity: 1, state: "requested", package: pkg, order: order});
+    ordersPackage1 = make("orders_package", { quantity: 1, state: "requested", package: pkg, order: order});
+    order_purpose = make("orders_purpose");
     subcategory1 = make("package_category", {parentId: parseInt(pkgCategory.id), packageTypeCodes: pkgType1.get("code") });
     subcategory2 = make("package_category", {parentId: parseInt(pkgCategory.id), packageTypeCodes: pkgType2.get("code") });
-
-    order = make("order");
-    orders_package = make("orders_package");
-    orders_package1 = make("orders_package");
     gogo_van = make("gogovan_transport");
-
-    packageData = { "package": [
-        {"id":20824,"quantity":1,"length":21,"width":23,"height":67,"notes":"Bikes","item_id":975,"created_at":"2016-09-14T08:09:24.649187","updated_at":"2017-06-30T10:53:48.639188","package_type_id":1611,"grade":"B","donor_condition_id":1,"stockit_sent_on":null,"order_id":1611,"allow_web_publish":true,"image_ids":[1108]}],
-        "package_types": [{id: 44, name: "Range hood", code: "EKH", other_terms: null, visible_in_selects: true}]
-    };
-
-    $.mockjax({url: "/api/v1/browse/fetch_packages",responseText: packageData });
 
     mockFindAll("gogovan_transport").returns({json: {gogovan_transports: [gogo_van.toJSON({includeId: true})]}});
 
@@ -34,11 +30,7 @@ module('Acceptance | Cart Page', {
     $.mockjax({url:"/api/v1/auth/current_user_profil*",
       responseText: data });
 
-    mockFindAll("order").returns({
-      json:
-        {orders: [order.toJSON({includeId: true})],
-        orders_packages: [orders_package.toJSON({includeId: true}), orders_package1.toJSON({includeId: true})]}
-      });
+    mockFindAll('order').returns({ json: {orders: [order.toJSON({includeId: true})], packages: [pkg.toJSON({includeId: true})], orders_packages: [ordersPackage.toJSON({includeId: true}), ordersPackage1.toJSON({includeId: true})]}});
   },
 
   afterEach: function() {
@@ -48,27 +40,42 @@ module('Acceptance | Cart Page', {
 
 
 test("delete orders_packages from orders in draft", function(assert){
-  visit("/item/"+ pkgType1.id +"?categoryId="+ pkgCategory.id +"&sortBy=createdAt");
+  var store = FactoryGuy.store;
+  $.mockjax({url:"/api/v1/order*", type: 'POST', status: 200,responseText:{"order": order.toJSON({includeId: true}),"package": pkg.toJSON({includeId: true}), "orders_packages": [ordersPackage.toJSON({includeId: true}), ordersPackage1.toJSON({includeId: true})], "orders_purposes": [order_purpose.toJSON({includeId: true})]}});
+  $.mockjax({url:"/api/v1/order*", type: 'PUT', status: 200,responseText:{"order": order.toJSON({includeId: true}),"package": pkg.toJSON({includeId: true}), "orders_packages": [ordersPackage.toJSON({includeId: true}), ordersPackage1.toJSON({includeId: true})], "orders_purposes": [order_purpose.toJSON({includeId: true})]}});
+  $.mockjax({url: "/api/v1/available_*", type: 'GET', status: 200, responseText:["2018-06-14", "2018-06-15", "2018-06-16", "2018-06-19", "2018-06-20", "2018-06-21"]});
+  $.mockjax({url: "/api/v1/orders_pac*", type: 'DELETE', status: 200, responseText:{ }});
+
+  visit("/item/"+ pkg.id +"?categoryId="+ pkgCategory.id +"&sortBy=createdAt");
   andThen(function() {
-    assert.equal(currentURL(), "/item/"+ pkgType1.id +"?categoryId="+ pkgCategory.id +"&sortBy=createdAt");
-    $(".button.request-item").click();
-    $(".show_cart_link").click();
-    $(".button.expand")[1].click();
+    assert.equal(currentURL(), "/item/"+ pkg.id +"?categoryId="+ pkgCategory.id +"&sortBy=createdAt");
+    $(".request-item").click();
     andThen(function(){
-      assert.equal(currentURL(), "/order_details");
-      click('#purpose_1');
+      visit("/cart");
       andThen(function(){
-        //$("#purpose_1").prop('checked', true);
-        $("#description").val("Test");
-        $("#submit_pin").click();
+        click(".expand:last");
+      andThen(function(){
+        assert.equal(currentURL(), "/order_details");
+
+        click('input#1');
         andThen(function(){
-          assert.equal(currentURL(), "/transport_details");
-          // $('.order_button a:first').click();
-          // andThen(function(){
-          //   assert.equal(currentURL(),"/cart");
-          // })
+          $("#purpose_1").prop('checked', true);
+          $("#description").val("Test");
+          click("#submit_pin");
+          andThen(function(){
+            visit("/cart");
+            andThen(function(){
+              assert.equal(currentURL(),"/cart");
+              click(".item-collection li:first span");
+              andThen(function(){
+                assert.equal(store.peekAll("orders_package").get("length"), 1);
+              });
+            });
+          });
         });
       });
+      });
     });
+
   });
 });
