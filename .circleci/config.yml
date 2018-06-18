@@ -26,4 +26,8 @@ jobs:
           command: yarn install
           command: yarn add --force node-sass bower ember-cli phantomjs-prebuilt cordova codeclimate-test-reporter
           command: bundle install
-          command: PATH=$(npm bin):$PATH; azure-filestore download -f goodcity.keystore: pwd: cordova
+      - run:
+          name: Test
+          command: ember server
+          command: sleep 5
+          command: COVERAGE=true ember test
