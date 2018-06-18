@@ -16,4 +16,3 @@ jobs:
           name: Installations
           command: brew update
           command: brew install homebrew/core/node6-lts
-          command: brew install watchman
