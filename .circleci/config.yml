@@ -22,3 +22,4 @@ jobs:
           command: brew upgrade yarn
           command: yarn install
           command: yarn add --force node-sass
+          command: yarn add bower ember-cli@2.12.2 phantomjs-prebuilt cordova
