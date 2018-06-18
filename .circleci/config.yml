@@ -3,6 +3,7 @@ jobs:
   build:
     macos:
       xcode: "9.0"
+    working_directory: ~/code
     docker:
       - image: circleci/android:api-23-alpha
     environment:
@@ -14,7 +15,6 @@ jobs:
       PILOT_SKIP_SUBMISSION: true
       PILOT_WAIT_PROCESSING_INTERVAL: 60
     steps:
-      - restore_cache:
       - run:
           name: Installations
           command: |
