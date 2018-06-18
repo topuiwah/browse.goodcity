@@ -3,9 +3,6 @@ jobs:
   build:
     macos:
       xcode: "9.0"
-    working_directory: ~/code
-    docker:
-      - image: circleci/android:api-23-alpha
     environment:
       GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx1024m -XX:+HeapDumpOnOutOfMemoryError"'
       XCODE_SCHEME: browse.goodcity
