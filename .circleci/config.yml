@@ -16,5 +16,5 @@ jobs:
 
     steps:
       - run:
-        name: Installations
+          name: Installations
           command: brew update
