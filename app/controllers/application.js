@@ -8,6 +8,7 @@ export default Ember.Controller.extend({
   messageBox: Ember.inject.service(),
   loggedInUser: false,
   i18n: Ember.inject.service(),
+  flashMessage: Ember.inject.service(),
 
   initSubscription: Ember.on('init', function() {
     this.get('subscription').send('wire');

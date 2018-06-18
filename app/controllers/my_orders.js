@@ -1,11 +1,11 @@
 import Ember from 'ember';
+import applicationController from './application';
 
-export default Ember.Controller.extend({
+export default applicationController.extend({
   sortProperties: ["createdAt:desc"],
   arrangedOrders: Ember.computed.sort("model.orders", "sortProperties"),
   selectedOrder: null,
   orders: Ember.computed.alias('model'),
-  flashMessage: Ember.inject.service(),
   queryParams: ['submitted'],
   triggerFlashMessage: false,
 
