@@ -1,9 +1,9 @@
 import Ember from 'ember';
-import applicationController from './application';
 
-export default applicationController.extend({
+export default Ember.Controller.extend({
   showCartDetailSidebar: false,
   packageCategoryReloaded: false,
+  flashMessage: Ember.inject.service(),
   queryParams: ['orderCancelled'],
   triggerFlashMessage: false,
 
