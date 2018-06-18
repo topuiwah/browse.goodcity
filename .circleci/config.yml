@@ -1,4 +1,6 @@
-machine:
+version: 2
+jobs:
+  build:
   environment:
     GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx1024m -XX:+HeapDumpOnOutOfMemoryError"'
     XCODE_SCHEME: browse.goodcity
