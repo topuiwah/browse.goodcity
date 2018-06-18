@@ -15,6 +15,6 @@ jobs:
       PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:$HOME/.yarn/bin:$ANDROID_HOME/tools"
 
     steps:
-      # Commands will execute in macOS container
-      # with Xcode 9.0 installed
-      - run: xcodebuild -version
+      - run:
+        name: Installations
+          command: brew update
