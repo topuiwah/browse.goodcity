@@ -22,8 +22,8 @@ jobs:
           command: brew update
           command: brew install homebrew/core/node6-lts
           command: brew upgrade yarn
-          command: brew install bower
+          command: brew upgrade bower
           command: yarn install
           command: yarn add --force node-sass bower ember-cli phantomjs-prebuilt cordova codeclimate-test-reporter
           command: bundle install
-          command: bower install
+          command: PATH=$(npm bin):$PATH; azure-filestore download -f goodcity.keystore: pwd: cordova
