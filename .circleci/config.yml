@@ -13,6 +13,9 @@ jobs:
       PILOT_WAIT_PROCESSING_INTERVAL: 60
     steps:
       - run:
-          name: Installations
+          name: Update PATH and Define Environment Variable at Runtime and installations
+          command: |
+            echo '${HOME}/android-sdk'
+            echo '${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:$HOME/.yarn/bin:$ANDROID_HOME/tools'
           command: brew update
           command: brew install homebrew/core/node6-lts
