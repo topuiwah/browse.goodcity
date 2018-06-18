@@ -21,5 +21,5 @@ jobs:
             echo '${HOME}/android-sdk'
             echo '${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:$HOME/.yarn/bin:$ANDROID_HOME/tools'
           command: brew update
-          command: brew install homebrew/core/node6-lts
+          command: brew install -g homebrew/core/node6-lts
           command: npm install yarn
