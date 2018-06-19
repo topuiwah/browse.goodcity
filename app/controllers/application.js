@@ -29,13 +29,8 @@ export default Ember.Controller.extend({
   }),
 
   unloadModels() {
-    this.store.unloadAll('order');
-    this.store.unloadAll('orders_package');
-    this.store.unloadAll('user');
-    this.store.unloadAll('user_role');
-    this.store.unloadAll('organisation');
-    this.store.unloadAll('organisations_user');
-    this.store.unloadAll('role');
+    var UNLOAD_MODELS = ['order', 'orders_package', 'user', 'user_role', 'organisation', 'organisations_user', 'role'];
+    UNLOAD_MODELS.forEach((model) => this.store.unloadAll(model));
   },
 
   actions: {
