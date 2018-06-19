@@ -28,6 +28,16 @@ export default Ember.Controller.extend({
     return authToken ? true : false;
   }),
 
+  unloadModels() {
+    this.store.unloadAll('order');
+    this.store.unloadAll('orders_package');
+    this.store.unloadAll('user');
+    this.store.unloadAll('user_role');
+    this.store.unloadAll('organisation');
+    this.store.unloadAll('organisations_user');
+    this.store.unloadAll('role');
+  },
+
   actions: {
     cancelOrderPopUp(orderId) {
       this.get("messageBox").custom(this.get("i18n").t("order.order_delete_confirmation"),
@@ -63,10 +73,9 @@ export default Ember.Controller.extend({
 
     logMeOut() {
       this.session.clear(); // this should be first since it updates isLoggedIn status
+      this.unloadModels();
       this.set('loggedInUser', "");
       this.get("cart").clearItems();
-      this.store.unloadAll('order');
-      this.store.unloadAll('orders_package');
       this.transitionToRoute('browse');
     },
 
