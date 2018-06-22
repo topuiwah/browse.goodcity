@@ -36,6 +36,15 @@ export default AuthorizeRoute.extend({
     }
   },
 
+  setTimeslot(orderTransport, controller) {
+    var timeslot = orderTransport.get("timeslot");
+    if(timeslot.indexOf(3) >= 0) {
+      controller.set("changeTime", "1" );
+    } else {
+      controller.set("changeTime", "2" );
+    }
+  },
+
   setUpFormData(model, controller) {
     var orderTransport = model.order.get("orderTransport");
     if(model.order && orderTransport) {
@@ -45,12 +54,7 @@ export default AuthorizeRoute.extend({
         controller.set('selectedId', "self");
       }
       controller.set("changeDate", moment(orderTransport.get("scheduledAt")).format("DD MMMM YYYY"));
-      var timeslot = orderTransport.get("timeslot");
-      if(timeslot.indexOf(3) >= 0) {
-        controller.set("changeTime", "1" );
-      } else {
-        controller.set("changeTime", "2" );
-      }
+      this.setTimeslot(orderTransport, controller);
     } else {
       controller.set('selectedId', "self");
     }
