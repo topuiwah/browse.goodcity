@@ -35,7 +35,7 @@ export default applicationController.extend({
 
   updateTimeValue: Ember.observer("changeTime", function() {
     Ember.run.later(() => {
-      var time = this.get("changeTime")
+      var time = this.get("changeTime");
       if(time === "1") {
         this.set("selectedTime", { id: "1", name: "10:30AM-1PM" });
       } else if(time === "2") {
