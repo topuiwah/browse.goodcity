@@ -135,6 +135,7 @@ export default {
     "notice" : "成功申請的物資將於一至兩個十字路會工作天内送達。",
     "empty_cart" : "您的購物車是空的。",
     "find_items" : "尋找合適的物資。"
+    "unavailable_and_add_item_to_proceed": "這件物資已不存在。下訂單前請在購物車中添加新的物資。"
   },
 
   "order": {
